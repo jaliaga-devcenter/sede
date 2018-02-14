@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<form>
+		<th:block th:fragment="input (label, name, desactivado)" th:with="nombre=${name.substring(name.indexOf('.')+1)}">
+			<div th:id="${'padre-'+nombre}" th:with="valid=${!#fields.hasErrors(name)}" th:class="${'form-group form-group-custom' + (valid ? '' : ' has-error')}">
+				<label class="col-sm-2 control-label" th:text="${label}">Label</label>
+				<div class="col-sm-10">
+					<div class="input-group">
+						<input class="form-control datepicker" th:field="*{__${name}__}" type="text" th:readonly="${desactivado}"
+						 th:placeholder="${label}" aria-hidden="true">
+						
+						<span class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</span>
+						
+						<th:block th:if="${!valid}">
+							<span class="" aria-hidden="true" style="right:px">!!</span>
+							
+						</th:block>
+
+					</div>
+				</div>
+			</div>
+
+		</th:block>
+	</form>
+</body>
+
+</html>
