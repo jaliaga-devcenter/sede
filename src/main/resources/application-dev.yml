@@ -6,13 +6,20 @@ server:
 
 spring.jpa.show-sql: true
 
-server.basePathBack: http://localhost:8080
-server.contextPath: /sede
+server.basePathBack: http://localhost:8081
+server.contextPath: /sede 
 server.uploadPath: C://proyectos//sede//
 
+spring:
+  thymeleaf: 
+    cache: false
+    mode: HTML5
+    enconding: UTF-8
+    
 
 logging.level.org.hibernate.SQL: DEBUG
 logging.level.org.hibernate.type: TRACE
 logging.level.org.hibernate.type.descriptor.sql.BasicExtractor: ERROR
 logging.level.org.hibernate.type.EnumType: ERROR
+
 

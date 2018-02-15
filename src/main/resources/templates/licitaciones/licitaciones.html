@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+<head>
+	<title>Licitaciones</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+		
+		<div th:if="${message}" class="alert alert-success" role="alert">
+			<p th:text="${message}">success message</p>
+		</div>
+		
+	    <a th:href="@{/licitaciones/create}">Nueva Licitaci&oacute;n</a>
+		
+		<div class="inner-addon left-addon">
+    		<i class="glyphicon glyphicon-search"></i>
+    		<input class="form-control" type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..." title="Type in chars to search" />
+		</div>		
+		<table id="listTable" class="sortable table table-striped table-hover ">
+		<thead>
+			<tr>
+				<th>Tipo</th>
+				<th>Fecha Publicaci&oacute;n</th>
+				<th>Descripci&oacute;n</th>
+				<th>Presupuesto</th>
+				<th>Fin plazo</th>
+				<th>Medio</th>				
+				<th>Tama&ntilde;o</th>
+				<th class="sorttable_nosort">Editar</th>
+				<th class="sorttable_nosort">Borrar</th>
+			</tr>
+		</thead>
+			<tbody>
+				<tr th:each="licitacion : ${licitaciones}" th:href="@{/licitaciones/edit/{id}(id=${licitacion.id})}">
+					<td ></td>
+					<td th:text="${#dates.format(licitacion.fechaPub, 'dd-MM-yyyy')}"></td>
+					<td th:text="${licitacion.descripcion}"> </td>					
+					<td th:text="${licitacion.presupuesto}+' &euro;'"></td>
+					<td th:text="${#dates.format(licitacion.finPlazo, 'dd-MM-yyyy')}"></td>
+					<td th:text="${licitacion.medio}"></td>					
+					<td ></td>
+					<td><a href="#" th:href="@{/licitaciones/edit/} + ${licitacion.id}">Editar</a></td>
+					<td><a href="#" th:href="@{/licitaciones/delete/} + ${licitacion.id}">Borrar</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br/><br/>
+		
+ 	</div>
+ 	
+ </body>
+ </html>
