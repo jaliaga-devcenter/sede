@@ -1,17 +1,23 @@
 package teralco.sedeelectronica.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-public class Documentacion extends BaseModel {
+public class Aviso extends BaseModel {
 
 	/**
 	 * 
@@ -22,8 +28,11 @@ public class Documentacion extends BaseModel {
 	@Column(nullable = false)
 	private String descripcion;
 
-	@Column(columnDefinition = "INT2")
-	private Estado estado;
+	@Column(name = "fecha")
+	@Temporal(TemporalType.DATE)
+	@NotNull(message = "Debe introducir la fecha.")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date fecha;
 
 	/* For upload file in form */
 	@Transient
@@ -39,14 +48,6 @@ public class Documentacion extends BaseModel {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
 	}
 
 	public MultipartFile getFileToUpload() {
@@ -65,9 +66,17 @@ public class Documentacion extends BaseModel {
 		this.fichero = fichero;
 	}
 
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
 	@Override
 	public String toString() {
-		return "Documentacion [descripcion=" + descripcion + ", estado=" + estado + ", fileToUpload=" + fileToUpload
-				+ ", fichero=" + fichero + "]";
+		return "Documentacion [descripcion=" + descripcion + ", fileToUpload=" + fileToUpload + ", fichero=" + fichero
+				+ "]";
 	}
 }

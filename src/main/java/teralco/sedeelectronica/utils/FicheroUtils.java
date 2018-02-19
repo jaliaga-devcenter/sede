@@ -1,11 +1,9 @@
 package teralco.sedeelectronica.utils;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,8 +33,6 @@ public final class FicheroUtils {
 		String uuidGenerado = GeneradorUtils.generarToken();
 
 		byte[] bytes = fichero.getBytes();
-		InputStream is = fichero.getInputStream();
-		Files.copy(is, Paths.get(serverUploadPath + uuidGenerado), StandardCopyOption.REPLACE_EXISTING);
 
 		Path path = Paths.get(serverUploadPath + uuidGenerado);
 
@@ -46,13 +42,13 @@ public final class FicheroUtils {
 	}
 
 	public static Fichero guardarFicheroBD(MultipartFile fichero, FicheroService ficheroService) {
-		Fichero file = new Fichero();
+		Fichero file = null;
 		if (fichero.getSize() > 0) {
 			String uuid = "";
 			try {
 				uuid = FicheroUtils.guardarFichero(fichero);
 				/* save file in model */
-
+				file = new Fichero();
 				file.setNombre(fichero.getOriginalFilename());
 				file.setUuid(uuid);
 				file.setTipo(Tipo.pdf);

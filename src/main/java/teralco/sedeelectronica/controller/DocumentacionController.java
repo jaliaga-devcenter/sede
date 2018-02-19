@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Documentacion;
 import teralco.sedeelectronica.model.Estado;
+import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.DocumentacionService;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.utils.FicheroUtils;
@@ -66,7 +67,9 @@ public class DocumentacionController {
 			model.addAttribute("estados", Estado.values());
 			return "documentos/formDocumento";
 		}
-		documentacion.setFichero(FicheroUtils.guardarFicheroBD(documentacion.getFileToUpload(), ficheroService));
+		Fichero file = FicheroUtils.guardarFicheroBD(documentacion.getFileToUpload(), ficheroService);
+		if (file != null)
+			documentacion.setFichero(file);
 		documentacionService.save(documentacion);
 
 		return "redirect:/documentos";

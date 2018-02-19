@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Adjudicacion;
+import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.AdjudicacionService;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.utils.FicheroUtils;
@@ -62,7 +63,10 @@ public class AdjudicacionController {
 		if (bindingResult.hasErrors()) {
 			return "adjudicaciones/formAdjudicacion";
 		}
-		adjudicacion.setResultado(FicheroUtils.guardarFicheroBD(adjudicacion.getFileToUpload(), ficheroService));
+		Fichero file = FicheroUtils.guardarFicheroBD(adjudicacion.getFileToUpload(), ficheroService);
+		if (file != null)
+			adjudicacion.setResultado(file);
+
 		adjudicacionService.save(adjudicacion);
 		return "redirect:/adjudicaciones";
 	}

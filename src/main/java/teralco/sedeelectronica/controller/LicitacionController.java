@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.model.Licitacion;
 import teralco.sedeelectronica.model.Medio;
 import teralco.sedeelectronica.service.FicheroService;
@@ -66,7 +67,9 @@ public class LicitacionController {
 			model.addAttribute("medios", Medio.values());
 			return "licitaciones/formLicitacion";
 		}
-		lici.setFichero(FicheroUtils.guardarFicheroBD(lici.getFileToUpload(), ficheroService));
+		Fichero file = FicheroUtils.guardarFicheroBD(lici.getFileToUpload(), ficheroService);
+		if (file != null)
+			lici.setFichero(file);
 		licitacionService.save(lici);
 		return "redirect:/licitaciones";
 	}

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Apertura;
+import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.AperturaService;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.utils.FicheroUtils;
@@ -61,7 +62,9 @@ public class AperturaController {
 		if (bindingResult.hasErrors()) {
 			return "aperturas/formApertura";
 		}
-		apertura.setResultado(FicheroUtils.guardarFicheroBD(apertura.getFileToUpload(), ficheroService));
+		Fichero file = FicheroUtils.guardarFicheroBD(apertura.getFileToUpload(), ficheroService);
+		if (file != null)
+			apertura.setResultado(file);
 		aperturaService.save(apertura);
 
 		return "redirect:/aperturas";

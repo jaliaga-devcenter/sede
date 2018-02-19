@@ -41,7 +41,7 @@
 					<td th:text="${licitacion.descripcion}"> </td>					
 					<td th:text="${licitacion.presupuesto}+' &euro;'"></td>
 					<td th:text="${#dates.format(licitacion.finPlazo, 'dd-MM-yyyy')}"></td>
-					<td th:text="${licitacion.medio}"></td>					
+					<td th:text="${licitacion.medio.text}"></td>					
 					<td th:text="${licitacion.fichero!=null} ? 
 					${#numbers.formatDecimal((licitacion.fichero.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
 					+' MB': ''"></td>

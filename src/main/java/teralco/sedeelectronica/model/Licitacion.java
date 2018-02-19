@@ -59,7 +59,7 @@ public class Licitacion extends BaseModel {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_fichero", nullable = true)
-	private Fichero fichero; // private Long idFichero;
+	private Fichero fichero;
 
 	public Fichero getFichero() {
 		return fichero;
@@ -124,12 +124,6 @@ public class Licitacion extends BaseModel {
 	public void setFileToUpload(MultipartFile file) {
 		this.fileToUpload = file;
 	}
-
-	/*
-	 * public Long getIdFichero() { return idFichero; }
-	 * 
-	 * public void setIdFichero(Long id) { this.idFichero = id; }
-	 */
 
 	@Override
 	public String toString() {

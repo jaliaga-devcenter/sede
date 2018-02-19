@@ -25,8 +25,8 @@ public class AdjudicacionService {
 	}
 
 	// save
-	public Adjudicacion save(Adjudicacion Adjudicacion) {
-		return adjudicacionRepository.save(Adjudicacion);
+	public Adjudicacion save(Adjudicacion adjudicacion) {
+		return adjudicacionRepository.save(adjudicacion);
 	}
 
 	public void delete(Long id) {
