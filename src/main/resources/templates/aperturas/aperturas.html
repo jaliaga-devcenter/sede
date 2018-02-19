@@ -38,7 +38,7 @@
 					<td th:text="${apertura.denominacion}"> </td>					
 					<td th:utext="${#dates.format(apertura.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
 					${#dates.format(apertura.hora,'hh:mm')} + '&lt;br/&gt;' +${apertura.plica}"></td>
-					<td></td>
+					<td th:text="${apertura.resultado!=null} ? 'Iconito &and; Enlace': ''"></td>
 					<td th:text="${apertura.resultado!=null} ? 
 					${#numbers.formatDecimal((apertura.resultado.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
 					+' MB': ''"></td>
