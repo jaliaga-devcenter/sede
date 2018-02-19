@@ -22,4 +22,20 @@ create table LICITACION (
    add constraint FK_LICITACION_FICHERO foreign key (ID_FICHERO)
       references FICHERO (ID)
       on delete restrict on update restrict;
+      
+
+create table APERTURA (
+   ID                   SERIAL 		not null,
+   ID_FICHERO           INT8            null,
+   FECHA				DATE 			null,
+   DENOMINACION			TEXT 			null,
+   HORA			TIME 		null,
+   PLICA			TEXT 			null, 
+   constraint PK_APERTURA primary key (ID)
+ );
+ 
+ alter table APERTURA
+   add constraint FK_APLICACION_FICHERO foreign key (ID_FICHERO)
+      references FICHERO (ID)
+      on delete restrict on update restrict;
      

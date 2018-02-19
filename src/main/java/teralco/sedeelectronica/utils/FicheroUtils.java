@@ -38,6 +38,6 @@ public final class FicheroUtils {
 
 		Files.write(path, bytes);
 
-		return uuidGenerado + "|||" + serverUploadPath;
+		return uuidGenerado;
 	}
 }
