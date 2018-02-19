@@ -38,6 +38,7 @@ public class LicitacionController {
 	public String licitaciones(Model model) {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
 		model.addAttribute("licitaciones", licitacionService.list());
+
 		return "licitaciones/licitaciones";
 	}
 
@@ -71,24 +72,24 @@ public class LicitacionController {
 			model.addAttribute("medios", Medio.values());
 			return "licitaciones/formLicitacion";
 		} else {
-			if (lici.getFichero() != null) {
+			if (lici.getFileToUpload() != null) {
 
 				try {
-					uuid = FicheroUtils.guardarFichero(lici.getFichero());
+					uuid = FicheroUtils.guardarFichero(lici.getFileToUpload());
 					/* save file in model */
 					Fichero file = new Fichero();
-					file.setNombre(lici.getFichero().getOriginalFilename());
+					file.setNombre(lici.getFileToUpload().getOriginalFilename());
 					file.setUuid(uuid);
 					file.setTipo(Tipo.pdf);
-					file.setTamanyo((double) lici.getFichero().getSize());
-					ficheroService.save(file);
+					file.setTamanyo((double) lici.getFileToUpload().getSize());
+					file = ficheroService.save(file);
+					lici.setFichero(file);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			redir.addFlashAttribute("message",
-					lici.getFichero().getOriginalFilename() + " " + lici.getFichero().getSize() + " " + uuid);
+			redir.addFlashAttribute("message", lici.getFileToUpload().getSize() + " " + uuid);
 			licitacionService.save(lici);
 
 			return "redirect:/licitaciones";

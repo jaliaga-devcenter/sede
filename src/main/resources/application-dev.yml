@@ -8,7 +8,7 @@ spring.jpa.show-sql: true
 
 server.basePathBack: http://localhost:8081
 server.contextPath: /sede 
-server.uploadPath: C://proyectos//sede//
+server.uploadPath: C:\proyectos\sede\
 
 spring:
   thymeleaf: 
@@ -16,6 +16,8 @@ spring:
     mode: HTML5
     enconding: UTF-8
     
+spring.http.multipart.max-file-size: 100Mb
+spring.http.multipart.max-request-size: 100Mb
 
 logging.level.org.hibernate.SQL: DEBUG
 logging.level.org.hibernate.type: TRACE

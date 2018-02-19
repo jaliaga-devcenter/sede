@@ -5,6 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -52,9 +55,19 @@ public class Licitacion extends BaseModel {
 
 	/* For upload file in form */
 	@Transient
-	private MultipartFile fichero;
+	private MultipartFile fileToUpload;
 
-	private Long idFichero;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_fichero", nullable = true)
+	private Fichero fichero; // private Long idFichero;
+
+	public Fichero getFichero() {
+		return fichero;
+	}
+
+	public void setFichero(Fichero fichero) {
+		this.fichero = fichero;
+	}
 
 	public Date getFechaPub() {
 		return fechaPub;
@@ -104,21 +117,19 @@ public class Licitacion extends BaseModel {
 		this.medio = medio;
 	}
 
-	public MultipartFile getFichero() {
-		return fichero;
+	public MultipartFile getFileToUpload() {
+		return fileToUpload;
 	}
 
-	public void setFichero(MultipartFile fichero) {
-		this.fichero = fichero;
+	public void setFileToUpload(MultipartFile file) {
+		this.fileToUpload = file;
 	}
 
-	public Long getIdFichero() {
-		return idFichero;
-	}
-
-	public void setIdFichero(Long id) {
-		this.idFichero = id;
-	}
+	/*
+	 * public Long getIdFichero() { return idFichero; }
+	 * 
+	 * public void setIdFichero(Long id) { this.idFichero = id; }
+	 */
 
 	@Override
 	public String toString() {

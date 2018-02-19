@@ -36,13 +36,15 @@
 		</thead>
 			<tbody>
 				<tr th:each="licitacion : ${licitaciones}" th:href="@{/licitaciones/edit/{id}(id=${licitacion.id})}">
-					<td ></td>
+					<td th:text="${licitacion.fichero!=null} ? ${licitacion.fichero.tipo}: ''"></td>
 					<td th:text="${#dates.format(licitacion.fechaPub, 'dd-MM-yyyy')}"></td>
 					<td th:text="${licitacion.descripcion}"> </td>					
 					<td th:text="${licitacion.presupuesto}+' &euro;'"></td>
 					<td th:text="${#dates.format(licitacion.finPlazo, 'dd-MM-yyyy')}"></td>
 					<td th:text="${licitacion.medio}"></td>					
-					<td ></td>
+					<td th:text="${licitacion.fichero!=null} ? 
+					${#numbers.formatDecimal((licitacion.fichero.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
+					+' MB': ''"></td>
 					<td><a href="#" th:href="@{/licitaciones/edit/} + ${licitacion.id}">Editar</a></td>
 					<td><a href="#" th:href="@{/licitaciones/delete/} + ${licitacion.id}">Borrar</a></td>
 				</tr>
