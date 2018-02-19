@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import gexflow.wsdl.ConsultaCatalogoCategoriasResponse;
 import teralco.sedeelectronica.gexflow.GexflowClient;
 
@@ -34,10 +33,5 @@ public class HomeController {
 		return "perfil-del-contratante";
 	}
 
-	@RequestMapping("/licitaciones")
-	public String licitaciones(Model model) {
-		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
-
-		return "licitaciones";
-	}
+	
 }

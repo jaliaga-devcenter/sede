@@ -2,7 +2,7 @@ create table FICHERO (
    ID                   SERIAL 		 not null,
    UUID			        VARCHAR(255)     null,
    NOMBRE_ORIGINAL		VARCHAR(255)	 null,
-   TAMANYO				INT8			 null,
+   TAMANYO				FLOAT			 null,
    TIPO					SMALLINT		 null,
    constraint PK_FICHERO primary key (ID)
 );
