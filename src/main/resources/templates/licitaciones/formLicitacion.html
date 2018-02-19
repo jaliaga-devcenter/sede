@@ -3,14 +3,11 @@
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorator="layouts/main">
 <head>
-	<title th:text="*{licitacion!=null}? 'Editar Licitacion' : 'Nueva Licitaci�n'"></title>
+	<title th:text="*{licitacion!=null}? 'Editar Licitacion' : 'Nueva Licitaci&oacute;n'"></title>
 </head>
 <body>
 		
 	<div layout:fragment="content" class=".col-md">
-		<div th:if="${fichero}" class="alert alert-warning" role="alert">
-			<p th:text="${fichero}">success message</p>
-		</div>
 
 		<form class="form-horizontal" th:object="${licitacion}" th:action="@{/licitaciones/save}" method="post" enctype="multipart/form-data">
 			<input type="hidden" th:field="*{id}" />			

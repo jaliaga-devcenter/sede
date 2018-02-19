@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+<head>
+	<title>Aperturas</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+		
+		<div th:if="${message}" class="alert alert-success" role="alert">
+			<p th:text="${message}">success message</p>
+		</div>
+		
+	    <a th:href="@{/aperturas/create}">Nueva Apertura</a>
+		
+
+
+
+		<div class="inner-addon left-addon">
+    		<i class="glyphicon glyphicon-search"></i>
+    		<input class="form-control" type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..." title="Type in chars to search" />
+		</div>		
+		<table id="listTable" class="sortable table table-striped table-hover ">
+		<thead>
+			<tr>
+				<th>Tipo</th>
+				<th>Denominaci&oacute;n</th>
+				<th>Apertura plicas</th>
+				<th>Resultado</th>				
+				<th>Tama&ntilde;o</th>
+				<th class="sorttable_nosort">Editar</th>
+				<th class="sorttable_nosort">Borrar</th>
+			</tr>
+		</thead>
+			<tbody>
+				<tr th:each="apertura : ${aperturas}" th:href="@{/aperturas/edit/{id}(id=${apertura.id})}">
+					<td th:text="${apertura.resultado!=null} ? ${apertura.resultado.tipo}: ''"></td>
+					<td th:text="${apertura.denominacion}"> </td>					
+					<td th:utext="${#dates.format(apertura.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
+					${#dates.format(apertura.hora,'hh:mm')} + '&lt;br/&gt;' +${apertura.plica}"></td>
+					<td></td>
+					<td th:text="${apertura.resultado!=null} ? 
+					${#numbers.formatDecimal((apertura.resultado.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
+					+' MB': ''"></td>
+					<td><a href="#" th:href="@{/aperturas/edit/} + ${apertura.id}">Editar</a></td>
+					<td><a href="#" th:href="@{/aperturas/delete/} + ${apertura.id}">Borrar</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br/><br/>
+		
+ 	</div>
+ 	
+ </body>
+ </html>

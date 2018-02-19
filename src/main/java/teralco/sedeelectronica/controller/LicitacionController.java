@@ -72,7 +72,7 @@ public class LicitacionController {
 			model.addAttribute("medios", Medio.values());
 			return "licitaciones/formLicitacion";
 		} else {
-			if (lici.getFileToUpload() != null) {
+			if (lici.getFileToUpload().getSize() > 0) {
 
 				try {
 					uuid = FicheroUtils.guardarFichero(lici.getFileToUpload());
