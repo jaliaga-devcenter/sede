@@ -58,5 +58,16 @@ create table ADJUDICACION (
       references FICHERO (ID)
       on delete restrict on update restrict;      
       
-      
+create table DOCUMENTACION (
+   ID                   SERIAL 		not null,
+   ID_FICHERO           INT8            null,
+   DESCRIPCION			TEXT 			null,
+   ESTADO				SMALLINT 		null,
+   constraint PK_DOCUMENTACION primary key (ID)
+ );
+ 
+ alter table DOCUMENTACION
+   add constraint FK_DOCUMENTACION_FICHERO foreign key (ID_FICHERO)
+      references FICHERO (ID)
+      on delete restrict on update restrict;      
      
