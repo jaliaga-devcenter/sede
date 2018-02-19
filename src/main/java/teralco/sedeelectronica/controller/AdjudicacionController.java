@@ -1,7 +1,5 @@
 package teralco.sedeelectronica.controller;
 
-import java.io.IOException;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Adjudicacion;
-import teralco.sedeelectronica.model.Fichero;
-import teralco.sedeelectronica.model.Tipo;
 import teralco.sedeelectronica.service.AdjudicacionService;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.utils.FicheroUtils;
@@ -35,7 +31,7 @@ public class AdjudicacionController {
 
 	@RequestMapping(value = "/adjudicaciones", produces = "text/html;charset=UTF-8")
 	public String aperturas(Model model) {
-		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
+		// DEVOLVER LA LISTA DE ADJUDICACIONES ACTUALES
 		model.addAttribute("adjudicaciones", adjudicacionService.list());
 
 		return "adjudicaciones/adjudicaciones";
@@ -43,7 +39,6 @@ public class AdjudicacionController {
 
 	@RequestMapping("/adjudicaciones/create")
 	public String create(Model model) {
-		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
 		model.addAttribute("adjudicacion", new Adjudicacion());
 		return "adjudicaciones/formAdjudicacion";
 	}
@@ -63,32 +58,12 @@ public class AdjudicacionController {
 
 	@PostMapping(value = "/adjudicaciones/save")
 	public String save(@Valid @ModelAttribute("adjudicacion") Adjudicacion adjudicacion, BindingResult bindingResult,
-			Model model, RedirectAttributes redir) {
-		String uuid = "";
+			Model model) {
 		if (bindingResult.hasErrors()) {
 			return "adjudicaciones/formAdjudicacion";
-		} else {
-			if (adjudicacion.getFileToUpload().getSize() > 0) {
-
-				try {
-					uuid = FicheroUtils.guardarFichero(adjudicacion.getFileToUpload());
-					/* save file in model */
-					Fichero file = new Fichero();
-					file.setNombre(adjudicacion.getFileToUpload().getOriginalFilename());
-					file.setUuid(uuid);
-					file.setTipo(Tipo.pdf);
-					file.setTamanyo((double) adjudicacion.getFileToUpload().getSize());
-					file = ficheroService.save(file);
-					adjudicacion.setResultado(file);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			adjudicacionService.save(adjudicacion);
-
-			return "redirect:/adjudicaciones";
 		}
+		adjudicacion.setResultado(FicheroUtils.guardarFicheroBD(adjudicacion.getFileToUpload(), ficheroService));
+		adjudicacionService.save(adjudicacion);
+		return "redirect:/adjudicaciones";
 	}
-
 }
