@@ -1,7 +1,5 @@
 package teralco.sedeelectronica.controller;
 
-import java.io.IOException;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.model.Licitacion;
 import teralco.sedeelectronica.model.Medio;
-import teralco.sedeelectronica.model.Tipo;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.LicitacionService;
 import teralco.sedeelectronica.utils.FicheroUtils;
@@ -44,7 +40,6 @@ public class LicitacionController {
 
 	@RequestMapping("/licitaciones/create")
 	public String create(Model model) {
-		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
 		model.addAttribute("licitacion", new Licitacion());
 		model.addAttribute("medios", Medio.values());
 		return "licitaciones/formLicitacion";
@@ -65,35 +60,15 @@ public class LicitacionController {
 	}
 
 	@PostMapping(value = "/licitaciones/save")
-	public String save(@Valid @ModelAttribute("licitacion") Licitacion lici, BindingResult bindingResult, Model model,
-			RedirectAttributes redir) {
-		String uuid = "";
+	public String save(@Valid @ModelAttribute("licitacion") Licitacion lici, BindingResult bindingResult, Model model) {
+
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("medios", Medio.values());
 			return "licitaciones/formLicitacion";
-		} else {
-			if (lici.getFileToUpload().getSize() > 0) {
-
-				try {
-					uuid = FicheroUtils.guardarFichero(lici.getFileToUpload());
-					/* save file in model */
-					Fichero file = new Fichero();
-					file.setNombre(lici.getFileToUpload().getOriginalFilename());
-					file.setUuid(uuid);
-					file.setTipo(Tipo.pdf);
-					file.setTamanyo((double) lici.getFileToUpload().getSize());
-					file = ficheroService.save(file);
-					lici.setFichero(file);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			redir.addFlashAttribute("message", lici.getFileToUpload().getSize() + " " + uuid);
-			licitacionService.save(lici);
-
-			return "redirect:/licitaciones";
 		}
+		lici.setFichero(FicheroUtils.guardarFicheroBD(lici.getFileToUpload(), ficheroService));
+		licitacionService.save(lici);
+		return "redirect:/licitaciones";
 	}
 
 }
