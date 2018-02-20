@@ -42,7 +42,7 @@
 					(${adjudicacion.hora!=null} ? ${#dates.format(adjudicacion.hora,'hh:mm')}:'') + '&lt;br/&gt;' +${adjudicacion.plica} : ''"></td>
 					<td th:switch="${adjudicacion.resultado}">
 							<span th:case="null" ></span>
-							<span th:case="*"><a class="downa" th:href="'./download/'+${adjudicacion.resultado.link}" target="_blank"><div class="download">&nbsp;</div></a></span>
+							<span th:case="*"><a class="downa" th:href="'./download/'+${encrypt.encrypt(adjudicacion.resultado.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>	
 					<td th:text="${adjudicacion.resultado!=null} ? 
 					${#numbers.formatDecimal((adjudicacion.resultado.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}

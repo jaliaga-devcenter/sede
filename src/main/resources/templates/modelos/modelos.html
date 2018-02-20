@@ -35,7 +35,7 @@
 					<td th:text="${modelo.fichero!=null} ? ${modelo.fichero.tipo}: ''"></td>
 					<td th:switch="${modelo.fichero}">
 							<span th:case="null" ></span>
-							<span th:case="*"><a th:text="${modelo.descripcion}" th:href="'./download/'+${modelo.fichero.link}" target="_blank"><div class="download">&nbsp;</div></a></span>
+							<span th:case="*"><a th:text="${modelo.descripcion}" th:href="'./download/'+${encrypt.encrypt(modelo.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>						
 					<td th:text="${modelo.fichero!=null} ? 
 					${#numbers.formatDecimal((modelo.fichero.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}

@@ -36,7 +36,7 @@ public class LicitacionController {
 	public String licitaciones(Model model) {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
 		model.addAttribute("licitaciones", licitacionService.list());
-
+		model.addAttribute("encrypt", new EncryptUtils());
 		return "licitaciones/licitaciones";
 	}
 
@@ -72,9 +72,6 @@ public class LicitacionController {
 		Fichero file = FicheroUtils.convertirFichero(lici.getFileToUpload());
 		file = ficheroService.save(file);
 		if (file != null) {
-			/* CREATE ENCRYPT */
-			file.setLink(EncryptUtils.encrypt(file.getId().toString()));
-			file = ficheroService.save(file);
 			lici.setFichero(file);
 		}
 		licitacionService.save(lici);

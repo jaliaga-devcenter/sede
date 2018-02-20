@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class EncryptUtils {
 
-	private EncryptUtils() {
+	public EncryptUtils() {
 	}
 
 	private static String fileStrKey;

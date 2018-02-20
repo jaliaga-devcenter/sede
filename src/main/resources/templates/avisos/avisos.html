@@ -34,7 +34,7 @@
 					<td th:text="${#dates.format(aviso.fecha, 'dd/MM/yyyy')}"></td>
 					<td th:switch="${aviso.fichero}">
 							<span th:case="null" ></span>
-							<span th:case="*"><a th:text="${aviso.descripcion}" th:href="'./download/'+${aviso.fichero.link}" target="_blank"><div class="download">&nbsp;</div></a></span>
+							<span th:case="*"><a th:text="${aviso.descripcion}" th:href="'./download/'+${encrypt.encrypt(aviso.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>									
 					<td><a href="#" th:href="@{/avisos/edit/} + ${aviso.id}">Editar</a></td>
 					<td><a href="#" th:href="@{/avisos/delete/} + ${aviso.id}">Borrar</a></td>

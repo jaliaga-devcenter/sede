@@ -36,7 +36,7 @@ public class DocumentacionController {
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
 		model.addAttribute("documentaciones", documentacionService.list());
-
+		model.addAttribute("encrypt", new EncryptUtils());
 		return "documentos/documentos";
 	}
 
@@ -72,9 +72,6 @@ public class DocumentacionController {
 		Fichero file = FicheroUtils.convertirFichero(documentacion.getFileToUpload());
 		file = ficheroService.save(file);
 		if (file != null) {
-			/* CREATE ENCRYPT */
-			file.setLink(EncryptUtils.encrypt(file.getId().toString()));
-			file = ficheroService.save(file);
 			documentacion.setFichero(file);
 		}
 

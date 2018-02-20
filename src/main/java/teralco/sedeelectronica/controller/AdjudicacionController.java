@@ -35,7 +35,7 @@ public class AdjudicacionController {
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE ADJUDICACIONES ACTUALES
 		model.addAttribute("adjudicaciones", adjudicacionService.list());
-
+		model.addAttribute("encrypt", new EncryptUtils());
 		return "adjudicaciones/adjudicaciones";
 	}
 
@@ -68,9 +68,6 @@ public class AdjudicacionController {
 		Fichero file = FicheroUtils.convertirFichero(adjudicacion.getFileToUpload());
 		file = ficheroService.save(file);
 		if (file != null) {
-			/* CREATE ENCRYPT */
-			file.setLink(EncryptUtils.encrypt(file.getId().toString()));
-			file = ficheroService.save(file);
 			adjudicacion.setResultado(file);
 		}
 

@@ -36,6 +36,7 @@ public class ModeloController {
 	public String modeloes(Model model) {
 		// DEVOLVER LA LISTA DE modeloS ACTUALES
 		model.addAttribute("modelos", modeloService.list());
+		model.addAttribute("encrypt", new EncryptUtils());
 		return "modelos/modelos";
 	}
 
@@ -70,9 +71,6 @@ public class ModeloController {
 		Fichero file = FicheroUtils.convertirFichero(modelo.getFileToUpload());
 		file = ficheroService.save(file);
 		if (file != null) {
-			/* CREATE ENCRYPT */
-			file.setLink(EncryptUtils.encrypt(file.getId().toString()));
-			file = ficheroService.save(file);
 			modelo.setFichero(file);
 		}
 

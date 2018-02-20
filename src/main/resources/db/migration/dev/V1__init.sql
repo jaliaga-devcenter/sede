@@ -1,7 +1,6 @@
 create table FICHERO (
    ID                   SERIAL 		 not null,
    UUID			        VARCHAR(255)     null,
-   LINK			        VARCHAR(255)     null,
    NOMBRE_ORIGINAL		VARCHAR(255)	 null,
    TAMANYO				FLOAT			 null,
    TIPO					SMALLINT		 null,

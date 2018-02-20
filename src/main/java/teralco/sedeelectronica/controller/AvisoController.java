@@ -35,6 +35,7 @@ public class AvisoController {
 	public String avisos(Model model) {
 		// DEVOLVER LA LISTA DE avisos ACTUALES
 		model.addAttribute("avisos", avisoService.list());
+		model.addAttribute("encrypt", new EncryptUtils());
 		return "avisos/avisos";
 	}
 
@@ -66,9 +67,6 @@ public class AvisoController {
 		Fichero file = FicheroUtils.convertirFichero(aviso.getFileToUpload());
 		file = ficheroService.save(file);
 		if (file != null) {
-			/* CREATE ENCRYPT */
-			file.setLink(EncryptUtils.encrypt(file.getId().toString()));
-			file = ficheroService.save(file);
 			aviso.setFichero(file);
 		}
 

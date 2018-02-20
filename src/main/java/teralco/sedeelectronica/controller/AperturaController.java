@@ -35,7 +35,7 @@ public class AperturaController {
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE APERTURAS ACTUALES
 		model.addAttribute("aperturas", aperturaService.list());
-
+		model.addAttribute("encrypt", new EncryptUtils());
 		return "aperturas/aperturas";
 	}
 
@@ -67,9 +67,6 @@ public class AperturaController {
 		Fichero file = FicheroUtils.convertirFichero(apertura.getFileToUpload());
 		file = ficheroService.save(file);
 		if (file != null) {
-			/* CREATE ENCRYPT */
-			file.setLink(EncryptUtils.encrypt(file.getId().toString()));
-			file = ficheroService.save(file);
 			apertura.setResultado(file);
 		}
 
