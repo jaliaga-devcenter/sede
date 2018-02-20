@@ -5,11 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<div>
-    	<a href="tramites.html" 
-   		th:href="@{/tramites}">Tramites</a>
-   		<a href="perfil-del-contratante.html" 
-   		th:href="@{/perfil-del-contratante}">Perfil del contratante</a>
+	<div layout:fragment="content">
+		<a href="tramites.html" th:href="@{/tramites}">Tramites</a>
+   		<a href="perfil-del-contratante.html" th:href="@{/perfil-del-contratante}">Perfil del contratante</a>
+   		<a href="licitaciones.html" th:href="@{/licitaciones}">Licitaciones</a>
+   		<a href="aperturas.html" th:href="@{/aperturas}">Aperturas</a>
+   		<a href="adjudicaciones.html" th:href="@{/adjudicaciones}">Adjudicaciones</a>
+   		<a href="documentos.html" th:href="@{/documentos}">Documentos</a>
+   		<a href="modelos.html" th:href="@{/modelos}">Modelos</a>
+   		<a href="avisos.html" th:href="@{/Avisos}">Avisos</a>
+  			
    		<a href="login.html"
    		th:href="@{https://demo.gexflow.com:8443/midu/LoginCertificado(idEntidad=0, 
    		urlRetornoCorrecto=${'http://localhost:8081/loginOK'},

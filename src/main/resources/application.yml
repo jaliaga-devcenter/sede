@@ -6,3 +6,5 @@ spring.jpa.hibernate.ddl-auto: validate
 spring.jpa.show-sql: true
 debug: false
 spring.messages.basename: messages/messages
+
+server.uploadPath: C:\proyectos\sede\

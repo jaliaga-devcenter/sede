@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import teralco.sedeelectronica.gexflow.client.GexflowClient;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
@@ -55,10 +54,5 @@ public class HomeController {
 		return iconos;
 	}
 
-	@RequestMapping("/licitaciones")
-	public String licitaciones(Model model) {
-		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
-
-		return "licitaciones";
-	}
+	
 }

@@ -7,13 +7,27 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.10.RELEASE</version>
 	</parent>
-
+	
 	<groupId>teralco</groupId>
 	<artifactId>SedeElectronica</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Sede Electronica</name>
-
+	
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+	
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -39,7 +53,7 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-		</dependency>
+		</dependency>	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -52,10 +66,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
 
 	<!-- Para generar las clases necesarias para conectar con gexflow hay que ejecutar: -->
 	<!-- mvn clean package -PGEN-RESOURCES -->

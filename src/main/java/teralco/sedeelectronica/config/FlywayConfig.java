@@ -1,7 +1,6 @@
 package teralco.sedeelectronica.config;
 
 import javax.sql.DataSource;
-
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy;
 import org.springframework.context.annotation.Bean;
