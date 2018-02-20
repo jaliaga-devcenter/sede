@@ -47,7 +47,7 @@
 		    		<!-- loop over available  authors -->
 					<select class="form-control" th:field="*{medio}">
 						<option value="">Seleccionar medio </option>
-						<option th:each="m,iter : ${medios}" th:value="${m}" th:text="${#strings.toUpperCase(m)}">Medio</option>
+						<option th:each="m,iter : ${medios}" th:value="${m}" th:text="${m.text}">Medio</option>
 					</select> 
 				   <span th:if="${#fields.hasErrors('medio')}" th:errors="*{medio}" th:class="help-block">Errores medio</span>
 		    	</div>
