@@ -16,7 +16,6 @@ import teralco.sedeelectronica.model.Aviso;
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.AvisoService;
 import teralco.sedeelectronica.service.FicheroService;
-import teralco.sedeelectronica.utils.FicheroUtils;
 
 @Controller
 public class AvisoController {
@@ -61,9 +60,10 @@ public class AvisoController {
 		if (bindingResult.hasErrors()) {
 			return "avisos/formAviso";
 		}
-		Fichero file = FicheroUtils.guardarFicheroBD(aviso.getFileToUpload(), ficheroService);
-		if (file != null)
+		Fichero file = ficheroService.guardarFichero(aviso.getFileToUpload());
+		if (file != null) {
 			aviso.setFichero(file);
+		}
 		avisoService.save(aviso);
 		return "redirect:/avisos";
 	}

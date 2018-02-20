@@ -17,7 +17,6 @@ import teralco.sedeelectronica.model.Estado;
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.DocumentacionService;
 import teralco.sedeelectronica.service.FicheroService;
-import teralco.sedeelectronica.utils.FicheroUtils;
 
 @Controller
 public class DocumentacionController {
@@ -67,7 +66,7 @@ public class DocumentacionController {
 			model.addAttribute("estados", Estado.values());
 			return "documentos/formDocumento";
 		}
-		Fichero file = FicheroUtils.guardarFicheroBD(documentacion.getFileToUpload(), ficheroService);
+		Fichero file = ficheroService.guardarFichero(documentacion.getFileToUpload());
 		if (file != null)
 			documentacion.setFichero(file);
 		documentacionService.save(documentacion);

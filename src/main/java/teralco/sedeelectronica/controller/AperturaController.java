@@ -16,7 +16,6 @@ import teralco.sedeelectronica.model.Apertura;
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.AperturaService;
 import teralco.sedeelectronica.service.FicheroService;
-import teralco.sedeelectronica.utils.FicheroUtils;
 
 @Controller
 public class AperturaController {
@@ -62,9 +61,10 @@ public class AperturaController {
 		if (bindingResult.hasErrors()) {
 			return "aperturas/formApertura";
 		}
-		Fichero file = FicheroUtils.guardarFicheroBD(apertura.getFileToUpload(), ficheroService);
-		if (file != null)
+		Fichero file = ficheroService.guardarFichero(apertura.getFileToUpload());
+		if (file != null) {
 			apertura.setResultado(file);
+		}
 		aperturaService.save(apertura);
 
 		return "redirect:/aperturas";

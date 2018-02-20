@@ -9,6 +9,7 @@ spring.jpa.show-sql: true
 server.basePathBack: http://localhost:8081
 server.contextPath: /sede 
 server.uploadPath: C:\proyectos\sede\
+file.strKey: Bar12345Bar12345
 
 spring:
   thymeleaf: 

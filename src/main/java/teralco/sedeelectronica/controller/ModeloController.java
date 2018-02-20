@@ -17,7 +17,6 @@ import teralco.sedeelectronica.model.Medio;
 import teralco.sedeelectronica.model.Modelo;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.ModeloService;
-import teralco.sedeelectronica.utils.FicheroUtils;
 
 @Controller
 public class ModeloController {
@@ -33,7 +32,7 @@ public class ModeloController {
 
 	@RequestMapping(value = "/modelos", produces = "text/html;charset=UTF-8")
 	public String modeloes(Model model) {
-		// DEVOLVER LA LISTA DE modeloES ACTUALES
+		// DEVOLVER LA LISTA DE modeloS ACTUALES
 		model.addAttribute("modelos", modeloService.list());
 		return "modelos/modelos";
 	}
@@ -65,9 +64,10 @@ public class ModeloController {
 			model.addAttribute("medios", Medio.values());
 			return "modelos/formModelo";
 		}
-		Fichero file = FicheroUtils.guardarFicheroBD(modelo.getFileToUpload(), ficheroService);
-		if (file != null)
+		Fichero file = ficheroService.guardarFichero(modelo.getFileToUpload());
+		if (file != null) {
 			modelo.setFichero(file);
+		}
 		modeloService.save(modelo);
 		return "redirect:/modelos";
 	}
