@@ -25,4 +25,8 @@ logging.level.org.hibernate.type: TRACE
 logging.level.org.hibernate.type.descriptor.sql.BasicExtractor: ERROR
 logging.level.org.hibernate.type.EnumType: ERROR
 
-
+spring.mail.host: smtp.gmail.com
+spring.mail.username: ######
+spring.mail.password: ##########
+spring.mail.port: 587
+spring.mail.properties.mail.smtp.starttls.enable: true

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+	<title>Contacto</title>
+</head>
+<body>
+		
+	<div layout:fragment="content" class=".col-md">
+		<div th:if="${message}" class="alert alert-success" role="alert">
+			<p th:text="${message}">success message</p>
+		</div>
+
+		<form class="form-horizontal" th:object="${contacto}" th:action="@{/contacto/send}" method="post">
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('nombre')}? 'has-error'">
+		    	<label class="col-sm-2 control-label">Nombre <span class="required">*</span> :</label>
+		    	<div class="col-md-10">
+		    		<input type="text" class="form-control" th:field="*{nombre}" />
+		    		<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" th:class="help-block">Errores Fin Plazo</span>
+		    	</div>
+		  	</div>
+	  		<div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
+				<label class="col-sm-2 control-label">Correo electr&oacute;nico <span class="required">*</span> : </label>
+				<div class="col-md-10">
+						<input type="email" class="form-control" th:field="*{email}" />
+						<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="help-block">Errores Fin Plazo</span>
+					</div>
+			</div> 
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('comentario')}? 'has-error'">
+					<label class="col-sm-2 control-label">Comentarios <span class="required">*</span> :</label>
+					<div class="col-md-10">
+						<textarea rows="4" cols="50" class="form-control" th:field="*{comentario}" >		    		
+						</textarea>
+						<span th:if="${#fields.hasErrors('comentario')}" th:errors="*{comentario}" th:class="help-block">Errores descripcion</span>
+					</div>
+				</div>
+		  	<br/><br/>
+	  	
+			  			  
+			<button type="submit" class="btn btn-primary pull-left">Enviar</button>
+	</form>
+	<br/><br/>	
+	</div>
+</body>
+</html>
