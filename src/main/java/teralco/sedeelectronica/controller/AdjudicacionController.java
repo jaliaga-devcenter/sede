@@ -16,6 +16,8 @@ import teralco.sedeelectronica.model.Adjudicacion;
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.AdjudicacionService;
 import teralco.sedeelectronica.service.FicheroService;
+import teralco.sedeelectronica.utils.EncryptUtils;
+import teralco.sedeelectronica.utils.FicheroUtils;
 
 @Controller
 public class AdjudicacionController {
@@ -62,10 +64,16 @@ public class AdjudicacionController {
 		if (bindingResult.hasErrors()) {
 			return "adjudicaciones/formAdjudicacion";
 		}
-		Fichero file = ficheroService.guardarFichero(adjudicacion.getFileToUpload());
+
+		Fichero file = FicheroUtils.convertirFichero(adjudicacion.getFileToUpload());
+		file = ficheroService.save(file);
 		if (file != null) {
+			/* CREATE ENCRYPT */
+			file.setLink(EncryptUtils.encrypt(file.getId().toString()));
+			file = ficheroService.save(file);
 			adjudicacion.setResultado(file);
 		}
+
 		adjudicacionService.save(adjudicacion);
 		return "redirect:/adjudicaciones";
 	}

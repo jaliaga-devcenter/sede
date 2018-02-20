@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import teralco.sedeelectronica.model.Fichero;
+import teralco.sedeelectronica.model.Tipo;
+
 @Component
 public final class FicheroUtils {
 
@@ -28,12 +31,33 @@ public final class FicheroUtils {
 		String uuidGenerado = GeneradorUtils.generarToken();
 
 		byte[] bytes = fichero.getBytes();
-
-		Path path = Paths.get(serverUploadPath + uuidGenerado);
+		String ext = fichero.getOriginalFilename().substring(fichero.getOriginalFilename().lastIndexOf('.'));
+		Path path = Paths.get(serverUploadPath + uuidGenerado + ext);
 
 		Files.write(path, bytes);
 
-		return uuidGenerado;
+		return uuidGenerado + ext;
+	}
+
+	public static Fichero convertirFichero(MultipartFile fichero) {
+		Fichero file = null;
+		if (fichero.getSize() > 0) {
+			String uuid = "";
+			try {
+				uuid = FicheroUtils.guardarFichero(fichero);
+				/* save file in model */
+				file = new Fichero();
+				file.setNombreOriginal(fichero.getOriginalFilename());
+				file.setUuid(uuid);
+				file.setTipo(Tipo.pdf);
+				file.setTamanyo((double) fichero.getSize());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		}
+		return file;
 	}
 
 }

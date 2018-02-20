@@ -17,6 +17,7 @@ import teralco.sedeelectronica.model.Licitacion;
 import teralco.sedeelectronica.model.Medio;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.LicitacionService;
+import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
 
 @Controller
@@ -67,9 +68,15 @@ public class LicitacionController {
 			model.addAttribute("medios", Medio.values());
 			return "licitaciones/formLicitacion";
 		}
-		Fichero file = FicheroUtils.guardarFicheroBD(lici.getFileToUpload(), ficheroService);
-		if (file != null)
+
+		Fichero file = FicheroUtils.convertirFichero(lici.getFileToUpload());
+		file = ficheroService.save(file);
+		if (file != null) {
+			/* CREATE ENCRYPT */
+			file.setLink(EncryptUtils.encrypt(file.getId().toString()));
+			file = ficheroService.save(file);
 			lici.setFichero(file);
+		}
 		licitacionService.save(lici);
 		return "redirect:/licitaciones";
 	}

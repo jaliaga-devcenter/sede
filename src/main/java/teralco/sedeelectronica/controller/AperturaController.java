@@ -16,6 +16,8 @@ import teralco.sedeelectronica.model.Apertura;
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.AperturaService;
 import teralco.sedeelectronica.service.FicheroService;
+import teralco.sedeelectronica.utils.EncryptUtils;
+import teralco.sedeelectronica.utils.FicheroUtils;
 
 @Controller
 public class AperturaController {
@@ -61,10 +63,16 @@ public class AperturaController {
 		if (bindingResult.hasErrors()) {
 			return "aperturas/formApertura";
 		}
-		Fichero file = ficheroService.guardarFichero(apertura.getFileToUpload());
+
+		Fichero file = FicheroUtils.convertirFichero(apertura.getFileToUpload());
+		file = ficheroService.save(file);
 		if (file != null) {
+			/* CREATE ENCRYPT */
+			file.setLink(EncryptUtils.encrypt(file.getId().toString()));
+			file = ficheroService.save(file);
 			apertura.setResultado(file);
 		}
+
 		aperturaService.save(apertura);
 
 		return "redirect:/aperturas";

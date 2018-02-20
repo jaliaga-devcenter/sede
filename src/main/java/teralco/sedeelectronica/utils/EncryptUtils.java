@@ -59,10 +59,9 @@ public class EncryptUtils {
 		return encryptedString;
 	}
 
-	@SuppressWarnings("null")
 	public static String decrypt(String strEncrypted) throws Exception {
 		Base64.Decoder decoder = Base64.getDecoder();
-		Cipher cipher = null;
+		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.DECRYPT_MODE, aesKey);
 		String decrypted = new String(cipher.doFinal(decoder.decode(strEncrypted)));
 		return decrypted;

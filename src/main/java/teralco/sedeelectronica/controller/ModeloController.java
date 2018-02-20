@@ -17,6 +17,8 @@ import teralco.sedeelectronica.model.Medio;
 import teralco.sedeelectronica.model.Modelo;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.ModeloService;
+import teralco.sedeelectronica.utils.EncryptUtils;
+import teralco.sedeelectronica.utils.FicheroUtils;
 
 @Controller
 public class ModeloController {
@@ -64,10 +66,16 @@ public class ModeloController {
 			model.addAttribute("medios", Medio.values());
 			return "modelos/formModelo";
 		}
-		Fichero file = ficheroService.guardarFichero(modelo.getFileToUpload());
+
+		Fichero file = FicheroUtils.convertirFichero(modelo.getFileToUpload());
+		file = ficheroService.save(file);
 		if (file != null) {
+			/* CREATE ENCRYPT */
+			file.setLink(EncryptUtils.encrypt(file.getId().toString()));
+			file = ficheroService.save(file);
 			modelo.setFichero(file);
 		}
+
 		modeloService.save(modelo);
 		return "redirect:/modelos";
 	}

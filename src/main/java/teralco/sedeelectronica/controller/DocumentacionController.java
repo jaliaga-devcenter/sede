@@ -17,6 +17,8 @@ import teralco.sedeelectronica.model.Estado;
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.DocumentacionService;
 import teralco.sedeelectronica.service.FicheroService;
+import teralco.sedeelectronica.utils.EncryptUtils;
+import teralco.sedeelectronica.utils.FicheroUtils;
 
 @Controller
 public class DocumentacionController {
@@ -66,9 +68,16 @@ public class DocumentacionController {
 			model.addAttribute("estados", Estado.values());
 			return "documentos/formDocumento";
 		}
-		Fichero file = ficheroService.guardarFichero(documentacion.getFileToUpload());
-		if (file != null)
+
+		Fichero file = FicheroUtils.convertirFichero(documentacion.getFileToUpload());
+		file = ficheroService.save(file);
+		if (file != null) {
+			/* CREATE ENCRYPT */
+			file.setLink(EncryptUtils.encrypt(file.getId().toString()));
+			file = ficheroService.save(file);
 			documentacion.setFichero(file);
+		}
+
 		documentacionService.save(documentacion);
 
 		return "redirect:/documentos";
