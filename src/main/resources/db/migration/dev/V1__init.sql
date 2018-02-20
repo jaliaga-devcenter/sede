@@ -44,12 +44,12 @@ create table ADJUDICACION (
    ID_FICHERO           INT8            null,
    FECHA				DATE 			null,
    DENOMINACION			TEXT 			null,
-   HORA			TIME 		null,
-   PLICA			TEXT 			null,
-   FECHA_FORMALIZACION				DATE 			null,
-   EMPRESA_ADJUDICACION			TEXT 			null,
+   HORA					TIME 			null,
+   PLICA				TEXT 			null,
+   FECHA_FORMALIZACION	DATE 			null,
+   EMPRESA_ADJUDICACION	TEXT 			null,
    PRESUPUESTO			DECIMAL 		null,
-   FECHA_ADJUDICACION				DATE 			null,   
+   FECHA_ADJUDICACION	DATE 			null,   
    constraint PK_ADJUDICACION primary key (ID)
  );
  
