@@ -3,7 +3,6 @@ package teralco.sedeelectronica.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
@@ -69,7 +68,7 @@ public class ContactoController {
 
 		String captchaVerifyMessage = captchaService.verifyRecaptcha(ip, recaptchaResponse);
 
-		if (StringUtils.isNotEmpty(captchaVerifyMessage)) {
+		if (!captchaVerifyMessage.isEmpty()) {
 			model.addAttribute("messageWarning", captchaVerifyMessage);
 			return "contacto/formContacto";
 		}
