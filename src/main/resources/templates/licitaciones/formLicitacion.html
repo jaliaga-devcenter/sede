@@ -11,37 +11,12 @@
 
 		<form class="form-horizontal" th:object="${licitacion}" th:action="@{/licitaciones/save}" method="post" enctype="multipart/form-data">
 			<input type="hidden" th:field="*{id}" />			
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('fechaPub')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Fecha Publicaci&oacute;n <span class="required">*</span> :</label>
-		    	<div class="col-md-10">
-		    		<input type="date" class="form-control" th:field="*{fechaPub}" />
-		    		<span th:if="${#fields.hasErrors('fechaPub')}" th:errors="*{fechaPub}" th:class="help-block">Errores Fecha Publicaci�n</span>
-		    	</div>
-		  	</div>
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('descripcion')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Descripci&oacute;n <span class="required">*</span> :</label>
-		    	<div class="col-md-10">
-		    		<textarea rows="4" cols="50" class="form-control" th:field="*{descripcion}" >
-		    		
-		    		</textarea>
-		    		<span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" th:class="help-block">Errores Descripci�n</span>
-		    	</div>
-		  	</div>
-		  	<div th:class="form-group" th:classappend="${#fields.hasErrors('presupuesto')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Presupuesto <span class="required">*</span> :</label>
-		    	<div class="col-md-10">
-		    		<input type="number" step="0.01" class="form-control" th:field="*{presupuesto}" />
-		    		<span th:if="${#fields.hasErrors('presupuesto')}" th:errors="*{presupuesto}" th:class="help-block">Errores Presupuesto</span>
-		    	</div>
-		  	</div>		  		  			
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('finPlazo')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Fecha Publicaci&oacute;n <span class="required">*</span> :</label>
-		    	<div class="col-md-10">
-		    		<input type="date" class="form-control" th:field="*{finPlazo}" />
-		    		<span th:if="${#fields.hasErrors('finPlazo')}" th:errors="*{finPlazo}" th:class="help-block">Errores Fin Plazo</span>
-		    	</div>
-		  	</div>
-	  		<div class="form-group" th:classappend="${#fields.hasErrors('medio')}? 'has-error'">
+
+			<div th:replace="fragments/dateField :: input (label=Fecha, name=fechaPub, desactivado=false, requerido=true)">&nbsp;</div>
+			<div th:replace="fragments/textAreaField :: input (label='Descripci&oacute;n', name=descripcion, requerido=true)">&nbsp;</div>
+			<div th:replace="fragments/numberField :: input (label='Presupuesto', name=presupuesto,requerido=true, step='0.01')">&nbsp;</div>
+			<div th:replace="fragments/dateField :: input (label='Fecha Publicaci&oacute;n', name=finPlazo, desactivado=false, requerido=true)">&nbsp;</div>
+			<div class="form-group" th:classappend="${#fields.hasErrors('medio')}? 'has-error'">
 		    	<label class="col-sm-2 control-label">Medio: </label>
 		    	<div class="col-md-10"> 
 		    		<!-- loop over available  authors -->
@@ -51,45 +26,12 @@
 					</select> 
 				   <span th:if="${#fields.hasErrors('medio')}" th:errors="*{medio}" th:class="help-block">Errores medio</span>
 		    	</div>
-			  </div>
-			  <div class="form-group" th:classappend="${#fields.hasErrors('fileToUpload')}? 'has-error'">
-					<label class="col-sm-2 control-label">Fichero: </label>
-					<div class="col-md-10 input-group">
-							<label class="input-group-btn">
-								<span class="btn btn-primary">
-										Fichero&hellip; <input type="file" th:field="*{fileToUpload}" style="display: none;"  />
-								</span>
-							</label>
-							<input type="text" class="form-control" readonly="readonly" />
-							<span th:if="${#fields.hasErrors('fileToUpload')}" th:errors="*{fileToUpload}" th:class="help-block">Errores fichero</span>
-					</div>
-			  </div> 
-		  	
-		  	<br/><br/>
-	  	
-			  			  
+			</div>
+			<div th:replace="fragments/archiveField :: input (label='Fichero',boton='Fichero', name=fileToUpload)">&nbsp;</div>		  	
+		  	<br/><br/>		  			  
 			<button type="submit" class="btn btn-primary pull-left">Guardar Licitaci&oacute;n</button>
 	</form>
-	<script>
-		$(document).on('change', ':file', function() {
-        	var input = $(this),
-            numFiles = input.get(0).files ? input.get(0).files.length : 1,
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-        	input.trigger('fileselect', [numFiles, label]);
-    	});
-		// We can watch for our custom `fileselect` event like this
-		$(document).ready( function() {
-     		$(':file').on('fileselect', function(event, numFiles, label) {
-				var input = $(this).parents('.input-group').find(':text'),
-					log = numFiles > 1 ? numFiles + ' files selected' : label;
-				if( input.length ) {
-					input.val(log);
-				} else {
-					if( log ) alert(log);
-				}
-      		});
-  		});
-	</script>
+	
 	<br/><br/>	
 	</div>
 </body>

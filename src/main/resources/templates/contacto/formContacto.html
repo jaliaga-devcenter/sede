@@ -4,6 +4,7 @@
 	layout:decorator="layouts/main">
 <head>
 	<title>Contacto</title>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 		
@@ -11,30 +12,20 @@
 		<div th:if="${message}" class="alert alert-success" role="alert">
 			<p th:text="${message}">success message</p>
 		</div>
+		
 
 		<form class="form-horizontal" th:object="${contacto}" th:action="@{/contacto/send}" method="post">
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('nombre')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Nombre <span class="required">*</span> :</label>
-		    	<div class="col-md-10">
-		    		<input type="text" class="form-control" th:field="*{nombre}" />
-		    		<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" th:class="help-block">Errores Fin Plazo</span>
-		    	</div>
-		  	</div>
-	  		<div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
-				<label class="col-sm-2 control-label">Correo electr&oacute;nico <span class="required">*</span> : </label>
-				<div class="col-md-10">
-						<input type="email" class="form-control" th:field="*{email}" />
-						<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="help-block">Errores Fin Plazo</span>
-					</div>
-			</div> 
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('comentario')}? 'has-error'">
-					<label class="col-sm-2 control-label">Comentarios <span class="required">*</span> :</label>
-					<div class="col-md-10">
-						<textarea rows="4" cols="50" class="form-control" th:field="*{comentario}" >		    		
-						</textarea>
-						<span th:if="${#fields.hasErrors('comentario')}" th:errors="*{comentario}" th:class="help-block">Errores descripcion</span>
-					</div>
+
+			<div th:replace="fragments/textField :: input (label='Nombre', name=nombre, tipo=text, requerido=true)">&nbsp;</div>
+			<div th:replace="fragments/textField :: input (label='Correo electr&oacute;nico', name=email, tipo=email, requerido=true)">&nbsp;</div>  		  	
+			<div th:replace="fragments/textAreaField :: input (label='Comentarios', name=comentario, requerido=true)">&nbsp;</div>
+
+				<div th:if="${messageWarning}" class="alert alert-warning" role="alert">
+					<p th:text="${messageWarning}">success message</p>
 				</div>
+				<div class="g-recaptcha col-sm-5"
+          			th:attr="data-sitekey=${@captchaSettings.getSite()}"></div>
+        		<span id="captchaError" class="alert alert-danger col-sm-4" style="display:none"></span>
 		  	<br/><br/>
 	  	
 			  			  
