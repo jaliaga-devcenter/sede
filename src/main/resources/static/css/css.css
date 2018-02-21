@@ -12,3 +12,8 @@
 a.downa:hover {
     text-decoration: none;
 }
+
+.g-recaptcha {
+    display: block;
+    float: none;
+}

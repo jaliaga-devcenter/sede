@@ -11,104 +11,18 @@
 
 		<form class="form-horizontal" th:object="${adjudicacion}" th:action="@{/adjudicaciones/save}" method="post" enctype="multipart/form-data">
 			<input type="hidden" th:field="*{id}" />
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('denominacion')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Denominaci&oacute;n <span class="required">*</span> :</label>
-		    	<div class="col-md-10">
-		    		<textarea rows="4" cols="50" class="form-control" th:field="*{denominacion}" >		    		
-		    		</textarea>
-		    		<span th:if="${#fields.hasErrors('denominacion')}" th:errors="*{denominacion}" th:class="help-block">Errores denominacion</span>
-		    	</div>
-		  	</div>		
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('fecha')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Fecha apertura plicas: </label>
-		    	<div class="col-md-10">
-		    		<input type="date" class="form-control" th:field="*{fecha}" />
-		    		<span th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}" th:class="help-block">Errores Fecha </span>
-		    	</div>
-		  	</div>
-			
-		  	<div th:class="form-group" th:classappend="${#fields.hasErrors('hora')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Hora apertura plicas:</label>
-		    	<div class="col-md-10">
-		    		<input type="time" class="form-control" th:field="*{hora}" />
-		    		<span th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}" th:class="help-block">Errores hora</span>
-		    	</div>
-		  	</div>		  		  			
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('plica')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Plica :</label>
-		    	<div class="col-md-10">
-		    		<textarea rows="4" cols="50" class="form-control" th:field="*{plica}" >		    		
-		    		</textarea>
-		    		<span th:if="${#fields.hasErrors('plica')}" th:errors="*{plica}" th:class="help-block">Errores plicas</span>
-		    	</div>
-			</div>
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('empresaAdjudicacion')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Adjudicaci&oacute;n:</label>
-		    	<div class="col-md-10">
-		    		<textarea rows="4" cols="50" class="form-control" th:field="*{empresaAdjudicacion}" >		    		
-		    		</textarea>
-		    		<span th:if="${#fields.hasErrors('empresaAdjudicacion')}" th:errors="*{empresaAdjudicacion}" th:class="help-block">Errores adjudicacion</span>
-		    	</div>
-		  	</div>		
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('presupuesto')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Presupuesto adjudicaci&oacute;n :</label>
-		    	<div class="col-md-10">
-		    		<input type="number" step="0.01" class="form-control" th:field="*{presupuesto}" />
-		    		<span th:if="${#fields.hasErrors('presupuesto')}" th:errors="*{presupuesto}" th:class="help-block">Errores Presupuesto</span>
-		    	</div>
-			</div>
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('fechaAdjudicacion')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Fecha Adjudicaci&oacute;n:</label>
-		    	<div class="col-md-10">
-		    		<input type="date" class="form-control" th:field="*{fechaAdjudicacion}" />
-		    		<span th:if="${#fields.hasErrors('fechaAdjudicacion')}" th:errors="*{fechaAdjudicacion}" th:class="help-block">Errores fecha formalizacion</span>
-		    	</div>
-		  	</div>  		  			
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('fechaFormalizacion')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Fecha Formalizaci&oacute;n:</label>
-		    	<div class="col-md-10">
-		    		<input type="date" class="form-control" th:field="*{fechaFormalizacion}" />
-		    		<span th:if="${#fields.hasErrors('fechaFormalizacion')}" th:errors="*{fechaFormalizacion}" th:class="help-block">Errores fecha formalizacion</span>
-		    	</div>
-		  	</div>  
-	  		<div class="form-group" th:classappend="${#fields.hasErrors('fileToUpload')}? 'has-error'">
-				<label class="col-sm-2 control-label">Fichero de resultado: </label>
-				<div class="col-md-10 input-group">
-					<label class="input-group-btn">
-						<span class="btn btn-primary">
-							Fichero&hellip; <input type="file" th:field="*{fileToUpload}" style="display: none;"  />
-						</span>
-					</label>
-					<input type="text" class="form-control" readonly="readonly" />
-					<span th:if="${#fields.hasErrors('fileToUpload')}" th:errors="*{fileToUpload}" th:class="help-block">Errores fichero</span>
-				</div>
-			</div> 
-		  	
-		  	<br/><br/>
-	  	
-			  			  
+			<div th:replace="fragments/textAreaField :: input (label='Denominaci&oacute;n', name=denominacion, requerido=true)">&nbsp;</div>
+			<div th:replace="fragments/dateField :: input (label='Fecha apertura plicas', name=fecha, desactivado=false, requerido=false)">&nbsp;</div>
+			<div th:replace="fragments/timeField :: input (label='Hora apertura plicas', name=hora, desactivado=false, requerido=false)">&nbsp;</div>
+			<div th:replace="fragments/textAreaField :: input (label='Plica', name=plica, requerido=false)">&nbsp;</div>
+			<div th:replace="fragments/textAreaField :: input (label='Adjudicaci&oacute;n', name=empresaAdjudicacion, requerido=false)">&nbsp;</div>
+			<div th:replace="fragments/numberField :: input (label='Presupuesto adjudicaci&oacute;n', name=presupuesto,requerido=false, step='0.01')">&nbsp;</div>
+			<div th:replace="fragments/dateField :: input (label='Fecha Adjudicaci&oacute;n', name=fechaAdjudicacion, desactivado=false, requerido=true)">&nbsp;</div>
+			<div th:replace="fragments/dateField :: input (label='Fecha Formalizaci&oacute;n', name=fechaFormalizacion, desactivado=false, requerido=true)">&nbsp;</div>
+			<div th:replace="fragments/archiveField :: input (label='Fichero de resultado', boton='Fichero', name=fileToUpload)">&nbsp;</div>  	
+		  	<br/><br/>			  			  
 			<button type="submit" class="btn btn-primary pull-left">Guardar Adjudicacion</button>
 	</form>
-	<script>
-		$(document).on('change', ':file', function() {
-        	var input = $(this),
-            numFiles = input.get(0).files ? input.get(0).files.length : 1,
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-        	input.trigger('fileselect', [numFiles, label]);
-    	});
-		// We can watch for our custom `fileselect` event like this
-		$(document).ready( function() {
-     		$(':file').on('fileselect', function(event, numFiles, label) {
-				var input = $(this).parents('.input-group').find(':text'),
-					log = numFiles > 1 ? numFiles + ' files selected' : label;
-				if( input.length ) {
-					input.val(log);
-				} else {
-					if( log ) alert(log);
-				}
-      		});
-  		});
-	</script>
 	<br/><br/>	
 	</div>
 </body>

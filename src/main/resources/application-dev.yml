@@ -25,6 +25,10 @@ logging.level.org.hibernate.type: TRACE
 logging.level.org.hibernate.type.descriptor.sql.BasicExtractor: ERROR
 logging.level.org.hibernate.type.EnumType: ERROR
 
+# Uncomment the keys to enable captcha
+google.recaptcha.key.site: 6LcXrUcUAAAAAL1kUs8PM_007ClcXBHkt5L_YgqZ
+google.recaptcha.key.secret: 6LcXrUcUAAAAAGeDgCq_H1k7JQE0j2Ett4km0xwz
+
 spring.mail.host: smtp.gmail.com
 spring.mail.username: ######
 spring.mail.password: ##########
