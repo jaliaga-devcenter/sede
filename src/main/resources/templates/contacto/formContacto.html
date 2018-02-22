@@ -3,23 +3,23 @@
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorator="layouts/main">
 <head>
-	<title>Contacto</title>
+	<title th:text="#{message.contacto.header}">Contacto</title>
 	<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
-		
-	<div layout:fragment="content" class=".col-md">
-		<div th:if="${message}" class="alert alert-success" role="alert">
-			<p th:text="${message}">success message</p>
-		</div>
-		
 
-		<form class="form-horizontal" th:object="${contacto}" th:action="@{/contacto/send}" method="post">
-
-			<div th:replace="fragments/textField :: input (label='Nombre', name=nombre, tipo=text, requerido=true)">&nbsp;</div>
-			<div th:replace="fragments/textField :: input (label='Correo electr&oacute;nico', name=email, tipo=email, requerido=true)">&nbsp;</div>  		  	
-			<div th:replace="fragments/textAreaField :: input (label='Comentarios', name=comentario, requerido=true)">&nbsp;</div>
-
+	<div layout:fragment="content" >	
+		<section class="g-py-15">
+			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
+				<h2 class="h3 u-heading-v1__title" th:text="#{message.contacto.header}"></h2>
+			</div>
+			<div th:if="${message}" class="alert alert-success" role="alert">
+				<p th:text="${message}">success message</p>
+			</div>
+			<form class="g-pa-30 g-mb-30" th:object="${contacto}" th:action="@{/contacto/send}" method="post">
+				<div th:replace="~{fragments/inputs/textField :: input (#{message.contacto.form.label.name}, 'nombre', 'text', true)}"></div>
+				<div th:replace="~{fragments/inputs/textField :: input (#{message.contacto.form.label.email}, 'email', 'email', true)}"></div>
+				<div th:replace="~{fragments/inputs/textareaField :: input (#{message.contacto.form.label.comment}, 'comentario', #{message.contacto.form.error.comment}, 4, 50, true, false)}"></div>
 				<div th:if="${messageWarning}" class="alert alert-warning" role="alert">
 					<p th:text="${messageWarning}">success message</p>
 				</div>
@@ -29,9 +29,10 @@
 		  	<br/><br/>
 	  	
 			  			  
-			<button type="submit" class="btn btn-primary pull-left">Enviar</button>
-	</form>
-	<br/><br/>	
+			<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.contacto.form.button.save}">Enviar</button>
+		</form>
+		<br/><br/>	
+		</section>
 	</div>
 </body>
 </html>

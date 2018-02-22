@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorator="layouts/main">
 
 <head>
-	<title th:text="*{licitacion!=null}? 'Editar Licitaci&oacute;n' : 'Nueva Licitaci&oacute;n'"></title>
+	<title th:text="*{licitacion!=null}?  #{message.licitaciones.form.edit} : #{message.licitaciones.form.new}"></title>
 </head>
 
 <body>
@@ -34,27 +34,6 @@
 				</div>
 			</form>
 		</section>
-
-		<script>
-			$(document).on('change', ':file', function () {
-				var input = $(this),
-					numFiles = input.get(0).files ? input.get(0).files.length : 1,
-					label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-				input.trigger('fileselect', [numFiles, label]);
-			});
-			// We can watch for our custom `fileselect` event like this
-			$(document).ready(function () {
-				$(':file').on('fileselect', function (event, numFiles, label) {
-					var input = $(this).parents('.input-group').find(':text'),
-						log = numFiles > 1 ? numFiles + ' files selected' : label;
-					if (input.length) {
-						input.val(log);
-					} else {
-						if (log) alert(log);
-					}
-				});
-			});
-		</script>
 	</div>
 </body>
 

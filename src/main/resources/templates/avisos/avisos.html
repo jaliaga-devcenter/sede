@@ -1,50 +1,43 @@
 <!DOCTYPE html>
 <html lang="es" layout:decorator="/layouts/main">
 <head>
-	<title>Avisos</title>
-</head>
-<body>
-
-<div layout:fragment="content">
-		
-		<div th:if="${message}" class="alert alert-success" role="alert">
-			<p th:text="${message}">success message</p>
+	<head>
+		<title th:text="#{message.avisos.table.header}">Avisos</title>
+	</head>
+	<body>
+	
+		<div layout:fragment="content">	
+			<div th:replace="~{fragments/genericTable :: genericTable('user', #{message.avisos.table.header}, 'avisos', ~{::table})}"></div>
 		</div>
-		
-	    <a th:href="@{/avisos/create}">Nuevo Aviso</a>
-		
-
-
-
-		<div class="inner-addon left-addon">
-    		<i class="glyphicon glyphicon-search"></i>
-    		<input class="form-control" type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..." title="Type in chars to search" />
-		</div>		
-		<table id="listTable" class="sortable table table-striped table-hover ">
-		<thead>
-			<tr>
-				<th>Fecha</th>
-				<th>Descripci&oacute;n</th>
-				<th class="sorttable_nosort">Editar</th>
-				<th class="sorttable_nosort">Borrar</th>
-			</tr>
-		</thead>
+	
+		<table class="table u-table--v1 mb-0 table-striped table-hover">
+			<thead>
+				<tr class="g-col-border-top-0">
+					<th>#</th>
+					<th th:text="#{message.avisos.table.header.date}">Fecha</th>
+					<th th:text="#{message.avisos.table.header.description}">Descripción</th>
+				</tr>
+			</thead>
 			<tbody>
-				<tr th:each="aviso : ${avisos}" th:href="@{/avisos/edit/{id}(id=${aviso.id})}">
+				<tr th:each="aviso, itr : ${avisos}" th:href="@{/avisos/edit/{id}(id=${aviso.id})}">
+					<th scope="row">
+						<fieldset class="g-pt-2">
+							<div>
+								<label>
+									<input type="radio" name="optionsRadios" th:id="${'option' + aviso.id}" th:checked="${itr.index == 0}" th:value="${aviso.id}"
+									/>
+								</label>
+							</div>
+						</fieldset>
+					</th>	
 					<td th:text="${#dates.format(aviso.fecha, 'dd/MM/yyyy')}"></td>
 					<td th:switch="${aviso.fichero}">
 							<span th:case="null" ></span>
 							<span th:case="*"><a th:text="${aviso.descripcion}" th:href="'./download/'+${encrypt.encrypt(aviso.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>									
-					<td><a href="#" th:href="@{/avisos/edit/} + ${aviso.id}">Editar</a></td>
-					<td><a href="#" th:href="@{/avisos/delete/} + ${aviso.id}">Borrar</a></td>
+
 				</tr>
 			</tbody>
-		</table>
-
-		<br/><br/>
-		
- 	</div>
- 	
+		</table>		
  </body>
  </html>

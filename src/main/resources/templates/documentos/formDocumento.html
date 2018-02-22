@@ -3,21 +3,30 @@
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorator="layouts/main">
 <head>
-	<title th:text="*{adjudicacion!=null}? 'Editar Documentaci&oacute;n' : 'Nueva Documentaci&oacute;n'"></title>
+	<title th:text="*{documentacion!=null}?  #{message.documentos.form.edit} : #{message.documentos.form.new}"></title>
 </head>
 <body>
 		
 	<div layout:fragment="content" class=".col-md">
+		<section class="g-py-15">
+			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
+				<h2 class="h3 u-heading-v1__title" th:text="*{documentacion!=null}?  #{message.documentos.form.edit} : #{message.documentos.form.new}"></h2>
+			</div>
 
-		<form class="form-horizontal" th:object="${documentacion}" th:action="@{/documentos/save}" method="post" enctype="multipart/form-data">
+		<form class="g-pa-30 g-mb-30" th:object="${documentacion}" th:action="@{/documentos/save}" method="post" enctype="multipart/form-data">
 			<input type="hidden" th:field="*{id}" />
-			<div th:replace="fragments/textAreaField :: input (label='Descripci&oacute;n', name=descripcion, requerido=true)">&nbsp;</div>
-			<div th:replace="fragments/selectField :: input (label='Estado', name=estado, lista=${estados}, requerido=false)">&nbsp;</div>	
-			<div th:replace="fragments/archiveField :: input (label='Fichero de resultado', boton='Fichero', name=fileToUpload)">&nbsp;</div>
-		  	<br/><br/>	  			  
-			<button type="submit" class="btn btn-primary pull-left">Guardar documentaci&oacute;n</button>
+			<div th:replace="~{fragments/inputs/textareaField :: input(#{message.documentos.form.label.description}, 'descripcion', #{message.documentos.form.error.description}, 4, 50, true, false)}"></div>
+			<div th:replace="~{fragments/inputs/selectField :: input(#{message.documentos.form.label.state}, 'estado', ${estados}, #{message.documentos.form.voidselection.means}, #{message.documentos.form.error.description}, false, false)}"></div>
+			<div th:replace="~{/fragments/inputs/fileField :: input(#{message.documentos.form.label.file}, #{message.documentos.form.button.file}, 'fileToUpload', #{message.documentos.form.error.file}, false, false)}"></div>	
+			<div class="d-flex justify-content-between g-mt-30">
+				<div>
+					<a href="documentos.html" th:href="@{/documentos}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.documentos.form.button.back}">Atras</a>
+				</div>
+				<div>
+					<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.documentos.form.button.save}">Guardar Apertura</button>
+				</div>
+			</div>
 	</form>
-	<br/><br/>	
 	</div>
 </body>
 </html>

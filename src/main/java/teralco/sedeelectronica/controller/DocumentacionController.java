@@ -70,13 +70,12 @@ public class DocumentacionController {
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(documentacion.getFileToUpload());
-		file = this.ficheroService.save(file);
 		if (file != null) {
+			file = this.ficheroService.save(file);
 			documentacion.setFichero(file);
 		}
 
 		this.documentacionService.save(documentacion);
-
 		return "redirect:/documentos";
 	}
 }
