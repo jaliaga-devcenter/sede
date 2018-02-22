@@ -35,7 +35,7 @@ public class DocumentacionController {
 	@RequestMapping(value = "/documentos", produces = "text/html;charset=UTF-8")
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
-		model.addAttribute("documentaciones", this.documentacionService.list());
+		model.addAttribute("documentos", this.documentacionService.list());
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "documentos/documentos";
 	}
@@ -70,13 +70,12 @@ public class DocumentacionController {
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(documentacion.getFileToUpload());
-		file = this.ficheroService.save(file);
 		if (file != null) {
+			file = this.ficheroService.save(file);
 			documentacion.setFichero(file);
 		}
 
 		this.documentacionService.save(documentacion);
-
 		return "redirect:/documentos";
 	}
 }

@@ -65,13 +65,11 @@ public class AperturaController {
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(apertura.getFileToUpload());
-		file = this.ficheroService.save(file);
 		if (file != null) {
+			file = this.ficheroService.save(file);
 			apertura.setResultado(file);
 		}
-
 		this.aperturaService.save(apertura);
-
 		return "redirect:/aperturas";
 	}
 }

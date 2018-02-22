@@ -35,7 +35,6 @@ public class AvisoController {
 	@RequestMapping(value = "/avisos", produces = "text/html;charset=UTF-8")
 	public String avisos(Model model) {
 		// DEVOLVER LA LISTA DE avisos ACTUALES
-
 		model.addAttribute("avisos", this.avisoService.list());
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "avisos/avisos";
@@ -70,13 +69,10 @@ public class AvisoController {
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(aviso.getFileToUpload());
-
-		file = this.ficheroService.save(file);
 		if (file != null) {
+			file = this.ficheroService.save(file);
 			aviso.setFichero(file);
 		}
-
-
 		this.avisoService.save(aviso);
 		return "redirect:/avisos";
 	}

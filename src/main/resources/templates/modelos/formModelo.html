@@ -3,20 +3,29 @@
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorator="layouts/main">
 <head>
-	<title th:text="*{adjudicacion!=null}? 'Editar Modelo' : 'Nuevo Modelo'"></title>
+	<title th:text="*{modelo!=null}?  #{message.modelos.form.edit} : #{message.modelos.form.new}"></title>
 </head>
 <body>
 		
 	<div layout:fragment="content" class=".col-md">
+		<section class="g-py-15">
+			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
+				<h2 class="h3 u-heading-v1__title" th:text="*{modelo!=null}?  #{message.modelos.form.edit} : #{message.modelos.form.new}"></h2>
+			</div>
 
-		<form class="form-horizontal" th:object="${modelo}" th:action="@{/modelos/save}" method="post" enctype="multipart/form-data">
+		<form class="g-pa-30 g-mb-30" th:object="${modelo}" th:action="@{/modelos/save}" method="post" enctype="multipart/form-data">
 			<input type="hidden" th:field="*{id}" />
-			<div th:replace="fragments/textAreaField :: input (label='Descripci&oacute;n', name=descripcion, tipo=text, requerido=true)">&nbsp;</div>
-			<div th:replace="fragments/archiveField :: input (label='Fichero de resultado',boton='Fichero', name=fileToUpload)">&nbsp;</div>		  	
-		  	<br/><br/>			  			  
-			<button type="submit" class="btn btn-primary pull-left">Guardar Modelo</button>
+			<div th:replace="~{fragments/inputs/textareaField :: input(#{message.modelos.form.label.description}, 'descripcion', #{message.modelos.form.error.description}, 4, 50, true, false)}"></div>
+			<div th:replace="~{/fragments/inputs/fileField :: input(#{message.modelos.form.label.file}, #{message.modelos.form.button.file}, 'fileToUpload', #{message.modelos.form.error.file}, false, false)}"></div>	
+			<div class="d-flex justify-content-between g-mt-30">
+				<div>
+					<a href="modelos.html" th:href="@{/modelos}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.modelos.form.button.back}">Atras</a>
+				</div>
+				<div>
+					<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.modelos.form.button.save}">Guardar Modelo</button>
+				</div>
+			</div>
 	</form>
-	<br/><br/>	
 	</div>
 </body>
 </html>

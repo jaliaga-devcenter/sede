@@ -66,20 +66,16 @@ public class ModeloController {
 
 	@PostMapping(value = "/modelos/save")
 	public String save(@Valid @ModelAttribute("modelo") Modelo modelo, BindingResult bindingResult, Model model) {
-
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("medios", Medio.values());
 			return "modelos/formModelo";
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(modelo.getFileToUpload());
-
-		file = this.ficheroService.save(file);
 		if (file != null) {
+			file = this.ficheroService.save(file);
 			modelo.setFichero(file);
 		}
-
-
 		this.modeloService.save(modelo);
 		return "redirect:/modelos";
 	}
