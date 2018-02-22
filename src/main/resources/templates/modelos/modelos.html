@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+<head>
+	<title>Modelos</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+		
+		<div th:if="${message}" class="alert alert-success" role="alert">
+			<p th:text="${message}">success message</p>
+		</div>
+		
+	    <a th:href="@{/modelos/create}">Nuevo Modelo</a>
+		
+
+
+
+		<div class="inner-addon left-addon">
+    		<i class="glyphicon glyphicon-search"></i>
+    		<input class="form-control" type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..." title="Type in chars to search" />
+		</div>		
+		<table id="listTable" class="sortable table table-striped table-hover ">
+		<thead>
+			<tr>
+				<th>Tipo</th>
+				<th>Descripci&oacute;n</th>
+				<th>Tama&ntilde;o</th>
+				<th class="sorttable_nosort">Editar</th>
+				<th class="sorttable_nosort">Borrar</th>
+			</tr>
+		</thead>
+			<tbody>
+				<tr th:each="modelo : ${modelos}" th:href="@{/modelos/edit/{id}(id=${modelo.id})}">
+					<td th:text="${modelo.fichero!=null} ? ${modelo.fichero.tipo}: ''"></td>
+					<td th:switch="${modelo.fichero}">
+							<span th:case="null" ></span>
+							<span th:case="*"><a th:text="${modelo.descripcion}" th:href="'./download/'+${encrypt.encrypt(modelo.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
+					</td>						
+					<td th:text="${modelo.fichero!=null} ? 
+					${#numbers.formatDecimal((modelo.fichero.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
+					+' MB': ''"></td>
+					<td><a href="#" th:href="@{/modelos/edit/} + ${modelo.id}">Editar</a></td>
+					<td><a href="#" th:href="@{/modelos/delete/} + ${modelo.id}">Borrar</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br/><br/>
+		
+ 	</div>
+ 	
+ </body>
+ </html>

@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+  <form>
+    <th:block th:fragment="input (label, boton, name)" th:with="nombre=${name.substring(name.indexOf('.')+1)}">  
+			<div class="form-group"  th:with="valid=${!#fields.hasErrors(name)}" th:class="${'form-group form-group-custom' + (valid ? '' : ' has-error')}">
+				<label class="col-sm-2 control-label" th:text="${label}+':'">Label </label>
+				<div class="col-md-10 input-group">
+					<label class="input-group-btn">
+					<span class="btn btn-primary" >
+					 <input type="file" th:field="*{__${name}__}" style="display: none;" th:utext="${boton} + '&hellip;'"  />
+					</span>
+					</label>
+					<input type="text" class="form-control" readonly="readonly" />
+					<span th:if="${#fields.hasErrors('fileToUpload')}" th:errors="*{fileToUpload}" th:class="help-block">Errores fichero</span>
+				</div>
+			</div>
+			</th:block>
+		</form>
+	</body>
+	</html>
+					

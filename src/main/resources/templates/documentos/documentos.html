@@ -33,7 +33,10 @@
 			<tbody>
 				<tr th:each="documentacion : ${documentaciones}" th:href="@{/documentos/edit/{id}(id=${documentacion.id})}">
 					<td th:text="${documentacion.fichero!=null} ? ${documentacion.fichero.tipo}: ''"></td>
-					<td th:text="${documentacion.descripcion}"> </td>					
+					<td th:switch="${documentacion.fichero}">
+							<span th:case="null" ></span>
+							<span th:case="*"><a th:text="${documentacion.descripcion}" th:href="'./download/'+${encrypt.encrypt(documentacion.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
+					</td>					
 					<td th:text="${#strings.capitalize(documentacion.estado)}"> </td>
 					<td><a href="#" th:href="@{/documentos/edit/} + ${documentacion.id}">Editar</a></td>
 					<td><a href="#" th:href="@{/documentos/delete/} + ${documentacion.id}">Borrar</a></td>

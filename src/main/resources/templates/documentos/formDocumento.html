@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorator="layouts/main">
 <head>
-	<title th:text="*{adjudicacion!=null}? 'Editar Adjudicacion' : 'Nueva Adjudicacion'"></title>
+	<title th:text="*{adjudicacion!=null}? 'Editar Documentaci&oacute;n' : 'Nueva Documentaci&oacute;n'"></title>
 </head>
 <body>
 		
@@ -11,14 +11,7 @@
 
 		<form class="form-horizontal" th:object="${documentacion}" th:action="@{/documentos/save}" method="post" enctype="multipart/form-data">
 			<input type="hidden" th:field="*{id}" />
-			<div th:class="form-group" th:classappend="${#fields.hasErrors('descripcion')}? 'has-error'">
-		    	<label class="col-sm-2 control-label">Descripci&oacute;n <span class="required">*</span> :</label>
-		    	<div class="col-md-10">
-		    		<textarea rows="4" cols="50" class="form-control" th:field="*{descripcion}" >		    		
-		    		</textarea>
-		    		<span th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}" th:class="help-block">Errores descripcion</span>
-		    	</div>
-			</div>
+			<div th:replace="fragments/textAreaField :: input (label='Descripci&oacute;n', name=descripcion, requerido=true)">&nbsp;</div>
 			<div class="form-group" th:classappend="${#fields.hasErrors('estado')}? 'has-error'">
 		    	<label class="col-sm-2 control-label">Estado: </label>
 		    	<div class="col-md-10"> 
@@ -29,46 +22,11 @@
 					</select> 
 				   <span th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}" th:class="help-block">Errores estado</span>
 		    	</div>
-			  </div>  	
-			
-	  		<div class="form-group" th:classappend="${#fields.hasErrors('fileToUpload')}? 'has-error'">
-				<label class="col-sm-2 control-label">Fichero de resultado: </label>
-				<div class="col-md-10 input-group">
-					<label class="input-group-btn">
-						<span class="btn btn-primary">
-							Fichero&hellip; <input type="file" th:field="*{fileToUpload}" style="display: none;"  />
-						</span>
-					</label>
-					<input type="text" class="form-control" readonly="readonly" />
-					<span th:if="${#fields.hasErrors('fileToUpload')}" th:errors="*{fileToUpload}" th:class="help-block">Errores fichero</span>
-				</div>
-			</div> 
-		  	
-		  	<br/><br/>
-	  	
-			  			  
+			</div>  	
+			<div th:replace="fragments/archiveField :: input (label='Fichero de resultado', boton='Fichero', name=fileToUpload)">&nbsp;</div>
+		  	<br/><br/>	  			  
 			<button type="submit" class="btn btn-primary pull-left">Guardar Adjudicacion</button>
 	</form>
-	<script>
-		$(document).on('change', ':file', function() {
-        	var input = $(this),
-            numFiles = input.get(0).files ? input.get(0).files.length : 1,
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-        	input.trigger('fileselect', [numFiles, label]);
-    	});
-		// We can watch for our custom `fileselect` event like this
-		$(document).ready( function() {
-     		$(':file').on('fileselect', function(event, numFiles, label) {
-				var input = $(this).parents('.input-group').find(':text'),
-					log = numFiles > 1 ? numFiles + ' files selected' : label;
-				if( input.length ) {
-					input.val(log);
-				} else {
-					if( log ) alert(log);
-				}
-      		});
-  		});
-	</script>
 	<br/><br/>	
 	</div>
 </body>

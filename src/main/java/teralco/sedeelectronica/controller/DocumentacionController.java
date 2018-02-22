@@ -14,8 +14,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Documentacion;
 import teralco.sedeelectronica.model.Estado;
+import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.DocumentacionService;
 import teralco.sedeelectronica.service.FicheroService;
+import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
 
 @Controller
@@ -34,7 +36,7 @@ public class DocumentacionController {
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
 		model.addAttribute("documentaciones", documentacionService.list());
-
+		model.addAttribute("encrypt", new EncryptUtils());
 		return "documentos/documentos";
 	}
 
@@ -66,7 +68,13 @@ public class DocumentacionController {
 			model.addAttribute("estados", Estado.values());
 			return "documentos/formDocumento";
 		}
-		documentacion.setFichero(FicheroUtils.guardarFicheroBD(documentacion.getFileToUpload(), ficheroService));
+
+		Fichero file = FicheroUtils.convertirFichero(documentacion.getFileToUpload());
+		file = ficheroService.save(file);
+		if (file != null) {
+			documentacion.setFichero(file);
+		}
+
 		documentacionService.save(documentacion);
 
 		return "redirect:/documentos";

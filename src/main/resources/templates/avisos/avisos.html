@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+<head>
+	<title>Avisos</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+		
+		<div th:if="${message}" class="alert alert-success" role="alert">
+			<p th:text="${message}">success message</p>
+		</div>
+		
+	    <a th:href="@{/avisos/create}">Nuevo Aviso</a>
+		
+
+
+
+		<div class="inner-addon left-addon">
+    		<i class="glyphicon glyphicon-search"></i>
+    		<input class="form-control" type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..." title="Type in chars to search" />
+		</div>		
+		<table id="listTable" class="sortable table table-striped table-hover ">
+		<thead>
+			<tr>
+				<th>Fecha</th>
+				<th>Descripci&oacute;n</th>
+				<th class="sorttable_nosort">Editar</th>
+				<th class="sorttable_nosort">Borrar</th>
+			</tr>
+		</thead>
+			<tbody>
+				<tr th:each="aviso : ${avisos}" th:href="@{/avisos/edit/{id}(id=${aviso.id})}">
+					<td th:text="${#dates.format(aviso.fecha, 'dd/MM/yyyy')}"></td>
+					<td th:switch="${aviso.fichero}">
+							<span th:case="null" ></span>
+							<span th:case="*"><a th:text="${aviso.descripcion}" th:href="'./download/'+${encrypt.encrypt(aviso.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
+					</td>									
+					<td><a href="#" th:href="@{/avisos/edit/} + ${aviso.id}">Editar</a></td>
+					<td><a href="#" th:href="@{/avisos/delete/} + ${aviso.id}">Borrar</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<br/><br/>
+		
+ 	</div>
+ 	
+ </body>
+ </html>
