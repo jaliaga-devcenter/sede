@@ -10,32 +10,32 @@ public class IconoDTO extends AbstractDTO {
 
 	private Integer idCategoria;
 
-	public IconoDTO(String nombre, String extension, byte[] fichero) {
+	public IconoDTO(String _nombre, String _extension, byte[] _fichero) {
 		super();
-		this.nombre = nombre;
-		this.extension = extension;
-		this.fichero = fichero;
+		this.nombre = _nombre;
+		this.extension = _extension;
+		this.fichero = _fichero;
 
 	}
 
 	public String getNombre() {
-		return nombre;
+		return this.nombre;
 	}
 
 	public String getExtension() {
-		return extension;
+		return this.extension;
 	}
 
 	public byte[] getFichero() {
-		return fichero;
+		return this.fichero;
 	}
 
 	public Integer getIdCategoria() {
-		return idCategoria;
+		return this.idCategoria;
 	}
 
-	public IconoDTO setIdCategoria(Integer idCategoria) {
-		this.idCategoria = idCategoria;
+	public IconoDTO setIdCategoria(Integer _idCategoria) {
+		this.idCategoria = _idCategoria;
 		return this;
 	}
 

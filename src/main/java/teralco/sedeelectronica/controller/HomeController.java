@@ -30,7 +30,7 @@ public class HomeController {
 
 	@RequestMapping("/tramites")
 	public String tramites(Model model) throws GexflowWSException {
-		List<CategoriaDTO> categorias = clienteWS.getCategorias(ENTIDAD, IDIOMA);
+		List<CategoriaDTO> categorias = this.clienteWS.getCategorias(ENTIDAD, IDIOMA);
 		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
 
 		model.addAttribute("categorias", categorias);
@@ -47,7 +47,7 @@ public class HomeController {
 	private Map<Integer, IconoDTO> getIconosPorCategoria(List<CategoriaDTO> categorias) {
 		Map<Integer, IconoDTO> iconos = categorias.stream().map(categoria -> {
 			try {
-				return clienteWS.getIconoCategoria(ENTIDAD, IDIOMA, categoria.getIdCategoria());
+				return this.clienteWS.getIconoCategoria(ENTIDAD, IDIOMA, categoria.getIdCategoria());
 			} catch (GexflowWSException e) {
 				throw new RuntimeException(e);
 			}

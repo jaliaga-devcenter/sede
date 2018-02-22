@@ -37,12 +37,12 @@ public class GexflowClient extends WebServiceGatewaySupport {
 		request.setIdEntidad(entidad);
 
 		JAXBElement<ConsultaCatalogoCategoriasResponse> response = (JAXBElement<ConsultaCatalogoCategoriasResponse>) invokeWS(
-				factory.createConsultaCatalogoCategorias(request));
+				this.factory.createConsultaCatalogoCategorias(request));
 
 		RespuestaCategoriaWS resultado = response.getValue().getResultado();
 		comprobarError(resultado.getEstadoRespuesta());
 
-		return categoriaConverter.createFromEntities(resultado.getCategorias().getCategoria());
+		return this.categoriaConverter.createFromEntities(resultado.getCategorias().getCategoria());
 	}
 
 	public IconoDTO getIconoCategoria(Integer entidad, String idioma, Integer idCategoria) throws GexflowWSException {
@@ -52,12 +52,12 @@ public class GexflowClient extends WebServiceGatewaySupport {
 		request.setIdCategoria(idCategoria);
 
 		JAXBElement<ConsultaIconoCategoriaResponse> response = (JAXBElement<ConsultaIconoCategoriaResponse>) invokeWS(
-				factory.createConsultaIconoCategoria(request));
+				this.factory.createConsultaIconoCategoria(request));
 
 		EstadoRespuesta estado = response.getValue().getResultado().getEstadoRespuesta();
 		comprobarError(estado);
 
-		return iconoConverter.createFrom(response.getValue().getResultado().getContenidoDocumento())
+		return this.iconoConverter.createFrom(response.getValue().getResultado().getContenidoDocumento())
 				.setIdCategoria(idCategoria);
 	}
 

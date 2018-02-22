@@ -10,27 +10,27 @@ public class CategoriaDTO extends AbstractDTO {
 	private String descripcion;
 	private List<SubcategoriaDTO> subcategorias;
 
-	public CategoriaDTO(Integer idCategoria, String nombre, String descripcion) {
-		this.idCategoria = idCategoria;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
+	public CategoriaDTO(Integer _idCategoria, String _nombre, String _descripcion) {
+		this.idCategoria = _idCategoria;
+		this.nombre = _nombre;
+		this.descripcion = _descripcion;
 		this.subcategorias = new ArrayList<>();
 	}
 
 	public Integer getIdCategoria() {
-		return idCategoria;
+		return this.idCategoria;
 	}
 
 	public String getNombre() {
-		return nombre;
+		return this.nombre;
 	}
 
 	public String getDescripcion() {
-		return descripcion;
+		return this.descripcion;
 	}
 
 	public List<SubcategoriaDTO> getSubcategorias() {
-		return subcategorias;
+		return this.subcategorias;
 	}
 
 }

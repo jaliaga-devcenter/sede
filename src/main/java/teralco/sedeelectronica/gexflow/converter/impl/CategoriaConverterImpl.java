@@ -30,7 +30,7 @@ public class CategoriaConverterImpl implements CategoriaConverter {
 
 		List<SubcategoriaWS> subcategorias = this.getSubcategorias(entity.getSubcategorias());
 
-		categoriaDTO.getSubcategorias().addAll(subcategoriaConverter.createFromEntities(subcategorias));
+		categoriaDTO.getSubcategorias().addAll(this.subcategoriaConverter.createFromEntities(subcategorias));
 
 		return categoriaDTO;
 	}

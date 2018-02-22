@@ -29,7 +29,7 @@ public class CategoriaConverterTest {
 		// ARRANGE
 
 		// ACT
-		CategoriaDTO createFrom = converter.createFrom(null);
+		CategoriaDTO createFrom = this.converter.createFrom(null);
 		// ASSET
 		Assert.assertNull(createFrom);
 	}
@@ -40,7 +40,7 @@ public class CategoriaConverterTest {
 		CategoriaWS categoriaWS = nuevaCategoriaWS();
 
 		// ACT
-		CategoriaDTO dto = converter.createFrom(categoriaWS);
+		CategoriaDTO dto = this.converter.createFrom(categoriaWS);
 
 		// ASSET
 		Assert.assertEquals(ID_CATEGORIA, dto.getIdCategoria().intValue());
@@ -60,7 +60,7 @@ public class CategoriaConverterTest {
 		categoriaWS.getSubcategorias().getSubcategoria().add(nuevaSubcategoria());
 
 		// ACT
-		CategoriaDTO dto = converter.createFrom(categoriaWS);
+		CategoriaDTO dto = this.converter.createFrom(categoriaWS);
 
 		// ASSET
 		Assert.assertEquals(ID_CATEGORIA, dto.getIdCategoria().intValue());
