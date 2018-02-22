@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<form>
+		<th:block th:fragment="input (label, spanLabel, name, errorMSG, required, disable)">
+			<div th:class="form-group" th:classappend="${#fields.hasErrors(name)}? 'has-error has-danger'">
+				<label class="control-label">
+					<span th:text="${label}"></span>
+					<span th:if="${required}" class="required">*</span> :
+				</label>
+				<div class="input-group">
+					<label class="input-group-btn">
+						<span class="btn btn-primary">
+							<span th:text="${spanLabel}"></span>
+							<input type="file" th:field="*{__${name}__}" th:readonly="${disable}" style="display: none;" />
+						</span>
+					</label>
+					<input type="text" class="form-control" readonly="readonly" />
+					<div th:if="${#fields.hasErrors(name)}" th:errors="*{__${name}__}" th:class="form-control-feedback" th:text="${errorMSG}"></div>
+				</div>
+			</div>
+		</th:block>
+	</form>
+</body>
+
+</html>

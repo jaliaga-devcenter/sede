@@ -12,25 +12,25 @@ public class AperturaService {
 	private AperturaRepository aperturaRepository;
 
 	@Autowired
-	public AperturaService(AperturaRepository aperturaRepository) {
-		this.aperturaRepository = aperturaRepository;
+	public AperturaService(AperturaRepository _aperturaRepository) {
+		this.aperturaRepository = _aperturaRepository;
 	}
 
 	public Iterable<Apertura> list() {
-		return aperturaRepository.findAll();
+		return this.aperturaRepository.findAll();
 	}
 
 	public Apertura get(Long id) {
-		return aperturaRepository.findOne(id);
+		return this.aperturaRepository.findOne(id);
 	}
 
 	// save
 	public Apertura save(Apertura apertura) {
-		return aperturaRepository.save(apertura);
+		return this.aperturaRepository.save(apertura);
 	}
 
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		aperturaRepository.delete(id);
+		this.aperturaRepository.delete(id);
 	}
 }

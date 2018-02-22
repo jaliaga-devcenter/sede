@@ -12,25 +12,26 @@ public class AvisoService {
 	private AvisoRepository avisoRepository;
 
 	@Autowired
-	public AvisoService(AvisoRepository avisoRepository) {
-		this.avisoRepository = avisoRepository;
+
+	public AvisoService(AvisoRepository _avisoRepository) {
+		this.avisoRepository = _avisoRepository;
 	}
 
 	public Iterable<Aviso> list() {
-		return avisoRepository.findAll();
+		return this.avisoRepository.findAll();
 	}
 
 	public Aviso get(Long id) {
-		return avisoRepository.findOne(id);
+		return this.avisoRepository.findOne(id);
 	}
 
 	// save
 	public Aviso save(Aviso aviso) {
-		return avisoRepository.save(aviso);
+
+		return this.avisoRepository.save(aviso);
 	}
 
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		avisoRepository.delete(id);
+		this.avisoRepository.delete(id);
 	}
 }

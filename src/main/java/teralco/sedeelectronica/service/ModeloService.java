@@ -12,25 +12,28 @@ public class ModeloService {
 	private ModeloRepository modeloRepository;
 
 	@Autowired
-	public ModeloService(ModeloRepository modeloRepository) {
-		this.modeloRepository = modeloRepository;
+
+	public ModeloService(ModeloRepository _modeloRepository) {
+		this.modeloRepository = _modeloRepository;
 	}
 
 	public Iterable<Modelo> list() {
-		return modeloRepository.findAll();
+		return this.modeloRepository.findAll();
 	}
 
 	public Modelo get(Long id) {
-		return modeloRepository.findOne(id);
+		return this.modeloRepository.findOne(id);
 	}
 
 	// save
 	public Modelo save(Modelo modelo) {
-		return modeloRepository.save(modelo);
+
+		return this.modeloRepository.save(modelo);
 	}
 
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		modeloRepository.delete(id);
+
+		this.modeloRepository.delete(id);
 	}
 }

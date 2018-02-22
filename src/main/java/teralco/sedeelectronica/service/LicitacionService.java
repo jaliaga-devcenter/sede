@@ -12,25 +12,25 @@ public class LicitacionService {
 	private LicitacionRepository licitacionRepository;
 
 	@Autowired
-	public LicitacionService(LicitacionRepository licitacionRepository) {
-		this.licitacionRepository = licitacionRepository;
+	public LicitacionService(LicitacionRepository _licitacionRepository) {
+		this.licitacionRepository = _licitacionRepository;
 	}
 
 	public Iterable<Licitacion> list() {
-		return licitacionRepository.findAll();
+		return this.licitacionRepository.findAll();
 	}
 
 	public Licitacion get(Long id) {
-		return licitacionRepository.findOne(id);
+		return this.licitacionRepository.findOne(id);
 	}
 
 	// save
 	public Licitacion save(Licitacion lici) {
-		return licitacionRepository.save(lici);
+		return this.licitacionRepository.save(lici);
 	}
 
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		licitacionRepository.delete(id);
+		this.licitacionRepository.delete(id);
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import teralco.sedeelectronica.gexflow.client.GexflowClient;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
@@ -39,7 +40,7 @@ public class HomeController {
 	}
 
 	@RequestMapping("/perfil-del-contratante")
-	public String perfilContratante(Model model) {
+	public String perfilContratante() {
 		return "perfil-del-contratante";
 	}
 
@@ -54,5 +55,4 @@ public class HomeController {
 		return iconos;
 	}
 
-	
 }
