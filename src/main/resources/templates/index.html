@@ -1,22 +1,311 @@
 <!DOCTYPE html>
-<html lang="es"
-	layout:decorator="/layouts/main">
+<html lang="es" layout:decorator="/layouts/main">
+
 <head>
 	<title>Inicio</title>
 </head>
-<body>
-		<div layout:fragment="content">
 
-    		<a href="tramites.html" th:href="@{/tramites}">Tramites</a>
-   			<a href="perfil-del-contratante.html" th:href="@{/perfil-del-contratante}">Perfil del contratante</a>
-   			<a href="licitaciones.html" th:href="@{/licitaciones}">Licitaciones</a>
-   			<a href="aperturas.html" th:href="@{/aperturas}">Aperturas</a>
-   			<a href="adjudicaciones.html" th:href="@{/adjudicaciones}">Adjudicaciones</a>
-   			<a href="documentos.html" th:href="@{/documentos}">Documentos</a>
-   			<a href="modelos.html" th:href="@{/modelos}">Modelos</a>
-   			<a href="avisos.html" th:href="@{/Avisos}">Avisos</a>
-   			
-   			
- 		</div>
+<body>
+	<div layout:fragment="content">
+
+		<!-- Promo Block - Parallax -->
+		<section class="dzsparallaxer auto-init height-is-based-on-content use-loading mode-scroll dzsprx-readyall" data-options='{&quot;direction&quot;: &quot;reverse&quot;, &quot;settings_mode_oneelement_max_offset&quot;: &quot;150&quot;}'>
+			<div class="divimage dzsparallaxer--target w-100 u-bg-overlay g-bg-img-hero g-bg-bluegray-opacity-0_3--after " style="height: 130%; background-image: url(https://sede.murcia.es/murcia-theme/images/murcia/banner-bg.jpg);"></div>
+
+			<!-- Promo Block Content -->
+			<div class="container u-bg-overlay__inner text-center g-pt-30">
+				<div class="row">
+					<div class="col-lg-8 d-flex justify-content-center align-items-center flex-sm-column">
+						<div class="row">
+							<div class="col-12">
+								<h2 class="h1 g-color-white g-font-weight-600 text-uppercase g-mb-30 w-100">
+									¿Qu&eacute;
+									<span class="g-color-primary">necesitas</span>
+									?
+								</h2>
+							</div>
+							<div class="col-12">
+								<!-- Search Form -->
+								<form class="w-100">
+									<!-- Search Field -->
+									<div class="g-max-width-540 mx-auto g-mb-20">
+										<div class="input-group">
+											<input type="text" class="form-control g-font-size-16 border-0" placeholder="Busca procedimientos..." aria-label="Busca procedimientos..." ></input>
+											<span class="input-group-btn">
+												<button class="btn btn-primary g-font-size-18 g-py-12 g-px-25" type="submit">
+													<i class="fa fa-search"></i>
+												</button>
+											</span>
+										</div>
+									</div>
+									<!-- End Search Field -->
+								</form>
+								<!-- End Search Form -->
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<!-- Posts -->
+						<div class="g-mb-30">
+							<div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
+								<h3 class="u-heading-v2__title h4 g-color-white mb-0">DESTACADOS</h3>
+							</div>
+
+							<!-- Article -->
+							<article class="media g-mb-30">
+
+								<div class="media-body">
+									<h3 class="h6">
+										<a class="u-link-v5 g-color-white g-color-primary--hover" href="#!">Autorizaci&oacute;n de ocupaci&oacute;n de la v&iacute;a p&uacute;blica</a>
+									</h3>
+								</div>
+							</article>
+							<!-- End Article -->
+
+							<!-- Article -->
+							<article class="media g-mb-30">
+
+								<div class="media-body">
+									<h3 class="h6">
+										<a class="u-link-v5 g-color-white g-color-primary--hover" href="#!">Instancia general</a>
+									</h3>
+								</div>
+							</article>
+							<!-- End Article -->
+
+							<!-- Article -->
+							<article class="media g-mb-30">
+
+								<div class="media-body">
+									<h3 class="h6">
+										<a class="u-link-v5 g-color-white g-color-primary--hover" href="#!">Quejas y sugerencias</a>
+									</h3>
+								</div>
+							</article>
+							<!-- End Article -->
+
+							<!-- Article -->
+							<article class="media">
+
+								<div class="media-body">
+									<h3 class="h6">
+										<a class="u-link-v5 g-color-white g-color-primary--hover" href="#!">Volante de empadronamiento en un click</a>
+									</h3>
+								</div>
+							</article>
+							<!-- End Article -->
+						</div>
+						<!-- End Posts -->
+					</div>
+				</div>
+			</div>
+			<!-- End Promo Block Content -->
+		</section>
+		<!-- End Promo Block - Parallax -->
+
+		<!-- Icon Blocks -->
+		<section class="g-py-15 g-bg-white">
+			<div class="container">
+				<div class="row no-gutters">
+					<div class="col-lg-4 g-px-40 g-mb-50 g-mb-0--lg">
+						<!-- Icon Blocks -->
+						<div class="text-center">
+							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mt-2">
+								<a class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								 href="#!">CONOCE TU AYUNTAMIENTO</a>
+							</h3>
+						</div>
+						<!-- End Icon Blocks -->
+					</div>
+
+					<div class="col-lg-4 g-brd-left--lg g-brd-gray-light-v4 g-px-40 g-mb-50 g-mb-0--lg">
+						<!-- Icon Blocks -->
+						<div class="text-center">
+							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mt-2">
+								<a class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								 href="#!">ACCESO</a>
+							</h3>
+						</div>
+						<!-- End Icon Blocks -->
+					</div>
+
+					<div class="col-lg-4 g-brd-left--lg g-brd-gray-light-v4 g-px-40">
+						<!-- Icon Blocks -->
+						<div class="text-center">
+							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mt-2">
+								<a class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								 href="#ayuda">AYUDA</a>
+							</h3>
+						</div>
+						<!-- End Icon Blocks -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Icon Blocks -->
+
+		<!-- Our Services -->
+		<section class="g-py-15">
+			<div class="container">
+				<header class="text-center g-width-60x--md mx-auto g-mb-50">
+					<div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
+						<h2 class="h4 u-heading-v2__title g-color-gray-dark-v2 g-font-weight-600 text-uppercase">Tr&Aacute;mites para ciudadanos</h2>
+					</div>
+				</header>
+
+				<div class="row g-mb-20">
+					<div class="col-lg-3 g-px-40 g-mb-50">
+						<!-- Icon Blocks -->
+						<div class="text-center d-flex align-items-center flex-column" style="height: 235px; justify-content: space-between; ">
+							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle">
+								<i class="icon-communication-081 u-line-icon-pro"></i>
+							</span>
+							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">INFORMACI&Oacute;N GENERAL Y PADR&Oacute;N DE HABITANTES</h3>
+							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
+								<span>Ver m&aacute;s</span>
+							</a>
+						</div>
+						<!-- End Icon Blocks -->
+					</div>
+
+					<div class="col-lg-3 g-px-40 g-mb-50 g-brd-left--lg g-brd-gray-light-v4">
+						<!-- Icon Blocks -->
+						<div class="text-center d-flex align-items-center flex-column" style="height: 235px; justify-content: space-between; ">
+							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle">
+								<i class="icon-finance-086 u-line-icon-pro"></i>
+							</span>
+							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">SERVICIOS SOCIALES, SANIDAD Y COOPERACI&Oacute;N</h3>
+							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
+								<span>Ver m&aacute;s</span>
+							</a>
+						</div>
+						<!-- End Icon Blocks -->
+					</div>
+
+					<div class="col-lg-3 g-px-40 g-mb-50 g-brd-left--lg g-brd-gray-light-v4">
+						<!-- Icon Blocks -->
+						<div class="text-center d-flex align-items-center flex-column" style="height: 235px; justify-content: space-between; ">
+							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle">
+								<i class="icon-communication-057 u-line-icon-pro"></i>
+							</span>
+							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">URBANISMO, VIVIENDA Y MEDIO AMBIENTE</h3>
+							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
+								<span>Ver m&aacute;s</span>
+							</a>
+						</div>
+						<!-- End Icon Blocks -->
+					</div>
+					<div class="col-lg-3 g-px-40 g-mb-50 g-brd-left--lg g-brd-gray-light-v4">
+						<!-- Icon Blocks -->
+						<div class="text-center d-flex align-items-center flex-column" style="height: 235px; justify-content: space-between; ">
+							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle">
+								<i class="icon-communication-057 u-line-icon-pro"></i>
+							</span>
+							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">IMPUESTOS, TASAS Y MULTAS</h3>
+							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
+								<span>Ver m&aacute;s</span>
+							</a>
+						</div>
+						<!-- End Icon Blocks -->
+					</div>
+					<div class="col-lg-3 g-px-40 g-mb-50">
+						<!-- Icon Blocks -->
+						<div class="text-center d-flex align-items-center flex-column" style="height: 235px; justify-content: space-between; ">
+							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle">
+								<i class="icon-communication-057 u-line-icon-pro"></i>
+							</span>
+							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">TR&Aacute;FICO Y TRANSPORTES</h3>
+							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
+								<span>Ver m&aacute;s</span>
+							</a>
+						</div>
+						<!-- End Icon Blocks -->
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 text-center">
+						<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
+							<span>VER TODOS</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Our Services -->
+
+		<!-- Icon Blocks -->
+		<section class="text-center" id="ayuda">
+			<div class="row no-gutters">
+				<!-- Icon Blocks -->
+				<div class="col-lg-12 u-bg-overlay g-bg-img-hero g-color-white text-center g-pa-60" style="background-image: url(https://sede.murcia.es/murcia-theme/images/murcia/section3-bg.jpg);">
+					<div class="u-bg-overlay__inner">
+						<h3 class="h3 text-uppercase g-font-weight-600 g-mb-25">¿Qu&eacute; puedes hacer?</h3>
+						<nav class="text-uppercase1 g-mb-25">
+							<ul class="list-unstyled g-mt-minus-10 mb-0">
+								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
+									<h4 class="h6 g-pr-20 mb-0">
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Procedimientos</a>
+										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
+									</h4>
+								</li>
+								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
+									<h4 class="h6 g-pr-20 mb-0">
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Tabl&oacute;n de anuncios</a>
+										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
+									</h4>
+								</li>
+								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
+									<h4 class="h6 g-pr-20 mb-0">
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Actualidad - Actividad</a>
+										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
+									</h4>
+								</li>
+								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
+									<h4 class="h6 g-pr-20 mb-0">
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Notifica</a>
+										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
+									</h4>
+								</li>
+								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
+									<h4 class="h6 g-pr-20 mb-0">
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Verifirma</a>
+										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
+									</h4>
+								</li>
+								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
+									<h4 class="h6 g-pr-20 mb-0">
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Carpeta del ciudadano</a>
+										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
+									</h4>
+								</li>
+								<li class="g-pos-rel g-py-10">
+									<h4 class="h6 g-pr-20 mb-0">
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Perfil del contratante</a>
+										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
+									</h4>
+								</li>
+							</ul>
+						</nav>
+						<div class="row text-center">
+							<div class="col-xs-12 col-sm-6 g-mb-10 g-mb-0--sm">
+								<a class="btn u-shadow-v21 g-bg-white g-color-primary g-color-white--hover g-bg-primary-opacity-0_8--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								 href="#!">CONOCE TU AYUNTAMIENTO</a>
+							</div>
+							<div class="col-xs-12 col-sm-6">
+								<a class="btn u-shadow-v21 g-bg-white g-color-primary g-color-white--hover g-bg-primary-opacity-0_8--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								 href="#!">PORTAL DE TRASNPARENCIA</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- End Icon Blocks -->
+			</div>
+		</section>
+		<!-- End Icon Blocks -->
+
+
+	</div>
 </body>
+
 </html>
