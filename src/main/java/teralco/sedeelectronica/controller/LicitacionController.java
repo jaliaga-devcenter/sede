@@ -34,7 +34,6 @@ public class LicitacionController {
 
 	@RequestMapping(value = "/licitaciones", produces = "text/html;charset=UTF-8")
 	public String licitaciones(Model model) {
-		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
 		model.addAttribute("licitaciones", this.licitacionService.list());
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "licitaciones/licitaciones";

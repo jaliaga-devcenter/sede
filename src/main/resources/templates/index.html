@@ -123,7 +123,11 @@
 						<div class="text-center">
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mt-2">
 								<a class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
-								 href="#!">ACCESO</a>
+								 href="login.html"
+								 th:href="@{https://demo.gexflow.com:8443/midu/LoginCertificadoWS(idEntidad=0, 
+   										urlRetornoCorrecto=${'http://localhost:8081/sede/loginOK'},
+   										urlRetornoError=${'http://localhost:8081/sede/loginKO'}
+   									)}">ACCESO</a>
 							</h3>
 						</div>
 						<!-- End Icon Blocks -->
