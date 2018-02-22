@@ -16,15 +16,15 @@
                     <div class="col-9 text-right">
                         <a th:href="@{/{url}/create(url=${url})}" class="btn btn-sm u-btn-primary g-mr-10">
                             <i class="fa fa-plus g-mr-3"></i>
-                            Nuevo
+                            <span th:text="#{message.table.button.new}">Nuevo</span>
                         </a>
                         <a th:href="@{/{url}/edit/(url=${url})}" id="editButton" class="btn btn-sm u-btn-primary g-mr-10">
                             <i class="fa fa-pencil g-mr-3"></i>
-                            Editar
+                            <span th:text="#{message.table.button.edit}">Editar</span>
                         </a>
                         <a href="#modalDelete" data-modal-target="#modalDelete" data-modal-effect="rotate" class="btn btn-sm u-btn-primary g-mr-10">
                             <i class="fa fa-trash g-mr-3"></i>
-                            Borrar
+                            <span th:text="#{message.table.button.delete}">Borrar</span>
                         </a>
                     </div>
                 </div>
