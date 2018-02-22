@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-public class Documentacion extends BaseModel {
+public class Modelo extends BaseModel {
 
 	/**
 	 * 
@@ -21,9 +21,6 @@ public class Documentacion extends BaseModel {
 	@NotEmpty(message = "Debe introducir una descripción.")
 	@Column(nullable = false)
 	private String descripcion;
-
-	@Column(columnDefinition = "INT2")
-	private Estado estado;
 
 	/* For upload file in form */
 	@Transient
@@ -39,14 +36,6 @@ public class Documentacion extends BaseModel {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
 	}
 
 	public MultipartFile getFileToUpload() {
@@ -67,7 +56,7 @@ public class Documentacion extends BaseModel {
 
 	@Override
 	public String toString() {
-		return "Documentacion [descripcion=" + descripcion + ", estado=" + estado + ", fileToUpload=" + fileToUpload
-				+ ", fichero=" + fichero + "]";
+		return "Documentacion [descripcion=" + descripcion + ", fileToUpload=" + fileToUpload + ", fichero=" + fichero
+				+ "]";
 	}
 }

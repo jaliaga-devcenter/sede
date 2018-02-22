@@ -69,5 +69,30 @@ create table DOCUMENTACION (
  alter table DOCUMENTACION
    add constraint FK_DOCUMENTACION_FICHERO foreign key (ID_FICHERO)
       references FICHERO (ID)
-      on delete restrict on update restrict;      
-     
+      on delete restrict on update restrict;
+
+create table MODELO (
+   ID                   SERIAL 		not null,
+   ID_FICHERO           INT8            null,
+   DESCRIPCION			TEXT 			null,
+   constraint PK_MODELO primary key (ID)
+ );
+ 
+ alter table MODELO
+   add constraint FK_MODELO_FICHERO foreign key (ID_FICHERO)
+      references FICHERO (ID)
+      on delete restrict on update restrict;  
+      
+      
+create table AVISO (
+   ID                   SERIAL 		not null,
+   ID_FICHERO           INT8            null,
+   DESCRIPCION			TEXT 			null,
+   FECHA				DATE 			null,   
+   constraint PK_AVISO primary key (ID)
+ );
+ 
+ alter table AVISO
+   add constraint FK_AVISO_FICHERO foreign key (ID_FICHERO)
+      references FICHERO (ID)
+      on delete restrict on update restrict;       

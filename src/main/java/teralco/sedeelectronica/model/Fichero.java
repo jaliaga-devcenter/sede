@@ -35,14 +35,6 @@ public class Fichero extends BaseModel {
 		this.tipo = tipo;
 	}
 
-	public String getNombre() {
-		return nombreOriginal;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombreOriginal = nombre;
-	}
-
 	public Double getTamanyo() {
 		return tamanyo;
 	}
@@ -65,6 +57,14 @@ public class Fichero extends BaseModel {
 
 	public void setLicitaciones(Set<Licitacion> licitaciones) {
 		this.licitaciones = licitaciones;
+	}
+
+	public String getNombreOriginal() {
+		return nombreOriginal;
+	}
+
+	public void setNombreOriginal(String nombreOriginal) {
+		this.nombreOriginal = nombreOriginal;
 	}
 
 	@Override

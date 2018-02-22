@@ -142,10 +142,6 @@ public class Adjudicacion extends BaseModel {
 		this.resultado = resultado;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	public Date getFechaAdjudicacion() {
 		return fechaAdjudicacion;
 	}

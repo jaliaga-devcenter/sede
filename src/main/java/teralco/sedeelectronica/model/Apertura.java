@@ -99,10 +99,6 @@ public class Apertura extends BaseModel {
 		this.resultado = resultado;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	@Override
 	public String toString() {
 		return "Apertura [fecha=" + fecha + ", denominacion=" + denominacion + ", hora=" + hora + ", plica=" + plica

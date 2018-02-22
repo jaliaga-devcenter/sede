@@ -1,11 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
   <form>
-    <th:block th:fragment="input (label, name, type, desactivado)" th:with="nombre=${name.substring(name.indexOf('.')+1)}">  
+    <th:block th:fragment="input (label, name,tipo , requerido)" th:with="nombre=${name.substring(name.indexOf('.')+1)}">  
      <div th:id="${'padre-'+nombre}" th:with="valid=${!#fields.hasErrors(name)}" th:class="${'form-group form-group-custom' + (valid ? '' : ' has-error')}">
-    	<label class="col-sm-2 control-label" th:text="${label}">Label</label>
+    	<label class="col-sm-2 control-label" th:text="${requerido} ? ${label}+ ' * :': ${label} +' :'">Label</label>
     	<div class="col-sm-10">
-          <input class="form-control" th:type="${type}" th:placeholder="${label}" th:field="*{__${name}__}" th:readonly="${desactivado}"/>
+          <input class="form-control" type="${tipo}" th:placeholder="${label}" th:field="*{__${name}__}" th:readonly="${desactivado}"/>
           <th:block th:if="${!valid}">
             <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
             <small class="help-block help-block-custom" data-bv-validator="notEmpty" data-bv-for="website" data-bv-result="INVALID" th:errors="*{__${name}__}"></small>

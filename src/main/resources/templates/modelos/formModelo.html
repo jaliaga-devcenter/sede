@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+	<title th:text="*{adjudicacion!=null}? 'Editar Modelo' : 'Nuevo Modelo'"></title>
+</head>
+<body>
+		
+	<div layout:fragment="content" class=".col-md">
+
+		<form class="form-horizontal" th:object="${modelo}" th:action="@{/modelos/save}" method="post" enctype="multipart/form-data">
+			<input type="hidden" th:field="*{id}" />
+			<div th:replace="fragments/textAreaField :: input (label='Descripci&oacute;n', name=descripcion, tipo=text, requerido=true)">&nbsp;</div>
+			<div th:replace="fragments/archiveField :: input (label='Fichero de resultado',boton='Fichero', name=fileToUpload)">&nbsp;</div>		  	
+		  	<br/><br/>			  			  
+			<button type="submit" class="btn btn-primary pull-left">Guardar Modelo</button>
+	</form>
+	<br/><br/>	
+	</div>
+</body>
+</html>

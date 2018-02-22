@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Apertura;
+import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.AperturaService;
 import teralco.sedeelectronica.service.FicheroService;
+import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
 
 @Controller
@@ -33,7 +35,7 @@ public class AperturaController {
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE APERTURAS ACTUALES
 		model.addAttribute("aperturas", aperturaService.list());
-
+		model.addAttribute("encrypt", new EncryptUtils());
 		return "aperturas/aperturas";
 	}
 
@@ -61,7 +63,13 @@ public class AperturaController {
 		if (bindingResult.hasErrors()) {
 			return "aperturas/formApertura";
 		}
-		apertura.setResultado(FicheroUtils.guardarFicheroBD(apertura.getFileToUpload(), ficheroService));
+
+		Fichero file = FicheroUtils.convertirFichero(apertura.getFileToUpload());
+		file = ficheroService.save(file);
+		if (file != null) {
+			apertura.setResultado(file);
+		}
+
 		aperturaService.save(apertura);
 
 		return "redirect:/aperturas";

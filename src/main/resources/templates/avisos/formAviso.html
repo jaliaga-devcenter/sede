@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+	<title th:text="*{adjudicacion!=null}? 'Editar Aviso' : 'Nuevo Aviso'"></title>
+</head>
+<body>
+		
+	<div layout:fragment="content" class=".col-md">
+
+		<form class="form-horizontal" th:object="${aviso}" th:action="@{/avisos/save}" method="post" enctype="multipart/form-data">
+			<input type="hidden" th:field="*{id}" />
+			<div th:replace="fragments/textAreaField :: input (label='Descripci&oacute;n', name=descripcion, requerido=true)">&nbsp;</div>
+			<div th:replace="fragments/dateField :: input (label='Fecha', name=fecha, desactivado=false, requerido=true)">&nbsp;</div>
+			<div th:replace="fragments/archiveField :: input (label='Fichero de resultado', boton='Fichero', name=fileToUpload)">&nbsp;</div>  		  	
+		  	
+		  	<br/><br/>
+	  	
+			  			  
+			<button type="submit" class="btn btn-primary pull-left">Guardar Aviso</button>
+	</form>
+	
+	<br/><br/>	
+	</div>
+</body>
+</html>

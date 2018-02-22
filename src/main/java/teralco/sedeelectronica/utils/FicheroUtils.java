@@ -1,11 +1,9 @@
 package teralco.sedeelectronica.utils;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,13 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.model.Tipo;
-import teralco.sedeelectronica.service.FicheroService;
 
 @Component
 public final class FicheroUtils {
 
 	private FicheroUtils() {
-
 	}
 
 	private static String serverUploadPath;
@@ -35,30 +31,27 @@ public final class FicheroUtils {
 		String uuidGenerado = GeneradorUtils.generarToken();
 
 		byte[] bytes = fichero.getBytes();
-		InputStream is = fichero.getInputStream();
-		Files.copy(is, Paths.get(serverUploadPath + uuidGenerado), StandardCopyOption.REPLACE_EXISTING);
-
-		Path path = Paths.get(serverUploadPath + uuidGenerado);
+		String ext = fichero.getOriginalFilename().substring(fichero.getOriginalFilename().lastIndexOf('.'));
+		Path path = Paths.get(serverUploadPath + uuidGenerado + ext);
 
 		Files.write(path, bytes);
 
-		return uuidGenerado;
+		return uuidGenerado + ext;
 	}
 
-	public static Fichero guardarFicheroBD(MultipartFile fichero, FicheroService ficheroService) {
-		Fichero file = new Fichero();
+	public static Fichero convertirFichero(MultipartFile fichero) {
+		Fichero file = null;
 		if (fichero.getSize() > 0) {
 			String uuid = "";
 			try {
 				uuid = FicheroUtils.guardarFichero(fichero);
 				/* save file in model */
-
-				file.setNombre(fichero.getOriginalFilename());
+				file = new Fichero();
+				file.setNombreOriginal(fichero.getOriginalFilename());
 				file.setUuid(uuid);
 				file.setTipo(Tipo.pdf);
 				file.setTamanyo((double) fichero.getSize());
-				file = ficheroService.save(file);
-			} catch (IOException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return null;
@@ -66,4 +59,5 @@ public final class FicheroUtils {
 		}
 		return file;
 	}
+
 }

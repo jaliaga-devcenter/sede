@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorator="layouts/main">
+<head>
+	<title>Contacto</title>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body>
+		
+	<div layout:fragment="content" class=".col-md">
+		<div th:if="${message}" class="alert alert-success" role="alert">
+			<p th:text="${message}">success message</p>
+		</div>
+		
+
+		<form class="form-horizontal" th:object="${contacto}" th:action="@{/contacto/send}" method="post">
+
+			<div th:replace="fragments/textField :: input (label='Nombre', name=nombre, tipo=text, requerido=true)">&nbsp;</div>
+			<div th:replace="fragments/textField :: input (label='Correo electr&oacute;nico', name=email, tipo=email, requerido=true)">&nbsp;</div>  		  	
+			<div th:replace="fragments/textAreaField :: input (label='Comentarios', name=comentario, requerido=true)">&nbsp;</div>
+
+				<div th:if="${messageWarning}" class="alert alert-warning" role="alert">
+					<p th:text="${messageWarning}">success message</p>
+				</div>
+				<div class="g-recaptcha col-sm-5"
+          			th:attr="data-sitekey=${@captchaSettings.getSite()}"></div>
+        		<span id="captchaError" class="alert alert-danger col-sm-4" style="display:none"></span>
+		  	<br/><br/>
+	  	
+			  			  
+			<button type="submit" class="btn btn-primary pull-left">Enviar</button>
+	</form>
+	<br/><br/>	
+	</div>
+</body>
+</html>
