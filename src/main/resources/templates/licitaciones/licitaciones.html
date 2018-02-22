@@ -8,20 +8,20 @@
 <body>
 
 	<div layout:fragment="content">
-		<div th:replace="~{fragments/genericTable :: genericTable('user', 'Licitaciones', 'licitaciones', ~{::table})}"></div>
+		<div th:replace="~{fragments/genericTable :: genericTable('user', #{message.licitaciones.table.header}, 'licitaciones', ~{::table})}"></div>
 	</div>
 
 	<table class="table u-table--v1 mb-0 table-striped table-hover">
 		<thead>
 			<tr class="g-col-border-top-0">
 				<th>#</th>
-				<th>Tipo</th>
-				<th>Fecha Publicaci&oacute;n</th>
-				<th>Descripci&oacute;n</th>
-				<th>Presupuesto</th>
-				<th>Fin plazo</th>
-				<th>Medio</th>
-				<th>Tama&ntilde;o</th>
+				<th th:text="#{message.licitaciones.table.header.type}">Tipo</th>
+				<th th:text="#{message.licitaciones.table.header.publishdate}">Fecha Publicaci&oacute;n</th>
+				<th th:text="#{message.licitaciones.table.header.description}">Descripci&oacute;n</th>
+				<th th:text="#{message.licitaciones.table.header.budget}">Presupuesto</th>
+				<th th:text="#{message.licitaciones.table.header.enddate}">Fin plazo</th>
+				<th th:text="#{message.licitaciones.table.header.means}">Medio</th>
+				<th th:text="#{message.licitaciones.table.header.size}">Tama&ntilde;o</th>
 			</tr>
 		</thead>
 
