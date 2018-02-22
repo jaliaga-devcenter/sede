@@ -16,7 +16,6 @@
 					<th>#</th>
 					<th th:text="#{message.modelos.table.header.type}">tipo</th>
 					<th th:text="#{message.modelos.table.header.description}">Descripción</th>
-					<th th:text="#{message.modelos.table.header.size}">Estado</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -31,12 +30,11 @@
 							</div>
 						</fieldset>
 					</th>	
-					<td th:text="${documentacion.fichero!=null} ? ${documentacion.fichero.tipo}: ''"></td>
-					<td th:switch="${documentacion.fichero}">
+					<td th:text="${modelo.fichero!=null} ? ${modelo.fichero.tipo}: ''"></td>
+					<td th:switch="${modelo.fichero}">
 							<span th:case="null" ></span>
-							<span th:case="*"><a th:text="${documentacion.descripcion}" th:href="'./download/'+${encrypt.encrypt(documentacion.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
+							<span th:case="*"><a th:text="${modelo.descripcion}" th:href="'./download/'+${encrypt.encrypt(modelo.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>					
-					<td th:text="${#strings.capitalize(documentacion.estado)}"> </td>
 				</tr>
 			</tbody>
 		</table>

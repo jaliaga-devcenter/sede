@@ -25,18 +25,18 @@
 						<fieldset class="g-pt-2">
 							<div>
 								<label>
-									<input type="radio" name="optionsRadios" th:id="${'option' + aviso.id}" th:checked="${itr.index == 0}" th:value="${aviso.id}"
+									<input type="radio" name="optionsRadios" th:id="${'option' + documento.id}" th:checked="${itr.index == 0}" th:value="${documento.id}"
 									/>
 								</label>
 							</div>
 						</fieldset>
 					</th>	
-					<td th:text="${documentacion.fichero!=null} ? ${documentacion.fichero.tipo}: ''"></td>
-					<td th:switch="${documentacion.fichero}">
-							<span th:case="null" ></span>
-							<span th:case="*"><a th:text="${documentacion.descripcion}" th:href="'./download/'+${encrypt.encrypt(documentacion.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
+					<td th:text="${documento.fichero!=null} ? ${documento.fichero.tipo}: ''"></td>
+					<td th:switch="${documento.fichero}">
+							<span th:case="null" th:text="${documento.descripcion}" ></span>
+							<span th:case="*"><a th:text="${documento.descripcion}" th:href="'./download/'+${encrypt.encrypt(documento.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>					
-					<td th:text="${#strings.capitalize(documentacion.estado)}"> </td>
+					<td th:text="${#strings.capitalize(documento.estado)}"> </td>
 				</tr>
 			</tbody>
 		</table>
