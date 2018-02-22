@@ -49,6 +49,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
@@ -66,38 +67,51 @@
 			<artifactId>guava</artifactId>
 			<version>${guava.version}</version>
 		</dependency>	
+    <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+  	<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<!-- tag::wsdl[] -->
-            <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.13.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                             <!--<goal>generate</goal>-->
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>gexflow.wsdl</generatePackage>
-                    <schemas>
-                        <schema>
-                            <url>http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites?wsdl</url>
-                        </schema>
-                    </schemas>
-                </configuration>
-            </plugin>
-            <!-- end::wsdl[] -->
-		</plugins>
-	</build>
-
+	<!-- Para generar las clases necesarias para conectar con gexflow hay que ejecutar: -->
+	<!-- mvn clean package -PGEN-RESOURCES -->
+	 <profiles>
+	    <profile>
+	        <id>GEN-RESOURCES</id>
+		<build>
+			<plugins>
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
+		<plugin>
+			<groupId>org.jvnet.jaxb2.maven2</groupId>
+			<artifactId>maven-jaxb2-plugin</artifactId>
+			<version>0.13.2</version>
+			<executions>
+				<execution>
+					<goals>
+						<goal>generate</goal>
+					</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<schemaLanguage>WSDL</schemaLanguage>
+				<generatePackage>gexflow.wsdl</generatePackage>
+				<schemas>
+					<schema>
+						<url>http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites?wsdl</url>
+					</schema>
+				</schemas>
+			</configuration>
+				</plugin>
+			</plugins>
+		</build>
+		</profile>
+	</profiles>
 </project>
