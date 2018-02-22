@@ -12,25 +12,25 @@ public class DocumentacionService {
 	private DocumentacionRepository documentacionRespository;
 
 	@Autowired
-	public DocumentacionService(DocumentacionRepository documentacionRespository) {
-		this.documentacionRespository = documentacionRespository;
+	public DocumentacionService(DocumentacionRepository _documentacionRespository) {
+		this.documentacionRespository = _documentacionRespository;
 	}
 
 	public Iterable<Documentacion> list() {
-		return documentacionRespository.findAll();
+		return this.documentacionRespository.findAll();
 	}
 
 	public Documentacion get(Long id) {
-		return documentacionRespository.findOne(id);
+		return this.documentacionRespository.findOne(id);
 	}
 
 	// save
 	public Documentacion save(Documentacion doc) {
-		return documentacionRespository.save(doc);
+		return this.documentacionRespository.save(doc);
 	}
 
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		documentacionRespository.delete(id);
+		this.documentacionRespository.delete(id);
 	}
 }

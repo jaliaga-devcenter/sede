@@ -24,18 +24,18 @@ public class EmailService {
 	}
 
 	@Autowired
-	public EmailService(JavaMailSender javaMailSender) {
-		this.javaMailSender = javaMailSender;
+	public EmailService(JavaMailSender _javaMailSender) {
+		this.javaMailSender = _javaMailSender;
 	}
 
 	@Async
-	public void sendEmail(Contacto contacto) throws MailException, InterruptedException {
+	public void sendEmail(Contacto contacto) throws MailException {
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(springMailUsername);
 		mail.setFrom(contacto.getEmail());
 		mail.setSubject("Formulario de contacto");
 		mail.setText(contacto.getNombre() + "\n" + contacto.getEmail() + "\n" + contacto.getComentario());
-		javaMailSender.send(mail);
+		this.javaMailSender.send(mail);
 	}
 
 }

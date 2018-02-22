@@ -28,10 +28,10 @@ public class RecaptchaService {
 
 	public String verifyRecaptcha(String ip, String recaptchaResponse) {
 		Map<String, String> body = new HashMap<>();
-		body.put("secret", captchaSettings.getSecret());
+		body.put("secret", this.captchaSettings.getSecret());
 		body.put("response", recaptchaResponse);
 		body.put("remoteip", ip);
-		ResponseEntity<Map> recaptchaResponseEntity = restTemplateBuilder.build().postForEntity(
+		ResponseEntity<Map> recaptchaResponseEntity = this.restTemplateBuilder.build().postForEntity(
 				GOOGLE_RECAPTCHA_VERIFY_URL + "?secret={secret}&response={response}&remoteip={remoteip}", body,
 				Map.class, body);
 		Map<String, Object> responseBody = recaptchaResponseEntity.getBody();
@@ -43,8 +43,9 @@ public class RecaptchaService {
 					.collect(Collectors.joining(", "));
 
 			return errorMessage;
-		} else {
-			return StringUtils.EMPTY;
 		}
+
+		return StringUtils.EMPTY;
+
 	}
 }

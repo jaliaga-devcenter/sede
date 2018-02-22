@@ -31,16 +31,16 @@ public class DownloadController {
 	private String serverUploadPath;
 
 	@Autowired
-	public DownloadController(FicheroService ficheroService) {
-		this.ficheroService = ficheroService;
+	public DownloadController(FicheroService _ficheroService) {
+		this.ficheroService = _ficheroService;
 	}
 
 	@RequestMapping(value = "/download/{file_name}", method = RequestMethod.GET)
 	public ResponseEntity<Resource> getFile(@PathVariable("file_name") String fileName, HttpServletResponse response) {
 		try {
-			Fichero file = ficheroService.get(Long.decode(EncryptUtils.decrypt(fileName)));
+			Fichero file = this.ficheroService.get(Long.decode(EncryptUtils.decrypt(fileName)));
 			// get your file as InputStream
-			Path path = Paths.get(serverUploadPath + file.getUuid());
+			Path path = Paths.get(this.serverUploadPath + file.getUuid());
 			ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
 			response.setContentType("application/pdf");
 			HttpHeaders headers = new HttpHeaders();

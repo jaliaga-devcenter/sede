@@ -31,32 +31,32 @@ public class Modelo extends BaseModel {
 	private Fichero fichero; // private Long idFichero;
 
 	public String getDescripcion() {
-		return descripcion;
+		return this.descripcion;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcion(String _descripcion) {
+		this.descripcion = _descripcion;
 	}
 
 	public MultipartFile getFileToUpload() {
-		return fileToUpload;
+		return this.fileToUpload;
 	}
 
-	public void setFileToUpload(MultipartFile fileToUpload) {
-		this.fileToUpload = fileToUpload;
+	public void setFileToUpload(MultipartFile _fileToUpload) {
+		this.fileToUpload = _fileToUpload;
 	}
 
 	public Fichero getFichero() {
-		return fichero;
+		return this.fichero;
 	}
 
-	public void setFichero(Fichero fichero) {
-		this.fichero = fichero;
+	public void setFichero(Fichero _fichero) {
+		this.fichero = _fichero;
 	}
 
 	@Override
 	public String toString() {
-		return "Documentacion [descripcion=" + descripcion + ", fileToUpload=" + fileToUpload + ", fichero=" + fichero
+		return "Documentacion [descripcion=" + this.descripcion + ", fileToUpload=" + this.fileToUpload + ", fichero=" + this.fichero
 				+ "]";
 	}
 }

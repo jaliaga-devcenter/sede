@@ -27,15 +27,15 @@ public class ModeloController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public ModeloController(ModeloService modeloService, FicheroService ficheroService) {
-		this.modeloService = modeloService;
-		this.ficheroService = ficheroService;
+	public ModeloController(ModeloService _modeloService, FicheroService _ficheroService) {
+		this.modeloService = _modeloService;
+		this.ficheroService = _ficheroService;
 	}
 
 	@RequestMapping(value = "/modelos", produces = "text/html;charset=UTF-8")
 	public String modeloes(Model model) {
 		// DEVOLVER LA LISTA DE modeloS ACTUALES
-		model.addAttribute("modelos", modeloService.list());
+		model.addAttribute("modelos", this.modeloService.list());
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "modelos/modelos";
 	}
@@ -48,14 +48,14 @@ public class ModeloController {
 
 	@RequestMapping("/modelos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("modelo", modeloService.get(id));
+		model.addAttribute("modelo", this.modeloService.get(id));
 		model.addAttribute("medios", Medio.values());
 		return "modelos/formModelo";
 	}
 
 	@RequestMapping("/modelos/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
-		modeloService.delete(id);
+		this.modeloService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "El modelo " + id + " ha sido borrado.");
 		return "redirect:/modelos";
 	}
@@ -69,12 +69,12 @@ public class ModeloController {
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(modelo.getFileToUpload());
-		file = ficheroService.save(file);
+		file = this.ficheroService.save(file);
 		if (file != null) {
 			modelo.setFichero(file);
 		}
 
-		modeloService.save(modelo);
+		this.modeloService.save(modelo);
 		return "redirect:/modelos";
 	}
 }

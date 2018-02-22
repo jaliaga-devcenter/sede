@@ -11,26 +11,26 @@ public class FicheroService {
 	private FicheroRepository ficheroRepository;
 
 	@Autowired
-	public FicheroService(FicheroRepository ficheroRepository) {
-		this.ficheroRepository = ficheroRepository;
+	public FicheroService(FicheroRepository _ficheroRepository) {
+		this.ficheroRepository = _ficheroRepository;
 	}
 
 	public Iterable<Fichero> list() {
-		return ficheroRepository.findAll();
+		return this.ficheroRepository.findAll();
 	}
 
 	public Fichero get(Long id) {
-		return ficheroRepository.findOne(id);
+		return this.ficheroRepository.findOne(id);
 	}
 
 	// save
 	public Fichero save(Fichero fich) {
-		return ficheroRepository.save(fich);
+		return this.ficheroRepository.save(fich);
 	}
 
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		ficheroRepository.delete(id);
+		this.ficheroRepository.delete(id);
 	}
 
 }
