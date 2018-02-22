@@ -26,15 +26,15 @@ public class AperturaController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public AperturaController(AperturaService aperturaService, FicheroService ficheroService) {
-		this.aperturaService = aperturaService;
-		this.ficheroService = ficheroService;
+	public AperturaController(AperturaService _aperturaService, FicheroService _ficheroService) {
+		this.aperturaService = _aperturaService;
+		this.ficheroService = _ficheroService;
 	}
 
 	@RequestMapping(value = "/aperturas", produces = "text/html;charset=UTF-8")
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE APERTURAS ACTUALES
-		model.addAttribute("aperturas", aperturaService.list());
+		model.addAttribute("aperturas", this.aperturaService.list());
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "aperturas/aperturas";
 	}
@@ -47,30 +47,30 @@ public class AperturaController {
 
 	@RequestMapping("/aperturas/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("apertura", aperturaService.get(id));
+		model.addAttribute("apertura", this.aperturaService.get(id));
 		return "aperturas/formApertura";
 	}
 
 	@RequestMapping("/aperturas/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
-		aperturaService.delete(id);
+		this.aperturaService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La apertura " + id + " ha sido borrada.");
 		return "redirect:/aperturas";
 	}
 
 	@PostMapping(value = "/aperturas/save")
-	public String save(@Valid @ModelAttribute("apertura") Apertura apertura, BindingResult bindingResult, Model model) {
+	public String save(@Valid @ModelAttribute("apertura") Apertura apertura, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "aperturas/formApertura";
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(apertura.getFileToUpload());
-		file = ficheroService.save(file);
+		file = this.ficheroService.save(file);
 		if (file != null) {
 			apertura.setResultado(file);
 		}
 
-		aperturaService.save(apertura);
+		this.aperturaService.save(apertura);
 
 		return "redirect:/aperturas";
 	}

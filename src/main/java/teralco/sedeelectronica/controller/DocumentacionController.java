@@ -27,15 +27,15 @@ public class DocumentacionController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public DocumentacionController(DocumentacionService documentacionService, FicheroService ficheroService) {
-		this.documentacionService = documentacionService;
-		this.ficheroService = ficheroService;
+	public DocumentacionController(DocumentacionService _documentacionService, FicheroService _ficheroService) {
+		this.documentacionService = _documentacionService;
+		this.ficheroService = _ficheroService;
 	}
 
 	@RequestMapping(value = "/documentos", produces = "text/html;charset=UTF-8")
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
-		model.addAttribute("documentaciones", documentacionService.list());
+		model.addAttribute("documentaciones", this.documentacionService.list());
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "documentos/documentos";
 	}
@@ -49,14 +49,14 @@ public class DocumentacionController {
 
 	@RequestMapping("/documentos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("documentacion", documentacionService.get(id));
+		model.addAttribute("documentacion", this.documentacionService.get(id));
 		model.addAttribute("estados", Estado.values());
 		return "documentos/formDocumento";
 	}
 
 	@RequestMapping("/documentos/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
-		documentacionService.delete(id);
+		this.documentacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La documentación " + id + " ha sido borrada.");
 		return "redirect:/documentos";
 	}
@@ -70,12 +70,12 @@ public class DocumentacionController {
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(documentacion.getFileToUpload());
-		file = ficheroService.save(file);
+		file = this.ficheroService.save(file);
 		if (file != null) {
 			documentacion.setFichero(file);
 		}
 
-		documentacionService.save(documentacion);
+		this.documentacionService.save(documentacion);
 
 		return "redirect:/documentos";
 	}

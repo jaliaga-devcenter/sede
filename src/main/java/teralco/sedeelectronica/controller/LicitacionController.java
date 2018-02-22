@@ -27,15 +27,15 @@ public class LicitacionController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public LicitacionController(LicitacionService licitacionService, FicheroService ficheroService) {
-		this.licitacionService = licitacionService;
-		this.ficheroService = ficheroService;
+	public LicitacionController(LicitacionService _licitacionService, FicheroService _ficheroService) {
+		this.licitacionService = _licitacionService;
+		this.ficheroService = _ficheroService;
 	}
 
 	@RequestMapping(value = "/licitaciones", produces = "text/html;charset=UTF-8")
 	public String licitaciones(Model model) {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
-		model.addAttribute("licitaciones", licitacionService.list());
+		model.addAttribute("licitaciones", this.licitacionService.list());
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "licitaciones/licitaciones";
 	}
@@ -49,14 +49,14 @@ public class LicitacionController {
 
 	@RequestMapping("/licitaciones/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("licitacion", licitacionService.get(id));
+		model.addAttribute("licitacion", this.licitacionService.get(id));
 		model.addAttribute("medios", Medio.values());
 		return "licitaciones/formLicitacion";
 	}
 
 	@RequestMapping("/licitaciones/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
-		licitacionService.delete(id);
+		this.licitacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La licitacion " + id + " ha sido borrada.");
 		return "redirect:/licitaciones";
 	}
@@ -70,11 +70,11 @@ public class LicitacionController {
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(lici.getFileToUpload());
-		file = ficheroService.save(file);
+		file = this.ficheroService.save(file);
 		if (file != null) {
 			lici.setFichero(file);
 		}
-		licitacionService.save(lici);
+		this.licitacionService.save(lici);
 		return "redirect:/licitaciones";
 	}
 
