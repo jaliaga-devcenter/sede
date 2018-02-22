@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<form>
+		<th:block th:fragment="input (label, name, options,voidText, errorMSG, required, disable)">
+			<div th:class="form-group" th:classappend="${#fields.hasErrors(name)}? 'has-error has-danger'">
+				<label class="control-label">
+					<span th:text="${label}"></span>
+					<span th:if="${required}" class="required">*</span> :
+				</label>
+				<select class="form-control" th:field="*{__${name}__}">
+					<option th:text="${voidText}" value=""></option>
+					<option th:each="option : ${options}" th:value="${option}" th:text="${#strings.toUpperCase(option)}"></option>
+				</select>
+				<div th:if="${#fields.hasErrors(name)}" th:errors="*{__${name}__}" th:class="form-control-feedback" th:text="${errorMSG}"></div>
+			</div>
+		</th:block>
+	</form>
+</body>
+
+</html>
