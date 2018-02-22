@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorator="layouts/main">
 
 <head>
-	<title th:text="*{licitacion!=null}? 'Editar Licitaci&oacute;n' : 'Nueva Licitaci&oacute;n'"></title>
+	<title th:text="*{licitacion!=null}?  #{message.licitaciones.form.edit} : #{message.licitaciones.form.new}"></title>
 </head>
 
 <body>
@@ -11,50 +11,29 @@
 
 		<section class="g-py-15">
 			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
-				<h2 class="h3 u-heading-v1__title" th:text="*{licitacion!=null}? 'Editar Licitacion' : 'Nueva Licitaci&oacute;n'"></h2>
+				<h2 class="h3 u-heading-v1__title" th:text="*{licitacion!=null}? #{message.licitaciones.form.edit} : #{message.licitaciones.form.new}"></h2>
 			</div>
 
 			<form class="g-pa-30 g-mb-30" th:object="${licitacion}" th:action="@{/licitaciones/save}" method="post" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
 
-				<div th:replace="~{fragments/inputs/dateField :: input('Fecha Publicaci&oacute;n', 'fechaPub', 'Errores Fecha Publicaci&oacute;n', true, false)}"></div>
-				<div th:replace="~{/fragments/inputs/textareaField :: input('Descripci&oacute;n', 'descripcion', 'Errores Fecha Publicaci&oacute;n', 4, 50, true, false)}"></div>
-				<div th:replace="~{/fragments/inputs/numberField :: input('Presupuesto', 'presupuesto', 0.01, 'Errores Presupuesto', true, false)}"></div>
-				<div th:replace="~{/fragments/inputs/dateField :: input('Fecha Publicaci&oacute;n', 'finPlazo', 'Errores Fin Plazo', true, false)}"></div>
-				<div th:replace="~{/fragments/inputs/selectField :: input('Medio', 'medio', ${medios}, 'Seleccionar medio', 'Errores medio', false, false)}"></div>
-				<div th:replace="~{/fragments/inputs/fileField :: input('Fichero', 'Fichero&hellip;', 'fileToUpload', 'Errores fichero', false, false)}"></div>
+				<div th:replace="~{fragments/inputs/dateField :: input(#{message.licitaciones.form.label.publishdate}, 'fechaPub', #{message.licitaciones.form.error.publishdate}, true, false)}"></div>
+				<div th:replace="~{/fragments/inputs/textareaField :: input(#{message.licitaciones.form.label.description}, 'descripcion', #{message.licitaciones.form.error.description}, 4, 50, true, false)}"></div>
+				<div th:replace="~{/fragments/inputs/numberField :: input(#{message.licitaciones.form.label.budget}, 'presupuesto', 0.01, #{message.licitaciones.form.error.budget}, true, false)}"></div>
+				<div th:replace="~{/fragments/inputs/dateField :: input(#{message.licitaciones.form.label.enddate}, 'finPlazo', #{message.licitaciones.form.error.enddate}, true, false)}"></div>
+				<div th:replace="~{/fragments/inputs/selectField :: input(#{message.licitaciones.form.label.means}, 'medio', ${medios}, #{message.licitaciones.form.voidselection.means}, #{message.licitaciones.form.error.means}, false, false)}"></div>
+				<div th:replace="~{/fragments/inputs/fileField :: input(#{message.licitaciones.form.label.file}, #{message.licitaciones.form.button.file}, 'fileToUpload', #{message.licitaciones.form.error.file}, false, false)}"></div>
 
 				<div class="d-flex justify-content-between g-mt-30">
 					<div>
-						<a href="licitaciones.html" th:href="@{/licitaciones}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15">Atras</a>
+						<a href="licitaciones.html" th:href="@{/licitaciones}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.licitaciones.form.button.back}">Atras</a>
 					</div>
 					<div>
-						<button type="submit" class="btn btn-md u-btn-primary rounded-0">Guardar Licitaci&oacute;n</button>
+						<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.licitaciones.form.button.save}">Guardar Licitaci&oacute;n</button>
 					</div>
 				</div>
 			</form>
 		</section>
-
-		<script>
-			$(document).on('change', ':file', function () {
-				var input = $(this),
-					numFiles = input.get(0).files ? input.get(0).files.length : 1,
-					label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-				input.trigger('fileselect', [numFiles, label]);
-			});
-			// We can watch for our custom `fileselect` event like this
-			$(document).ready(function () {
-				$(':file').on('fileselect', function (event, numFiles, label) {
-					var input = $(this).parents('.input-group').find(':text'),
-						log = numFiles > 1 ? numFiles + ' files selected' : label;
-					if (input.length) {
-						input.val(log);
-					} else {
-						if (log) alert(log);
-					}
-				});
-			});
-		</script>
 	</div>
 </body>
 

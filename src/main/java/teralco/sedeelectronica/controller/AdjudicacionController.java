@@ -65,8 +65,8 @@ public class AdjudicacionController {
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(adjudicacion.getFileToUpload());
-		file = this.ficheroService.save(file);
 		if (file != null) {
+			file = this.ficheroService.save(file);
 			adjudicacion.setResultado(file);
 		}
 

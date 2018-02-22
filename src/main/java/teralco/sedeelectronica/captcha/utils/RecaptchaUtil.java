@@ -1,4 +1,4 @@
-package teralco.sedeelectronica.utils;
+package teralco.sedeelectronica.captcha.utils;
 
 import java.util.HashMap;
 import java.util.Map;

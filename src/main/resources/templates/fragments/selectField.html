@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <form>
+        <th:block th:fragment="input (label, name, lista, requerido)" th:with="nombre=${name.substring(name.indexOf('.')+1)}">  
+        <div class="form-group" th:classappend="${#fields.hasErrors(name)}? 'has-error'">
+            <label class="col-sm-2 control-label" th:text="${requerido} ? ${label}+ ' * :': ${label} +' :'">Label </label>
+            <div class="col-md-10"> 
+                <!-- loop over available  authors -->
+                <select class="form-control" th:field="*{__${name}__}">
+                    <option value="" th:text="'Selecionar '+ ${label}">label</option>
+                    <option th:each="l : ${lista}" th:value="${l}" th:text="${#strings.capitalize(l)}">Estado</option>
+                </select> 
+            <span th:if="${#fields.hasErrors(name)}" th:errors="*{__${name}__}" th:class="help-block">Errores estado</span>
+            </div>
+        </div>
+        </th:block>
+    </form>
+</body>
+</html>
+   

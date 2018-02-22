@@ -3,25 +3,34 @@
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorator="layouts/main">
 <head>
-	<title th:text="*{adjudicacion!=null}? 'Editar Adjudicacion' : 'Nueva Adjudicacion'"></title>
+	<title th:text="*{adjudicacion!=null}?  #{message.adjudicaciones.form.edit} : #{message.adjudicaciones.form.new}"></title>
 </head>
 <body>
 		
 	<div layout:fragment="content" class=".col-md">
-
-		<form class="form-horizontal" th:object="${adjudicacion}" th:action="@{/adjudicaciones/save}" method="post" enctype="multipart/form-data">
+		<section class="g-py-15">
+			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
+				<h2 class="h3 u-heading-v1__title" th:text="*{adjudicacion!=null}?  #{message.adjudicaciones.form.edit} : #{message.adjudicaciones.form.new}"></h2>
+			</div>
+		<form class="g-pa-30 g-mb-30" th:object="${adjudicacion}" th:action="@{/adjudicaciones/save}" method="post" enctype="multipart/form-data">
 			<input type="hidden" th:field="*{id}" />
-			<div th:replace="fragments/textAreaField :: input (label='Denominaci&oacute;n', name=denominacion, requerido=true)">&nbsp;</div>
-			<div th:replace="fragments/dateField :: input (label='Fecha apertura plicas', name=fecha, desactivado=false, requerido=false)">&nbsp;</div>
-			<div th:replace="fragments/timeField :: input (label='Hora apertura plicas', name=hora, desactivado=false, requerido=false)">&nbsp;</div>
-			<div th:replace="fragments/textAreaField :: input (label='Plica', name=plica, requerido=false)">&nbsp;</div>
-			<div th:replace="fragments/textAreaField :: input (label='Adjudicaci&oacute;n', name=empresaAdjudicacion, requerido=false)">&nbsp;</div>
-			<div th:replace="fragments/numberField :: input (label='Presupuesto adjudicaci&oacute;n', name=presupuesto,requerido=false, step='0.01')">&nbsp;</div>
-			<div th:replace="fragments/dateField :: input (label='Fecha Adjudicaci&oacute;n', name=fechaAdjudicacion, desactivado=false, requerido=true)">&nbsp;</div>
-			<div th:replace="fragments/dateField :: input (label='Fecha Formalizaci&oacute;n', name=fechaFormalizacion, desactivado=false, requerido=true)">&nbsp;</div>
-			<div th:replace="fragments/archiveField :: input (label='Fichero de resultado', boton='Fichero', name=fileToUpload)">&nbsp;</div>  	
-		  	<br/><br/>			  			  
-			<button type="submit" class="btn btn-primary pull-left">Guardar Adjudicacion</button>
+			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.description}, 'denominacion', #{message.adjudicaciones.form.error.description}, 4, 50, true, false)}"></div>
+			<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.datesealedbid}, 'fecha', #{message.adjudicaciones.form.error.datesealedbid}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/timeField :: input (#{message.adjudicaciones.form.label.timesealedbid}, 'hora', #{message.adjudicaciones.form.error.timesealedbid}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.sealedbid}, 'plica', #{message.adjudicaciones.form.error.sealedbid}, 4, 50, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.company}, 'empresaAdjudicacion', #{message.adjudicaciones.form.error.company}, 4, 50, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/numberField :: input (#{message.adjudicaciones.form.label.budget}, 'presupuesto', '0.01', #{message.adjudicaciones.form.error.budget}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.formalizationdate}, 'fechaFormalizacion', #{message.adjudicaciones.form.error.formalizationdate}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.awarded}, 'fechaAdjudicacion', #{message.adjudicaciones.form.error.awarded}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/fileField :: input (#{message.adjudicaciones.form.label.file}, #{message.adjudicaciones.form.button.file}, 'fileToUpload', #{message.adjudicaciones.form.error.file}, false, false)}"></div>
+			<div class="d-flex justify-content-between g-mt-30">
+				<div>
+					<a href="adjudicaciones.html" th:href="@{/adjudicaciones}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.adjudicaciones.form.button.back}">Atras</a>
+				</div>
+				<div>
+					<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.adjudicaciones.form.button.save}">Guardar Adjudicaci&oacute;n</button>
+				</div>
+			</div>
 	</form>
 	<br/><br/>	
 	</div>

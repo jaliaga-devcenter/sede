@@ -69,8 +69,8 @@ public class LicitacionController {
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(lici.getFileToUpload());
-		file = this.ficheroService.save(file);
 		if (file != null) {
+			file = this.ficheroService.save(file);
 			lici.setFichero(file);
 		}
 		this.licitacionService.save(lici);

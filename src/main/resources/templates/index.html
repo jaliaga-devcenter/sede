@@ -19,9 +19,9 @@
 						<div class="row">
 							<div class="col-12">
 								<h2 class="h1 g-color-white g-font-weight-600 text-uppercase g-mb-30 w-100">
-									¿Qu&eacute;
-									<span class="g-color-primary">necesitas</span>
-									?
+									<span th:text="#{message.landing.search.label.one}">¿Qu&eacute;</span>
+									<span class="g-color-primary" th:text="#{message.landing.search.label.two}">necesitas</span>
+									<span th:text="#{message.landing.search.label.three}">?</span>
 								</h2>
 							</div>
 							<div class="col-12">
@@ -30,7 +30,7 @@
 									<!-- Search Field -->
 									<div class="g-max-width-540 mx-auto g-mb-20">
 										<div class="input-group">
-											<input type="text" class="form-control g-font-size-16 border-0" placeholder="Busca procedimientos..." aria-label="Busca procedimientos..." ></input>
+											<input type="text" class="form-control g-font-size-16 border-0" placeholder="Busca procedimientos..." th:placeholder="#{message.landing.search.placeholder}" aria-label="Busca procedimientos..."></input>
 											<span class="input-group-btn">
 												<button class="btn btn-primary g-font-size-18 g-py-12 g-px-25" type="submit">
 													<i class="fa fa-search"></i>
@@ -48,7 +48,7 @@
 						<!-- Posts -->
 						<div class="g-mb-30">
 							<div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
-								<h3 class="u-heading-v2__title h4 g-color-white mb-0">DESTACADOS</h3>
+								<h3 class="u-heading-v2__title h4 g-color-white mb-0 text-uppercase" th:text="#{message.landing.search.featured}">DESTACADOS</h3>
 							</div>
 
 							<!-- Article -->
@@ -111,7 +111,7 @@
 						<!-- Icon Blocks -->
 						<div class="text-center">
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mt-2">
-								<a class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								<a th:text="#{message.landing.button.menu.one}" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
 								 href="#!">CONOCE TU AYUNTAMIENTO</a>
 							</h3>
 						</div>
@@ -122,7 +122,9 @@
 						<!-- Icon Blocks -->
 						<div class="text-center">
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mt-2">
-								<a class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								<a 
+                th:text="#{message.landing.button.menu.two}"
+                class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
 								 href="login.html"
 								 th:href="@{https://demo.gexflow.com:8443/midu/LoginCertificadoWS(idEntidad=0, 
    										urlRetornoCorrecto=${'http://localhost:8081/sede/loginOK'},
@@ -137,7 +139,7 @@
 						<!-- Icon Blocks -->
 						<div class="text-center">
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mt-2">
-								<a class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								<a th:text="#{message.landing.button.menu.three}" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
 								 href="#ayuda">AYUDA</a>
 							</h3>
 						</div>
@@ -153,7 +155,7 @@
 			<div class="container">
 				<header class="text-center g-width-60x--md mx-auto g-mb-50">
 					<div class="u-heading-v2-3--bottom g-brd-primary g-mb-20">
-						<h2 class="h4 u-heading-v2__title g-color-gray-dark-v2 g-font-weight-600 text-uppercase">Tr&Aacute;mites para ciudadanos</h2>
+						<h2 th:text="#{message.landing.middle.header}" class="h4 u-heading-v2__title g-color-gray-dark-v2 g-font-weight-600 text-uppercase">Tr&Aacute;mites para ciudadanos</h2>
 					</div>
 				</header>
 
@@ -166,7 +168,7 @@
 							</span>
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">INFORMACI&Oacute;N GENERAL Y PADR&Oacute;N DE HABITANTES</h3>
 							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
-								<span>Ver m&aacute;s</span>
+								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
 							</a>
 						</div>
 						<!-- End Icon Blocks -->
@@ -180,7 +182,7 @@
 							</span>
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">SERVICIOS SOCIALES, SANIDAD Y COOPERACI&Oacute;N</h3>
 							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
-								<span>Ver m&aacute;s</span>
+								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
 							</a>
 						</div>
 						<!-- End Icon Blocks -->
@@ -194,7 +196,7 @@
 							</span>
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">URBANISMO, VIVIENDA Y MEDIO AMBIENTE</h3>
 							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
-								<span>Ver m&aacute;s</span>
+								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
 							</a>
 						</div>
 						<!-- End Icon Blocks -->
@@ -207,7 +209,7 @@
 							</span>
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">IMPUESTOS, TASAS Y MULTAS</h3>
 							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
-								<span>Ver m&aacute;s</span>
+								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
 							</a>
 						</div>
 						<!-- End Icon Blocks -->
@@ -220,7 +222,7 @@
 							</span>
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">TR&Aacute;FICO Y TRANSPORTES</h3>
 							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
-								<span>Ver m&aacute;s</span>
+								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
 							</a>
 						</div>
 						<!-- End Icon Blocks -->
@@ -229,7 +231,7 @@
 				<div class="row">
 					<div class="col-12 text-center">
 						<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
-							<span>VER TODOS</span>
+							<span th:text="#{message.landing.middle.button.global}">VER TODOS</span>
 						</a>
 					</div>
 				</div>
@@ -243,48 +245,48 @@
 				<!-- Icon Blocks -->
 				<div class="col-lg-12 u-bg-overlay g-bg-img-hero g-color-white text-center g-pa-60" style="background-image: url(https://sede.murcia.es/murcia-theme/images/murcia/section3-bg.jpg);">
 					<div class="u-bg-overlay__inner">
-						<h3 class="h3 text-uppercase g-font-weight-600 g-mb-25">¿Qu&eacute; puedes hacer?</h3>
+						<h3 class="h3 text-uppercase g-font-weight-600 g-mb-25" th:text="#{message.landing.help.header}">¿Qu&eacute; puedes hacer?</h3>
 						<nav class="text-uppercase1 g-mb-25">
 							<ul class="list-unstyled g-mt-minus-10 mb-0">
 								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
 									<h4 class="h6 g-pr-20 mb-0">
-										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Procedimientos</a>
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!" th:text="#{message.landing.help.link.one}">Conoce la Sede Electr&oacute;nica</a>
 										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
 									</h4>
 								</li>
 								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
 									<h4 class="h6 g-pr-20 mb-0">
-										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Tabl&oacute;n de anuncios</a>
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!" th:text="#{message.landing.help.link.two}">C&oacute;mo obtener el certificado electr&oacute;nico</a>
 										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
 									</h4>
 								</li>
 								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
 									<h4 class="h6 g-pr-20 mb-0">
-										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Actualidad - Actividad</a>
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!" th:text="#{message.landing.help.link.three}">Requisitos t&eacute;cnicos</a>
 										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
 									</h4>
 								</li>
 								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
 									<h4 class="h6 g-pr-20 mb-0">
-										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Notifica</a>
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!" th:text="#{message.landing.help.link.four}">B&uacute;scador de procedimientos</a>
 										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
 									</h4>
 								</li>
 								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
 									<h4 class="h6 g-pr-20 mb-0">
-										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Verifirma</a>
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!" th:text="#{message.landing.help.link.five}">Registro electr&oacute;nico</a>
 										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
 									</h4>
 								</li>
 								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
 									<h4 class="h6 g-pr-20 mb-0">
-										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Carpeta del ciudadano</a>
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!" th:text="#{message.landing.help.link.six}">Quejas y Sugerencias</a>
 										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
 									</h4>
 								</li>
 								<li class="g-pos-rel g-py-10">
 									<h4 class="h6 g-pr-20 mb-0">
-										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!">Perfil del contratante</a>
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!" th:text="#{message.landing.help.link.seven}">Instrucciones para realizar un tr&aacute;mite</a>
 										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
 									</h4>
 								</li>
@@ -292,11 +294,11 @@
 						</nav>
 						<div class="row text-center">
 							<div class="col-xs-12 col-sm-6 g-mb-10 g-mb-0--sm">
-								<a class="btn u-shadow-v21 g-bg-white g-color-primary g-color-white--hover g-bg-primary-opacity-0_8--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								<a th:text="#{message.landing.help.button.one}" class="btn u-shadow-v21 g-bg-white g-color-primary g-color-white--hover g-bg-primary-opacity-0_8--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
 								 href="#!">CONOCE TU AYUNTAMIENTO</a>
 							</div>
 							<div class="col-xs-12 col-sm-6">
-								<a class="btn u-shadow-v21 g-bg-white g-color-primary g-color-white--hover g-bg-primary-opacity-0_8--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								<a th:text="#{message.landing.help.button.two}" class="btn u-shadow-v21 g-bg-white g-color-primary g-color-white--hover g-bg-primary-opacity-0_8--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
 								 href="#!">PORTAL DE TRASNPARENCIA</a>
 							</div>
 						</div>
