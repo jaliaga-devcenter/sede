@@ -5,12 +5,12 @@ public enum Medio {
 
 	private String text;
 
-	Medio(String text) {
-		this.text = text;
+	Medio(String _text) {
+		this.text = _text;
 	}
 
 	public String getText() {
-		return text;
+		return this.text;
 	}
 
 }

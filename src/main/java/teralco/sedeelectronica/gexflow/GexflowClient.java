@@ -19,7 +19,7 @@ public class GexflowClient extends WebServiceGatewaySupport {
 		request.setIdEntidad(entidad);
 		JAXBElement<ConsultaCatalogoCategoriasResponse> response = (JAXBElement<ConsultaCatalogoCategoriasResponse>) getWebServiceTemplate()
 				.marshalSendAndReceive("http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites",
-						factory.createConsultaCatalogoCategorias(request), null);
+						this.factory.createConsultaCatalogoCategorias(request), null);
 
 		return response.getValue();
 	}

@@ -34,40 +34,40 @@ public class Documentacion extends BaseModel {
 	private Fichero fichero; // private Long idFichero;
 
 	public String getDescripcion() {
-		return descripcion;
+		return this.descripcion;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcion(String _descripcion) {
+		this.descripcion = _descripcion;
 	}
 
 	public Estado getEstado() {
-		return estado;
+		return this.estado;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setEstado(Estado _estado) {
+		this.estado = _estado;
 	}
 
 	public MultipartFile getFileToUpload() {
-		return fileToUpload;
+		return this.fileToUpload;
 	}
 
-	public void setFileToUpload(MultipartFile fileToUpload) {
-		this.fileToUpload = fileToUpload;
+	public void setFileToUpload(MultipartFile _fileToUpload) {
+		this.fileToUpload = _fileToUpload;
 	}
 
 	public Fichero getFichero() {
-		return fichero;
+		return this.fichero;
 	}
 
-	public void setFichero(Fichero fichero) {
-		this.fichero = fichero;
+	public void setFichero(Fichero _fichero) {
+		this.fichero = _fichero;
 	}
 
 	@Override
 	public String toString() {
-		return "Documentacion [descripcion=" + descripcion + ", estado=" + estado + ", fileToUpload=" + fileToUpload
-				+ ", fichero=" + fichero + "]";
+		return "Documentacion [descripcion=" + this.descripcion + ", estado=" + this.estado + ", fileToUpload=" + this.fileToUpload
+				+ ", fichero=" + this.fichero + "]";
 	}
 }

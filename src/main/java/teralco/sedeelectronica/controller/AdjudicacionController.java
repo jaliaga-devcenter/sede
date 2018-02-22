@@ -26,15 +26,15 @@ public class AdjudicacionController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public AdjudicacionController(AdjudicacionService adjudicacionService, FicheroService ficheroService) {
-		this.adjudicacionService = adjudicacionService;
-		this.ficheroService = ficheroService;
+	public AdjudicacionController(AdjudicacionService _adjudicacionService, FicheroService _ficheroService) {
+		this.adjudicacionService = _adjudicacionService;
+		this.ficheroService = _ficheroService;
 	}
 
 	@RequestMapping(value = "/adjudicaciones", produces = "text/html;charset=UTF-8")
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE ADJUDICACIONES ACTUALES
-		model.addAttribute("adjudicaciones", adjudicacionService.list());
+		model.addAttribute("adjudicaciones", this.adjudicacionService.list());
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "adjudicaciones/adjudicaciones";
 	}
@@ -47,31 +47,30 @@ public class AdjudicacionController {
 
 	@RequestMapping("/adjudicaciones/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("adjudicacion", adjudicacionService.get(id));
+		model.addAttribute("adjudicacion", this.adjudicacionService.get(id));
 		return "adjudicaciones/formAdjudicacion";
 	}
 
 	@RequestMapping("/adjudicaciones/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
-		adjudicacionService.delete(id);
+		this.adjudicacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La adjudicación " + id + " ha sido borrada.");
 		return "redirect:/adjudicaciones";
 	}
 
 	@PostMapping(value = "/adjudicaciones/save")
-	public String save(@Valid @ModelAttribute("adjudicacion") Adjudicacion adjudicacion, BindingResult bindingResult,
-			Model model) {
+	public String save(@Valid @ModelAttribute("adjudicacion") Adjudicacion adjudicacion, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "adjudicaciones/formAdjudicacion";
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(adjudicacion.getFileToUpload());
-		file = ficheroService.save(file);
+		file = this.ficheroService.save(file);
 		if (file != null) {
 			adjudicacion.setResultado(file);
 		}
 
-		adjudicacionService.save(adjudicacion);
+		this.adjudicacionService.save(adjudicacion);
 		return "redirect:/adjudicaciones";
 	}
 }

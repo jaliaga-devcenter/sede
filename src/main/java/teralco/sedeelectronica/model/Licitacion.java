@@ -62,63 +62,63 @@ public class Licitacion extends BaseModel {
 	private Fichero fichero;
 
 	public Fichero getFichero() {
-		return fichero;
+		return this.fichero;
 	}
 
-	public void setFichero(Fichero fichero) {
-		this.fichero = fichero;
+	public void setFichero(Fichero _fichero) {
+		this.fichero = _fichero;
 	}
 
 	public Date getFechaPub() {
-		return fechaPub;
+		return this.fechaPub;
 	}
 
-	public void setFechaPub(Date fechaPub) {
-		this.fechaPub = fechaPub;
+	public void setFechaPub(Date _fechaPub) {
+		this.fechaPub = _fechaPub;
 	}
 
 	public String getDescripcion() {
-		return descripcion;
+		return this.descripcion;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcion(String _descripcion) {
+		this.descripcion = _descripcion;
 	}
 
 	public BigDecimal getPresupuesto() {
-		return presupuesto;
+		return this.presupuesto;
 	}
 
-	public void setPresupuesto(BigDecimal presupuesto) {
-		this.presupuesto = presupuesto;
+	public void setPresupuesto(BigDecimal _presupuesto) {
+		this.presupuesto = _presupuesto;
 	}
 
 	public boolean isIvaInc() {
-		return ivaInc;
+		return this.ivaInc;
 	}
 
-	public void setIvaInc(boolean ivaInc) {
-		this.ivaInc = ivaInc;
+	public void setIvaInc(boolean _ivaInc) {
+		this.ivaInc = _ivaInc;
 	}
 
 	public Date getFinPlazo() {
-		return finPlazo;
+		return this.finPlazo;
 	}
 
-	public void setFinPlazo(Date finPlazo) {
-		this.finPlazo = finPlazo;
+	public void setFinPlazo(Date _finPlazo) {
+		this.finPlazo = _finPlazo;
 	}
 
 	public Medio getMedio() {
-		return medio;
+		return this.medio;
 	}
 
-	public void setMedio(Medio medio) {
-		this.medio = medio;
+	public void setMedio(Medio _medio) {
+		this.medio = _medio;
 	}
 
 	public MultipartFile getFileToUpload() {
-		return fileToUpload;
+		return this.fileToUpload;
 	}
 
 	public void setFileToUpload(MultipartFile file) {
@@ -127,7 +127,7 @@ public class Licitacion extends BaseModel {
 
 	@Override
 	public String toString() {
-		return "Licitacion [ fechaPub=" + fechaPub + ", descripcion=" + descripcion + ", presupuesto=" + presupuesto
-				+ ", ivaInc=" + ivaInc + ", finPlazo=" + finPlazo + ", medio=" + medio + "]";
+		return "Licitacion [ fechaPub=" + this.fechaPub + ", descripcion=" + this.descripcion + ", presupuesto=" + this.presupuesto
+				+ ", ivaInc=" + this.ivaInc + ", finPlazo=" + this.finPlazo + ", medio=" + this.medio + "]";
 	}
 }

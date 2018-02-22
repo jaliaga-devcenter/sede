@@ -26,8 +26,9 @@ public class ContactoController {
 	private EmailService emailService;
 
 	@Autowired
-	public ContactoController(EmailService emailService) {
-		this.emailService = emailService;
+
+	public ContactoController(EmailService _emailService) {
+		this.emailService = _emailService;
 	}
 
 	@RequestMapping(value = "/contacto", produces = "text/html;charset=UTF-8")
@@ -66,7 +67,8 @@ public class ContactoController {
 
 		String ip = request.getRemoteAddr();
 
-		String captchaVerifyMessage = captchaService.verifyRecaptcha(ip, recaptchaResponse);
+
+		String captchaVerifyMessage = this.captchaService.verifyRecaptcha(ip, recaptchaResponse);
 
 		if (!captchaVerifyMessage.isEmpty()) {
 			model.addAttribute("messageWarning", captchaVerifyMessage);
@@ -74,8 +76,9 @@ public class ContactoController {
 		}
 
 		try {
-			emailService.sendEmail(contacto);
-		} catch (MailException | InterruptedException e) {
+
+			this.emailService.sendEmail(contacto);
+		} catch (MailException e) {
 			model.addAttribute("message", "Ha ocurrido un error enviando el correo");
 			return "contacto/formContacto";
 		}

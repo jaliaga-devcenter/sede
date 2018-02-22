@@ -23,7 +23,7 @@ public final class FicheroUtils {
 
 	@Autowired
 	@Value("${server.uploadPath}")
-	public void testValue(String value) {
+	public static void testValue(String value) {
 		serverUploadPath = value;
 	}
 

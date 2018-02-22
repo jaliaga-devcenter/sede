@@ -26,15 +26,17 @@ public class AvisoController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public AvisoController(AvisoService avisoService, FicheroService ficheroService) {
-		this.avisoService = avisoService;
-		this.ficheroService = ficheroService;
+
+	public AvisoController(AvisoService _avisoService, FicheroService _ficheroService) {
+		this.avisoService = _avisoService;
+		this.ficheroService = _ficheroService;
 	}
 
 	@RequestMapping(value = "/avisos", produces = "text/html;charset=UTF-8")
 	public String avisos(Model model) {
 		// DEVOLVER LA LISTA DE avisos ACTUALES
-		model.addAttribute("avisos", avisoService.list());
+
+		model.addAttribute("avisos", this.avisoService.list());
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "avisos/avisos";
 	}
@@ -47,30 +49,35 @@ public class AvisoController {
 
 	@RequestMapping("/avisos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("aviso", avisoService.get(id));
+
+		model.addAttribute("aviso", this.avisoService.get(id));
 		return "avisos/formAviso";
 	}
 
 	@RequestMapping("/avisos/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
-		avisoService.delete(id);
+
+		this.avisoService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "El aviso " + id + " ha sido borrado.");
 		return "redirect:/avisos";
 	}
 
 	@PostMapping(value = "/avisos/save")
-	public String save(@Valid @ModelAttribute("aviso") Aviso aviso, BindingResult bindingResult, Model model) {
+
+	public String save(@Valid @ModelAttribute("aviso") Aviso aviso, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return "avisos/formAviso";
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(aviso.getFileToUpload());
-		file = ficheroService.save(file);
+
+		file = this.ficheroService.save(file);
 		if (file != null) {
 			aviso.setFichero(file);
 		}
 
-		avisoService.save(aviso);
+
+		this.avisoService.save(aviso);
 		return "redirect:/avisos";
 	}
 

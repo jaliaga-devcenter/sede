@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import gexflow.wsdl.ConsultaCatalogoCategoriasResponse;
 import teralco.sedeelectronica.gexflow.GexflowClient;
 
@@ -21,7 +22,7 @@ public class HomeController {
 
 	@RequestMapping("/tramites")
 	public String tramites(Model model) {
-		ConsultaCatalogoCategoriasResponse consultaCatalogoCategoriasResponse = clienteWS.getCategorias(0, "es");
+		ConsultaCatalogoCategoriasResponse consultaCatalogoCategoriasResponse = this.clienteWS.getCategorias(0, "es");
 		model.addAttribute("categorias",
 				consultaCatalogoCategoriasResponse.getResultado().getCategorias().getCategoria());
 		model.addAttribute("estado", consultaCatalogoCategoriasResponse.getResultado().getEstadoRespuesta());
@@ -29,9 +30,8 @@ public class HomeController {
 	}
 
 	@RequestMapping("/perfil-del-contratante")
-	public String perfilContratante(Model model) {
+	public String perfilContratante() {
 		return "perfil-del-contratante";
 	}
 
-	
 }

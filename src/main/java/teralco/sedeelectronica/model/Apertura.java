@@ -52,56 +52,57 @@ public class Apertura extends BaseModel {
 	private Fichero resultado; // private Long idFichero;
 
 	public Date getFecha() {
-		return fecha;
+		return this.fecha;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFecha(Date _fecha) {
+		this.fecha = _fecha;
 	}
 
 	public String getDenominacion() {
-		return denominacion;
+		return this.denominacion;
 	}
 
-	public void setDenominacion(String denominacion) {
-		this.denominacion = denominacion;
+	public void setDenominacion(String _denominacion) {
+		this.denominacion = _denominacion;
 	}
 
 	public Date getHora() {
-		return hora;
+		return this.hora;
 	}
 
-	public void setHora(Date hora) {
-		this.hora = hora;
+	public void setHora(Date _hora) {
+		this.hora = _hora;
 	}
 
 	public String getPlica() {
-		return plica;
+		return this.plica;
 	}
 
-	public void setPlica(String plica) {
-		this.plica = plica;
+	public void setPlica(String _plica) {
+		this.plica = _plica;
 	}
 
 	public MultipartFile getFileToUpload() {
-		return fileToUpload;
+		return this.fileToUpload;
 	}
 
-	public void setFileToUpload(MultipartFile fileToUpload) {
-		this.fileToUpload = fileToUpload;
+	public void setFileToUpload(MultipartFile _fileToUpload) {
+		this.fileToUpload = _fileToUpload;
 	}
 
 	public Fichero getResultado() {
-		return resultado;
+		return this.resultado;
 	}
 
-	public void setResultado(Fichero resultado) {
-		this.resultado = resultado;
+	public void setResultado(Fichero _resultado) {
+		this.resultado = _resultado;
 	}
 
 	@Override
 	public String toString() {
-		return "Apertura [fecha=" + fecha + ", denominacion=" + denominacion + ", hora=" + hora + ", plica=" + plica
-				+ ", fileToUpload=" + fileToUpload + ", resultado=" + resultado + "]";
+		return "Apertura [fecha=" + this.fecha + ", denominacion=" + this.denominacion + ", hora=" + this.hora
+				+ ", plica=" + this.plica + ", fileToUpload=" + this.fileToUpload + ", resultado=" + this.resultado
+				+ "]";
 	}
 }
