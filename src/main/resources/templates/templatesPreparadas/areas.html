@@ -13,11 +13,11 @@
             <div class="row g-ma-0">
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <ul class="list-unstyled g-pl-20 g-pr-20">
-                        <li class="g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1 text-center">
+                        <li class="g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1 text-center text-uppercase">
                             <a href="#">
                                 <span class="u-label g-color-black">
                                     <i class="g-color-primary fa fa-search g-mr-5"></i>
-                                    TODAS LAS &Aacute;REAS
+                                    <span th:text="#{message.areas.sidemenu.search.label}">Todas las &aacute;reas</span>
                                 </span>
                             </a>
                         </li>
@@ -93,19 +93,20 @@
                             <div class="u-heading-v1-1 g-bg-main g-brd-transparent g-mb-20">
                                 <h2 class="h3 u-heading-v1__title">SERVICIOS SOCIALES, SANIDAD Y COOPERACI&Oacute;N</h2>
                             </div>
-                            <p>Todos los tr&aacute;mites y ayudas relacionados con el área de Servicios Sociales, Atenci&oacute;n
-                                a la Dependencia,Sanidad y Cooperaci&oacute;n al desarrollo.</p>
+                            <p>
+                                <span th:text="#{message.areas.main.text.init}">Todos los tr&aacute;mites y ayudas relacionados con el área de</span> Servicios Sociales,
+                                Atenci&oacute;n a la Dependencia,Sanidad y Cooperaci&oacute;n al desarrollo.</p>
                             <form class="g-mb-20">
-                                <strong class="g-mr-10">Mostrar:</strong>
+                                <strong class="g-mr-10" th:text="#{message.areas.main.show.label}">Mostrar:</strong>
                                 <!-- Inline Radios -->
                                 <div class="form-check form-check-inline mb-0">
                                     <label class="form-check-label mr-2">
-                                        <input class="form-check-input mr-1" checked type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">Todos
+                                        <input class="form-check-input mr-1" checked type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" th:text="#{message.areas.main.show.check.one.label}">Todos
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline mb-0">
                                     <label class="form-check-label mr-2">
-                                        <input class="form-check-input mr-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">Online
+                                        <input class="form-check-input mr-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" th:text="#{message.areas.main.show.check.two.label}">Online
                                     </label>
                                 </div>
                                 <!-- End Inline Radios -->
@@ -119,18 +120,18 @@
                     </div>
                     <div>
                         <p>
-                            Nivel de tramitación:
+                            <span th:text="#{message.areas.main.legend}">Nivel de tramitaci&oacute;n:</span>
                             <span class="u-label g-color-black g-mr-10 g-mb-15">
                                 <i class="g-color-primary fa fa-info g-mr-3"></i>
-                                Informaci&oacute;n
+                                <span th:text="#{message.areas.main.legend.icon.one}">Informaci&oacute;n</span>
                             </span>
                             <span class="u-label g-color-black g-mr-10 g-mb-15">
                                 <i class="g-color-primary fa fa-download g-mr-3"></i>
-                                Descarga de formularios
+                                <span th:text="#{message.areas.main.legend.icon.two}">Descarga de formularios</span>
                             </span>
                             <span class="u-label g-color-black g-mb-15">
                                 <i class="g-color-primary fa fa-at"></i>
-                                Tr&aacute;mitaci&oacute;n electr&oacute;nica
+                                <span th:text="#{message.areas.main.legend.icon.three}">Tramitaci&oacute;n electr&oacute;nica</span>
                             </span>
                         </p>
                     </div>
