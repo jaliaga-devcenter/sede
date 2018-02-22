@@ -14,6 +14,7 @@ public class CaptchaSettings {
 	}
 
 	public String getSite() {
+
 		return this.site;
 	}
 

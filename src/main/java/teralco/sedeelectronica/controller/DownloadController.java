@@ -38,6 +38,7 @@ public class DownloadController {
 	@RequestMapping(value = "/download/{file_name}", method = RequestMethod.GET)
 	public ResponseEntity<Resource> getFile(@PathVariable("file_name") String fileName, HttpServletResponse response) {
 		try {
+
 			Fichero file = this.ficheroService.get(Long.decode(EncryptUtils.decrypt(fileName)));
 			// get your file as InputStream
 			Path path = Paths.get(this.serverUploadPath + file.getUuid());

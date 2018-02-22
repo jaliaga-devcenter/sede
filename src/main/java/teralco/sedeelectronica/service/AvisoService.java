@@ -12,6 +12,7 @@ public class AvisoService {
 	private AvisoRepository avisoRepository;
 
 	@Autowired
+
 	public AvisoService(AvisoRepository _avisoRepository) {
 		this.avisoRepository = _avisoRepository;
 	}
@@ -26,11 +27,11 @@ public class AvisoService {
 
 	// save
 	public Aviso save(Aviso aviso) {
+
 		return this.avisoRepository.save(aviso);
 	}
 
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
 		this.avisoRepository.delete(id);
 	}
 }

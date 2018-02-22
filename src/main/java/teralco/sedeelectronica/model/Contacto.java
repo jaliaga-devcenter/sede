@@ -11,6 +11,7 @@ public class Contacto {
 	private String comentario;
 
 	public String getNombre() {
+
 		return this.nombre;
 	}
 

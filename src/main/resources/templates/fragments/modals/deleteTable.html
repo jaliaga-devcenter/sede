@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <th:block th:fragment="modalDeleteTable (url)">
+        <form method="GET" id="formModalDeleteTable" th:action="@{/} + ${url}">
+        </form>
+        <div id="modalDelete" class="text-left g-max-width-600 g-bg-white g-overflow-y-auto g-pa-20" style="display: none;">
+            <button type="button" class="close" onclick="Custombox.modal.close();">
+                <i class="hs-icon hs-icon-close"></i>
+            </button>
+            <h4 class="g-mb-40" th:text="${'Eliminar registro'}"></h4>
+            <p class="g-mb-40">¿Estas seguro que quieres continuar con esta operaci&oacute;n?</p>
+            <div class="row">
+                <div class="col-12 text-right">
+                    <a onclick="Custombox.modal.close();" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15">Cancelar</a>
+                    <a th:onclick="|$('#formModalDeleteTable').submit()|" class="btn btn-md g-color-white u-btn-primary g-mb-15">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</body>
+
+</html>

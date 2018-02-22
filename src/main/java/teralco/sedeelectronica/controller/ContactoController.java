@@ -27,6 +27,7 @@ public class ContactoController {
 	private EmailService emailService;
 
 	@Autowired
+
 	public ContactoController(EmailService _emailService) {
 		this.emailService = _emailService;
 	}
@@ -67,6 +68,7 @@ public class ContactoController {
 
 		String ip = request.getRemoteAddr();
 
+
 		String captchaVerifyMessage = this.captchaService.verifyRecaptcha(ip, recaptchaResponse);
 
 		if (StringUtils.isNotEmpty(captchaVerifyMessage)) {
@@ -75,6 +77,7 @@ public class ContactoController {
 		}
 
 		try {
+
 			this.emailService.sendEmail(contacto);
 		} catch (MailException e) {
 			model.addAttribute("message", "Ha ocurrido un error enviando el correo");

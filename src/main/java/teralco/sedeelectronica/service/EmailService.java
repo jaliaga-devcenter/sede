@@ -35,6 +35,7 @@ public class EmailService {
 		mail.setFrom(contacto.getEmail());
 		mail.setSubject("Formulario de contacto");
 		mail.setText(contacto.getNombre() + "\n" + contacto.getEmail() + "\n" + contacto.getComentario());
+
 		this.javaMailSender.send(mail);
 	}
 

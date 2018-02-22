@@ -27,6 +27,7 @@ public class ModeloController {
 	private FicheroService ficheroService;
 
 	@Autowired
+
 	public ModeloController(ModeloService _modeloService, FicheroService _ficheroService) {
 		this.modeloService = _modeloService;
 		this.ficheroService = _ficheroService;
@@ -35,6 +36,7 @@ public class ModeloController {
 	@RequestMapping(value = "/modelos", produces = "text/html;charset=UTF-8")
 	public String modeloes(Model model) {
 		// DEVOLVER LA LISTA DE modeloS ACTUALES
+
 		model.addAttribute("modelos", this.modeloService.list());
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "modelos/modelos";
@@ -48,6 +50,7 @@ public class ModeloController {
 
 	@RequestMapping("/modelos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
+
 		model.addAttribute("modelo", this.modeloService.get(id));
 		model.addAttribute("medios", Medio.values());
 		return "modelos/formModelo";
@@ -55,6 +58,7 @@ public class ModeloController {
 
 	@RequestMapping("/modelos/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
+
 		this.modeloService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "El modelo " + id + " ha sido borrado.");
 		return "redirect:/modelos";
@@ -69,10 +73,12 @@ public class ModeloController {
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(modelo.getFileToUpload());
+
 		file = this.ficheroService.save(file);
 		if (file != null) {
 			modelo.setFichero(file);
 		}
+
 
 		this.modeloService.save(modelo);
 		return "redirect:/modelos";

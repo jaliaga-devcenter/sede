@@ -28,6 +28,7 @@ public class RecaptchaService {
 
 	public String verifyRecaptcha(String ip, String recaptchaResponse) {
 		Map<String, String> body = new HashMap<>();
+
 		body.put("secret", this.captchaSettings.getSecret());
 		body.put("response", recaptchaResponse);
 		body.put("remoteip", ip);
@@ -46,6 +47,5 @@ public class RecaptchaService {
 		}
 
 		return StringUtils.EMPTY;
-
 	}
 }
