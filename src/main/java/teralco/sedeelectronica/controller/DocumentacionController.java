@@ -27,9 +27,9 @@ public class DocumentacionController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public DocumentacionController(DocumentacionService _documentacionService, FicheroService _ficheroService) {
-		this.documentacionService = _documentacionService;
-		this.ficheroService = _ficheroService;
+	public DocumentacionController(DocumentacionService pDocumentacionService, FicheroService pFicheroService) {
+		this.documentacionService = pDocumentacionService;
+		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/documentos", produces = "text/html;charset=UTF-8")

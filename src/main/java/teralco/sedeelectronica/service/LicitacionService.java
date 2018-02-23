@@ -12,8 +12,8 @@ public class LicitacionService {
 	private LicitacionRepository licitacionRepository;
 
 	@Autowired
-	public LicitacionService(LicitacionRepository _licitacionRepository) {
-		this.licitacionRepository = _licitacionRepository;
+	public LicitacionService(LicitacionRepository pLicitacionRepository) {
+		this.licitacionRepository = pLicitacionRepository;
 	}
 
 	public Iterable<Licitacion> list() {

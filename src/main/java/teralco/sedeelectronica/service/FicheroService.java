@@ -11,8 +11,8 @@ public class FicheroService {
 	private FicheroRepository ficheroRepository;
 
 	@Autowired
-	public FicheroService(FicheroRepository _ficheroRepository) {
-		this.ficheroRepository = _ficheroRepository;
+	public FicheroService(FicheroRepository pFicheroRepository) {
+		this.ficheroRepository = pFicheroRepository;
 	}
 
 	public Iterable<Fichero> list() {

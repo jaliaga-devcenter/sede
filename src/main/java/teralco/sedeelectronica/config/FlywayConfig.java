@@ -1,6 +1,7 @@
 package teralco.sedeelectronica.config;
 
 import javax.sql.DataSource;
+
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +18,8 @@ public class FlywayConfig {
 		flyway.setDataSource(theDataSource);
 		flyway.setLocations("classpath:db/migration/dev");
 		flyway.setSchemas("sede");
-		flyway.clean();
+		/* persist data base */
+		// flyway.clean();
 		flyway.migrate();
 
 		return flyway;

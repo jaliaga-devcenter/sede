@@ -18,15 +18,15 @@ public class CaptchaSettings {
 		return this.site;
 	}
 
-	public void setSite(String _site) {
-		this.site = _site;
+	public void setSite(String pSite) {
+		this.site = pSite;
 	}
 
 	public String getSecret() {
 		return this.secret;
 	}
 
-	public void setSecret(String _secret) {
-		this.secret = _secret;
+	public void setSecret(String pSecret) {
+		this.secret = pSecret;
 	}
 }

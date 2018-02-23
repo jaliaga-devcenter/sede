@@ -27,8 +27,8 @@ public class ContactoController {
 
 	@Autowired
 
-	public ContactoController(EmailService _emailService) {
-		this.emailService = _emailService;
+	public ContactoController(EmailService pEmailService) {
+		this.emailService = pEmailService;
 	}
 
 	@RequestMapping(value = "/contacto", produces = "text/html;charset=UTF-8")

@@ -13,8 +13,8 @@ public class AvisoService {
 
 	@Autowired
 
-	public AvisoService(AvisoRepository _avisoRepository) {
-		this.avisoRepository = _avisoRepository;
+	public AvisoService(AvisoRepository pAvisoRepository) {
+		this.avisoRepository = pAvisoRepository;
 	}
 
 	public Iterable<Aviso> list() {

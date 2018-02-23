@@ -27,9 +27,9 @@ public class LicitacionController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public LicitacionController(LicitacionService _licitacionService, FicheroService _ficheroService) {
-		this.licitacionService = _licitacionService;
-		this.ficheroService = _ficheroService;
+	public LicitacionController(LicitacionService pLicitacionService, FicheroService pFicheroService) {
+		this.licitacionService = pLicitacionService;
+		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/licitaciones", produces = "text/html;charset=UTF-8")

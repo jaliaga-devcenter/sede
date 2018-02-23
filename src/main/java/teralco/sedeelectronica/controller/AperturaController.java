@@ -26,9 +26,9 @@ public class AperturaController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public AperturaController(AperturaService _aperturaService, FicheroService _ficheroService) {
-		this.aperturaService = _aperturaService;
-		this.ficheroService = _ficheroService;
+	public AperturaController(AperturaService pAperturaService, FicheroService pFicheroService) {
+		this.aperturaService = pAperturaService;
+		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/aperturas", produces = "text/html;charset=UTF-8")

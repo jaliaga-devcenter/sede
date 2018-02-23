@@ -20,8 +20,8 @@ public class CustomErrorController implements ErrorController {
 	private final ErrorAttributes errorAttributes;
 
 	@Autowired
-	public CustomErrorController(ErrorAttributes _errorAttributes) {
-		this.errorAttributes = _errorAttributes;
+	public CustomErrorController(ErrorAttributes pErrorAttributes) {
+		this.errorAttributes = pErrorAttributes;
 	}
 
 	@RequestMapping(ERROR_PATH)

@@ -26,9 +26,9 @@ public class AdjudicacionController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public AdjudicacionController(AdjudicacionService _adjudicacionService, FicheroService _ficheroService) {
-		this.adjudicacionService = _adjudicacionService;
-		this.ficheroService = _ficheroService;
+	public AdjudicacionController(AdjudicacionService pAdjudicacionService, FicheroService pFicheroService) {
+		this.adjudicacionService = pAdjudicacionService;
+		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/adjudicaciones", produces = "text/html;charset=UTF-8")

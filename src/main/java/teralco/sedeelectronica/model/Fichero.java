@@ -31,40 +31,40 @@ public class Fichero extends BaseModel {
 		return this.tipo;
 	}
 
-	public void setTipo(Tipo _tipo) {
-		this.tipo = _tipo;
+	public void setTipo(Tipo pTipo) {
+		this.tipo = pTipo;
 	}
 
 	public Double getTamanyo() {
 		return this.tamanyo;
 	}
 
-	public void setTamanyo(Double _tamanyo) {
-		this.tamanyo = _tamanyo;
+	public void setTamanyo(Double pTamanyo) {
+		this.tamanyo = pTamanyo;
 	}
 
 	public String getUuid() {
 		return this.uuid;
 	}
 
-	public void setUuid(String _uuid) {
-		this.uuid = _uuid;
+	public void setUuid(String pUuid) {
+		this.uuid = pUuid;
 	}
 
 	public Set<Licitacion> getLicitaciones() {
 		return this.licitaciones;
 	}
 
-	public void setLicitaciones(Set<Licitacion> _licitaciones) {
-		this.licitaciones = _licitaciones;
+	public void setLicitaciones(Set<Licitacion> pLicitaciones) {
+		this.licitaciones = pLicitaciones;
 	}
 
 	public String getNombreOriginal() {
 		return this.nombreOriginal;
 	}
 
-	public void setNombreOriginal(String _nombreOriginal) {
-		this.nombreOriginal = _nombreOriginal;
+	public void setNombreOriginal(String pNombreOriginal) {
+		this.nombreOriginal = pNombreOriginal;
 	}
 
 	@Override

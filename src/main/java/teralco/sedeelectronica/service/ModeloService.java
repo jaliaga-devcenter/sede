@@ -1,6 +1,8 @@
 package teralco.sedeelectronica.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import teralco.sedeelectronica.model.Modelo;
@@ -13,8 +15,8 @@ public class ModeloService {
 
 	@Autowired
 
-	public ModeloService(ModeloRepository _modeloRepository) {
-		this.modeloRepository = _modeloRepository;
+	public ModeloService(ModeloRepository pModeloRepository) {
+		this.modeloRepository = pModeloRepository;
 	}
 
 	public Iterable<Modelo> list() {
@@ -27,13 +29,16 @@ public class ModeloService {
 
 	// save
 	public Modelo save(Modelo modelo) {
-
 		return this.modeloRepository.save(modelo);
 	}
 
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-
 		this.modeloRepository.delete(id);
+	}
+
+	// Pagination
+	public Page<Modelo> listAllByPage(Pageable pageable) {
+		return this.modeloRepository.findAll(pageable);
 	}
 }

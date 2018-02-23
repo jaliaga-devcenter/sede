@@ -24,19 +24,21 @@
 						<fieldset class="g-pt-2">
 							<div>
 								<label>
-									<input type="radio" name="optionsRadios" th:id="${'option' + modelo.id}" th:checked="${itr.index == 0}" th:value="${modelo.id}"
-									/>
+									<input type="radio" name="optionsRadios" th:id="${'option' + modelo.id}" th:checked="${itr.index == 0}" th:value="${modelo.id}" 
+									/><span th:text="${itr.index}"></span>
 								</label>
 							</div>
 						</fieldset>
 					</th>	
 					<td th:text="${modelo.fichero!=null} ? ${modelo.fichero.tipo}: ''"></td>
 					<td th:switch="${modelo.fichero}">
-							<span th:case="null" ></span>
+							<span th:case="null" th:text="${modelo.descripcion}"></span>
 							<span th:case="*"><a th:text="${modelo.descripcion}" th:href="'./download/'+${encrypt.encrypt(modelo.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>					
 				</tr>
 			</tbody>
 		</table>
+		<div th:replace="~{fragments/paginationBar :: paginationBar(${modelos})}"></div>
+
  </body>
  </html>

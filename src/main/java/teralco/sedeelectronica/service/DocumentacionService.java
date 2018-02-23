@@ -12,8 +12,8 @@ public class DocumentacionService {
 	private DocumentacionRepository documentacionRespository;
 
 	@Autowired
-	public DocumentacionService(DocumentacionRepository _documentacionRespository) {
-		this.documentacionRespository = _documentacionRespository;
+	public DocumentacionService(DocumentacionRepository pDocumentacionRespository) {
+		this.documentacionRespository = pDocumentacionRespository;
 	}
 
 	public Iterable<Documentacion> list() {

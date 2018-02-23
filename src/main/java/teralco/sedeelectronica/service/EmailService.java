@@ -24,8 +24,8 @@ public class EmailService {
 	}
 
 	@Autowired
-	public EmailService(JavaMailSender _javaMailSender) {
-		this.javaMailSender = _javaMailSender;
+	public EmailService(JavaMailSender pJavaMailSender) {
+		this.javaMailSender = pJavaMailSender;
 	}
 
 	@Async

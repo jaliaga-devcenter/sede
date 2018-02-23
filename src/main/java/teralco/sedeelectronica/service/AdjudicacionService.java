@@ -12,8 +12,8 @@ public class AdjudicacionService {
 	private AdjudicacionRepository adjudicacionRepository;
 
 	@Autowired
-	public AdjudicacionService(AdjudicacionRepository _adjudicacionRepository) {
-		this.adjudicacionRepository = _adjudicacionRepository;
+	public AdjudicacionService(AdjudicacionRepository pAdjudicacionRepository) {
+		this.adjudicacionRepository = pAdjudicacionRepository;
 	}
 
 	public Iterable<Adjudicacion> list() {

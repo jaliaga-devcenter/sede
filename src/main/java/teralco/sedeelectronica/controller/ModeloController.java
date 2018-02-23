@@ -3,6 +3,8 @@ package teralco.sedeelectronica.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Fichero;
@@ -28,17 +31,22 @@ public class ModeloController {
 
 	@Autowired
 
-	public ModeloController(ModeloService _modeloService, FicheroService _ficheroService) {
-		this.modeloService = _modeloService;
-		this.ficheroService = _ficheroService;
+	public ModeloController(ModeloService pModeloService, FicheroService pFicheroService) {
+		this.modeloService = pModeloService;
+		this.ficheroService = pFicheroService;
 	}
 
-	@RequestMapping(value = "/modelos", produces = "text/html;charset=UTF-8")
-	public String modeloes(Model model) {
+	@RequestMapping(value = "/modelos", method = RequestMethod.GET)
+	public String modeloes(Model model, Pageable pageable) {
 		// DEVOLVER LA LISTA DE modeloS ACTUALES
 
-		model.addAttribute("modelos", this.modeloService.list());
+		// model.addAttribute("", this.modeloService.list());
 		model.addAttribute("encrypt", new EncryptUtils());
+
+		Page<Modelo> pages = this.modeloService.listAllByPage(pageable);
+
+		model.addAttribute("modelos", pages);
+
 		return "modelos/modelos";
 	}
 

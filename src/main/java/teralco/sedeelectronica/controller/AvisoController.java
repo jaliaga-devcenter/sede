@@ -27,9 +27,9 @@ public class AvisoController {
 
 	@Autowired
 
-	public AvisoController(AvisoService _avisoService, FicheroService _ficheroService) {
-		this.avisoService = _avisoService;
-		this.ficheroService = _ficheroService;
+	public AvisoController(AvisoService pAvisoService, FicheroService pFicheroService) {
+		this.avisoService = pAvisoService;
+		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/avisos", produces = "text/html;charset=UTF-8")
