@@ -5,7 +5,7 @@ server:
   port: 8081
 
 spring.jpa.show-sql: true
-flyway.enabled: false
+flyway.enabled: true
 
 server.basePathBack: http://localhost:8081
 server.contextPath: /sede 
