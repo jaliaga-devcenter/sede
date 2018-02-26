@@ -7,6 +7,7 @@
 
 	<div layout:fragment="content">	
 		<div th:replace="~{fragments/genericTable :: genericTable('user', #{message.aperturas.table.header}, 'aperturas', ~{::table})}"></div>
+		<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
 	</div>
 
 	<table class="table u-table--v1 mb-0 table-striped table-hover">

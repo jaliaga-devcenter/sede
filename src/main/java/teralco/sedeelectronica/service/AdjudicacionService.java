@@ -1,6 +1,8 @@
 package teralco.sedeelectronica.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import teralco.sedeelectronica.model.Adjudicacion;
@@ -32,5 +34,10 @@ public class AdjudicacionService {
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		this.adjudicacionRepository.delete(id);
+	}
+
+	// Pagination
+	public Page<Adjudicacion> listAllByPage(Pageable pageable) {
+		return this.adjudicacionRepository.findAll(pageable);
 	}
 }

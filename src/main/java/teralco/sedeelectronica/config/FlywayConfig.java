@@ -20,6 +20,7 @@ public class FlywayConfig {
 		flyway.setSchemas("sede");
 		/* persist data base */
 		// flyway.clean();
+		flyway.repair();
 		flyway.migrate();
 
 		return flyway;

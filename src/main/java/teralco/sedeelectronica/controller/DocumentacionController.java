@@ -3,6 +3,9 @@ package teralco.sedeelectronica.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +22,7 @@ import teralco.sedeelectronica.service.DocumentacionService;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
+import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
 public class DocumentacionController {
@@ -33,9 +37,14 @@ public class DocumentacionController {
 	}
 
 	@RequestMapping(value = "/documentos", produces = "text/html;charset=UTF-8")
-	public String aperturas(Model model) {
-		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
-		model.addAttribute("documentos", this.documentacionService.list());
+	public String aperturas(Model model, @PageableDefault(value = 10) Pageable pageable) {
+		// DEVOLVER LA LISTA DE DOCUMENTOS ACTUALES
+		Page<Documentacion> pages = this.documentacionService.listAllByPage(pageable);
+		model.addAttribute("documentos", pages);
+		PageWrapper<Documentacion> page = new PageWrapper<Documentacion>(pages, "/documentos");
+		model.addAttribute("page", page);
+		model.addAttribute("", this.documentacionService.list());
+
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "documentos/documentos";
 	}

@@ -8,6 +8,7 @@
 	
 		<div layout:fragment="content">	
 			<div th:replace="~{fragments/genericTable :: genericTable('user', #{message.modelos.table.header}, 'modelos', ~{::table})}"></div>
+			<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
 		</div>
 	
 		<table class="table u-table--v1 mb-0 table-striped table-hover">
@@ -38,7 +39,5 @@
 				</tr>
 			</tbody>
 		</table>
-		<div th:replace="~{fragments/paginationBar :: paginationBar(${modelos})}"></div>
-
  </body>
  </html>

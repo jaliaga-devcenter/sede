@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,7 @@ import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.ModeloService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
+import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
 public class ModeloController {
@@ -37,15 +39,13 @@ public class ModeloController {
 	}
 
 	@RequestMapping(value = "/modelos", method = RequestMethod.GET)
-	public String modeloes(Model model, Pageable pageable) {
-		// DEVOLVER LA LISTA DE modeloS ACTUALES
-
-		// model.addAttribute("", this.modeloService.list());
+	public String modeloes(Model model, @PageableDefault(value = 10) Pageable pageable) {
+		// DEVOLVER LA LISTA DE MODELOS ACTUALES
 		model.addAttribute("encrypt", new EncryptUtils());
-
 		Page<Modelo> pages = this.modeloService.listAllByPage(pageable);
-
 		model.addAttribute("modelos", pages);
+		PageWrapper<Modelo> page = new PageWrapper<Modelo>(pages, "/modelos");
+		model.addAttribute("page", page);
 
 		return "modelos/modelos";
 	}

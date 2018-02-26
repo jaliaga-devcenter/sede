@@ -1,6 +1,8 @@
 package teralco.sedeelectronica.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import teralco.sedeelectronica.model.Apertura;
@@ -32,5 +34,10 @@ public class AperturaService {
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		this.aperturaRepository.delete(id);
+	}
+
+	// Pagination
+	public Page<Apertura> listAllByPage(Pageable pageable) {
+		return this.aperturaRepository.findAll(pageable);
 	}
 }
