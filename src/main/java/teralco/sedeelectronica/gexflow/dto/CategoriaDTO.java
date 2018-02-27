@@ -33,4 +33,12 @@ public class CategoriaDTO extends AbstractDTO {
 		return this.subcategorias;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof CategoriaDTO))
+			return false;
+		CategoriaDTO other = (CategoriaDTO) o;
+		return other.idCategoria.equals(this.idCategoria);
+	}
+
 }

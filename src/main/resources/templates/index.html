@@ -160,68 +160,19 @@
 				</header>
 
 				<div class="row g-mb-20">
-					<div class="col-lg-3 g-px-40 g-mb-50">
+					<div class="col-lg-3 g-px-40 g-mb-50" th:each="categoria: ${categorias}">
 						<!-- Icon Blocks -->
 						<div class="text-center d-flex align-items-center flex-column" style="height: 235px; justify-content: space-between; ">
 							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle">
-								<i class="icon-communication-081 u-line-icon-pro"></i>
+								<i th:switch="${iconos.get(categoria.idCategoria).extension}">
+										<img th:case="jpg" alt="img" th:src="@{'data:image/jpeg;base64,'+${iconos.get(categoria.idCategoria).base64encoded}}"/>
+										<img th:case="png" alt="img" th:src="@{'data:image/png;base64,'+${iconos.get(categoria.idCategoria).base64encoded}}"/>
+										<img th:case="gif" alt="img" th:src="@{'data:image/gif;base64,'+${iconos.get(categoria.idCategoria).base64encoded}}"/>
+										<span th:case="*" class="icon-communication-081 u-line-icon-pro"></span>
+								</i>								
 							</span>
-							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">INFORMACI&Oacute;N GENERAL Y PADR&Oacute;N DE HABITANTES</h3>
-							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
-								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
-							</a>
-						</div>
-						<!-- End Icon Blocks -->
-					</div>
-
-					<div class="col-lg-3 g-px-40 g-mb-50 g-brd-left--lg g-brd-gray-light-v4">
-						<!-- Icon Blocks -->
-						<div class="text-center d-flex align-items-center flex-column" style="height: 235px; justify-content: space-between; ">
-							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle">
-								<i class="icon-finance-086 u-line-icon-pro"></i>
-							</span>
-							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">SERVICIOS SOCIALES, SANIDAD Y COOPERACI&Oacute;N</h3>
-							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
-								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
-							</a>
-						</div>
-						<!-- End Icon Blocks -->
-					</div>
-
-					<div class="col-lg-3 g-px-40 g-mb-50 g-brd-left--lg g-brd-gray-light-v4">
-						<!-- Icon Blocks -->
-						<div class="text-center d-flex align-items-center flex-column" style="height: 235px; justify-content: space-between; ">
-							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle">
-								<i class="icon-communication-057 u-line-icon-pro"></i>
-							</span>
-							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">URBANISMO, VIVIENDA Y MEDIO AMBIENTE</h3>
-							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
-								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
-							</a>
-						</div>
-						<!-- End Icon Blocks -->
-					</div>
-					<div class="col-lg-3 g-px-40 g-mb-50 g-brd-left--lg g-brd-gray-light-v4">
-						<!-- Icon Blocks -->
-						<div class="text-center d-flex align-items-center flex-column" style="height: 235px; justify-content: space-between; ">
-							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle">
-								<i class="icon-communication-057 u-line-icon-pro"></i>
-							</span>
-							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">IMPUESTOS, TASAS Y MULTAS</h3>
-							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
-								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
-							</a>
-						</div>
-						<!-- End Icon Blocks -->
-					</div>
-					<div class="col-lg-3 g-px-40 g-mb-50">
-						<!-- Icon Blocks -->
-						<div class="text-center d-flex align-items-center flex-column" style="height: 235px; justify-content: space-between; ">
-							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle">
-								<i class="icon-communication-057 u-line-icon-pro"></i>
-							</span>
-							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase">TR&Aacute;FICO Y TRANSPORTES</h3>
-							<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
+							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase" th:utext="${categoria.nombre}">Categoria</h3>
+							<a th:href="'./servicios/'+${categoria.idCategoria}" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
 								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
 							</a>
 						</div>

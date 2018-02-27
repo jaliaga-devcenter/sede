@@ -21,92 +21,50 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1">
-                            <a href="#" class="g-text-underline--none--hover">
-                                <div class="media">
-                                    <div class="d-flex g-mt-2 g-mr-15">
-                                        <span class="d-inline-block u-icon-v3 u-icon-size--sm u-icon-scale-1_2--hover g-bg-primary g-color-white rounded-circle">
-                                            <i class="icon-communication-081 u-line-icon-pro"></i>
-                                        </span>
+                        <li class="g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1" th:each="categoria: ${categorias}" th:if="${categoria.idCategoria} != ${currentCat.idCategoria}">
+                                <a th:href="'./servicios/'+${categoria.idCategoria}" class="g-text-underline--none--hover">
+                                    <div class="media">
+                                        <div class="d-flex g-mt-2 g-mr-15">
+                                            <span class="d-inline-block u-icon-v3 u-icon-size--sm u-icon-scale-1_2--hover g-bg-primary g-color-white rounded-circle">
+                                                    <i th:switch="${iconos.get(categoria.idCategoria).extension}">
+                                                            <img th:case="jpg" alt="img" th:src="@{'data:image/jpeg;base64,'+${iconos.get(categoria.idCategoria).base64encoded}}"/>
+                                                            <img th:case="png" alt="img" th:src="@{'data:image/png;base64,'+${iconos.get(categoria.idCategoria).base64encoded}}"/>
+                                                            <img th:case="gif" alt="img" th:src="@{'data:image/gif;base64,'+${iconos.get(categoria.idCategoria).base64encoded}}"/>
+                                                            <span th:case="*" class="icon-communication-081 u-line-icon-pro"></span>
+                                                    </i>	
+                                            </span>
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="m-0">
+                                                <strong th:text="${categoria.nombre}">Categoria</strong>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="media-body">
-                                        <p class="m-0">
-                                            <strong>INFORMACI&Oacute;N GENERAL Y PADR&Oacute;N DE HABITANTES</strong>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1">
-                            <a href="#" class="g-text-underline--none--hover">
-                                <div class="media">
-                                    <div class="d-flex g-mt-2 g-mr-15">
-                                        <span class="d-inline-block u-icon-v3 u-icon-size--sm u-icon-scale-1_2--hover g-bg-primary g-color-white rounded-circle">
-                                            <i class="icon-communication-081 u-line-icon-pro"></i>
-                                        </span>
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="m-0">
-                                            <strong>SERVICIOS SOCIALES, SANIDAD Y COOPERACI&Oacute;N</strong>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1">
-                            <a href="#" class="g-text-underline--none--hover">
-                                <div class="media">
-                                    <div class="d-flex g-mt-2 g-mr-15">
-                                        <span class="d-inline-block u-icon-v3 u-icon-size--sm u-icon-scale-1_2--hover g-bg-primary g-color-white rounded-circle">
-                                            <i class="icon-communication-081 u-line-icon-pro"></i>
-                                        </span>
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="m-0">
-                                            <strong>URBANISMO, VIVIENDA Y MEDIO AMBIENTE</strong>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1">
-                            <a href="#" class="g-text-underline--none--hover">
-                                <div class="media">
-                                    <div class="d-flex g-mt-2 g-mr-15">
-                                        <span class="d-inline-block u-icon-v3 u-icon-size--sm u-icon-scale-1_2--hover g-bg-primary g-color-white rounded-circle">
-                                            <i class="icon-communication-081 u-line-icon-pro"></i>
-                                        </span>
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="m-0">
-                                            <strong>IMPUESTOS, TASAS Y MULTAS</strong>
-                                        </p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+                                </a>
+                            </li>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     <div class="row g-mb-20">
                         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                             <div class="u-heading-v1-1 g-bg-main g-brd-transparent g-mb-20">
-                                <h2 class="h3 u-heading-v1__title">SERVICIOS SOCIALES, SANIDAD Y COOPERACI&Oacute;N</h2>
+                                <h2 class="h3 u-heading-v1__title" th:text="${#strings.toUpperCase(currentCat.nombre)}">T&iacute;tulo</h2>
                             </div>
-                            <p>
-                                <span th:text="#{message.areas.main.text.init}">Todos los tr&aacute;mites y ayudas relacionados con el área de</span> Servicios Sociales,
-                                Atenci&oacute;n a la Dependencia,Sanidad y Cooperaci&oacute;n al desarrollo.</p>
+                            <p >
+                                <span th:text="#{message.areas.main.text.init}">Todos los tr&aacute;mites y ayudas relacionados con el área de</span><span th:utext="${currentCat.descripcion}"> Servicios Sociales,
+                                Atenci&oacute;n a la Dependencia,Sanidad y Cooperaci&oacute;n al desarrollo.</span></p>
                             <form class="g-mb-20">
                                 <strong class="g-mr-10" th:text="#{message.areas.main.show.label}">Mostrar:</strong>
                                 <!-- Inline Radios -->
                                 <div class="form-check form-check-inline mb-0">
                                     <label class="form-check-label mr-2">
-                                        <input class="form-check-input mr-1" checked type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" th:text="#{message.areas.main.show.check.one.label}">Todos
+                                        <input class="form-check-input mr-1" checked type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" th:text="#{message.areas.main.show.check.one.label}">
+                                        
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline mb-0">
                                     <label class="form-check-label mr-2">
-                                        <input class="form-check-input mr-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" th:text="#{message.areas.main.show.check.two.label}">Online
+                                        <input class="form-check-input mr-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" th:text="#{message.areas.main.show.check.two.label}">
                                     </label>
                                 </div>
                                 <!-- End Inline Radios -->
@@ -135,6 +93,9 @@
                             </span>
                         </p>
                     </div>
+
+                        <p th:text="${currentCat.subcategorias}"></p>
+
                     <div id="accordion-07" class="u-accordion u-accordion-color-primary" role="tablist" aria-multiselectable="true">
                         <!-- Card -->
                         <div class="card rounded-0 g-brd-none">
@@ -152,6 +113,7 @@
                                     </a>
                                 </h5>
                             </div>
+                            
                             <div id="accordion-07-body-01" class="collapse show" role="tabpanel" aria-labelledby="accordion-07-heading-01">
                                 <div class="u-accordion__body">
                                     <!-- Basic Table -->
