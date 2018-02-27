@@ -57,37 +57,6 @@ public class ServicioWebAxisUtils extends org.apache.axis.client.Stub {
 		}
 	}
 
-	public void registrarSerializadores() {
-		synchronized (this) {
-			if (this.firstCall()) {
-				// must set encoding style before registering serializers
-				this._call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-				this._call.setEncodingStyle(org.apache.axis.Constants.URI_SOAP11_ENC);
-				for (int i = 0; i < this.cachedSerFactories.size(); ++i) {
-					this.registerTypeMapping(i);
-				}
-			}
-		}
-	}
-
-	private void registerTypeMapping(int i) {
-		Class<?> cls = this.cachedSerClasses.get(i);
-		javax.xml.namespace.QName qName = this.cachedSerQNames.get(i);
-		java.lang.Object x = this.cachedSerFactories.get(i);
-
-		if (x instanceof Class<?>) {
-			Class<?> sf = (Class<?>) this.cachedSerFactories.get(i);
-			Class<?> df = (Class<?>) this.cachedDeserFactories.get(i);
-			this._call.registerTypeMapping(cls, qName, sf, df, false);
-			return;
-		}
-		if (x instanceof javax.xml.rpc.encoding.SerializerFactory) {
-			org.apache.axis.encoding.SerializerFactory sf = (org.apache.axis.encoding.SerializerFactory) this.cachedSerFactories.get(i);
-			org.apache.axis.encoding.DeserializerFactory df = (org.apache.axis.encoding.DeserializerFactory) this.cachedDeserFactories.get(i);
-			this._call.registerTypeMapping(cls, qName, sf, df, false);
-		}
-	}
-
 	public MetodoServicioWebAxis getMetodo(String nombre) throws ServiceException {
 		if (super.cachedEndpoint == null) {
 			throw new ServiceException("No hay cacheEndpoint");
