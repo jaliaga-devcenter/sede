@@ -8,3 +8,6 @@ debug: false
 spring.messages.basename: messages/messages
 
 server.uploadPath: C:\proyectos\sede\
+verifirma.url: http://demo.gexflow.com:8080
+verifirma.user: servicio.consulta.expedientes
+verifirma.password: servicio.consulta.expedientes
