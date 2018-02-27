@@ -24,8 +24,8 @@ public class BaseModel implements Serializable {
 		return this.id;
 	}
 
-	public void setId(Long _id) {
-		this.id = _id;
+	public void setId(Long pId) {
+		this.id = pId;
 	}
 
 	@JsonIgnore

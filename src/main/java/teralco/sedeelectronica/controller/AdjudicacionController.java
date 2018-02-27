@@ -3,6 +3,9 @@ package teralco.sedeelectronica.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +21,7 @@ import teralco.sedeelectronica.service.AdjudicacionService;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
+import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
 public class AdjudicacionController {
@@ -26,15 +30,19 @@ public class AdjudicacionController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public AdjudicacionController(AdjudicacionService _adjudicacionService, FicheroService _ficheroService) {
-		this.adjudicacionService = _adjudicacionService;
-		this.ficheroService = _ficheroService;
+	public AdjudicacionController(AdjudicacionService pAdjudicacionService, FicheroService pFicheroService) {
+		this.adjudicacionService = pAdjudicacionService;
+		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/adjudicaciones", produces = "text/html;charset=UTF-8")
-	public String aperturas(Model model) {
+	public String aperturas(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		// DEVOLVER LA LISTA DE ADJUDICACIONES ACTUALES
-		model.addAttribute("adjudicaciones", this.adjudicacionService.list());
+		Page<Adjudicacion> pages = this.adjudicacionService.listAllByPage(pageable);
+		model.addAttribute("adjudicaciones", pages);
+		PageWrapper<Adjudicacion> page = new PageWrapper<Adjudicacion>(pages, "/adjudicaciones");
+		model.addAttribute("page", page);
+
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "adjudicaciones/adjudicaciones";
 	}

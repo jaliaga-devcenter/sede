@@ -55,48 +55,48 @@ public class Apertura extends BaseModel {
 		return this.fecha;
 	}
 
-	public void setFecha(Date _fecha) {
-		this.fecha = _fecha;
+	public void setFecha(Date pFecha) {
+		this.fecha = pFecha;
 	}
 
 	public String getDenominacion() {
 		return this.denominacion;
 	}
 
-	public void setDenominacion(String _denominacion) {
-		this.denominacion = _denominacion;
+	public void setDenominacion(String pDenominacion) {
+		this.denominacion = pDenominacion;
 	}
 
 	public Date getHora() {
 		return this.hora;
 	}
 
-	public void setHora(Date _hora) {
-		this.hora = _hora;
+	public void setHora(Date pHora) {
+		this.hora = pHora;
 	}
 
 	public String getPlica() {
 		return this.plica;
 	}
 
-	public void setPlica(String _plica) {
-		this.plica = _plica;
+	public void setPlica(String pPlica) {
+		this.plica = pPlica;
 	}
 
 	public MultipartFile getFileToUpload() {
 		return this.fileToUpload;
 	}
 
-	public void setFileToUpload(MultipartFile _fileToUpload) {
-		this.fileToUpload = _fileToUpload;
+	public void setFileToUpload(MultipartFile pFileToUpload) {
+		this.fileToUpload = pFileToUpload;
 	}
 
 	public Fichero getResultado() {
 		return this.resultado;
 	}
 
-	public void setResultado(Fichero _resultado) {
-		this.resultado = _resultado;
+	public void setResultado(Fichero pResultado) {
+		this.resultado = pResultado;
 	}
 
 	@Override

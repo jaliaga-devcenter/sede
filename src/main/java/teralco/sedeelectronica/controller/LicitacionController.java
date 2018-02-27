@@ -3,6 +3,9 @@ package teralco.sedeelectronica.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +22,7 @@ import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.LicitacionService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
+import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
 public class LicitacionController {
@@ -27,14 +31,19 @@ public class LicitacionController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public LicitacionController(LicitacionService _licitacionService, FicheroService _ficheroService) {
-		this.licitacionService = _licitacionService;
-		this.ficheroService = _ficheroService;
+	public LicitacionController(LicitacionService pLicitacionService, FicheroService pFicheroService) {
+		this.licitacionService = pLicitacionService;
+		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/licitaciones", produces = "text/html;charset=UTF-8")
-	public String licitaciones(Model model) {
-		model.addAttribute("licitaciones", this.licitacionService.list());
+
+	public String licitaciones(Model model, @PageableDefault(value = 10) Pageable pageable) {
+		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
+		Page<Licitacion> pages = this.licitacionService.listAllByPage(pageable);
+		model.addAttribute("licitaciones", pages);
+		PageWrapper<Licitacion> page = new PageWrapper<Licitacion>(pages, "/licitaciones");
+		model.addAttribute("page", page);
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "licitaciones/licitaciones";
 	}

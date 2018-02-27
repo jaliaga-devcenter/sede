@@ -3,6 +3,9 @@ package teralco.sedeelectronica.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Fichero;
@@ -19,6 +23,7 @@ import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.ModeloService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
+import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
 public class ModeloController {
@@ -28,17 +33,20 @@ public class ModeloController {
 
 	@Autowired
 
-	public ModeloController(ModeloService _modeloService, FicheroService _ficheroService) {
-		this.modeloService = _modeloService;
-		this.ficheroService = _ficheroService;
+	public ModeloController(ModeloService pModeloService, FicheroService pFicheroService) {
+		this.modeloService = pModeloService;
+		this.ficheroService = pFicheroService;
 	}
 
-	@RequestMapping(value = "/modelos", produces = "text/html;charset=UTF-8")
-	public String modeloes(Model model) {
-		// DEVOLVER LA LISTA DE modeloS ACTUALES
-
-		model.addAttribute("modelos", this.modeloService.list());
+	@RequestMapping(value = "/modelos", method = RequestMethod.GET)
+	public String modeloes(Model model, @PageableDefault(value = 10) Pageable pageable) {
+		// DEVOLVER LA LISTA DE MODELOS ACTUALES
 		model.addAttribute("encrypt", new EncryptUtils());
+		Page<Modelo> pages = this.modeloService.listAllByPage(pageable);
+		model.addAttribute("modelos", pages);
+		PageWrapper<Modelo> page = new PageWrapper<Modelo>(pages, "/modelos");
+		model.addAttribute("page", page);
+
 		return "modelos/modelos";
 	}
 

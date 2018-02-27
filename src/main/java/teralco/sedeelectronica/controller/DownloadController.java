@@ -31,8 +31,8 @@ public class DownloadController {
 	private String serverUploadPath;
 
 	@Autowired
-	public DownloadController(FicheroService _ficheroService) {
-		this.ficheroService = _ficheroService;
+	public DownloadController(FicheroService pFicheroService) {
+		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/download/{file_name}", method = RequestMethod.GET)

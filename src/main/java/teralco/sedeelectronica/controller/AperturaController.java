@@ -3,6 +3,9 @@ package teralco.sedeelectronica.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +21,7 @@ import teralco.sedeelectronica.service.AperturaService;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
+import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
 public class AperturaController {
@@ -26,16 +30,21 @@ public class AperturaController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public AperturaController(AperturaService _aperturaService, FicheroService _ficheroService) {
-		this.aperturaService = _aperturaService;
-		this.ficheroService = _ficheroService;
+	public AperturaController(AperturaService pAperturaService, FicheroService pFicheroService) {
+		this.aperturaService = pAperturaService;
+		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/aperturas", produces = "text/html;charset=UTF-8")
-	public String aperturas(Model model) {
-		// DEVOLVER LA LISTA DE APERTURAS ACTUALES
-		model.addAttribute("aperturas", this.aperturaService.list());
+	public String aperturas(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		model.addAttribute("encrypt", new EncryptUtils());
+
+		// DEVOLVER LA LISTA DE APERTURAS ACTUALES
+		Page<Apertura> pages = this.aperturaService.listAllByPage(pageable);
+		model.addAttribute("aperturas", pages);
+		PageWrapper<Apertura> page = new PageWrapper<Apertura>(pages, "/aperturas");
+		model.addAttribute("page", page);
+
 		return "aperturas/aperturas";
 	}
 

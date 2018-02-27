@@ -65,56 +65,56 @@ public class Licitacion extends BaseModel {
 		return this.fichero;
 	}
 
-	public void setFichero(Fichero _fichero) {
-		this.fichero = _fichero;
+	public void setFichero(Fichero pFichero) {
+		this.fichero = pFichero;
 	}
 
 	public Date getFechaPub() {
 		return this.fechaPub;
 	}
 
-	public void setFechaPub(Date _fechaPub) {
-		this.fechaPub = _fechaPub;
+	public void setFechaPub(Date pFechaPub) {
+		this.fechaPub = pFechaPub;
 	}
 
 	public String getDescripcion() {
 		return this.descripcion;
 	}
 
-	public void setDescripcion(String _descripcion) {
-		this.descripcion = _descripcion;
+	public void setDescripcion(String pDescripcion) {
+		this.descripcion = pDescripcion;
 	}
 
 	public BigDecimal getPresupuesto() {
 		return this.presupuesto;
 	}
 
-	public void setPresupuesto(BigDecimal _presupuesto) {
-		this.presupuesto = _presupuesto;
+	public void setPresupuesto(BigDecimal pPresupuesto) {
+		this.presupuesto = pPresupuesto;
 	}
 
 	public boolean isIvaInc() {
 		return this.ivaInc;
 	}
 
-	public void setIvaInc(boolean _ivaInc) {
-		this.ivaInc = _ivaInc;
+	public void setIvaInc(boolean pIvaInc) {
+		this.ivaInc = pIvaInc;
 	}
 
 	public Date getFinPlazo() {
 		return this.finPlazo;
 	}
 
-	public void setFinPlazo(Date _finPlazo) {
-		this.finPlazo = _finPlazo;
+	public void setFinPlazo(Date pFinPlazo) {
+		this.finPlazo = pFinPlazo;
 	}
 
 	public Medio getMedio() {
 		return this.medio;
 	}
 
-	public void setMedio(Medio _medio) {
-		this.medio = _medio;
+	public void setMedio(Medio pMedio) {
+		this.medio = pMedio;
 	}
 
 	public MultipartFile getFileToUpload() {

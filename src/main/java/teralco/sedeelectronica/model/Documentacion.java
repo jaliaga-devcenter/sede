@@ -37,32 +37,32 @@ public class Documentacion extends BaseModel {
 		return this.descripcion;
 	}
 
-	public void setDescripcion(String _descripcion) {
-		this.descripcion = _descripcion;
+	public void setDescripcion(String pDescripcion) {
+		this.descripcion = pDescripcion;
 	}
 
 	public Estado getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(Estado _estado) {
-		this.estado = _estado;
+	public void setEstado(Estado pEstado) {
+		this.estado = pEstado;
 	}
 
 	public MultipartFile getFileToUpload() {
 		return this.fileToUpload;
 	}
 
-	public void setFileToUpload(MultipartFile _fileToUpload) {
-		this.fileToUpload = _fileToUpload;
+	public void setFileToUpload(MultipartFile pFileToUpload) {
+		this.fileToUpload = pFileToUpload;
 	}
 
 	public Fichero getFichero() {
 		return this.fichero;
 	}
 
-	public void setFichero(Fichero _fichero) {
-		this.fichero = _fichero;
+	public void setFichero(Fichero pFichero) {
+		this.fichero = pFichero;
 	}
 
 	@Override

@@ -15,24 +15,24 @@ public class Contacto {
 		return this.nombre;
 	}
 
-	public void setNombre(String _nombre) {
-		this.nombre = _nombre;
+	public void setNombre(String pNombre) {
+		this.nombre = pNombre;
 	}
 
 	public String getEmail() {
 		return this.email;
 	}
 
-	public void setEmail(String _email) {
-		this.email = _email;
+	public void setEmail(String pEmail) {
+		this.email = pEmail;
 	}
 
 	public String getComentario() {
 		return this.comentario;
 	}
 
-	public void setComentario(String _comentario) {
-		this.comentario = _comentario;
+	public void setComentario(String pComentario) {
+		this.comentario = pComentario;
 	}
 
 }

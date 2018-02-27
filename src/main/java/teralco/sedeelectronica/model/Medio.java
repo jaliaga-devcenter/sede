@@ -5,8 +5,8 @@ public enum Medio {
 
 	private String text;
 
-	Medio(String _text) {
-		this.text = _text;
+	Medio(String pText) {
+		this.text = pText;
 	}
 
 	public String getText() {
