@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="es" layout:decorator="/layouts/main">
 <head>
-	<title>Adjudicaci&oacute;n</title>
+	<title th:text="message.adjudicaciones.table.header"></title>
 </head>
+
 <body>
 
-<div layout:fragment="content">
-		
-		<div th:if="${message}" class="alert alert-success" role="alert">
-			<p th:text="${message}">success message</p>
-		</div>
-		
-	    <a th:href="@{/adjudicaciones/create}">Nueva Adjudicaci&oacute;n</a>
-		
+	<div layout:fragment="content">
+		<div th:replace="~{fragments/genericTable :: genericTable('user', #{message.adjudicaciones.table.header}, 'adjudicaciones', ~{::table})}"></div>
+		<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
+	</div>
 
-
-
-		<div class="inner-addon left-addon">
-    		<i class="glyphicon glyphicon-search"></i>
-    		<input class="form-control" type="text" id="searchInput" onkeyup="searchTable()" placeholder="Buscar..." title="Type in chars to search" />
-		</div>		
-		<table id="listTable" class="sortable table table-striped table-hover ">
+	<table class="table u-table--v1 mb-0 table-striped table-hover">
 		<thead>
-			<tr>
-				<th>Tipo</th>
-				<th>Denominaci&oacute;n</th>
-				<th>Apertura plicas</th>
-				<th>Resultado</th>				
-				<th>Tama&ntilde;o</th>
-				<th>F. formalizaci&oacute;n contrato</th>				
-				<th>Adjudicaci&oacute;n definitiva</th>
-				<th class="sorttable_nosort">Editar</th>
-				<th class="sorttable_nosort">Borrar</th>
+			<tr class="g-col-border-top-0">
+				<th>#</th>
+				<th th:text="#{message.adjudicaciones.table.header.type}">Tipo</th>
+				<th th:text="#{message.adjudicaciones.table.header.description}">Denominaci&oacute;n</th>
+				<th th:text="#{message.adjudicaciones.table.header.sealedbid}">Apertura plicas</th>
+				<th th:text="#{message.adjudicaciones.table.header.result}">Tama&ntilde;o</th>
+				<th th:text="#{message.adjudicaciones.table.header.size}">Tama&nacute;o</th>
+				<th th:text="#{message.adjudicaciones.table.header.formalizationdate}">F. formalizaci&oacute;n</th>
+				<th th:text="#{message.adjudicaciones.table.header.awarded}">Adjudicaci&oacute;n definitiva</th>
 			</tr>
 		</thead>
 			<tbody>
-				<tr th:each="adjudicacion : ${adjudicaciones}" th:href="@{/adjudicaciones/edit/{id}(id=${adjudicacion.id})}">
+				<tr th:each="adjudicacion, itr : ${adjudicaciones}" th:href="@{/adjudicaciones/edit/{id}(id=${adjudicacion.id})}">
+					<th scope="row">
+						<fieldset class="g-pt-2">
+							<div>
+								<label>
+									<input type="radio" name="optionsRadios" th:id="${'option' + adjudicacion.id}" th:checked="${itr.index == 0}" th:value="${adjudicacion.id}"
+									/>
+								</label>
+							</div>
+						</fieldset>
+					</th>
 					<td th:text="${adjudicacion.resultado!=null} ? ${adjudicacion.resultado.tipo}: ''"></td>
 					<td th:text="${adjudicacion.denominacion}"> </td>					
 					<td th:utext="${adjudicacion.fecha!=null} ? ${#dates.format(adjudicacion.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
@@ -53,15 +53,8 @@
 					(${adjudicacion.fechaAdjudicacion!=null} ? 
 					${#dates.format(adjudicacion.fechaAdjudicacion, 'dd/MM/yyyy')} : '' )
 					+ '&lt;br/&gt;' +${adjudicacion.empresaAdjudicacion})"></td>
-					<td><a href="#" th:href="@{/adjudicaciones/edit/} + ${adjudicacion.id}">Editar</a></td>
-					<td><a href="#" th:href="@{/adjudicaciones/delete/} + ${adjudicacion.id}">Borrar</a></td>
 				</tr>
 			</tbody>
-		</table>
-
-		<br/><br/>
-		
- 	</div>
- 	
+		</table> 	
  </body>
  </html>

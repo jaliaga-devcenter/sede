@@ -7,20 +7,20 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.10.RELEASE</version>
 	</parent>
-	
+
 	<groupId>teralco</groupId>
 	<artifactId>SedeElectronica</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Sede Electronica</name>
-	
+
 	<properties>
 		<thymeleaf.version>3.0.3.RELEASE</thymeleaf.version>
-        <thymeleaf-layout-dialect.version>2.2.1</thymeleaf-layout-dialect.version>
+		<thymeleaf-layout-dialect.version>2.2.1</thymeleaf-layout-dialect.version>
 		<java.version>1.8</java.version>
 		<!-- guava -->
 		<guava.version>24.0-jre</guava.version>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -49,6 +49,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
@@ -66,45 +67,87 @@
 			<artifactId>guava</artifactId>
 			<version>${guava.version}</version>
 		</dependency>
-		
 		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-lang3</artifactId>
-		    <version>3.6</version>
-		</dependency>	    
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.axis</groupId>
+					<artifactId>axis-jaxrpc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.axis</groupId>
+					<artifactId>axis-saaj</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis-jaxrpc</artifactId>
+			<version>1.4</version>
+		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<!-- tag::wsdl[] -->
-            <plugin>
-                <groupId>org.jvnet.jaxb2.maven2</groupId>
-                <artifactId>maven-jaxb2-plugin</artifactId>
-                <version>0.13.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <!-- <goal>generate</goal> -->
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>gexflow.wsdl</generatePackage>
-                    <schemas>
-                        <schema>
-                            <url>http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites?wsdl</url>
-                        </schema>
-                    </schemas>
-                </configuration>
-            </plugin>
-            <!-- end::wsdl[] -->
-		</plugins>
-	</build>
-
+	<!-- Para generar las clases necesarias para conectar con gexflow hay que 
+		ejecutar: -->
+	<!-- mvn clean package -PGEN-RESOURCES -->
+	<profiles>
+		<profile>
+			<id>GEN-RESOURCES</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.jvnet.jaxb2.maven2</groupId>
+						<artifactId>maven-jaxb2-plugin</artifactId>
+						<version>0.13.2</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<schemaLanguage>WSDL</schemaLanguage>
+							<generatePackage>gexflow.wsdl</generatePackage>
+							<schemas>
+								<schema>
+									<url>http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites?wsdl</url>
+								</schema>
+							</schemas>
+						</configuration>
+					</plugin>
+					<!-- http://demo.gexflow.com:8080/gexflow/services/EXPEDIENTES.v1_0_0?wsdl -->
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

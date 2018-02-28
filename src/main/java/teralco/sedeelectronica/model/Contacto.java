@@ -11,27 +11,28 @@ public class Contacto {
 	private String comentario;
 
 	public String getNombre() {
-		return nombre;
+
+		return this.nombre;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(String pNombre) {
+		this.nombre = pNombre;
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String pEmail) {
+		this.email = pEmail;
 	}
 
 	public String getComentario() {
-		return comentario;
+		return this.comentario;
 	}
 
-	public void setComentario(String comentario) {
-		this.comentario = comentario;
+	public void setComentario(String pComentario) {
+		this.comentario = pComentario;
 	}
 
 }

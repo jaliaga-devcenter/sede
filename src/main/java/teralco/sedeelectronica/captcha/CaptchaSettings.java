@@ -14,18 +14,19 @@ public class CaptchaSettings {
 	}
 
 	public String getSite() {
-		return site;
+
+		return this.site;
 	}
 
-	public void setSite(String site) {
-		this.site = site;
+	public void setSite(String pSite) {
+		this.site = pSite;
 	}
 
 	public String getSecret() {
-		return secret;
+		return this.secret;
 	}
 
-	public void setSecret(String secret) {
-		this.secret = secret;
+	public void setSecret(String pSecret) {
+		this.secret = pSecret;
 	}
 }

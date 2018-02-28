@@ -2,13 +2,14 @@
 <html lang="es" layout:decorator="/layouts/main">
 
 <head>
-	<title>Licitaciones</title>
+	<title th:text="message.licitaciones.table.header"></title>
 </head>
 
 <body>
 
 	<div layout:fragment="content">
 		<div th:replace="~{fragments/genericTable :: genericTable('user', #{message.licitaciones.table.header}, 'licitaciones', ~{::table})}"></div>
+		<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
 	</div>
 
 	<table class="table u-table--v1 mb-0 table-striped table-hover">

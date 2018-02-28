@@ -1,6 +1,8 @@
 package teralco.sedeelectronica.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import teralco.sedeelectronica.model.Documentacion;
@@ -12,25 +14,30 @@ public class DocumentacionService {
 	private DocumentacionRepository documentacionRespository;
 
 	@Autowired
-	public DocumentacionService(DocumentacionRepository documentacionRespository) {
-		this.documentacionRespository = documentacionRespository;
+	public DocumentacionService(DocumentacionRepository pDocumentacionRespository) {
+		this.documentacionRespository = pDocumentacionRespository;
 	}
 
 	public Iterable<Documentacion> list() {
-		return documentacionRespository.findAll();
+		return this.documentacionRespository.findAll();
 	}
 
 	public Documentacion get(Long id) {
-		return documentacionRespository.findOne(id);
+		return this.documentacionRespository.findOne(id);
 	}
 
 	// save
 	public Documentacion save(Documentacion doc) {
-		return documentacionRespository.save(doc);
+		return this.documentacionRespository.save(doc);
 	}
 
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		documentacionRespository.delete(id);
+		this.documentacionRespository.delete(id);
+	}
+
+	// Pagination
+	public Page<Documentacion> listAllByPage(Pageable pageable) {
+		return this.documentacionRespository.findAll(pageable);
 	}
 }

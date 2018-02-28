@@ -1,6 +1,8 @@
 package teralco.sedeelectronica.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import teralco.sedeelectronica.model.Aviso;
@@ -12,25 +14,30 @@ public class AvisoService {
 	private AvisoRepository avisoRepository;
 
 	@Autowired
-	public AvisoService(AvisoRepository avisoRepository) {
-		this.avisoRepository = avisoRepository;
+
+	public AvisoService(AvisoRepository pAvisoRepository) {
+		this.avisoRepository = pAvisoRepository;
 	}
 
 	public Iterable<Aviso> list() {
-		return avisoRepository.findAll();
+		return this.avisoRepository.findAll();
 	}
 
 	public Aviso get(Long id) {
-		return avisoRepository.findOne(id);
+		return this.avisoRepository.findOne(id);
 	}
 
 	// save
 	public Aviso save(Aviso aviso) {
-		return avisoRepository.save(aviso);
+		return this.avisoRepository.save(aviso);
 	}
 
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		avisoRepository.delete(id);
+		this.avisoRepository.delete(id);
+	}
+
+	// Pagination
+	public Page<Aviso> listAllByPage(Pageable pageable) {
+		return this.avisoRepository.findAll(pageable);
 	}
 }

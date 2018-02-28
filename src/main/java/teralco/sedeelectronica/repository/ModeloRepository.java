@@ -6,5 +6,4 @@ import teralco.sedeelectronica.model.Modelo;
 
 @Repository
 public interface ModeloRepository extends BaseRepository<Modelo> {
-
 }

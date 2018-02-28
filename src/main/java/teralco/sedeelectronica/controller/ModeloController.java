@@ -3,6 +3,9 @@ package teralco.sedeelectronica.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Fichero;
@@ -19,6 +23,7 @@ import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.ModeloService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
+import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
 public class ModeloController {
@@ -27,16 +32,21 @@ public class ModeloController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public ModeloController(ModeloService modeloService, FicheroService ficheroService) {
-		this.modeloService = modeloService;
-		this.ficheroService = ficheroService;
+
+	public ModeloController(ModeloService pModeloService, FicheroService pFicheroService) {
+		this.modeloService = pModeloService;
+		this.ficheroService = pFicheroService;
 	}
 
-	@RequestMapping(value = "/modelos", produces = "text/html;charset=UTF-8")
-	public String modeloes(Model model) {
-		// DEVOLVER LA LISTA DE modeloS ACTUALES
-		model.addAttribute("modelos", modeloService.list());
+	@RequestMapping(value = "/modelos", method = RequestMethod.GET)
+	public String modeloes(Model model, @PageableDefault(value = 10) Pageable pageable) {
+		// DEVOLVER LA LISTA DE MODELOS ACTUALES
 		model.addAttribute("encrypt", new EncryptUtils());
+		Page<Modelo> pages = this.modeloService.listAllByPage(pageable);
+		model.addAttribute("modelos", pages);
+		PageWrapper<Modelo> page = new PageWrapper<Modelo>(pages, "/modelos");
+		model.addAttribute("page", page);
+
 		return "modelos/modelos";
 	}
 
@@ -48,33 +58,33 @@ public class ModeloController {
 
 	@RequestMapping("/modelos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("modelo", modeloService.get(id));
+
+		model.addAttribute("modelo", this.modeloService.get(id));
 		model.addAttribute("medios", Medio.values());
 		return "modelos/formModelo";
 	}
 
 	@RequestMapping("/modelos/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
-		modeloService.delete(id);
+
+		this.modeloService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "El modelo " + id + " ha sido borrado.");
 		return "redirect:/modelos";
 	}
 
 	@PostMapping(value = "/modelos/save")
 	public String save(@Valid @ModelAttribute("modelo") Modelo modelo, BindingResult bindingResult, Model model) {
-
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("medios", Medio.values());
 			return "modelos/formModelo";
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(modelo.getFileToUpload());
-		file = ficheroService.save(file);
 		if (file != null) {
+			file = this.ficheroService.save(file);
 			modelo.setFichero(file);
 		}
-
-		modeloService.save(modelo);
+		this.modeloService.save(modelo);
 		return "redirect:/modelos";
 	}
 }

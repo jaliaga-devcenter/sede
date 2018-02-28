@@ -28,47 +28,47 @@ public class Fichero extends BaseModel {
 	private Double tamanyo;
 
 	public Tipo getTipo() {
-		return tipo;
+		return this.tipo;
 	}
 
-	public void setTipo(Tipo tipo) {
-		this.tipo = tipo;
+	public void setTipo(Tipo pTipo) {
+		this.tipo = pTipo;
 	}
 
 	public Double getTamanyo() {
-		return tamanyo;
+		return this.tamanyo;
 	}
 
-	public void setTamanyo(Double tamanyo) {
-		this.tamanyo = tamanyo;
+	public void setTamanyo(Double pTamanyo) {
+		this.tamanyo = pTamanyo;
 	}
 
 	public String getUuid() {
-		return uuid;
+		return this.uuid;
 	}
 
-	public void setUuid(String uuid) {
-		this.uuid = uuid;
+	public void setUuid(String pUuid) {
+		this.uuid = pUuid;
 	}
 
 	public Set<Licitacion> getLicitaciones() {
-		return licitaciones;
+		return this.licitaciones;
 	}
 
-	public void setLicitaciones(Set<Licitacion> licitaciones) {
-		this.licitaciones = licitaciones;
+	public void setLicitaciones(Set<Licitacion> pLicitaciones) {
+		this.licitaciones = pLicitaciones;
 	}
 
 	public String getNombreOriginal() {
-		return nombreOriginal;
+		return this.nombreOriginal;
 	}
 
-	public void setNombreOriginal(String nombreOriginal) {
-		this.nombreOriginal = nombreOriginal;
+	public void setNombreOriginal(String pNombreOriginal) {
+		this.nombreOriginal = pNombreOriginal;
 	}
 
 	@Override
 	public String toString() {
-		return "Fichero [tipo=" + tipo + ", fichero=" + nombreOriginal + "]";
+		return "Fichero [tipo=" + this.tipo + ", fichero=" + this.nombreOriginal + "]";
 	}
 }

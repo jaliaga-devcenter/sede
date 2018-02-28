@@ -71,47 +71,47 @@ public class Adjudicacion extends BaseModel {
 	private Fichero resultado; // private Long idFichero;
 
 	public String getDenominacion() {
-		return denominacion;
+		return this.denominacion;
 	}
 
-	public void setDenominacion(String denominacion) {
-		this.denominacion = denominacion;
+	public void setDenominacion(String pDenominacion) {
+		this.denominacion = pDenominacion;
 	}
 
 	public Date getFecha() {
-		return fecha;
+		return this.fecha;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
+	public void setFecha(Date pFecha) {
+		this.fecha = pFecha;
 	}
 
 	public Date getHora() {
-		return hora;
+		return this.hora;
 	}
 
-	public void setHora(Date hora) {
-		this.hora = hora;
+	public void setHora(Date pHora) {
+		this.hora = pHora;
 	}
 
 	public String getPlica() {
-		return plica;
+		return this.plica;
 	}
 
-	public void setPlica(String plica) {
-		this.plica = plica;
+	public void setPlica(String pPlica) {
+		this.plica = pPlica;
 	}
 
 	public Date getFechaFormalizacion() {
-		return fechaFormalizacion;
+		return this.fechaFormalizacion;
 	}
 
-	public void setFechaFormalizacion(Date fechaFormalizacion) {
-		this.fechaFormalizacion = fechaFormalizacion;
+	public void setFechaFormalizacion(Date pFechaFormalizacion) {
+		this.fechaFormalizacion = pFechaFormalizacion;
 	}
 
 	public String getEmpresaAdjudicacion() {
-		return empresaAdjudicacion;
+		return this.empresaAdjudicacion;
 	}
 
 	public void setEmpresaAdjudicacion(String adjudicacion) {
@@ -119,41 +119,42 @@ public class Adjudicacion extends BaseModel {
 	}
 
 	public BigDecimal getPresupuesto() {
-		return presupuesto;
+		return this.presupuesto;
 	}
 
-	public void setPresupuesto(BigDecimal presupuesto) {
-		this.presupuesto = presupuesto;
+	public void setPresupuesto(BigDecimal pPresupuesto) {
+		this.presupuesto = pPresupuesto;
 	}
 
 	public MultipartFile getFileToUpload() {
-		return fileToUpload;
+		return this.fileToUpload;
 	}
 
-	public void setFileToUpload(MultipartFile fileToUpload) {
-		this.fileToUpload = fileToUpload;
+	public void setFileToUpload(MultipartFile pFileToUpload) {
+		this.fileToUpload = pFileToUpload;
 	}
 
 	public Fichero getResultado() {
-		return resultado;
+		return this.resultado;
 	}
 
-	public void setResultado(Fichero resultado) {
-		this.resultado = resultado;
+	public void setResultado(Fichero pResultado) {
+		this.resultado = pResultado;
 	}
 
 	public Date getFechaAdjudicacion() {
-		return fechaAdjudicacion;
+		return this.fechaAdjudicacion;
 	}
 
-	public void setFechaAdjudicacion(Date fechaAdjudicacion) {
-		this.fechaAdjudicacion = fechaAdjudicacion;
+	public void setFechaAdjudicacion(Date pFechaAdjudicacion) {
+		this.fechaAdjudicacion = pFechaAdjudicacion;
 	}
 
 	@Override
 	public String toString() {
-		return "Adjudicacion [denominacion=" + denominacion + ", fecha=" + fecha + ", hora=" + hora + ", plica=" + plica
-				+ ", fechaFormalizacion=" + fechaFormalizacion + ", adjudicacion=" + empresaAdjudicacion
-				+ ", presupuesto=" + presupuesto + ", fileToUpload=" + fileToUpload + ", resultado=" + resultado + "]";
+		return "Adjudicacion [denominacion=" + this.denominacion + ", fecha=" + this.fecha + ", hora=" + this.hora
+				+ ", plica=" + this.plica + ", fechaFormalizacion=" + this.fechaFormalizacion + ", adjudicacion="
+				+ this.empresaAdjudicacion + ", presupuesto=" + this.presupuesto + ", fileToUpload=" + this.fileToUpload
+				+ ", resultado=" + this.resultado + "]";
 	}
 }

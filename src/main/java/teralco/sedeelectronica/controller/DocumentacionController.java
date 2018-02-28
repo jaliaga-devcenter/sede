@@ -3,6 +3,9 @@ package teralco.sedeelectronica.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +22,7 @@ import teralco.sedeelectronica.service.DocumentacionService;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
+import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
 public class DocumentacionController {
@@ -27,15 +31,20 @@ public class DocumentacionController {
 	private FicheroService ficheroService;
 
 	@Autowired
-	public DocumentacionController(DocumentacionService documentacionService, FicheroService ficheroService) {
-		this.documentacionService = documentacionService;
-		this.ficheroService = ficheroService;
+	public DocumentacionController(DocumentacionService pDocumentacionService, FicheroService pFicheroService) {
+		this.documentacionService = pDocumentacionService;
+		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/documentos", produces = "text/html;charset=UTF-8")
-	public String aperturas(Model model) {
-		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
-		model.addAttribute("documentaciones", documentacionService.list());
+	public String aperturas(Model model, @PageableDefault(value = 10) Pageable pageable) {
+		// DEVOLVER LA LISTA DE DOCUMENTOS ACTUALES
+		Page<Documentacion> pages = this.documentacionService.listAllByPage(pageable);
+		model.addAttribute("documentos", pages);
+		PageWrapper<Documentacion> page = new PageWrapper<Documentacion>(pages, "/documentos");
+		model.addAttribute("page", page);
+		model.addAttribute("", this.documentacionService.list());
+
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "documentos/documentos";
 	}
@@ -49,14 +58,14 @@ public class DocumentacionController {
 
 	@RequestMapping("/documentos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("documentacion", documentacionService.get(id));
+		model.addAttribute("documentacion", this.documentacionService.get(id));
 		model.addAttribute("estados", Estado.values());
 		return "documentos/formDocumento";
 	}
 
 	@RequestMapping("/documentos/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
-		documentacionService.delete(id);
+		this.documentacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La documentación " + id + " ha sido borrada.");
 		return "redirect:/documentos";
 	}
@@ -70,13 +79,12 @@ public class DocumentacionController {
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(documentacion.getFileToUpload());
-		file = ficheroService.save(file);
 		if (file != null) {
+			file = this.ficheroService.save(file);
 			documentacion.setFichero(file);
 		}
 
-		documentacionService.save(documentacion);
-
+		this.documentacionService.save(documentacion);
 		return "redirect:/documentos";
 	}
 }

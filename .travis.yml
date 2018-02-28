@@ -1,0 +1,13 @@
+language: java
+sudo: false
+install: true
+addons:
+  sonarcloud:
+    organization: "devcenter-es"
+    branches:
+      - master
+      - features*
+jdk:
+  - oraclejdk8
+install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -PGEN-RESOURCES
+script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -PGEN-RESOURCES
