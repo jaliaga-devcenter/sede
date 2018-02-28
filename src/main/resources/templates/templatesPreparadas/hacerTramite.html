@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Como hacer tr&aacute;mite</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <section class="g-py-15 g-pl-30 g-pr-30">
+            <div class="u-heading-v1-1 g-bg-main g-brd-transparent g-mb-20">
+                <h2 class="h3 u-heading-v1__title" th:text="#{message.hacer.tramite.page.header}">Instrucciones para realizar un tr&aacute;mite</h2>
+            </div>
+
+            <div class="g-mb-20">
+                <p th:text="#{message.hacer.tramite.p.one}">
+                    Para la realizaci&oacute;n de un tr&aacute;mite a traves de la Sede Electr&oacute;nica del Ayuntamiento de Murcia se deber&aacute;n
+                    seguir los siguientes pasos:
+                </p>
+                <ol>
+                    <li>
+                        <p>
+                            <strong th:text="#{message.hacer.tramite.li.one.p.one.strong}">Ser&aacute; necesario estar autentificado en la Sede Electr&oacute;nica del Ayuntamiento de Murcia</strong>
+                            <span th:text="#{message.hacer.tramite.li.one.p.one.span.one}">,para ello deber&aacute; hacer click en el bot&oacute;n </span>
+                            <img class="g-width-200" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUwAAAAhCAIAAAA9EQU4AAADk0lEQVR4nO3a327bZBgGcN/QRjPGGNdARRY0Bkm6i4CV0y05QqhCGmk6IQSY2HH8L47/KYFpMDGyszlbK47XzpGSwyZcwcNBncRN0pSzWp+eV7+D+P0+v7YsPQdWLP3MYrGELukXFosldEmyLMuyDBaLJWLJsrwIuftRmYhEkoS80Wg0Gg0Azu0SEYkEQKPRWITcvl0kIpEkIVcURVEUAOaHXxCRSAAoiiKpqqqqKgD91udEJBIAqqouQt68dY+IRJKEXNM0TdMAKB/cIyKRANA0bRHyX29+RkQiSULearVarRYA+eZdIhIJgFarJem6rus6gJ/ev0uZ92SI8T/3zzerg8X3TXHoXbp0P/x3+bOo+cwnw0Vz8HdqlKeN5wvD6pU/B/pfAOi6LhmGYRgGgB9vfEpZVx0MXw6mza/nHbc5BgYvZocvXgJx4G5e2gmmqX5KfQgMq6nJ6VGz32fb0vdAmQXAMIxFyH+4UaBs2z2Kx0c79TgOnKRTjzE+2lnag7i6cWknmGLw1+r85f58Qj1e2n/RBMqYJOSmaZqmCeAgV6BMKwfTOLBzhed9vKsUDnKFg8oAcWCv3bxhqRxMMXi+Zmn3MMaas9aM2j2MZ/dAGQbANE3JsizLsgDUc3coy6zmeNLcrefu1CsR+vvnfqzasFT2J0uv5LFvpU+cvagfli8c9Wcf7ypX/0xoMwCWZUm2bdu2DaC2lacMe/AmTucy+mMrXyv5k9g31u7fvHR2+mYlf4LRm1K+VonQ31+9mZPKlT8TugQA27aldrvdbrcBPN7KU3aV/Ens67PDZ32cVPKPt/ZPMHpdSu988Dq+bKnkTxA9W71EJUJ/P91JXeX8/osmUMYAaLfbi5B/994nlFlNdXT8KNV5FKFfO+sD0dNZ/2kfiP3m7JT1S0X/NNVPqR0DqavUjjGKiqujasfAqfrVlT8TulQScsdxHMcBsHd9m7Lqyyh+9fu5zvdvMYqK23vXt/cevkq9XXtqetvapaJ3uvw/Od4+nI+d12z+yqjZZso6AI7jSJ1Op9PpAPj22jYRiQRAp9ORXNd1XRfAN9c+JiKRAHBdV/I8z/M8hpxIPAA8z2PIiYSVhNz3fd/3GXIi8QDwfV8KgiAIAoacSDwAgiCQwjAMw5AhJxIPgDAMGXIiYSUh73a73W6XIScSD4But8uQEwkrCXmv1+v1eiufObJYLBGq1+tJv7FYLKHrPxirrf5wTC8wAAAAAElFTkSuQmCC"
+                                alt="">
+                            <span th:text="#{message.hacer.tramite.li.one.p.one.span.two}">de la parte superior o de la p&aacute;gina "Home" de la Sede.</span>
+                        </p>
+                        <p>
+                            <span th:text="#{message.hacer.tramite.li.one.p.two.span.one}">Se acceder&aacute; a la siguiente pantalla donde habr&aacute; que hacer click en</span>
+                            <img class="g-width-200" src="data:image/png;base64,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"
+                                alt="">
+                        </p>
+                        <p class="text-center">
+                            <img class="g-width-1025" src="https://sede-desa.murcia.es/documents/20181/0/acceso.jpg/5834d2c5-e9db-4357-954e-b98063702da8?t=1502277040728"
+                                alt="">
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.one.p.four}">
+                            Se deber&aacute; tener un certificado electr&oacute;nico v&aacute;lido instalado en el ordenador o disponer de un DNIe con
+                            el que autentificarse en la Sede.
+                        </p>
+                        <p>
+                            <span th:text="#{message.hacer.tramite.li.one.p.five.span.one}">Una vez autentificado correctamente el boton de </span>
+                            <img class="g-width-200" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUwAAAAhCAIAAAA9EQU4AAADk0lEQVR4nO3a327bZBgGcN/QRjPGGNdARRY0Bkm6i4CV0y05QqhCGmk6IQSY2HH8L47/KYFpMDGyszlbK47XzpGSwyZcwcNBncRN0pSzWp+eV7+D+P0+v7YsPQdWLP3MYrGELukXFosldEmyLMuyDBaLJWLJsrwIuftRmYhEkoS80Wg0Gg0Azu0SEYkEQKPRWITcvl0kIpEkIVcURVEUAOaHXxCRSAAoiiKpqqqqKgD91udEJBIAqqouQt68dY+IRJKEXNM0TdMAKB/cIyKRANA0bRHyX29+RkQiSULearVarRYA+eZdIhIJgFarJem6rus6gJ/ev0uZ92SI8T/3zzerg8X3TXHoXbp0P/x3+bOo+cwnw0Vz8HdqlKeN5wvD6pU/B/pfAOi6LhmGYRgGgB9vfEpZVx0MXw6mza/nHbc5BgYvZocvXgJx4G5e2gmmqX5KfQgMq6nJ6VGz32fb0vdAmQXAMIxFyH+4UaBs2z2Kx0c79TgOnKRTjzE+2lnag7i6cWknmGLw1+r85f58Qj1e2n/RBMqYJOSmaZqmCeAgV6BMKwfTOLBzhed9vKsUDnKFg8oAcWCv3bxhqRxMMXi+Zmn3MMaas9aM2j2MZ/dAGQbANE3JsizLsgDUc3coy6zmeNLcrefu1CsR+vvnfqzasFT2J0uv5LFvpU+cvagfli8c9Wcf7ypX/0xoMwCWZUm2bdu2DaC2lacMe/AmTucy+mMrXyv5k9g31u7fvHR2+mYlf4LRm1K+VonQ31+9mZPKlT8TugQA27aldrvdbrcBPN7KU3aV/Ens67PDZ32cVPKPt/ZPMHpdSu988Dq+bKnkTxA9W71EJUJ/P91JXeX8/osmUMYAaLfbi5B/994nlFlNdXT8KNV5FKFfO+sD0dNZ/2kfiP3m7JT1S0X/NNVPqR0DqavUjjGKiqujasfAqfrVlT8TulQScsdxHMcBsHd9m7Lqyyh+9fu5zvdvMYqK23vXt/cevkq9XXtqetvapaJ3uvw/Od4+nI+d12z+yqjZZso6AI7jSJ1Op9PpAPj22jYRiQRAp9ORXNd1XRfAN9c+JiKRAHBdV/I8z/M8hpxIPAA8z2PIiYSVhNz3fd/3GXIi8QDwfV8KgiAIAoacSDwAgiCQwjAMw5AhJxIPgDAMGXIiYSUh73a73W6XIScSD4But8uQEwkrCXmv1+v1eiufObJYLBGq1+tJv7FYLKHrPxirrf5wTC8wAAAAAElFTkSuQmCC"
+                                alt="">
+                            <span th:text="#{message.hacer.tramite.li.one.p.five.span.two}">se tornara en un color verde y aparecera el n&uacute;mero del DNI o NIF y el nombre o razon social
+                                de la persona o entidad autentificada.</span>
+                        </p>
+                        <p class="text-center">
+                            <img class="g-width-1025" src="https://sede-desa.murcia.es/documents/20181/0/loggueo+correcto.png/df51b1c2-6ea9-4881-a3e7-4f8886eec19f?t=1502277041907"
+                                alt="">
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong th:text="#{message.hacer.tramite.li.two.p.one.strong}">En la ficha del tr&aacute;mite a realizar hacer click en </strong>
+                            <img class="g-width-100" src="data:image/png;base64,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"
+                                alt="">
+                            <span th:text="#{message.hacer.tramite.li.two.p.one.span}">y se nos abrir&aacute; la siguiente pantalla:</span>
+                        </p>
+                        <p class="text-center">
+                            <img class="g-width-1025" src="https://sede-desa.murcia.es/documents/20181/0/1.png/592af976-dfb2-4913-9d9f-c50eafa88e20?t=1502279508856"
+                                alt="">
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.two.p.three}">
+                            Hacer click en el bot&oacute;n "Cumplimentar" y descargar el archivo PDF de la solicitud. Se deber&aacute; abrir con "Adobe
+                            Acrobat Reader" y una vez cumplimentado pulsar el bot&oacute;n enviar que aparece en la cabecera
+                            del documento, tal y como se muestra en la siguiente imagen:
+                        </p>
+                        <p class="text-center">
+                            <img class="g-width-1025" src="https://sede-desa.murcia.es/documents/20181/0/2.jpg/d1bb2825-d120-4f99-b0e6-88518038da05?t=1502281198447"
+                                alt="">
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.two.p.five}">
+                            Tras pulsar el bot&oacute;n "Enviar" se puede cerrar el documento, ya que una copia de este se ha enviado a la Sede y se
+                            debe seguir con la tramitaci&oacute;n desde el navegador de internet.
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.two.p.six}">
+                            Se deber&aacute; leer y marcar como aceptada la Politica de Privacidad que aparece debajo del bot&oacute;n de "Cumplimentar".
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.two.p.seven}">
+                            Por &uacute;ltimo pulsar el bot&oacute;n "Siguente" para continuar.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong th:text="#{message.hacer.tramite.li.three.p.one.strong}">Adjuntar documentaci&oacute;n necesaria para la realizaci&oacute;n del tr&aacute;mite:</strong>
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.three.p.two}">
+                            La siguiente patanlla nos permite adjuntar la documentaci&oacute;n necesaria para la correcta tramitaci&oacute;n del procedimiento.
+                        </p>
+                        <p>
+                            <span th:text="#{message.hacer.tramite.li.three.p.three.span}">
+                                En caso de que no se indique lo contrario se deber&aacute; de adjuntar toda la documentaci&oacute;n necesaria requerida en
+                                un &uacute;nico documento en formato PDF, teniendo en cuenta que el tamaño m&aacute;ximo
+                                de fichero adjunto permitido es de
+                            </span>
+                            <strong th:text="#{message.hacer.tramite.li.three.p.three.strong}">
+                                10 MB.
+                            </strong>
+                        </p>
+                        <p class="text-center">
+                            <img class="g-width-1025" src="https://sede-desa.murcia.es/documents/20181/0/3.jpg/9ae4eb5a-7746-4af5-bfef-74908f58614b?t=1502454218229"
+                                alt="">
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.three.p.four}">Tras pulsar en el bot&oacute;n "Adjuntar" y seleccionar el documento a subir, deber&aacute; hacer
+                            click en "Siguiente".</p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong th:text="#{message.hacer.tramite.li.four.p.one.strong}">Firma de los documentos:</strong>
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.four.p.two}">
+                            Se deber&aacute;n firmar todos los documentos adjuntados digitalmente, para ello se deber&aacute; de tener instalado el programa
+                            "Autofirma", se puede comprar si ya est&aacute; instalado el programa en la secci&oacute;n Requisitos
+                            t&eacute;cnicos de la propia Sede.
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.four.p.three}">
+                            Se pulsar&aacute; en el bot&oacute;n "Firmar " y se abrir&aacute; el programa "Autofirma" (NOTA: Habr&aacute; que llevar
+                            cuidado porque es posible que se abra la ventana del programa detr&aacute;s de la ventana del
+                            navegador, si tras unos minutos no ha aparecido la ventana del programa, minimice las ventanas
+                            de windows que tenga abiertas para comprobar que no se encuentre detras).
+                        </p>
+                        <p class="text-center">
+                            <img class="g-width-1025" src="https://sede-desa.murcia.es/documents/20181/0/4.jpg/edce0fd7-0ad1-4381-8f56-17f11910b710?t=1502454663490"
+                                alt="">
+                        </p>
+                        <p class="text-center">
+                            <img class="g-width-1025" src="https://sede-desa.murcia.es/documents/20181/0/6.jpg/5a68c41e-1c2c-4cd2-a49f-3e89e54f65d3?t=1502454916569"
+                                alt="">
+                        </p>
+                        <p class="text-center">
+                            <img class="g-width-460" src="https://sede-desa.murcia.es/documents/20181/0/5.jpg/259f9459-666c-4dfe-a399-67c3c00027bc?t=1502454916152"
+                                alt="">
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.four.p.seven}">
+                            Deber&aacute; introducir el PIN asociado al certificado electr&oacute;nico, en caso de que sea necesario, tantas veces como
+                            documentos a firmar.
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.four.p.eight}">Si todo a sido correcto aparecer&aacute; el siguiente mensaje en la pantalla:</p>
+                        <p class="text-center">
+                            <img class="g-width-400" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWIAAACYCAIAAABRQHTmAAAbgklEQVR4nO2daVwbZ37H501f74vdTz/9bLfddrttt+lut7FZnLpJ4002ibOJN5e9xk6wMcT3CTY+OGxxmVvcIECAJEAjAUKAJGwZkBD3YRCSOMV934ckdCFg+gIbhA4kYkBB/L+f34vRM/M8z8yj0dePBs0YEdaUFBZxuRW1JaVcGik1PiExJjY2KjomKioaj486gLn9OCYmNTuDgqZkoCkkNIWEEjLQZBKaTEYTiFkJaVnJJJSQgRIy0KQMNDEDTcxAE9LRuDQ0Lg2NIaJRqSg+BQ1PQR9Fku/j8MSUtAxSZkpK+v37D3B+/hZ79/bxoVJRKhUNvO555+6j7SQAn4FSqSlBJlaFJ1LXV61tRsY/fr02OIVKRamE8I0tM+J8jLYMIqBrO5YeHeATTaZS0cRgU60d4DzwuBXw2P1xQOR5l+Bz533Onb96zvXaue/vXbnq8SbNBl73XBt5bx+fbZ7MhAwqSs1MizOxKj41E6VSs1LjovD4qKio6KjomJjY2HQqk83mlJSWVdfUNjdWlr8oKRdUVFXXIIVFRVQqmoXSGAVFZAqFCADAAYaSlc0oYGWhNCoVLSwqelFSKqioRGj0nCyURsnMrKprmJqTqbQ6CARyYDM1J6upf0mmUKhoDo2ewyku5vHLERKZwigoqqxtmFWox+YWh2cUEAjkwGZsbnFWoa6sbWAUFJHIFGZBYUlpGZKckkIiUwbHZwam5N1jC12j8xAI5MCme2xhYEo+OD5DycxKTknJzWM8575A4hMSiUTi6OyiFBwBgUBG56VjC6Ozi0QiMT4hEaXRi589R2JiY4lE4vCMwuY7B4FAfiQZnlEQicSY2NhsKpVTXIzQaHTQBAQC0c+aJtKy6Xx+uVjSiKAoDTQBgUD0s6YJFKXx+HyxpBXB4+NBExDIvot0eLqjSyoSiYRvgFgs7uiSSoenDRpf0wQBH0Whs5rFEoRKRUETEMj+SvforEQiGR8f12q1q2+AVqudmJiQSCQ9o7P67a9pAo+PomTm14EmIJD9mO6e3vHx8ZUdYnx8vLunV799Q03g8VGgCQhkf0UsFqvV6uUdQq1WSySt+u3DbAIC2fcRCoW6HUUoFOq3D5qAQPZ99loT8KUDAtl3EQqFSzuKeU1ksdgcU5poIJxy3MSpOHFXA+GUoxe6CwfMjzu73pEHU38f9LsTRzg5Oj4otvnbA4H8GCIUCrUmkUuKor2940sGN5c2ok+9n2bXzZqupNVqf5gmdsUIxuHHnXV0IvBfvSz2WFOS4T6II5z0DAKBHPiY1oRcwnh6w83Nzc3t8r3YdVPIG1G/V6WP0s2ZYoc0sV7YQDjl5OXh5Ojo6IWOiiOczkbEeW1MOph6yxsVjSYLr1LsYdCRfi+vVoEjIBDDCIVCjTHscLcNLt+LfTGgkTW8dsQajygiExU1ml3QxMYHXu+7wJoONpbXWij2cDwb0WCmWaaX3lRio0EP5vrG4AgIxESEQqHamIWGjEeX9Jxw6Z6vt74j3G6EsfpN1FOr1W98bcLgk2/4deC1BTYt69lhI0ZzB6aX8eUG9MG6Js6ectLbAQgE8jpCoVBlkqmatE2m2OyIPtOVVCrVbswmtqcJ9MG6cixqQn82sfbNRe+CBQQCGZ3v2kIT5kyxpSNsrolij/VvKCaatebaxKuZhdHcBAI5uBEKhUqzzNWRfa5utsT9BF6f+QpKpdKmmrD0aefHndWbYpj7S4fBH0QgkIMeoVC4aJrZumzcDcO5hJub26VHSWW9ZuosLi7a+EvHxs8inLw8TF6PfP3HEcu/mwBTQCCj812j80KhUGGCmdps3HXTVybc3NwuPUws6zFVTaFQbF8TEAjkxx3TmiiN3eSI66FMkSD14aa/feDQdtAEBHIgIhQK5cbUU7wvbzgiv31aLpfLxys3THHpbuzzQRMV5XLQBARibxEKhTJTTNUQH15yc7semt82tVE6Vpn68JLbpVsRBVKTtWQyGWgCArG3mNOETCabGmjvGbOyFDQBgdhvRCLxzMzMwg4xMzMjFkv02wdNQCD7Ph1dXQMDA/M7xMDAQEeXVL990AQEsu8jHZ4WiUT9/f3T09Nzb8D09HR/f79IJDJ4uDZoAgKxh/SMzkp7esUSyZs8gL+1tbW7p7dndMagcdAEBAKxENAEBAKxENAEBAKxENAEBAKxENAEBAKxEMuaeJMLpwAA7F/MauJmcJixJjAAAA4Yxpq4GRzmm5oemssETQAAgGGgCQAALAKaAADAAqAJAAAssJUm0tLSQRMAABhrIi0tncXi1NTUgiYAAMAw0AQAABYBTQAAYAFjTbi7e4QRGaAJAABeYayJRyFJMJsAAGCDrb504EETAACY+dLh5xeRW1aLuLt7gCYAADCjiYCoZAZoAgAADDP9pSM63i8gKioLcXf3B00AAGB2NhGVhbg/CgVNAAAAmgAAwAImvnQkhoaBJgAAWAdmEwAAWMDkz6tyiRFRUdF79/MqnU7X2dnJ4XASExLi4uK8vbzweHx8XByDwRCJRBqNZjc6BQDASmx8T8fk5CSbxXry5AmZTK6srBwcGBgcHNSo1YODg50dHbyyMiKR6Ovjk5OTMzQ4uLNdAwBgJTbThE6ne8HlBgUF1dTUqFQqtUo1MjLysrGxtKSEjqIcNru2pqars3Nmamp8bKy4uPjJ48dsNntpacnqHvpJzo6GOJP6raiFE/ygQ3qDqrvU0M6wx7uzo8Po6OjojMPtzv7/yN6m3cQ2mujr66PRaGw2W6lUzs3MFHM4FzxDzz6hnA8ruEcUPMpq+Dacczog9/3rsd/dCaJTqdLOzm6pNI1IpFKp/f392+tse+8maMKIfaqJXd/tH9nbtJtsrYmk3dCEUCj08/MTiURqtbq0pOQrd/xDUhVXPNk+jQ2osEEVNqjGBlRYrxxrHlFTyntcorgfXQxk5OZ2dXTk5ubeu3u3ra1tG/0ZvpsC3KuphanCTf/0mNpyvcz4DNnU0TbrbmsfNgqdSf2b+91Y7ic5O5NIuI3tBHrL5nZyU6W1UoNttn9cpteaPK6NQ8AZr9abHb4qNLG3poZI8HpM+knOzjic89q2VoyPcY/be5vsh73WRF9fnx8ONzAwMD8/f/NJ/LeBNE7zSMcMJh5fqpbOVnZOr4VV181tHqzvk7VPY63Tq9TK3s8eklw9w1qamxm5uR4eHhMTE9Z2uVkTAtzr82BjaXOh3gfCaEsBTu8UNTwl9Iq2XXcb+2DUjVlNOOov6i0b7qRBJcMe3+i4TK811bb+MJrs5fW71a/3sTexpX4765ttbK8/UluOj6ket/E22RV7+qVDp9PRaLSWlpa52dlTHpHnIou5ojHhmK68Y5rfPsXvmOJ3TBU19KayarKKqxPoJRnFDWWtk4LOWeGYjtM88kVA4eeX/Bvr61NTUuh0urW9Gv4jr7+89pbqF65vbW5L82fBpjNsm3Wt3wfjD9YWs4n+9dL1ZZP787ojk0296XEZrzXVtYXDMahufm+N2zFxINaMj6ket3Gq2BV7qgkul1tUVLS4uHjtcexx3zy0eqC0S8FoHMl/OcJsGi1oGi1oGo3IEbzsGMAwTKVZikJLyPzO3PrhnLohboc8s6L3vfu5zneC6mpq/P38nj9/blWvZk+m1yeH0XQDJzB/Sm1MRI3OBounozV1Le6D/im91QFaowl9zH9/eZPjMr3WVNcWDseg2h5pYqseLZ4qdsTeaWJqaiowIEAulxcymYe+jwkpbM1qmCLwelP4famC/rSKgfTKAaKg/2IYDcOw2UXtKoYVVIp9KQICrzextCf+RXd69bgvXfhb11hiSgqbxbp544ZOp7Pc8U7OJvTYYpb7A+raZjax5eUVa2cTWx+XybWmurZwOAKc/iWJvdCEqR5hNrHbmmCxWOV8/tDg4Aff+38eUvKILvYr7PQrbA9kdT7ldIUWS8OedYc/774c/4wn7MEwTKHW3kooeoi+9Ctsf5zf5p3b+pjRcS9L+H++nHfOPOKXlQU/fWrVhGIHr00YTJbN/6u+7bo/7NrEq8XN66zVhKklC5rY/nGZWbvVl3lL+4D1k5y3unZr1M4P04TJHuHaxK5qQqPR4J48kcvlWRTKP7plnE2ouZTedI0ivJUtcqdJ7uW0PmS0ezE7fAo7b2c1OkWy3QnFp4Pop8I57jTJrWzRNYrwUnqTa+pL56T6v0QI/vY7Ymx0NIfFunbt2srKioW+DU8gkxelX8+MLV2+NpyFmu1om3W3sw96hfp2WHtNwlmtCeN2zE9M9D8R2zsuM2uNujY5jAZKdNw8Prv8pcNEj/rF8JeOHdeEUCikkMmTExOnrj35zZ38Y08FX8XWniU0niM2uZGEV7LFN2ltd3LbL5EbXVKrTkW/+AiX+9cY3pVssRtJeI7YdJbQeDK+7svomj+HV77rx/uHy7Tj5+411tc/fPCgu7t7Z0cEAAAD9kgTeXl5PB6v+eXLt11C3n7EORYs+Dii6kRs7cmkxu/Sha4U8WW07Xx647f4Qk8SL4UrbOwe98kSfBZe8l268BSh8Yu4uk/x1R+EVBz15zn4lvzrbeZbZwIrKioiIyIKCwt3dkQAADBgjzSRmJDQ0tKSz2D8x0XCO09KPgyt/HNUzZfx9U6pTS5k0WW07ftM4dchjFh249r2qxh2OfHZ6aRqF7LIKbXpy/j6P0fVfBha+V5g+ZEnpb/1ZP/KJZFGpVJIpPj4+J0bDQAATLBHmgjw9+/t6UlOSvq3a5nvBvA+jqg6EVN7ktDonNFykdp6M6/zXlH3HUbb2eiiVQzrmVHJ1dr/88m+mdd5kdrqnNFyktB4Iqb244iq958K/seP9/uHz/7eJT2ZQCjmcHx9fXd2RAAAMGCPNPHY17evrw8fEfHrG7T3g8qPR1Z/EVd/OqXpAkV8ld7uUSB9VNx3JasBz25YxTCZZrmqc+QrfLFHgfQqvf0CRXw6pemLuPrjkdV/DK446s875MX96RlCYGBgOZ/v6em5syMCAIABe6eJrs7Ou+7uP3cKf8+/5FN8zZfx9WeIzW5Zkht5HZ6sHh/uwLdJJbXSUblmeRXD8OyGi5R6T1bPjbwOtyzJGWLzl/H1n+JrPgipOOpX9i8X0/7m2N2Y6OhyPv/+/fs7OyIAABiwR5oICwurra6OjIj4+eee//Rd+BFP2uf4irNpzd9nS27mdd5n93g/7/ssOHcVw3rnNKsY9teogoec7vvsnpt5nd9nS86mvdLEO96Fvzof9w9nIv/5ZACNRntWXIzD4XZ2RAAAMGArTVCp6E5pIiM9vZDJZObl/edXHv91JfnwzdS3ryW+70X9Gs+9lC30ZPVcpTb551WvYtjkoq53cuFkNNuHO7A+mziVVHfsScHvrib/xi3ud1eJ/3oh4TffPGxsaCCTSAQCYWdHBAAAA4w1QaWiPD5fJJbspCaqqqri4+Lqa2s/PXv1rYtJ7z2gfuhD/9AH/dg3+xMfygl/6rvuCakFpb2Dw2Pj44msqpMRTJcU/oUUwVehRR94ZTneTjlyJ+1/7lKOeGT9/kbGL7+L+eOpy7Ozs0GBgWVlZTs7ItvG9O1J+7kjANjMHmlCJpM9fPBA3NISGBDwb87h79zL/MCb/okf44vgwr9Gsr+NLv7990+r6xvzS6saX7487oF3+D7o6JXgT59k/SUo77MAxid+jA+86e8+QB09sn57Le2XTiFJiYlDQ0NXrlyZm5vb2RHZNqAJwN7ZI01gGJaZmZlJJpe+ePG/p2//7mrqe49oH+EYnz8t/Cac/cVTxl+8krt7ekobWkVtHY43op6SWR95k89EP/8mnP3508KPcIxj3rlH79MO3c78lUv84a+vj4yM0FA0KirKUrfGPwo2+l1tv97TSvSXTW5s2ObmDTZ+37up9T16PAwA7A57p4m+vj5PT8/qykpCYuJ/n/Q4dDvjmE/uJwEFJ0JYxx5SrkfRenv7ntW19vb2FfLrP39EOPE0/2RE8YkQ1icBBR88ZrznlfuHu9n/finliPOTvNzc8bGx27dvi0SiLfs0cdOSmfudNt05YHy7n/HtVhurN90+aHxzxOa7sRz1lw3vpzKoZM3jYWCGAewBe6cJDMOYTGZUZGRjfX1wUNARF38Hd8offfOPBxZ9GljwW7fwstqWgYHBQn7j8QfJf/KlfR3x/C+hnOOBRX/CFRzzyX/nPv2tq+lvf+eHx+NVKlV8fDyFQrHQn4nPkKVbsw1v39rywS1me9HvyJobln/A42HMP9YFAHaaPdWETqdDUZSQmChsagoKDHz3vM+h2+T3fRkf+Rf+wSPj1+cjf+EU9NbFmPceUU+EFn8WzPkkkPUnv8Jjj5nv3M9562r6UWdfHA6nUiqZTOb58+enpqYs9Lf1E1z0H/RiVhP6WPFUGBM3RFr1XAMTvVjQhFEVANg19lQTGIbNzs5SqdTUlBSJSJRJJv/vGfe3r6ccuU8/9qTg48Di40+ffRry/NOQ58eDn38S9OyPONZRL8bbHtT/uJh09MxdFEW1Wm0Bk+ni4lJfX2+5sx2YTWx9t7hBickHmez242EAYNfZa01gGDY2NpadnR3g79/Y0NDY0BAaHPyu052jVyLevkNx8KQ7Psg98jDvD/dz3r5L+90NypHLke+d9fD39+/u7p6dmYmJiQkJCWlsbLSuKxOXFKx9Fgu2aZOtngqz9aNT9uzxMACwa9hAE2vkMxg3btxISU6WiMVSqZTNZgcHB5+7dvfr89c+/OvFE2cvudy4HxQYyCoqGhsbU8jlubm5t27dIpPJMplsO/1Y95cOs083Mfn0FIPCjSuTph5kstuPhwFJALuObTSxvLw8MTFRX18fGxt75cqV0NDQAiZTIpFMTEzI5uflMplSqZTLZGNjY2WlpXFxcdevXw8MDHzx4sXY2Bj8l6IAsMfYbDaBYdji4uLk5GRnZyedTvf3979y5YqLi8utW7fueni4u7ufO3fuwoULXl5eRCKxqalpfHxcLpfvYO8AAFiJLTUBAMC+ADQBAIAFQBMAAFgANAEAgAVAEwAAWAA0AQCABUATAABYADQBAIAFQBMAAFgANAEAgAW20kRgImgCAIAtNeHuHgSaAAAANAEAgAVAEwAAWAA0AQCABUATAABYYGtN+IAmAADY8g+i7h6gCftgULVyskn307JVhIvZJD/nrzg16wZVK7YeCeCHAD+vsn+G1djf8TFnMRbct5o6vEoZXc0cXc3ak2SOrlJGV1OHV4P7Vs9LsJ/xsH6VrYcD2D6gCfvntAhzFq+SRlYFsyti2UqHYqVzD9OhWBHLVgSzK6SRVWfx6umt/ztH4EcJaML++RkPi+pbEcyuDCiX57TL8qVlxR5GvrQ8p10eUC4LZlei+lZ+UW7r4QC2D2jC/kG4WOrQimhheVaj0+psgFanm9XoRAvLqUMrCNfWwwFsH9CE/YNwMfLISrt8WWYTSeh0Op1OptW1y5fJI6CJfQlowv5BuBh5eLldppNplmyFTLPULtORh5dBE/sR0IT9g3Ax8pCubWFpQa21kraww8hrLhTql268erWVfoF5FtTatoUl8pAONLEfAU3YP9vVRFvYYeRwhPRVbY4rghwOa9Nqtdr2cAfEtUhvK1c2hq3oQBN2D2jC/kG4GGlI1zqvnVdprKDgAuLGWV3WvnqpW5FGOiAXCjQaTVu4A+JapNFoNK2hhxFXNrais6ZBjUajmVdpWue1JNDE/gQ0Yf8gXIw0uCSZ08wp1ZZhXkAcItr1S7QdEQ7IBaZa3RbugLgWqiWhh5ALbGxlyYrWXjOnVEvmNKTBJdDEfgQ0Yf8gXCxjQCueVc8uqixT6Iq4FWk2FWmK3BDXQpWqNdwBOXz40NoVC6YVbW0wu6gSz6ozBrSgif0IaML+2bYmXAs3F4nDDq9rAnGIkGIYxw1BDoWIQRMHBNCE/bOmCdGMakahtIyW5YZcyNcvEYUeRtxYWqVSEu6AuLF1aqVSuyyNdEAOBYusaFCpVCqVMwqlaEYFmtingCbsH4SLpfdrRDOqafmiFWg6Ig8jyHnGq5eM8wjiENmhWVxcFIc5IK4Fa8Wqpc41UVjT5OLitHxRNKNK79eAJvYjoAn7B+FiaX3qlmnllExhDcqlFYzjuv67CVcOtrKkVCgUClGYA+JasLFZZ6QDghx62mJFm1MyRcu0Mq1PDZrYj4Am7J/takKhUCg0y+vVlzX6/th4tfb6tUJAE/YMaML+QbgYsU8tnFqcXJDbiskFuXBqkQia2J+AJuwfhIul9KqaJhUTC3KZjZhYkDdNKlJ6VaCJ/Qhowv5BuFhCj7puXDEyL5+3hSPmZbKReXnduCKhB2YT+xLQhP3zU95qcKf6+chi+7R8eE42Pi+b2MOMz8uG52Tt0/LnI4shneq/56/aejyAbQOasH++fKk706RN6lY+G1bUjskbx2Uv9zCN47LaMfmzYUVSt/JMk/Zk87LlPQZ+ZIAm7J9e5cpPSledmrS4dlWsVEnoXkzuXkzZkyR3LxK6F2OlSly76kyT9ielq10KeLj2/gM0cSDoV2HftGA/49nm6fsIF/uFADstwrqVth4I4AcBmgAAwAKgCQAALACaAADAAqAJAAAsAJoAAMACoAkAACwAmgAAwAKgCQAALACaAADAAqAJAAAsAJoAAMACoAkAACwAmgAAwAJbaQJFaaAJAACMNYGiNB6fL5a0IjQaHTQBAICxJmg0Op9fLpa0IvScXGNNAABwADHQBD0nVyCokLS2IYx8poEmIBDIAc+aJhj5zMqq6rb2DoTFYpMplK6hSZvvGQQC+bFkaDIzK5vFYtfVN3R0diElpWUFRZzy6gbp2ILtdw4Cgdg60rGF8uqGQhanpLSsqalZ2t2DVFXXlJTySGQyr7KutW/c5rsIgUBsmNa+cX5VPYlMLuHxq6prJK1tff0DSLOwRVBRWVLKKyjikCkUIgAAB5jMrOxCFqeExxdUVDYLW7qk3UPDI0hXl7RZ2FJdU1tSWsZmcxj5THpOLo1GR1EalYpCbBsCgZCdTbWcjLhAn8hkE4URyWsLgRHhgT7ePhHJ2aTYwKDYuAhvHx9vH5/AOFJ2st7yRkWftcLw5NclGy1stSdZ2dQIfGJYVPrjJ2HevgF+gdEZpEyrDiGbmp1NJRAINh/zAxgUpdFodHpOLiOfyWZzSkrLqmtqm4UtXV3SgcGhsfFxZGBwqEvaLWlta2pqrqtvqKyqFggq+PxyHp8PsXny8/PLyviWU0xPiqQwzRUW05Mi8aQCPo/P55U9Q5PwkaRCHp/Pe5aTFKm/TGaW8cvKCjIiCbRn/E2Fm1owuxulZTwqNYdIZsXGUSPx8fjYtIJCjlX7/zr5+fk2H/ODGT6/XCCoqKyqrqtvaGpqlrS2dUm7BwaHRsfGJyan/h+YhTOgEy979AAAAABJRU5ErkJggg=="
+                                alt="">
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.four.p.ten}">Se pulsar&aacute; "OK" y haremos click en "Siguiente".</p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong th:text="#{message.hacer.tramite.li.five.p.one.strong}">Comprobar que todo es correcto y presentar solicitud:</strong>
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.five.p.two}">
+                            Una vez todos los documentos han sido firmados y se llega a la &uacute;ltima parte, se podr&aacute; comprobar si todo est&aacute;
+                            correcto, descargando toda la documentaci&oacute;n que se ha adjuntado, haciendo click en el
+                            nombre del documento.
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.five.p.three}">
+                            Cuando todo se haya comprobado y est&eacute; correcto se pulsar&aacute; en el bot&oacute;n "Presentar Solicitud"
+                        </p>
+                        <p class="text-center">
+                            <img class="g-width-1025" src="https://sede-desa.murcia.es/documents/20181/0/8.jpg/1125e4ef-6a26-4cd5-8bd9-908eb9092397?t=1502696217777"
+                                alt="">
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.five.p.five}">
+                            Al pulsar dicho bot&oacute;n aparecer&aacute; en la parte superior izquierda un icono indicando que se est&aacute; procesando
+                            la solicitud, tal y como se muestra en la siguiente imagen:
+                        </p>
+                        <p class="text-center">
+                            <img class="g-width-1025" src="https://sede-desa.murcia.es/documents/20181/0/9.png/ff77035c-32d1-428d-b54e-613a1c18a1b7?t=1502696219698"
+                                alt="">
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <strong th:text="#{message.hacer.tramite.li.six.p.one.strong}">Descargar el justificante de la solicitud:</strong>
+                        </p>
+                        <p th:text="#{message.hacer.tramite.li.six}">
+                            Por &uacute;ltimo, se podr&aacute; descargar el justificante de la solicitud firmado y con el c&oacute;digo de verificaci&oacute;n
+                            seguro (CVS) del documento que demuestra la validez del mismo:
+                        </p>
+                        <p class="text-center">
+                            <img class="g-width-1025" src="https://sede-desa.murcia.es/documents/20181/0/10.jpg/49458a51-4b5d-48e1-a71c-643f8eeb5a2a?t=1502696220306"
+                                alt="">
+                        </p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

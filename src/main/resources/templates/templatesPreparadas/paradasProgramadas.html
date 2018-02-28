@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Paradas programadas</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <section class="g-py-15 g-pl-30 g-pr-30">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 g-pr-40--lg g-mb-50 g-mb-0--lg">
+                    <div th:replace="~{fragments/sideMenuSede :: menu}"></div>
+                </div>
+                <!-- End Sidebar -->
+
+                <div class="col-lg-9">
+                    <div class="u-heading-v1-1 g-bg-main g-brd-transparent g-mb-20">
+                        <h2 class="h3 u-heading-v1__title">Paradas programadas</h2>
+                    </div>
+
+                    <p>
+                        <span>No existen paradas programadas para el servicio que presta la </span>
+                        <strong>Sede Electrónica.</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>

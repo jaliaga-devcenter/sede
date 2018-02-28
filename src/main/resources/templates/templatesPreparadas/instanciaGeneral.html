@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Ficha procedimiento</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <!-- Promo Block - Parallax -->
+        <section class="g-py-15">
+            <div class="u-heading-v1-1 g-bg-main g-brd-transparent g-mb-20 g-pl-30 g-pr-30">
+                <h2 class="h3 u-heading-v1__title">Instrucciones para realizar un trámite</h2>
+            </div>
+
+            <div class="g-mb-30 g-pl-30 g-pr-30">
+                <p>
+                    <span>La </span>
+                    <strong>Instancia general</strong>
+                    <span> es el canal de comunicación disponible para los ciudadanos con el Ayuntamiento, para solicitar información
+                        en cualquier materia de competencia municipal.</span>
+                </p>
+                <p>El objeto de este procedimiento es poner a disposición de todos los ciudadanos un canal de comunicación con
+                    el Ayuntamiento para solicitar información, o bien para solicitar el inicio de la tramitación de algún
+                    otro procedimiento de los que actualmente no estén contemplados en el catálogo de esta Sede Electrónica.</p>
+            </div>
+
+            <div class="g-pl-30 g-pr-30">
+                <div class="g-mb-30">
+                    <!-- Nav tabs -->
+                    <ul class="nav text-center nav-justified u-nav-v3-1" role="tablist" data-target="nav-3-1-default-hor-left" data-tabs-mobile-type="slide-up-down"
+                        data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-lightgray g-bg-primary g-color-white">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#nav-3-1-default-hor-left--1" role="tab">
+                                <i class="icon-mouse d-block g-font-size-25 u-tab-line-icon-pro"></i>
+                                Online
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#nav-3-1-default-hor-left--2" role="tab">
+                                <i class="icon-phone d-block g-font-size-25 u-tab-line-icon-pro"></i>
+                                Teléfono
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#nav-3-1-default-hor-left--3" role="tab">
+                                <i class="icon-user d-block g-font-size-25 u-tab-line-icon-pro"></i>
+                                Presencial
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- End Nav tabs -->
+
+                    <!-- Tab panes -->
+                    <div id="nav-3-1-default-hor-left" class="tab-content g-pt-20">
+                        <div class="tab-pane fade show active" id="nav-3-1-default-hor-left--1" role="tabpanel">
+                            <p>
+                                <span>A través de esta </span>
+                                <strong>Sede Electrónica</strong>
+                                <span>durante las 24 horas, los 365 días del año, mediante acceso con </span>
+                                <a href="">certificado electrónico.</a>
+                            </p>
+                            <p class="text-center">
+                                <a href="" class="btn btn-md u-btn-primary rounded-0">Tramitar Online</a>
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-3-1-default-hor-left--2" role="tabpanel">
+                            <p>A través del Teléfono de Información Ciudadana, 010.</p>
+                        </div>
+                        <div class="tab-pane fade" id="nav-3-1-default-hor-left--3" role="tabpanel">
+                            <p>
+                                <span>A través de las </span>
+                                <a href="">Oficinas municipales de Atención al Ciudadano.</a>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- End Tab panes -->
+                </div>
+                <div id="accordion-05" class="u-accordion" role="tablist" aria-multiselectable="true">
+                    <!-- Card -->
+                    <div class="card g-rounded-50 mb-2 g-bg-primary-dark-v2 g-color-white g-brd-none">
+                        <div th:replace="~{fragments/accordionCard :: header('DESTINATARIOS', '1', false)}"></div>
+                        <div id="accordion-05-body-1" class="collapse show" role="tabpanel" aria-labelledby="accordion-05-heading-1">
+                            <div class="u-accordion__body g-color-white-opacity-0_8 g-pa-0-20-20">
+                                <p>Personas físicas y jurídicas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <div class="card g-rounded-50 mb-2 g-bg-primary g-color-white g-brd-none">
+                        <div th:replace="~{fragments/accordionCard :: header('DOCUMENTACIÓN RELACIONADA', '2', true)}"></div>
+                        <div id="accordion-05-body-2" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-2">
+                            <div class="u-accordion__body g-color-white-opacity-0_8 g-pa-0-20-20">
+                                <p>Deberá presentar el formulario de solicitud debidamente cumplimentado.</p>
+                                <p>En caso de optar por la presentación presencial, deberá aportar el NIF o CIF o Pasaporte
+                                    en vigor o NIE (número de Identidad de Extranjero) del solicitante y documento de representación.</p>
+                                <p>
+                                    <strong>Modelos normalizados</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <div class="card g-rounded-50 mb-2 g-bg-primary-dark-v2 g-color-white g-brd-none">
+                        <div th:replace="~{fragments/accordionCard :: header('MODELOS PARA DESCARGAR', '3', true)}"></div>
+                        <div id="accordion-05-body-3" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-3">
+                            <div class="u-accordion__body g-color-white-opacity-0_8 g-pa-0-20-20">
+                                <p>Aquí puede descargar los modelos normalizados autorellenables para su presentación presencial.</p>
+                                <ul>
+                                    <li>
+                                        <a href="">Formulario de Instancia General</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <div class="card g-rounded-50 mb-2 g-bg-primary g-color-white g-brd-none">
+                        <div th:replace="~{fragments/accordionCard :: header('FORMA DE INICIO', '4', true)}"></div>
+                        <div id="accordion-05-body-4" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-4">
+                            <div class="u-accordion__body g-color-white-opacity-0_8 g-pa-0-20-20">
+                                <p>El procedimiento se iniciará por medio de una solicitud que será presentada por el interesado
+                                    o su representante.</p>
+                                <p>Una vez examinada la solicitud, se decretará, en función de la materia de que se trate, su
+                                    tramitación y resolución a través de la unidad o servicio que resulte competente en esa
+                                    materia.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <div class="card g-rounded-50 mb-2 g-bg-primary-dark-v2 g-color-white g-brd-none">
+                        <div th:replace="~{fragments/accordionCard :: header('COSTE Y FORMA DE PAGO', '5', true)}"></div>
+                        <div id="accordion-05-body-5" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-5">
+                            <div class="u-accordion__body g-color-white-opacity-0_8 g-pa-0-20-20">
+                                <p>
+                                    <span>Este procedimiento </span>
+                                    <strong>no tiene coste</strong>
+                                    <span>para el ciudadano.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <div class="card g-rounded-50 mb-2 g-bg-primary g-color-white g-brd-none">
+                        <div th:replace="~{fragments/accordionCard :: header('PLAZO DE RESOLUCIÓN', '6', true)}"></div>
+                        <div id="accordion-05-body-6" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-6">
+                            <div class="u-accordion__body g-color-white-opacity-0_8 g-pa-0-20-20">
+                                <p>En función de la solicitud cursada</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <div class="card g-rounded-50 mb-2 g-bg-primary-dark-v2 g-color-white g-brd-none">
+                        <div th:replace="~{fragments/accordionCard :: header('ÓRGANOS COMPETENTES', '7', true)}"></div>
+                        <div id="accordion-05-body-7" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-7">
+                            <div class="u-accordion__body g-color-white-opacity-0_8 g-pa-0-20-20">
+                                <p>Al tratarse de una solicitud genérica, dicha solicitud será dirigida al organismo competente
+                                    de resolverla en función de la materia de que se trate.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <div class="card g-rounded-50 mb-2 g-bg-primary g-color-white g-brd-none">
+                        <div th:replace="~{fragments/accordionCard :: header('RECURSOS', '8', true)}"></div>
+                        <div id="accordion-05-body-8" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-8">
+                            <div class="u-accordion__body g-color-white-opacity-0_8 g-pa-0-20-20">
+                                <p>Los recursos serán los aplicables en función del asunto y del organismo que resulte competente
+                                    para su estimación y resolución. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <div class="card g-rounded-50 mb-2 g-bg-primary-dark-v2 g-color-white g-brd-none">
+                        <div th:replace="~{fragments/accordionCard :: header('FUNDAMENTO LEGAL', '9', true)}"></div>
+                        <div id="accordion-05-body-9" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-9">
+                            <div class="u-accordion__body g-color-white-opacity-0_8 g-pa-0-20-20">
+                                <p>
+                                    <ul>
+                                        <li>
+                                            <strong>Ley 11/2007, de 22 de junio</strong>
+                                            <span>, de acceso electrónico de los ciudadanos a los Servicios Públicos</span>
+                                        </li>
+                                        <li>
+                                            <strong>Ley 39/2015, de 1 de octubre</strong>
+                                            <span>, del Procedimiento Administrativo Común de las Administraciones Públicas</span>
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <div class="card g-rounded-50 mb-2 g-bg-primary g-color-white g-brd-none">
+                        <div th:replace="~{fragments/accordionCard :: header('PREGUNTAS FRECUENTES', '10', true)}"></div>
+                        <div id="accordion-05-body-10" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-10">
+                            <div class="u-accordion__body g-color-white-opacity-0_8 g-pa-0-20-20">
+                                <p>
+                                    <strong>¿Puedo presentar una solicitud que verse sobre cualquier materia en el ámbito municipal?</strong>
+                                </p>
+                                <p>Sí. Su solicitud puede estar versada en cualquiera de las materias de las que son competentes
+                                    los diferentes servicios municipales y, en función de la materia de que se trate, será
+                                    dirigida al servicio competente para su estimación y resolución. </p>
+                                <p>
+                                    <strong>¿Puedo cursar una solicitud dirigida a otro Organismo Público distinto del Ayutamiento
+                                        de Murcia?</strong>
+                                </p>
+                                <p>Sí. El Ayuntamiento de Murcia se encuentra adscrito al Sistema de Interconexión de Registros
+                                    (SIR) entre Administraciones Públicas, el cual permite eliminar el tránsito de papel
+                                    entre las diferentes administraciones. Las solicitudes cursadas por este canal podrán
+                                    ir dirigidas a cuaqluier Organismo de la Administración Pública Española adscrito al
+                                    Sistema SIR.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <div class="card g-rounded-50 mb-2 g-bg-primary-dark-v2 g-color-white g-brd-none">
+                        <div th:replace="~{fragments/accordionCard :: header('CONTACTAR', '11', true)}"></div>
+                        <div id="accordion-05-body-11" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-11">
+                            <div class="u-accordion__body g-color-white-opacity-0_8 g-pa-0-20-20">
+                                Para interesarse por el estado de la estimación y/o resolución de la solicitud, podrá consultar la Carpeta del Ciudadano
+                                dentro de esta Sede Electrónica durante las 24 horas del día, los 365 días del año, o bien
+                                llamar al Teléfono de Información Ciudadana, 010.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Card -->
+
+                </div>
+        </section>
+        <!-- End Promo Block - Parallax -->
+        </div>
+</body>
+
+</html>

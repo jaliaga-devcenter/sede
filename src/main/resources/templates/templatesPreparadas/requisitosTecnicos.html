@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Requisitos T&eacute;cnicos</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <section class="g-py-15 g-pl-30 g-pr-30">
+            <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.requisitos.tecnicos.page.header})}"></div>
+
+            <div class="g-mb-20">
+                <div>
+                    <h4 th:text="#{message.requisitos.tecnicos.section.one.header}">Componentes de software</h4>
+                    <p th:text="#{message.requisitos.tecnicos.section.one.p.one}">Para el correcto funcionamiento de la aplicaci&oacute;n son necesarios:</p>
+                    <ul>
+                        <li>
+                            <strong th:text="#{message.requisitos.tecnicos.sections.one.list.one.strong}">Certificado electr&oacute;nico. </strong>
+                            <span th:text="#{message.requisitos.tecnicos.sections.one.list.one.span}">Existen actuamente tres opciones:</span>
+                            <ol>
+                                <li th:text="#{message.requisitos.tecnicos.sections.one.list.one.list.one}">El DNI electr&oacute;nico (DNIe)</li>
+                                <li th:text="#{message.requisitos.tecnicos.sections.one.list.one.list.two}">El certificado de la Agencia de Certificaci&oacute;n de la Comunidad Valenciana (ACCV)</li>
+                                <li th:text="#{message.requisitos.tecnicos.sections.one.list.one.list.three}">Otros certificados admitidos por los Organismos de la Administraci&oacute;n P&uacute;blica Española.</li>
+                            </ol>
+                        </li>
+                        <li>
+                            <strong th:text="#{message.requisitos.tecnicos.sections.one.list.two.strong}">Java, </strong>
+                            <span th:text="#{message.requisitos.tecnicos.sections.one.list.two.span}">preferiblemente en su &uacute;ltima versi&oacute;n. Disponemos de la descarga gratuita en: </span>
+                            <a href="https://www.java.com/es/download/" th:text="#{message.requisitos.tecnicos.sections.one.list.two.link}">enlace</a>
+                        </li>
+                        <li>
+                            <strong th:text="#{message.requisitos.tecnicos.sections.one.list.three.strong}">Programa Autofirma </strong>
+                            <span th:text="#{message.requisitos.tecnicos.sections.one.list.three.span}">del Ministerio de Hacienda y Administraciones P&uacute;blicas</span>
+                        </li>
+                        <li>
+                            <strong th:text="#{message.requisitos.tecnicos.sections.one.list.four.strong}">Adobe Acrobat Reader. </strong>
+                            <span th:text="#{message.requisitos.tecnicos.sections.one.list.four.span}">Disponemos de la descarga gratuita en:</span>
+                            <a href="http://get.adobe.com/es/reader" th:text="#{message.requisitos.tecnicos.sections.one.list.four.link}">enlace</a>
+                        </li>
+                        <li>
+                            <strong th:text="#{message.requisitos.tecnicos.sections.one.list.five.strong}">Navegador web</strong>
+                            <span th:text="#{message.requisitos.tecnicos.sections.one.list.five.span}">: Internet Explorer, Chrome o Mozilla Firefox</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 th:text="#{message.requisitos.tecnicos.section.two.header}">Navegadores Web</h4>
+                    <ul>
+                        <li>
+                            <strong th:text="#{message.requisitos.tecnicos.section.two.list.one.strong}">Microsoft Internet Explorer</strong>
+                            <span th:text="#{message.requisitos.tecnicos.section.two.list.one.span}">. Se puede descargar la ultima versi&oacute;n de este navegador desde la direcci&oacute;n </span>
+                            <a href="http://windows.microsoft.com/es-es/internet-explorer/download-ie" th:text="#{message.requisitos.tecnicos.section.two.list.one.link}">enlace</a>
+                        </li>
+                        <li>
+                            <strong th:text="#{message.requisitos.tecnicos.section.two.list.two.strong}">Mozilla Firefox</strong>
+                            <span th:text="#{message.requisitos.tecnicos.section.two.list.two.span}">Se puede descargar la &uacute;ltima versi&oacute;n de este navegador desde la direcci&oacute;n </span>
+                            <a href="https://www.mozilla.org/es-ES/firefox/new/" th:text="#{message.requisitos.tecnicos.section.two.list.two.link}">enlace</a>
+                        </li>
+                        <li>
+                            <strong th:text="#{message.requisitos.tecnicos.section.two.list.three.strong}">Google Chrome</strong>
+                            <span th:text="#{message.requisitos.tecnicos.section.two.list.three.span}">Se puede descargar la &uacute;ltima versi&oacute;n de este navegador desde a direcci&oacute;n </span>
+                            <a href="https://www.google.es/chrome/browser/desktop/" th:text="#{message.requisitos.tecnicos.section.two.list.three.link}">enlace</a>
+                        </li>
+                        <li>
+                            <strong th:text="#{message.requisitos.tecnicos.section.two.list.four.strong}">Otros</strong>
+                            <span th:text="#{message.requisitos.tecnicos.section.two.list.four.span}">
+                                Se podr&iacute;an usar otros navegadores que tengan compatibilidad con los componentes relacionados en el apartado anterior, aunque
+                                no ha sido analizada su compatibilidad.
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 th:text="#{message.requisitos.tecnicos.section.three.header}">Comprobaci&oacute;n de los requisitos t&eacute;cnicos</h4>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
