@@ -6,7 +6,7 @@ addons:
     organization: "devcenter-es"
     branches:
       - master
-      - features.*
+      - features*
 jdk:
   - oraclejdk8
 install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -PGEN-RESOURCES
