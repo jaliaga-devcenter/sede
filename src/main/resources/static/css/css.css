@@ -17,3 +17,7 @@ a.downa:hover {
     display: block;
     float: none;
 }
+
+.header-left {
+    background-color: rgba(255, 255, 255, 0.9);
+}

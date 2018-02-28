@@ -93,9 +93,16 @@
                             </span>
                         </p>
                     </div>
+                    <div >
 
-                        <p th:text="${currentCat.subcategorias}"></p>
+                        <p th:text="${#lists.size(subcategorias)}+'-----------------'">-------------------</p>
+                        <p th:each="subcategoria: ${#lists.toList(subcategorias)}">
 
+                            <p th:text="'N: '+${subcategoria}"></p>
+
+                        </p>
+
+                    </div>
                     <div id="accordion-07" class="u-accordion u-accordion-color-primary" role="tablist" aria-multiselectable="true">
                         <!-- Card -->
                         <div class="card rounded-0 g-brd-none">

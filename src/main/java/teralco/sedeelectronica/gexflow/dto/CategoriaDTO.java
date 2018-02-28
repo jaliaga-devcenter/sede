@@ -1,6 +1,5 @@
 package teralco.sedeelectronica.gexflow.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriaDTO extends AbstractDTO {
@@ -14,7 +13,7 @@ public class CategoriaDTO extends AbstractDTO {
 		this.idCategoria = _idCategoria;
 		this.nombre = _nombre;
 		this.descripcion = _descripcion;
-		this.subcategorias = new ArrayList<>();
+		// this.subcategorias = new ArrayList<>();
 	}
 
 	public Integer getIdCategoria() {
@@ -41,4 +40,8 @@ public class CategoriaDTO extends AbstractDTO {
 		return other.idCategoria.equals(this.idCategoria);
 	}
 
+	public void setSubcategorias(List<SubcategoriaDTO> pSubcategorias) {
+		// TODO Auto-generated method stub
+		this.subcategorias = pSubcategorias;
+	}
 }
