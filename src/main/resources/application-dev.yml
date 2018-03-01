@@ -21,7 +21,7 @@ verifirma.password: servicio.consulta.expedientes
 spring:
   thymeleaf: 
     cache: false
-    mode: HTML5
+    mode: HTML
     enconding: UTF-8
     
 spring.http.multipart.max-file-size: 100Mb
