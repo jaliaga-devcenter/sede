@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import teralco.sedeelectronica.gexflow.client.GexflowClient;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
-import teralco.sedeelectronica.gexflow.dto.SubcategoriaDTO;
 import teralco.sedeelectronica.gexflow.exception.GexflowWSException;
 
 @Controller
@@ -56,12 +55,10 @@ public class HomeController {
 		// List<ServicioDTO> servicios = this.clienteWS.getServicios(ENTIDAD,
 		// this.IDIOMA, idCat);
 		CategoriaDTO cat = categorias.get(categorias.indexOf(new CategoriaDTO(idCat, "", "")));
-		List<SubcategoriaDTO> subcategorias = cat.getSubcategorias();
 
 		model.addAttribute("categorias", categorias);
 		model.addAttribute("iconos", iconos);
 		model.addAttribute("currentCat", cat);
-		model.addAttribute("subcategorias", subcategorias);
 		return "servicios/areas";
 	}
 

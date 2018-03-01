@@ -23,4 +23,10 @@ public class SubcategoriaDTO extends AbstractDTO {
 		return this.descripcion;
 	}
 
+	@Override
+	public String toString() {
+		return "SubcategoriaDTO [idSubcategoria=" + this.idSubcategoria + ", nombre=" + this.nombre + ", descripcion="
+				+ this.descripcion + "]";
+	}
+
 }
