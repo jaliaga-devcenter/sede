@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import teralco.sedeelectronica.exception.ExceptionType;
+import teralco.sedeelectronica.exception.SedeElectronicaException;
 import teralco.sedeelectronica.gexflow.client.GexflowClient;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
@@ -48,9 +50,14 @@ public class HomeController {
 	/* SERVICIOS */
 	/*************/
 	@RequestMapping(value = "/servicios/{id_cat}", method = RequestMethod.GET)
-	public String getFile(@PathVariable("id_cat") Integer idCat, Model model) throws NumberFormatException, Exception {
+	public String getFile(@PathVariable("id_cat") Integer idCat, Model model) {
 
-		List<CategoriaDTO> categorias = this.clienteWS.getCategorias(ENTIDAD, this.IDIOMA);
+		List<CategoriaDTO> categorias = null;
+		try {
+			categorias = this.clienteWS.getCategorias(ENTIDAD, this.IDIOMA);
+		} catch (GexflowWSException e) {
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
+		}
 		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
 
  

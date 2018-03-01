@@ -32,11 +32,6 @@ public class CategoriaDTO extends AbstractDTO {
 	public List<SubcategoriaDTO> getSubcategorias() {
 		return this.subcategorias;
 	}
-	
-	@Override
-	public int hashCode() {
-		return super.hashCode();
-	}
 
 	public void setSubcategorias(List<SubcategoriaDTO> pSubcategorias) {
 		this.subcategorias = pSubcategorias;
