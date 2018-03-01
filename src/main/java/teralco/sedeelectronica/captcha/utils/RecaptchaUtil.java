@@ -9,7 +9,7 @@ public class RecaptchaUtil {
 		
 	}
 	
-	protected static final Map<String, String> RECAPTCHA_ERROR_CODE = new HashMap<>();
+	public static final Map<String, String> RECAPTCHA_ERROR_CODE = new HashMap<>();
 	
 	static {
 		RECAPTCHA_ERROR_CODE.put("missing-input-secret", "Error en la configuarion de la key secret de google.");
