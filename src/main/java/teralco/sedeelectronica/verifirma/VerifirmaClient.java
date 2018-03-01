@@ -30,7 +30,7 @@ public class VerifirmaClient {
 
 		metodo.addParametroEntrada("usuario", this.usuario);
 		metodo.addParametroEntrada("clave", this.password);
-		metodo.addParametroEntrada("entidad", idEntidad.intValue());
+		metodo.addParametroEntrada("entidad", idEntidad);
 		metodo.addParametroEntrada("cvd", cvd);
 		metodo.setTipoSalidaFichero();
 		metodo.setUser(this.usuario);

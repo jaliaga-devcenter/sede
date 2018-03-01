@@ -9,10 +9,10 @@ import javax.xml.rpc.ServiceException;
 
 public class ServicioWebAxisUtils extends org.apache.axis.client.Stub {
 
-	public List<Class<?>> cachedSerClasses = new ArrayList<Class<?>>();
-	public List<QName> cachedSerQNames = new ArrayList<QName>();
-	public List cachedSerFactories = new ArrayList();
-	public List cachedDeserFactories = new ArrayList();
+	public final List<Class<?>> cachedSerClasses = new ArrayList<Class<?>>();
+	public final List<QName> cachedSerQNames = new ArrayList<QName>();
+	public final List cachedSerFactories = new ArrayList();
+	public final List cachedDeserFactories = new ArrayList();
 	private String direccionServicio;
 
 	public ServicioWebAxisUtils(String _direccionServicio, URL endpointURL) {
