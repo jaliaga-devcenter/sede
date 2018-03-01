@@ -17,9 +17,7 @@
                 <!-- End Sidebar -->
 
                 <div class="col-lg-9">
-                    <div class="u-heading-v1-1 g-bg-main g-brd-transparent g-mb-20">
-                        <h2 class="h3 u-heading-v1__title">Paradas programadas</h2>
-                    </div>
+                    <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.paradas.programadas.page.header})}"></div>
 
                     <p>
                         <span>No existen paradas programadas para el servicio que presta la </span>

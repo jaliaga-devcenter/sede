@@ -17,18 +17,16 @@
                 <!-- End Sidebar -->
 
                 <div class="col-lg-9">
-                    <div class="u-heading-v1-1 g-bg-main g-brd-transparent g-mb-20">
-                        <h2 class="h3 u-heading-v1__title">Normativa sobre la Sede Electrónica</h2>
-                    </div>
+                    <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.normativa.sede.page.header})}"></div>
 
                     <!-- Table Striped Rows -->
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Norma</th>
-                                    <th>Artículo</th>
-                                    <th>Texto</th>
+                                    <th th:text="#{message.normativa.sede.table.header.one}">Norma</th>
+                                    <th th:text="#{message.normativa.sede.table.header.two}">Art&iacute;culo</th>
+                                    <th th:text="#{message.normativa.sede.table.header.three}">Texto</th>
                                 </tr>
                             </thead>
 
