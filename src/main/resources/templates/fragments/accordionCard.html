@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<body>
+    <th:block th:fragment="header (text, id, isCollapsed)">
+        <div th:id="${'accordion-05-heading-' + id}" class="u-accordion__header g-pa-20" role="tab">
+            <h5 class="mb-0 text-uppercase g-font-size-default g-font-weight-700">
+                <a class="d-block g-color-white g-text-underline--none--hover" th:classappend="${isCollapsed} ? collapsed : ''" th:href="${'#accordion-05-body-' + id}" data-toggle="collapse" data-parent="#accordion-05"
+                    aria-expanded="true" th:aria-controls="${'accordion-05-body-' + id}">
+                    <span class="u-accordion__control-icon g-mr-10">
+                        <i class="fa fa-plus"></i>
+                        <i class="fa fa-minus"></i>
+                    </span>
+                    <span th:text="${text}"></span>
+                </a>
+            </h5>
+        </div>
+    </th:block>
+</body>
+
+</html>
