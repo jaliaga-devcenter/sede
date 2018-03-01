@@ -37,6 +37,7 @@ public class LicitacionController {
 	}
 
 	@RequestMapping(value = "/licitaciones", produces = "text/html;charset=UTF-8")
+
 	public String licitaciones(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
 		Page<Licitacion> pages = this.licitacionService.listAllByPage(pageable);

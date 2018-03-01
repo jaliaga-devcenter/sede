@@ -4,10 +4,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = "teralco.sedeelectronica.gexflow")
+@ComponentScan(basePackages = {"teralco.sedeelectronica.gexflow", "teralco.sedeelectronica.verifirma"})
 public class TestApplication {
 
 	public static void main(String[] args) {
+		
 	}
 
 }

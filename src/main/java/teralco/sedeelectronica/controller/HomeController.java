@@ -1,17 +1,27 @@
 package teralco.sedeelectronica.controller;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import javax.xml.rpc.ServiceException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.mail.MailException;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,6 +39,7 @@ import teralco.sedeelectronica.gexflow.dto.IconoDTO;
 import teralco.sedeelectronica.gexflow.dto.SubcategoriaDTO;
 import teralco.sedeelectronica.gexflow.exception.GexflowWSException;
 import teralco.sedeelectronica.model.CSVValidation;
+import teralco.sedeelectronica.verifirma.VerifirmaClient;
 
 @Controller
 public class HomeController {
@@ -41,6 +52,8 @@ public class HomeController {
 	private GexflowClient clienteWS;
 	@Autowired
 	private RecaptchaService captchaService;
+	@Autowired
+	private VerifirmaClient verifirmaClient;
 
 	@Autowired
 	public HomeController() {
@@ -57,6 +70,9 @@ public class HomeController {
 		return "index";
 	}
 
+	/*************/
+	/* SERVICIOS */
+	/*************/
 	@RequestMapping(value = "/servicios/{id_cat}", method = RequestMethod.GET)
 	public String getFile(@PathVariable("id_cat") Integer idCat, Model model) throws NumberFormatException, Exception {
 
@@ -67,21 +83,24 @@ public class HomeController {
 		// this.IDIOMA, idCat);
 		CategoriaDTO cat = categorias.get(categorias.indexOf(new CategoriaDTO(idCat, "", "")));
 		List<SubcategoriaDTO> subcategorias = cat.getSubcategorias();
-		List<String> nombre = new ArrayList<>();
-		for (SubcategoriaDTO sub : subcategorias) {
-			nombre.add(sub.getNombre());
-		}
 
 		model.addAttribute("categorias", categorias);
 		model.addAttribute("iconos", iconos);
 		model.addAttribute("currentCat", cat);
 		model.addAttribute("subcategorias", subcategorias);
-		model.addAttribute("nombre", nombre);
 		return "servicios/areas";
 	}
 
+	/*****************/
+	/* FIN SERVICIOS */
+	/*****************/
+
+	/*************/
+	/* VERIFIRMA */
+	/*************/
 	@RequestMapping("/verifirma")
-	public String verifirma() {
+	public String verifirma(Model model) {
+		model.addAttribute("CSVValidation", new CSVValidation());
 
 		return "verifirma/verifirma";
 	}
@@ -106,17 +125,52 @@ public class HomeController {
 			model.addAttribute("messageWarning", captchaVerifyMessage);
 			return "verifirma/verifirma";
 		}
-
+		File fileDownload;
 		try {
 			/* envio de solicitud.. */
-
-		} catch (@SuppressWarnings("unused") MailException e) {
-			model.addAttribute("message", "Ha ocurrido un error enviando el correo");
+			fileDownload = this.verifirmaClient.obtenerDocumentoPorCvd(ENTIDAD, CSV.csv);
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			fileDownload = null;
+			model.addAttribute("message", "Ha ocurrido un error en el servicio.");
+			return "verifirma/verifirma";
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("message", "Ha ocurrido un error con el fichero.");
+			fileDownload = null;
 			return "verifirma/verifirma";
 		}
 
-		return "/verifirma/verifirma";
+		return "/verifirma/download/" + fileDownload;
 	}
+
+	@RequestMapping(value = "/verifirma/download/{file_name}", method = RequestMethod.GET)
+	public ResponseEntity<Resource> getFile(@PathVariable("file_name") File file, HttpServletResponse response) {
+		try {
+
+			// get your file as InputStream
+			Path path = Paths.get(file.getAbsolutePath());
+			ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
+			response.setContentType("application/pdf");
+			HttpHeaders headers = new HttpHeaders();
+			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getName());
+			return ResponseEntity.ok().headers(headers).contentLength(resource.contentLength())
+					.contentType(MediaType.parseMediaType("application/pdf")).body(resource);
+		} catch (IOException ex) {
+			throw new RuntimeException("IOError writing file to output stream");
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/*****************/
+	/* FIN VERIFIRMA */
+	/*****************/
 
 	@RequestMapping("/tramites")
 	public String tramites(Model model) throws GexflowWSException {

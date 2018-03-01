@@ -1,6 +1,9 @@
 package teralco.sedeelectronica.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class CSVValidation {
+	@NotEmpty(message = "Debe escribir un código CSV.")
 	public transient String csv;
 
 	public String getCsv() {

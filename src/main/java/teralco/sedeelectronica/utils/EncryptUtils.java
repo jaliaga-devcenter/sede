@@ -1,5 +1,8 @@
 package teralco.sedeelectronica.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
@@ -55,15 +58,23 @@ public class EncryptUtils {
 
 		Base64.Encoder encoder = Base64.getEncoder();
 		String encryptedString = encoder.encodeToString(encrypted);
+		try {
+			encryptedString = URLEncoder.encode(encryptedString, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return encryptedString;
 	}
 
 	public static String decrypt(String strEncrypted) throws Exception {
+		String decodedUrl = URLDecoder.decode(strEncrypted, "UTF-8");
+
 		Base64.Decoder decoder = Base64.getDecoder();
 		Cipher cipher = Cipher.getInstance("AES");
 		cipher.init(Cipher.DECRYPT_MODE, aesKey);
-		String decrypted = new String(cipher.doFinal(decoder.decode(strEncrypted)));
+		String decrypted = new String(cipher.doFinal(decoder.decode(decodedUrl)));
 		return decrypted;
 	}
 }
