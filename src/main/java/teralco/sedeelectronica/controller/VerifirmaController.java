@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.xml.rpc.ServiceException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -27,10 +29,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import teralco.sedeelectronica.captcha.service.RecaptchaService;
+import teralco.sedeelectronica.exception.ExceptionType;
+import teralco.sedeelectronica.exception.SedeElectronicaException;
 import teralco.sedeelectronica.model.CSVValidation;
 import teralco.sedeelectronica.verifirma.VerifirmaClient;
 
 public class VerifirmaController {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(VerifirmaController.class);
 
 	private static final Integer ENTIDAD = 0;
 
@@ -66,15 +72,14 @@ public class VerifirmaController {
 		}
 		File fileDownload;
 		try {
-			/* envio de solicitud.. */
 			fileDownload = this.verifirmaClient.obtenerDocumentoPorCvd(ENTIDAD, CSV.csv);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
+			LOGGER.info("ERROR CONTROLADO", e);
 			fileDownload = null;
 			model.addAttribute("message", "Ha ocurrido un error en el servicio.");
 			return "verifirma/verifirma";
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			LOGGER.info("ERROR CONTROLADO", e);
 			model.addAttribute("message", "Ha ocurrido un error con el fichero.");
 			fileDownload = null;
 			return "verifirma/verifirma";
@@ -86,8 +91,6 @@ public class VerifirmaController {
 	@RequestMapping(value = "/verifirma/download/{file_name}", method = RequestMethod.GET)
 	public ResponseEntity<Resource> getFile(@PathVariable("file_name") File file, HttpServletResponse response) {
 		try {
-
-			// get your file as InputStream
 			Path path = Paths.get(file.getAbsolutePath());
 			ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
 			response.setContentType("application/pdf");
@@ -95,19 +98,9 @@ public class VerifirmaController {
 			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getName());
 			return ResponseEntity.ok().headers(headers).contentLength(resource.contentLength())
 					.contentType(MediaType.parseMediaType("application/pdf")).body(resource);
-		} catch (IOException ex) {
-			throw new RuntimeException("IOError writing file to output stream");
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IOException | NumberFormatException e) {
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 		}
-		return null;
 	}
 
-	/*****************/
-	/* FIN VERIFIRMA */
-	/*****************/
 }
