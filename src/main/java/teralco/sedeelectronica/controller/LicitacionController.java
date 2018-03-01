@@ -44,6 +44,7 @@ public class LicitacionController {
 		model.addAttribute("licitaciones", pages);
 		PageWrapper<Licitacion> page = new PageWrapper<Licitacion>(pages, "/licitaciones");
 		model.addAttribute("page", page);
+
 		model.addAttribute("encrypt", new EncryptUtils());
 		return "licitaciones/licitaciones";
 	}

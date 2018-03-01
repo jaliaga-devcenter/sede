@@ -12,6 +12,12 @@ server.contextPath: /sede
 server.uploadPath: C:\proyectos\sede\
 file.strKey: Bar12345Bar12345
 
+
+verifirma.url: http://demo.gexflow.com:8080
+verifirma.user: servicio.consulta.expedientes
+verifirma.password: servicio.consulta.expedientes
+
+
 spring:
   thymeleaf: 
     cache: false
