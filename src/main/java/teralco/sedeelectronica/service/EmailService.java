@@ -15,13 +15,8 @@ public class EmailService {
 
 	private JavaMailSender javaMailSender;
 
-	private static String springMailUsername;
-
-	@Autowired
 	@Value("${spring.mail.username}")
-	public void testValue(String value) {
-		springMailUsername = value;
-	}
+	private String springMailUsername;
 
 	@Autowired
 	public EmailService(JavaMailSender pJavaMailSender) {
@@ -31,7 +26,7 @@ public class EmailService {
 	@Async
 	public void sendEmail(Contacto contacto) throws MailException {
 		SimpleMailMessage mail = new SimpleMailMessage();
-		mail.setTo(springMailUsername);
+		mail.setTo(this.springMailUsername);
 		mail.setFrom(contacto.getEmail());
 		mail.setSubject("Formulario de contacto");
 		mail.setText(contacto.getNombre() + "\n" + contacto.getEmail() + "\n" + contacto.getComentario());
