@@ -32,13 +32,10 @@ public class CategoriaDTO extends AbstractDTO {
 	public List<SubcategoriaDTO> getSubcategorias() {
 		return this.subcategorias;
 	}
-
+	
 	@Override
-	public boolean equals(Object o) {
-		if (!(o instanceof CategoriaDTO))
-			return false;
-		CategoriaDTO other = (CategoriaDTO) o;
-		return other.idCategoria.equals(this.idCategoria);
+	public int hashCode() {
+		return super.hashCode();
 	}
 
 	public void setSubcategorias(List<SubcategoriaDTO> pSubcategorias) {

@@ -3,6 +3,7 @@ package teralco.sedeelectronica.controller;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,13 +53,13 @@ public class HomeController {
 		List<CategoriaDTO> categorias = this.clienteWS.getCategorias(ENTIDAD, this.IDIOMA);
 		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
 
-		// List<ServicioDTO> servicios = this.clienteWS.getServicios(ENTIDAD,
-		// this.IDIOMA, idCat);
-		CategoriaDTO cat = categorias.get(categorias.indexOf(new CategoriaDTO(idCat, "", "")));
+ 
+		Optional<CategoriaDTO> categoria = categorias.stream().filter(cat -> cat.getIdCategoria().equals(idCat)).findFirst();
 
 		model.addAttribute("categorias", categorias);
 		model.addAttribute("iconos", iconos);
-		model.addAttribute("currentCat", cat);
+		model.addAttribute("currentCat", categoria.get());
+		
 		return "servicios/areas";
 	}
 
