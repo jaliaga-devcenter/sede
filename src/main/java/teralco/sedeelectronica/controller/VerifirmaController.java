@@ -42,8 +42,6 @@ public class VerifirmaController {
 
 	private static final Integer ENTIDAD = 0;
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
 	@Autowired
 	private VerifirmaClient verifirmaClient;
 

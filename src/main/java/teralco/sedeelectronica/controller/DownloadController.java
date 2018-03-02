@@ -7,8 +7,6 @@ import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -34,8 +32,6 @@ public class DownloadController {
 	private FicheroService ficheroService;
 	@Value("${server.uploadPath}")
 	private String serverUploadPath;
-
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
 	public DownloadController(FicheroService pFicheroService) {
