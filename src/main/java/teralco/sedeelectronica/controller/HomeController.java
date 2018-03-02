@@ -19,7 +19,6 @@ import teralco.sedeelectronica.exception.SedeElectronicaException;
 import teralco.sedeelectronica.gexflow.client.GexflowClient;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
-import teralco.sedeelectronica.gexflow.dto.ServicioDTO;
 import teralco.sedeelectronica.gexflow.exception.GexflowWSException;
 
 @Controller
