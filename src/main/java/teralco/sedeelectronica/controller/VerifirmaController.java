@@ -11,12 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.xml.rpc.ServiceException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,9 +33,12 @@ import teralco.sedeelectronica.captcha.service.RecaptchaService;
 import teralco.sedeelectronica.model.CSVValidation;
 import teralco.sedeelectronica.verifirma.VerifirmaClient;
 
+@Controller
 public class VerifirmaController {
 
 	private static final Integer ENTIDAD = 0;
+
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
 	private VerifirmaClient verifirmaClient;
@@ -43,7 +49,6 @@ public class VerifirmaController {
 	@RequestMapping("/verifirma")
 	public String verifirma(Model model) {
 		model.addAttribute("CSVValidation", new CSVValidation());
-
 		return "verifirma/verifirma";
 	}
 
@@ -70,11 +75,13 @@ public class VerifirmaController {
 			fileDownload = this.verifirmaClient.obtenerDocumentoPorCvd(ENTIDAD, CSV.csv);
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
+			logger.error("LOG ERROR sedeelectronica IN VerifirmaController: " + e.getMessage());
 			fileDownload = null;
 			model.addAttribute("message", "Ha ocurrido un error en el servicio.");
 			return "verifirma/verifirma";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			logger.error("LOG ERROR sedeelectronica IN VerifirmaController: " + e.getMessage());
 			model.addAttribute("message", "Ha ocurrido un error con el fichero.");
 			fileDownload = null;
 			return "verifirma/verifirma";
@@ -99,9 +106,11 @@ public class VerifirmaController {
 			throw new RuntimeException("IOError writing file to output stream");
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
+			logger.error("LOG ERROR sedeelectronica IN VerifirmaController: " + e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			logger.error("LOG ERROR sedeelectronica IN VerifirmaController: " + e.getMessage());
 			e.printStackTrace();
 		}
 		return null;

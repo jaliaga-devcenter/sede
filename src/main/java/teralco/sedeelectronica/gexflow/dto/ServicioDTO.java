@@ -4,14 +4,15 @@ public class ServicioDTO extends AbstractDTO {
 
 	private String denominacion;
 	private String descripcion;
-	private String fechaInicio;
-	private String fechaFin;
+	private String documentacion;
+	private String tipoTramite;
+	private Integer idCategoria;
 
-	public ServicioDTO(String pDenominacion, String pDescripcion, String pFechaInicio, String pFechaFin) {
+	public ServicioDTO(String pDenominacion, String pDescripcion, String pTipoTramite, String pDocumentacion) {
 		this.denominacion = pDenominacion;
 		this.descripcion = pDescripcion;
-		this.fechaInicio = pFechaInicio;
-		this.fechaFin = pFechaFin;
+		this.documentacion = pDocumentacion;
+		this.tipoTramite = pTipoTramite;
 	}
 
 	public String getDenominacion() {
@@ -30,20 +31,28 @@ public class ServicioDTO extends AbstractDTO {
 		this.descripcion = pDescripcion;
 	}
 
-	public String getFechaInicio() {
-		return this.fechaInicio;
+	public String getDocumentacion() {
+		return this.documentacion;
 	}
 
-	public void setFechaInicio(String pFechaInicio) {
-		this.fechaInicio = pFechaInicio;
+	public void setDocumentacion(String pDocumentacion) {
+		this.documentacion = pDocumentacion;
 	}
 
-	public String getFechaFin() {
-		return this.fechaFin;
+	public String getTipoTramite() {
+		return this.tipoTramite;
 	}
 
-	public void setFechaFin(String pFechaFin) {
-		this.fechaFin = pFechaFin;
+	public void setTipoTramite(String pTipoTramite) {
+		this.tipoTramite = pTipoTramite;
+	}
+
+	public Integer getIdCategoria() {
+		return this.idCategoria;
+	}
+
+	public void setIdCategoria(Integer pIdCategoria) {
+		this.idCategoria = pIdCategoria;
 	}
 
 }

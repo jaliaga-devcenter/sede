@@ -2,7 +2,7 @@
 <html lang="es" layout:decorate="~{/layouts/main}">
 
 <head>
-    <title>Areas</title>
+    <title th:text="#{message.title.sede.areas}+' - '+#{message.title.sede}">Areas - Sede electrónica</title>
 </head>
 
 <body>
@@ -95,8 +95,9 @@
                     </div>
              
                     <div id="accordion-07" class="u-accordion u-accordion-color-primary" role="tablist" aria-multiselectable="true">
-                        <div class="card rounded-0 g-brd-none">
-                            <div id="accordion-07-heading-01" class="u-accordion__header g-pa-0" role="tab" th:each="subcategoria: ${currentCat.subcategorias}">
+                        <!-- Card -->
+                        <div class="card rounded-0 g-brd-none" th:each="subcategoria: ${currentCat.subcategorias}">
+                            <div id="accordion-07-heading-01" class="u-accordion__header g-pa-0" role="tab">
                                 <h5 class="mb-0 text-uppercase g-font-size-default g-font-weight-700 g-pa-20a mb-0">
                                 <a class="d-block g-color-main g-text-underline--none--hover" href="#accordion-07-body-01" data-toggle="collapse" data-parent="#accordion-07"
                                     aria-expanded="true" aria-controls="accordion-07-body-01">
@@ -110,24 +111,8 @@
                                 </a>
                                 </h5>
                              </div>
-                        <!-- Card -->
-                        <div class="card rounded-0 g-brd-none">
-                            <div id="accordion-07-heading-01" class="u-accordion__header g-pa-0" role="tab">
-                                <h5 class="mb-0 text-uppercase g-font-size-default g-font-weight-700 g-pa-20a mb-0">
-                                    <a class="d-block g-color-main g-text-underline--none--hover" href="#accordion-07-body-01" data-toggle="collapse" data-parent="#accordion-07"
-                                        aria-expanded="true" aria-controls="accordion-07-body-01">
-                                        <span class="u-accordion__control-icon d-inline-block g-brd-right g-brd-gray-light-v4 g-color-primary text-center g-pa-20">
-                                            <i class="fa fa-plus"></i>
-                                            <i class="fa fa-minus"></i>
-                                        </span>
-                                        <span class="d-inline-block g-pa-15">
-                                            COOPERACI&Oacute;N AL DESARROLLO
-                                        </span>
-                                    </a>
-                                </h5>
-                            </div>
                             
-                            <div id="accordion-07-body-01" class="collapse show" role="tabpanel" aria-labelledby="accordion-07-heading-01">
+                            <div id="accordion-07-body-01" class="collapse show" role="tabpanel" aria-labelledby="accordion-07-heading-01" th:each="servicio: ${servicios}" th:if="${subcategoria.idCategoria==servicio.idCategoria}">
                                 <div class="u-accordion__body">
                                     <!-- Basic Table -->
                                     <div class="table-responsive">
@@ -135,7 +120,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <a href="#">Concesión de Subvenciones para la cooperación al desarollo</a>
+                                                        <a href="#" th:text="${servicio.nombre}">Concesión de Subvenciones para la cooperación al desarollo</a>
                                                     </td>
                                                     <td>Presencial</td>
                                                     <td class="g-width-150">

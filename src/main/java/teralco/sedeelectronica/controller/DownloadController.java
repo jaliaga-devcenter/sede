@@ -7,6 +7,8 @@ import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -30,6 +32,8 @@ public class DownloadController {
 	@Value("${server.uploadPath}")
 	private String serverUploadPath;
 
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
 	@Autowired
 	public DownloadController(FicheroService pFicheroService) {
 		this.ficheroService = pFicheroService;
@@ -52,9 +56,11 @@ public class DownloadController {
 			throw new RuntimeException("IOError writing file to output stream");
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
+			logger.error("LOG ERROR sedeelectronica IN DownloadController: " + e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			logger.error("LOG ERROR sedeelectronica IN DownloadController: " + e.getMessage());
 			e.printStackTrace();
 		}
 		return null;

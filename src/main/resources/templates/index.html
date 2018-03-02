@@ -2,7 +2,7 @@
 <html lang="es" layout:decorate="~{/layouts/main}">
 
 <head>
-	<title>Inicio</title>
+	<title th:text="#{message.title.sede.init}+' - '+#{message.title.sede}">Inicio</title>
 </head>
 
 <body>
@@ -251,7 +251,7 @@
 							<ul class="list-unstyled g-mt-minus-10 mb-0">
 								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
 									<h4 class="h6 g-pr-20 mb-0">
-										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="#!" th:text="#{message.landing.help.link.one}">Conoce la Sede Electr&oacute;nica</a>
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" href="./conoce-la-sede-electronica" th:text="#{message.landing.help.link.one}">Conoce la Sede Electr&oacute;nica</a>
 										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
 									</h4>
 								</li>

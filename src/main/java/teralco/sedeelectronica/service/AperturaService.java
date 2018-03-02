@@ -32,7 +32,6 @@ public class AperturaService {
 	}
 
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
 		this.aperturaRepository.delete(id);
 	}
 
