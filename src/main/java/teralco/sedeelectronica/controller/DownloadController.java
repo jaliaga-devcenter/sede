@@ -30,8 +30,12 @@ public class DownloadController {
 
 	 
 	private FicheroService ficheroService;
+	
 	@Value("${server.uploadPath}")
 	private String serverUploadPath;
+	
+	@Autowired
+	private EncryptUtils encryptUtils;
 
 	@Autowired
 	public DownloadController(FicheroService pFicheroService) {
@@ -42,7 +46,7 @@ public class DownloadController {
 	public ResponseEntity<Resource> getFile(@PathVariable("file_name") String fileName, HttpServletResponse response) {
 		try {
 
-			Fichero file = this.ficheroService.get(Long.decode(EncryptUtils.decrypt(fileName)));
+			Fichero file = this.ficheroService.get(Long.decode(this.encryptUtils.decrypt(fileName)));
 			// get your file as InputStream
 			Path path = Paths.get(this.serverUploadPath + file.getUuid());
 			ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
