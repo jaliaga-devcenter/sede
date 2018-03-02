@@ -14,12 +14,18 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import teralco.sedeelectronica.controller.HomeController;
+
 @Component
 public class EncryptUtils {
+
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	public EncryptUtils() {
 	}
@@ -44,15 +50,19 @@ public class EncryptUtils {
 			encrypted = cipher.doFinal(strClearText.getBytes());
 		} catch (InvalidKeyException e) {
 			// TODO Auto-generated catch block
+			logger.error("LOG ERROR sedeelectronica IN EncryptUtils: " + e.getMessage());
 			e.printStackTrace();
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
 			// TODO Auto-generated catch block
+			logger.error("LOG ERROR sedeelectronica IN EncryptUtils: " + e.getMessage());
 			e.printStackTrace();
 		} catch (IllegalBlockSizeException e) {
 			// TODO Auto-generated catch block
+			logger.error("LOG ERROR sedeelectronica IN EncryptUtils: " + e.getMessage());
 			e.printStackTrace();
 		} catch (BadPaddingException e) {
 			// TODO Auto-generated catch block
+			logger.error("LOG ERROR sedeelectronica IN EncryptUtils: " + e.getMessage());
 			e.printStackTrace();
 		}
 

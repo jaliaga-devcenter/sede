@@ -41,7 +41,6 @@ public class CategoriaDTO extends AbstractDTO {
 	}
 
 	public void setSubcategorias(List<SubcategoriaDTO> pSubcategorias) {
-		// TODO Auto-generated method stub
 		this.subcategorias = pSubcategorias;
 	}
 }
