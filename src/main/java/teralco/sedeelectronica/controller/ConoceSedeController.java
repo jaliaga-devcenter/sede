@@ -12,7 +12,7 @@ public class ConoceSedeController {
 	@RequestMapping("/conoce-la-sede-electronica")
 	public String conceLaSede() {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
-		return "sede/conoce-sede-electronica";
+		return "sede/conoce-la-sede-electronica";
 	}
 
 	@RequestMapping("/normativa-sobre-la-sede")
