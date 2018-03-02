@@ -1,7 +1,8 @@
 package teralco.sedeelectronica.exception;
 
 public enum ExceptionType {
-	UNEXPECTED("UNEXPECTED_ERROR", 400);
+	UNEXPECTED("UNEXPECTED_ERROR", 500),
+	THIRD_PARTY_SERVICE_ERROR("UNEXPECTED_ERROR", 500);
 	
 	private String key;
 	private Integer status;

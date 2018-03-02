@@ -38,38 +38,51 @@ public class HomeController {
 	}
 
 	@RequestMapping("/")
-	public String greeting(Model model) throws GexflowWSException {
-		List<CategoriaDTO> categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+	public String greeting(Model model) {
+		List<CategoriaDTO> categorias;
+		try {
+			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+		} catch (GexflowWSException e) {
+			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
+		}
 		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
+		
 		model.addAttribute("categorias", categorias);
 		model.addAttribute("iconos", iconos);
+		
 		return "index";
 	}
 
 	@RequestMapping(value = "/servicios/{id_cat}", method = RequestMethod.GET)
-	public String getFile(@PathVariable("id_cat") Integer idCat, Model model) {
+	public String getServiciosPorCategoria(@PathVariable("id_cat") Integer idCat, Model model) {
 
+//		TODO Que pasa si la categoria no existe?
 		List<CategoriaDTO> categorias = null;
 		try {
 			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
 		} catch (GexflowWSException e) {
-			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
+			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 		}
 		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
 
- 
 		Optional<CategoriaDTO> categoria = categorias.stream().filter(cat -> cat.getIdCategoria().equals(idCat)).findFirst();
 
 		model.addAttribute("categorias", categorias);
 		model.addAttribute("iconos", iconos);
-		model.addAttribute("currentCat", categoria.get());
+		
+		model.addAttribute("currentCat", categoria.isPresent() ? categoria.get() : null);
 		
 		return "servicios/areas";
 	}
 
 	@RequestMapping("/tramites")
-	public String tramites(Model model) throws GexflowWSException {
-		List<CategoriaDTO> categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+	public String tramites(Model model)  {
+		List<CategoriaDTO> categorias;
+		try {
+			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+		} catch (GexflowWSException e) {
+			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
+		}
 		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
 
 		model.addAttribute("categorias", categorias);
@@ -87,7 +100,7 @@ public class HomeController {
 			try {
 				return this.clienteWS.getIconoCategoria(ENTIDAD, this.idioma, categoria.getIdCategoria());
 			} catch (GexflowWSException e) {
-				throw new RuntimeException(e);
+				throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 			}
 		}).collect(Collectors.toMap(IconoDTO::getIdCategoria, icono -> icono));
 		return iconos;
