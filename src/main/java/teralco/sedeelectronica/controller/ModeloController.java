@@ -32,7 +32,9 @@ public class ModeloController {
 	private FicheroService ficheroService;
 
 	@Autowired
-
+	private EncryptUtils encryptUtils;
+	
+	@Autowired
 	public ModeloController(ModeloService pModeloService, FicheroService pFicheroService) {
 		this.modeloService = pModeloService;
 		this.ficheroService = pFicheroService;
@@ -41,7 +43,7 @@ public class ModeloController {
 	@RequestMapping(value = "/modelos", method = RequestMethod.GET)
 	public String modeloes(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		// DEVOLVER LA LISTA DE MODELOS ACTUALES
-		model.addAttribute("encrypt", new EncryptUtils());
+		model.addAttribute("encrypt", this.encryptUtils);
 		Page<Modelo> pages = this.modeloService.listAllByPage(pageable);
 		model.addAttribute("modelos", pages);
 		PageWrapper<Modelo> page = new PageWrapper<Modelo>(pages, "/modelos");

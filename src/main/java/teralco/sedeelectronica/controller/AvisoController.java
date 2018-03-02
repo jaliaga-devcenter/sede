@@ -30,7 +30,9 @@ public class AvisoController {
 	private FicheroService ficheroService;
 
 	@Autowired
-
+	private EncryptUtils encryptUtils;
+	
+	@Autowired
 	public AvisoController(AvisoService pAvisoService, FicheroService pFicheroService) {
 		this.avisoService = pAvisoService;
 		this.ficheroService = pFicheroService;
@@ -44,7 +46,7 @@ public class AvisoController {
 		PageWrapper<Aviso> page = new PageWrapper<Aviso>(pages, "/avisos");
 		model.addAttribute("page", page);
 
-		model.addAttribute("encrypt", new EncryptUtils());
+		model.addAttribute("encrypt", this.encryptUtils);
 		return "avisos/avisos";
 	}
 

@@ -30,6 +30,9 @@ public class AperturaController {
 	private FicheroService ficheroService;
 
 	@Autowired
+	private EncryptUtils encryptUtils;
+	
+	@Autowired
 	public AperturaController(AperturaService pAperturaService, FicheroService pFicheroService) {
 		this.aperturaService = pAperturaService;
 		this.ficheroService = pFicheroService;
@@ -37,7 +40,7 @@ public class AperturaController {
 
 	@RequestMapping(value = "/aperturas", produces = "text/html;charset=UTF-8")
 	public String aperturas(Model model, @PageableDefault(value = 10) Pageable pageable) {
-		model.addAttribute("encrypt", new EncryptUtils());
+		model.addAttribute("encrypt", this.encryptUtils);
 
 		// DEVOLVER LA LISTA DE APERTURAS ACTUALES
 		Page<Apertura> pages = this.aperturaService.listAllByPage(pageable);

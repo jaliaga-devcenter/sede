@@ -30,6 +30,9 @@ public class AdjudicacionController {
 	private FicheroService ficheroService;
 
 	@Autowired
+	private EncryptUtils encryptUtils;
+	
+	@Autowired
 	public AdjudicacionController(AdjudicacionService pAdjudicacionService, FicheroService pFicheroService) {
 		this.adjudicacionService = pAdjudicacionService;
 		this.ficheroService = pFicheroService;
@@ -43,7 +46,7 @@ public class AdjudicacionController {
 		PageWrapper<Adjudicacion> page = new PageWrapper<Adjudicacion>(pages, "/adjudicaciones");
 		model.addAttribute("page", page);
 
-		model.addAttribute("encrypt", new EncryptUtils());
+		model.addAttribute("encrypt", this.encryptUtils);
 		return "adjudicaciones/adjudicaciones";
 	}
 
