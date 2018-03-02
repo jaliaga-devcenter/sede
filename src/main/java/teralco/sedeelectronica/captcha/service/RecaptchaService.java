@@ -29,16 +29,14 @@ public class RecaptchaService {
 		body.put("secret", this.captchaSettings.getSecret());
 		body.put("response", recaptchaResponse);
 		body.put("remoteip", ip);
-		ResponseEntity<Map> recaptchaResponseEntity = this.restTemplateBuilder.build().postForEntity(
+		ResponseEntity<Map> recaptchaResponseEntity = this.restTemplateBuilder.build().postForEntity( 
 				GOOGLE_RECAPTCHA_VERIFY_URL + "?secret={secret}&response={response}&remoteip={remoteip}", body,
 				Map.class, body);
 		Map<String, Object> responseBody = recaptchaResponseEntity.getBody();
 		boolean recaptchaSucess = (Boolean) responseBody.get("success");
 		if (!recaptchaSucess) {
 			List<String> errorCodes = (List) responseBody.get("error-codes");
-			String errorMessage = errorCodes.stream().map(s -> RecaptchaUtil.RECAPTCHA_ERROR_CODE.get(s))
-					.collect(Collectors.joining(", "));
-			return errorMessage;
+			return errorCodes.stream().map(RecaptchaUtil.RECAPTCHA_ERROR_CODE::get).collect(Collectors.joining(", "));
 		}
 		return "";
 	}

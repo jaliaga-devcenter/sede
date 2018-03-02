@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import teralco.sedeelectronica.exception.ExceptionType;
+import teralco.sedeelectronica.exception.SedeElectronicaException;
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.utils.EncryptUtils;
@@ -28,6 +30,7 @@ import teralco.sedeelectronica.utils.EncryptUtils;
 @Controller
 public class DownloadController {
 
+	 
 	private FicheroService ficheroService;
 	@Value("${server.uploadPath}")
 	private String serverUploadPath;
@@ -52,17 +55,8 @@ public class DownloadController {
 			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getNombreOriginal());
 			return ResponseEntity.ok().headers(headers).contentLength(resource.contentLength())
 					.contentType(MediaType.parseMediaType("application/pdf")).body(resource);
-		} catch (IOException ex) {
-			throw new RuntimeException("IOError writing file to output stream");
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			logger.error("LOG ERROR sedeelectronica IN DownloadController: " + e.getMessage());
-			e.printStackTrace();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			logger.error("LOG ERROR sedeelectronica IN DownloadController: " + e.getMessage());
-			e.printStackTrace();
-		}
-		return null;
+		} catch (IOException | NumberFormatException  ex ) {
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, ex);
+		} 
 	}
 }

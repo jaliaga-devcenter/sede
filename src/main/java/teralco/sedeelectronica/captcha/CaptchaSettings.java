@@ -10,9 +10,6 @@ public class CaptchaSettings {
 	private String site;
 	private String secret;
 
-	public CaptchaSettings() {
-	}
-
 	public String getSite() {
 
 		return this.site;

@@ -29,7 +29,10 @@ public class DocumentacionController {
 
 	private DocumentacionService documentacionService;
 	private FicheroService ficheroService;
-
+	
+	@Autowired
+	private EncryptUtils encryptUtils;
+	
 	@Autowired
 	public DocumentacionController(DocumentacionService pDocumentacionService, FicheroService pFicheroService) {
 		this.documentacionService = pDocumentacionService;
@@ -45,7 +48,7 @@ public class DocumentacionController {
 		model.addAttribute("page", page);
 		model.addAttribute("", this.documentacionService.list());
 
-		model.addAttribute("encrypt", new EncryptUtils());
+		model.addAttribute("encrypt", this.encryptUtils);
 		return "documentos/documentos";
 	}
 

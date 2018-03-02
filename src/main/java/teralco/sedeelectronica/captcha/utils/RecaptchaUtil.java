@@ -4,8 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RecaptchaUtil {
-
+	
+	private RecaptchaUtil() {
+		
+	}
+	
 	public static final Map<String, String> RECAPTCHA_ERROR_CODE = new HashMap<>();
+	
 	static {
 		RECAPTCHA_ERROR_CODE.put("missing-input-secret", "Error en la configuarion de la key secret de google.");
 		RECAPTCHA_ERROR_CODE.put("invalid-input-secret", "La key secret de google es incorrecta.");

@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import teralco.sedeelectronica.controller.HomeController;
+
+import teralco.sedeelectronica.exception.ExceptionType;
+import teralco.sedeelectronica.exception.SedeElectronicaException;
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.model.Tipo;
 
@@ -50,18 +52,16 @@ public final class FicheroUtils {
 			String uuid = "";
 			try {
 				uuid = FicheroUtils.guardarFichero(fichero);
-				/* save file in model */
-				file = new Fichero();
-				file.setNombreOriginal(fichero.getOriginalFilename());
-				file.setUuid(uuid);
-				file.setTipo(Tipo.pdf);
-				file.setTamanyo((double) fichero.getSize());
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				logger.error("LOG ERROR sedeelectronica IN FicheroUtils: " + e.getMessage());
-				e.printStackTrace();
-				return null;
+
+			} catch (IOException e) {
+				throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 			}
+			/* save file in model */
+			file = new Fichero();
+			file.setNombreOriginal(fichero.getOriginalFilename());
+			file.setUuid(uuid);
+			file.setTipo(Tipo.PDF);
+			file.setTamanyo((double) fichero.getSize());
 		}
 		return file;
 	}

@@ -14,56 +14,45 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import teralco.sedeelectronica.controller.HomeController;
+import teralco.sedeelectronica.exception.ExceptionType;
+import teralco.sedeelectronica.exception.SedeElectronicaException;
 
 @Component
 public class EncryptUtils {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
-	public EncryptUtils() {
-	}
-
-	private static String fileStrKey;
-	private static Key aesKey;
-
-	@Autowired
 	@Value("${file.strKey}")
-	public void testValue(String value) {
-		fileStrKey = value;
-		aesKey = new SecretKeySpec(fileStrKey.getBytes(), "AES");
+	private static String fileStrKey;
+	private static final Key aesKey =new SecretKeySpec(fileStrKey.getBytes(), "AES");
+	
+	private EncryptUtils() {
+		
 	}
 
 	public static String encrypt(String strClearText) {
 
-		Cipher cipher;
+		Cipher cipher = null;
 		byte[] encrypted = null;
 		try {
 			cipher = Cipher.getInstance("AES");
-			cipher.init(Cipher.ENCRYPT_MODE, aesKey);
-			encrypted = cipher.doFinal(strClearText.getBytes());
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-			logger.error("LOG ERROR sedeelectronica IN EncryptUtils: " + e.getMessage());
-			e.printStackTrace();
 		} catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
-			// TODO Auto-generated catch block
-			logger.error("LOG ERROR sedeelectronica IN EncryptUtils: " + e.getMessage());
-			e.printStackTrace();
-		} catch (IllegalBlockSizeException e) {
-			// TODO Auto-generated catch block
-			logger.error("LOG ERROR sedeelectronica IN EncryptUtils: " + e.getMessage());
-			e.printStackTrace();
-		} catch (BadPaddingException e) {
-			// TODO Auto-generated catch block
-			logger.error("LOG ERROR sedeelectronica IN EncryptUtils: " + e.getMessage());
-			e.printStackTrace();
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
+		}
+
+		try {
+			cipher.init(Cipher.ENCRYPT_MODE, aesKey);
+		} catch (InvalidKeyException e) {
+
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
+		}
+
+		try {
+			encrypted = cipher.doFinal(strClearText.getBytes());
+		} catch (IllegalBlockSizeException | BadPaddingException e) {
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 		}
 
 		Base64.Encoder encoder = Base64.getEncoder();
@@ -71,20 +60,43 @@ public class EncryptUtils {
 		try {
 			encryptedString = URLEncoder.encode(encryptedString, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 		}
 
 		return encryptedString;
 	}
 
-	public static String decrypt(String strEncrypted) throws Exception {
-		String decodedUrl = URLDecoder.decode(strEncrypted, "UTF-8");
+	public static String decrypt(String strEncrypted) {
+		String decodedUrl = null;
+		try {
+			decodedUrl = URLDecoder.decode(strEncrypted, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
+		}
 
 		Base64.Decoder decoder = Base64.getDecoder();
-		Cipher cipher = Cipher.getInstance("AES");
-		cipher.init(Cipher.DECRYPT_MODE, aesKey);
-		String decrypted = new String(cipher.doFinal(decoder.decode(decodedUrl)));
+		Cipher cipher = null;
+		try {
+			cipher = Cipher.getInstance("AES");
+		} catch (NoSuchAlgorithmException e) {
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
+		} catch (NoSuchPaddingException e) {
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
+		}
+		try {
+			cipher.init(Cipher.DECRYPT_MODE, aesKey);
+		} catch (InvalidKeyException e) {
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
+		}
+
+		String decrypted;
+
+		try {
+			decrypted = new String(cipher.doFinal(decoder.decode(decodedUrl)));
+		} catch (IllegalBlockSizeException | BadPaddingException e) {
+			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
+		}
+	
 		return decrypted;
 	}
 }

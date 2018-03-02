@@ -29,6 +29,9 @@ public class LicitacionController {
 
 	private LicitacionService licitacionService;
 	private FicheroService ficheroService;
+	
+	@Autowired
+	private EncryptUtils encryptUtils;
 
 	@Autowired
 	public LicitacionController(LicitacionService pLicitacionService, FicheroService pFicheroService) {
@@ -45,7 +48,7 @@ public class LicitacionController {
 		PageWrapper<Licitacion> page = new PageWrapper<Licitacion>(pages, "/licitaciones");
 		model.addAttribute("page", page);
 
-		model.addAttribute("encrypt", new EncryptUtils());
+		model.addAttribute("encrypt", this.encryptUtils);
 		return "licitaciones/licitaciones";
 	}
 
