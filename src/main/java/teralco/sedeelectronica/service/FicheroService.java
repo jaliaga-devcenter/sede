@@ -29,7 +29,6 @@ public class FicheroService {
 	}
 
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
 		this.ficheroRepository.delete(id);
 	}
 
