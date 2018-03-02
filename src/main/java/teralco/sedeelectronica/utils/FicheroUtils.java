@@ -54,7 +54,7 @@ public final class FicheroUtils {
 			file = new Fichero();
 			file.setNombreOriginal(fichero.getOriginalFilename());
 			file.setUuid(uuid);
-			file.setTipo(Tipo.pdf);
+			file.setTipo(Tipo.PDF);
 			file.setTamanyo((double) fichero.getSize());
 		}
 		return file;

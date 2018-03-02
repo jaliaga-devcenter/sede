@@ -14,7 +14,6 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -24,17 +23,12 @@ import teralco.sedeelectronica.exception.SedeElectronicaException;
 @Component
 public class EncryptUtils {
 
-	public EncryptUtils() {
-	}
-
-	private static String fileStrKey;
-	private static Key aesKey;
-
-	@Autowired
 	@Value("${file.strKey}")
-	public void testValue(String value) {
-		fileStrKey = value;
-		aesKey = new SecretKeySpec(fileStrKey.getBytes(), "AES");
+	private static String fileStrKey;
+	private static final Key aesKey =new SecretKeySpec(fileStrKey.getBytes(), "AES");
+	
+	private EncryptUtils() {
+		
 	}
 
 	public static String encrypt(String strClearText) {
