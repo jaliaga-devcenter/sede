@@ -8,12 +8,12 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
+import javax.annotation.PostConstruct;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
-
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -25,14 +25,20 @@ import teralco.sedeelectronica.exception.SedeElectronicaException;
 public class EncryptUtils {
 
 	@Value("${file.strKey}")
-	private static String fileStrKey;
-	private static final Key aesKey =new SecretKeySpec(fileStrKey.getBytes(), "AES");
+	private String fileStrKey;
 	
-	private EncryptUtils() {
-		
-	}
+	private Key aesKey;
+	
+	public EncryptUtils() {
 
-	public static String encrypt(String strClearText) {
+	}
+	
+	@PostConstruct
+    public void init(){
+		this.aesKey =new SecretKeySpec(this.fileStrKey.getBytes(), "AES");
+    }
+
+	public String encrypt(String strClearText) {
 
 		Cipher cipher = null;
 		byte[] encrypted = null;
@@ -43,7 +49,7 @@ public class EncryptUtils {
 		}
 
 		try {
-			cipher.init(Cipher.ENCRYPT_MODE, aesKey);
+			cipher.init(Cipher.ENCRYPT_MODE, this.aesKey);
 		} catch (InvalidKeyException e) {
 
 			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
@@ -66,7 +72,7 @@ public class EncryptUtils {
 		return encryptedString;
 	}
 
-	public static String decrypt(String strEncrypted) {
+	public String decrypt(String strEncrypted) {
 		String decodedUrl = null;
 		try {
 			decodedUrl = URLDecoder.decode(strEncrypted, "UTF-8");
@@ -84,7 +90,7 @@ public class EncryptUtils {
 			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 		}
 		try {
-			cipher.init(Cipher.DECRYPT_MODE, aesKey);
+			cipher.init(Cipher.DECRYPT_MODE, this.aesKey);
 		} catch (InvalidKeyException e) {
 			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 		}
