@@ -14,6 +14,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -44,6 +45,7 @@ public class EncryptUtils {
 		try {
 			cipher.init(Cipher.ENCRYPT_MODE, aesKey);
 		} catch (InvalidKeyException e) {
+
 			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 		}
 

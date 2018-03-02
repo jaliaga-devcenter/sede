@@ -19,6 +19,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,11 +35,14 @@ import teralco.sedeelectronica.exception.SedeElectronicaException;
 import teralco.sedeelectronica.model.CSVValidation;
 import teralco.sedeelectronica.verifirma.VerifirmaClient;
 
+@Controller
 public class VerifirmaController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(VerifirmaController.class);
 
 	private static final Integer ENTIDAD = 0;
+
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	@Autowired
 	private VerifirmaClient verifirmaClient;
@@ -49,7 +53,6 @@ public class VerifirmaController {
 	@RequestMapping("/verifirma")
 	public String verifirma(Model model) {
 		model.addAttribute("CSVValidation", new CSVValidation());
-
 		return "verifirma/verifirma";
 	}
 
@@ -74,12 +77,14 @@ public class VerifirmaController {
 		try {
 			fileDownload = this.verifirmaClient.obtenerDocumentoPorCvd(ENTIDAD, CSV.csv);
 		} catch (ServiceException e) {
-			LOGGER.info("ERROR CONTROLADO", e);
+
+			LOGGER.error("ERROR CONTROLADO", e);
 			fileDownload = null;
 			model.addAttribute("message", "Ha ocurrido un error en el servicio.");
 			return "verifirma/verifirma";
 		} catch (IOException e) {
-			LOGGER.info("ERROR CONTROLADO", e);
+
+			LOGGER.error("ERROR CONTROLADO", e);
 			model.addAttribute("message", "Ha ocurrido un error con el fichero.");
 			fileDownload = null;
 			return "verifirma/verifirma";
@@ -98,6 +103,7 @@ public class VerifirmaController {
 			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getName());
 			return ResponseEntity.ok().headers(headers).contentLength(resource.contentLength())
 					.contentType(MediaType.parseMediaType("application/pdf")).body(resource);
+
 		} catch (IOException | NumberFormatException e) {
 			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 		}

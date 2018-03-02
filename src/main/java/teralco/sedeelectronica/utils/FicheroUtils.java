@@ -5,10 +5,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import teralco.sedeelectronica.exception.ExceptionType;
 import teralco.sedeelectronica.exception.SedeElectronicaException;
@@ -17,6 +20,8 @@ import teralco.sedeelectronica.model.Tipo;
 
 @Component
 public final class FicheroUtils {
+
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	private FicheroUtils() {
 	}
@@ -47,6 +52,7 @@ public final class FicheroUtils {
 			String uuid = "";
 			try {
 				uuid = FicheroUtils.guardarFichero(fichero);
+
 			} catch (IOException e) {
 				throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 			}
