@@ -28,12 +28,9 @@ public class FlywayConfig {
 	@Bean
 	@Profile("test")
 	public FlywayMigrationStrategy cleanMigrateStrategy() {
-		FlywayMigrationStrategy strategy = new FlywayMigrationStrategy() {
-			@Override
-			public void migrate(Flyway flyway) {
-				flyway.setLocations("classpath:db/migration/test");
-				flyway.setSchemas("sede");
-			}
+		FlywayMigrationStrategy strategy = flyway -> {
+			flyway.setLocations("classpath:db/migration/test");
+			flyway.setSchemas("sede");
 		};
 
 		return strategy;
