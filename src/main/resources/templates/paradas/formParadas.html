@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{/layouts/main}">
+<head>
+	<title th:text="*{parada!=null}?  #{message.stop.form.edit} : #{message.stop.form.new}"></title>
+</head>
+<body>
+		
+	<div layout:fragment="content" class=".col-md">
+		<section class="g-py-15">
+			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
+				<h2 class="h3 u-heading-v1__title" th:text="*{parada!=null}?  #{message.stop.form.edit} : #{message.stop.form.new}"></h2>
+			</div>
+
+		<form class="g-pa-30 g-mb-30" th:object="${parada}" th:action="@{/paradas/save}" method="post">
+			<input type="hidden" th:field="*{id}" />
+			<div th:replace="~{fragments/inputs/textareaField :: input(#{message.stop.form.label.description}, 'descripcion', #{message.stop.form.error.description}, 4, 50, true, false)}"></div>
+			<div class="d-flex justify-content-between g-mt-30">
+				<div>
+					<a href="paradas.html" th:href="@{/paradas}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.stop.form.button.back}">Atras</a>
+				</div>
+				<div>
+					<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.stop.form.button.save}">Guardar Parada</button>
+				</div>
+			</div>
+	</form>
+	</div>
+</body>
+</html>

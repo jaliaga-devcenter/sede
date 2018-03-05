@@ -27,12 +27,16 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class DocumentacionController {
 
+	private static String list = "adjudicaciones/adjudicaciones";
+	private static String redirList = "redirect:/adjudicaciones";
+	private static String form = "adjudicaciones/formAdjudicacion";
+
 	private DocumentacionService documentacionService;
 	private FicheroService ficheroService;
-	
+
 	@Autowired
 	private EncryptUtils encryptUtils;
-	
+
 	@Autowired
 	public DocumentacionController(DocumentacionService pDocumentacionService, FicheroService pFicheroService) {
 		this.documentacionService = pDocumentacionService;
@@ -49,28 +53,28 @@ public class DocumentacionController {
 		model.addAttribute("", this.documentacionService.list());
 
 		model.addAttribute("encrypt", this.encryptUtils);
-		return "documentos/documentos";
+		return list;
 	}
 
 	@RequestMapping("/documentos/create")
 	public String create(Model model) {
 		model.addAttribute("documentacion", new Documentacion());
 		model.addAttribute("estados", Estado.values());
-		return "documentos/formDocumento";
+		return form;
 	}
 
 	@RequestMapping("/documentos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 		model.addAttribute("documentacion", this.documentacionService.get(id));
 		model.addAttribute("estados", Estado.values());
-		return "documentos/formDocumento";
+		return form;
 	}
 
 	@RequestMapping("/documentos/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
 		this.documentacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La documentación " + id + " ha sido borrada.");
-		return "redirect:/documentos";
+		return redirList;
 	}
 
 	@PostMapping(value = "/documentos/save")
@@ -78,7 +82,7 @@ public class DocumentacionController {
 			Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("estados", Estado.values());
-			return "documentos/formDocumento";
+			return form;
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(documentacion.getFileToUpload());
@@ -88,6 +92,6 @@ public class DocumentacionController {
 		}
 
 		this.documentacionService.save(documentacion);
-		return "redirect:/documentos";
+		return redirList;
 	}
 }

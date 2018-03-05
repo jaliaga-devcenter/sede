@@ -34,8 +34,6 @@ public class FlywayConfig {
 			public void migrate(Flyway flyway) {
 				flyway.setLocations("classpath:db/migration/test");
 				flyway.setSchemas("sede");
-				// flyway.clean();
-				// flyway.migrate();
 			}
 		};
 

@@ -26,12 +26,16 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class AvisoController {
 
+	private static String list = "avisos/avisos";
+	private static String redirList = "redirect:/avisos";
+	private static String form = "avisos/formAviso";
+
 	private AvisoService avisoService;
 	private FicheroService ficheroService;
 
 	@Autowired
 	private EncryptUtils encryptUtils;
-	
+
 	@Autowired
 	public AvisoController(AvisoService pAvisoService, FicheroService pFicheroService) {
 		this.avisoService = pAvisoService;
@@ -47,20 +51,20 @@ public class AvisoController {
 		model.addAttribute("page", page);
 
 		model.addAttribute("encrypt", this.encryptUtils);
-		return "avisos/avisos";
+		return list;
 	}
 
 	@RequestMapping("/avisos/create")
 	public String create(Model model) {
 		model.addAttribute("aviso", new Aviso());
-		return "avisos/formAviso";
+		return form;
 	}
 
 	@RequestMapping("/avisos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 
 		model.addAttribute("aviso", this.avisoService.get(id));
-		return "avisos/formAviso";
+		return form;
 	}
 
 	@RequestMapping("/avisos/delete/{id}")
@@ -68,14 +72,14 @@ public class AvisoController {
 
 		this.avisoService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "El aviso " + id + " ha sido borrado.");
-		return "redirect:/avisos";
+		return redirList;
 	}
 
 	@PostMapping(value = "/avisos/save")
 
 	public String save(@Valid @ModelAttribute("aviso") Aviso aviso, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			return "avisos/formAviso";
+			return form;
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(aviso.getFileToUpload());
@@ -84,7 +88,7 @@ public class AvisoController {
 			aviso.setFichero(file);
 		}
 		this.avisoService.save(aviso);
-		return "redirect:/avisos";
+		return redirList;
 	}
 
 }

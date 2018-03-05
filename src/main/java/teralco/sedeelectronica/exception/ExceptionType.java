@@ -1,9 +1,9 @@
 package teralco.sedeelectronica.exception;
 
 public enum ExceptionType {
-	UNEXPECTED("UNEXPECTED_ERROR", 500),
-	THIRD_PARTY_SERVICE_ERROR("UNEXPECTED_ERROR", 500);
-	
+	UNEXPECTED("UNEXPECTED_ERROR", 500), THIRD_PARTY_SERVICE_ERROR("UNEXPECTED_ERROR",
+			500), PAGET_NOT_FOUND("PAGE_NOT_FOUND", 404);
+
 	private String key;
 	private Integer status;
 
@@ -15,7 +15,7 @@ public enum ExceptionType {
 	public String getKey() {
 		return this.key;
 	}
-	
+
 	public Integer getStatus() {
 		return this.status;
 	}
