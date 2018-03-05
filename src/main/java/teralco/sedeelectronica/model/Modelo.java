@@ -13,9 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Modelo extends BaseModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@NotEmpty(message = "Debe introducir una descripción.")
