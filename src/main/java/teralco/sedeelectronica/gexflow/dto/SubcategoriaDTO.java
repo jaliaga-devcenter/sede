@@ -22,11 +22,4 @@ public class SubcategoriaDTO extends AbstractDTO {
 	public String getDescripcion() {
 		return this.descripcion;
 	}
-
-	@Override
-	public String toString() {
-		return "SubcategoriaDTO [idSubcategoria=" + this.idSubcategoria + ", nombre=" + this.nombre + ", descripcion="
-				+ this.descripcion + "]";
-	}
-
 }

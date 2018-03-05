@@ -27,11 +27,11 @@ public class Documentacion extends BaseModel {
 
 	/* For upload file in form */
 	@Transient
-	private MultipartFile fileToUpload;
+	private transient MultipartFile fileToUpload;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_fichero", nullable = true)
-	private Fichero fichero; // private Long idFichero;
+	private Fichero fichero;
 
 	public String getDescripcion() {
 		return this.descripcion;
@@ -67,7 +67,7 @@ public class Documentacion extends BaseModel {
 
 	@Override
 	public String toString() {
-		return "Documentacion [descripcion=" + this.descripcion + ", estado=" + this.estado + ", fileToUpload=" + this.fileToUpload
-				+ ", fichero=" + this.fichero + "]";
+		return "Documentacion [descripcion=" + this.descripcion + ", estado=" + this.estado + ", fileToUpload="
+				+ this.fileToUpload + ", fichero=" + this.fichero + "]";
 	}
 }

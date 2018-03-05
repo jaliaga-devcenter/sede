@@ -47,7 +47,7 @@ public class AdjudicacionController {
 		// DEVOLVER LA LISTA DE ADJUDICACIONES ACTUALES
 		Page<Adjudicacion> pages = this.adjudicacionService.listAllByPage(pageable);
 		model.addAttribute("adjudicaciones", pages);
-		PageWrapper<Adjudicacion> page = new PageWrapper<Adjudicacion>(pages, "/adjudicaciones");
+		PageWrapper<Adjudicacion> page = new PageWrapper<>(pages, "/adjudicaciones");
 		model.addAttribute("page", page);
 
 		model.addAttribute("encrypt", this.encryptUtils);

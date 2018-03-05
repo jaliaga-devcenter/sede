@@ -47,7 +47,7 @@ public class AvisoController {
 		// DEVOLVER LA LISTA DE AVISOS ACTUALES
 		Page<Aviso> pages = this.avisoService.listAllByPage(pageable);
 		model.addAttribute("aperturas", pages);
-		PageWrapper<Aviso> page = new PageWrapper<Aviso>(pages, "/avisos");
+		PageWrapper<Aviso> page = new PageWrapper<>(pages, "/avisos");
 		model.addAttribute("page", page);
 
 		model.addAttribute("encrypt", this.encryptUtils);

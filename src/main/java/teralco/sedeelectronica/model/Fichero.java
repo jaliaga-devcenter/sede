@@ -1,13 +1,9 @@
 package teralco.sedeelectronica.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Fichero extends BaseModel {
@@ -19,9 +15,6 @@ public class Fichero extends BaseModel {
 	@Column(columnDefinition = "INT2")
 	@Enumerated(EnumType.ORDINAL)
 	private Tipo tipo;
-
-	@OneToMany(mappedBy = "fichero")
-	private Set<Licitacion> licitaciones = new HashSet<Licitacion>();
 
 	private String uuid;
 	private String nombreOriginal;
@@ -49,14 +42,6 @@ public class Fichero extends BaseModel {
 
 	public void setUuid(String pUuid) {
 		this.uuid = pUuid;
-	}
-
-	public Set<Licitacion> getLicitaciones() {
-		return this.licitaciones;
-	}
-
-	public void setLicitaciones(Set<Licitacion> pLicitaciones) {
-		this.licitaciones = pLicitaciones;
 	}
 
 	public String getNombreOriginal() {

@@ -38,10 +38,6 @@ import teralco.sedeelectronica.verifirma.VerifirmaClient;
 @Controller
 public class VerifirmaController {
 
-	private static String list = "adjudicaciones/adjudicaciones";
-	private static String redirList = "redirect:/adjudicaciones";
-	private static String form = "adjudicaciones/formAdjudicacion";
-
 	private static String verify = "verifirma/verifirma";
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(VerifirmaController.class);

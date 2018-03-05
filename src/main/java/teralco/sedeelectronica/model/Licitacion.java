@@ -21,9 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Licitacion extends BaseModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "fecha")
@@ -41,9 +38,6 @@ public class Licitacion extends BaseModel {
 	@Column
 	private BigDecimal presupuesto;
 
-	@Transient
-	private transient boolean ivaInc;
-
 	@Column(name = "finPlazo")
 	@Temporal(TemporalType.DATE)
 	@NotNull(message = "Debe introducir la fecha de fin de plazo.")
@@ -55,7 +49,7 @@ public class Licitacion extends BaseModel {
 
 	/* For upload file in form */
 	@Transient
-	private MultipartFile fileToUpload;
+	private transient MultipartFile fileToUpload;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_fichero", nullable = true)
@@ -93,14 +87,6 @@ public class Licitacion extends BaseModel {
 		this.presupuesto = pPresupuesto;
 	}
 
-	public boolean isIvaInc() {
-		return this.ivaInc;
-	}
-
-	public void setIvaInc(boolean pIvaInc) {
-		this.ivaInc = pIvaInc;
-	}
-
 	public Date getFinPlazo() {
 		return this.finPlazo;
 	}
@@ -127,7 +113,7 @@ public class Licitacion extends BaseModel {
 
 	@Override
 	public String toString() {
-		return "Licitacion [ fechaPub=" + this.fechaPub + ", descripcion=" + this.descripcion + ", presupuesto=" + this.presupuesto
-				+ ", ivaInc=" + this.ivaInc + ", finPlazo=" + this.finPlazo + ", medio=" + this.medio + "]";
+		return "Licitacion [ fechaPub=" + this.fechaPub + ", descripcion=" + this.descripcion + ", presupuesto="
+				+ this.presupuesto + ", finPlazo=" + this.finPlazo + ", medio=" + this.medio + "]";
 	}
 }
