@@ -54,9 +54,4 @@ public class Modelo extends BaseModel {
 		this.fichero = pFichero;
 	}
 
-	@Override
-	public String toString() {
-		return "Documentacion [descripcion=" + this.descripcion + ", fileToUpload=" + this.fileToUpload + ", fichero="
-				+ this.fichero + "]";
-	}
 }
