@@ -76,21 +76,6 @@ public class HomeController {
 		return "servicios/areas";
 	}
 
-	@RequestMapping("/tramites")
-	public String tramites(Model model)  {
-		List<CategoriaDTO> categorias;
-		try {
-			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
-		} catch (GexflowWSException e) {
-			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
-		}
-		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
-
-		model.addAttribute("categorias", categorias);
-		model.addAttribute("iconos", iconos);
-		return "tramites";
-	}
-
 	@RequestMapping("/perfil-del-contratante")
 	public String perfilContratante() {
 		return "perfil-del-contratante";
