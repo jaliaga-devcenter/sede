@@ -1,76 +1,107 @@
-<!DOCTYPE html> 
-<html lang="es" layout:decorate="~{/layouts/main}">
-    <head> 
-        <title th:text="#{message.title.sede.init}+' - '+#{message.title.sede}">Verifirma</title>
-    </head> 
-    <body class=" yui3-skin-sam controls-visible guest-site signed-out public-page site dockbar-bubbles over"> 
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Firma electrónica y Certificados admitidos</title>
+</head>
+
+<body>
 
     <div layout:fragment="content">
-    <div class="2_1_col_murcia_columns" id="main-content" role="main"> 
-        <section id="content"> <div class="portlet-layout container"> 
-            <div class="portlet-layout row-fluid"> 
-                <div class="portlet-column portlet-column-first span3" id="column-1"> 
-                    <div class="portlet-dropzone portlet-column-content portlet-column-content-first" id="layout-column_column-1"> 
-                        <div class="portlet-boundary portlet-boundary_1_WAR_privacyportlet_ portlet-static portlet-static-start portlet-borderless smc-privacy-portlet " id="p_p_id_1_WAR_privacyportlet_" > 
-                            <span id="p_1_WAR_privacyportlet"></span> 
-                        </div> 
-                        <div class="portlet-boundary portlet-boundary_71_ portlet-static portlet-static-end portlet-borderless portlet-navigation " id="p_p_id_71_INSTANCE_AQ419Xbq2LeV_" > 
-                            <span id="p_71_INSTANCE_AQ419Xbq2LeV"></span> 
-                            <div class="portlet-borderless-container" style=""> 
-                                <div class="portlet-body"> 
-                                    <div class="nav-menu nav-menu-style-"> 
-                                        <h2> <a href="./conoce-la-sede-electronica" >La Sede Electrónica</a> </h2> 
-                                        <ul class="layouts level-1">
-                                            <li >
-                                                <a href="./normativa-sobre-la-sede" > Normativa sobre la Sede</a>
-                                            </li>
-                                            <li >
-                                                <a href="./contenidos-de-la-sede" > Contenidos de la Sede</a>
-                                            </li>
-                                            <li >
-                                                <a href="./servicios-de-la-sede" > Servicios de la Sede</a>
-                                            </li>
-                                            <li >
-                                                <a href="./registro-electronico" > Registro electrónico</a>
-                                            </li>
-                                            <li >
-                                                <a href="./firma-electronica-y-certificados-admitidos" > Firma electrónica y Certificados admitidos</a>
-                                            </li>
-                                            <li >
-                                                <a href="./verificacion-de-documentos" > Verificación de documentos</a>
-                                            </li>
-                                            <li >
-                                                <a href="./fecha-y-hora-oficial" > Fecha y Hora Oficial</a>
-                                            </li>
-                                            <li >
-                                                <a href="./calendario-dias-inhabiles" > Calendario de días inhábiles</a>
-                                            </li>
-                                            <li >
-                                                <a href="./sedes-fisicas" > Sedes Físicas del Ayuntamiento</a>
-                                            </li>
-                                            <li >
-                                                <a href="./paradas-programadas" > Paradas programadas</a>
-                                            </li>
-                                        </ul> 
-                                    </div> 
-                                </div> 
-                            </div> 
-                        </div> 
-                    </div> 
-                </div> 
-                <div class="portlet-column portlet-column-last span9" id="column-2"> <div class="portlet-dropzone portlet-column-content portlet-column-content-last" id="layout-column_column-2"> <div class="portlet-boundary portlet-boundary_56_ portlet-static portlet-static-end portlet-borderless portlet-journal-content " id="p_p_id_56_INSTANCE_mkb8j2dFsfg9_"> <span id="p_56_INSTANCE_mkb8j2dFsfg9"></span> <div class="portlet-borderless-container" style=""> <div class="portlet-body"> <div class="journal-content-article"> <div class="page-header"> <h2>Firma electrónica y Certificados admitidos</h2> </div> <p>El <strong>Ayuntamiento de Murcia</strong> usa los certificados electrónicos para la identificación y firma electrónicas en aquellos supuestos en los que la normativa vigente, bien lo permite o bien lo exige.</p> <p>Actualmente se está trabajando en la implantación gradual de otros mecanismos alternativos y actualmente admitidos en el ámbito de las Administraciones Públicas, tales como autentificación de usuario certificada, Cl@ve y Cl@ve PIN, entre otros.</p> <h3>Certificados electrónicos</h3> <p>Un <strong>certificado electrónico</strong> (o certificado digital) es un fichero informático generado por una entidad de servicios de certificación que asocia unos datos de identidad a una persona física, organismo o empresa confirmando de esta manera su identidad digital en Internet.</p> <p>El <strong>certificado electrónico</strong> es válido principalmente para autenticar a un usuario o sitio web en internet, por lo que es necesaria la colaboración de un tercero que sea de confianza para cualquiera de las partes, al que se conoce como <strong>Autoridad Certificadora</strong>, que participa en la comunicación. Dicha Autoridad Certificadora puede ser un organismo público o una empresa reconocida en el ámbito de Internet.</p> <p>El <strong>certificado electrónico</strong> realiza tres funciones:</p> <ul> <li><strong>Autenticar al poseedor</strong>, a fin de acreditar -en el caso de la Sede Electrónica- la identidad del ciudadano que desea realizar una tramitación online</li> <li><strong>Firmar digitalmente</strong> los datos que se envían de tal forma que se pueda acreditar y garantizar su integridad y procedencia</li> <li><strong>Cifrar las comunicaciones, </strong>entre el ciudadano y otros terceros -personas o entidades- en este caso el Ayuntamiento de Murcia</li> </ul> <p>Actualmente, el <strong>Ayuntamiento de Murcia</strong> admite certificados electrónicos de los siguientes proveedores de servicios de certificación:</p> <ul> <li><a href="http://www.dnielectronico.es/" target="_blank" title="Ir a la página de DNI electrónico">DNI electrónico</a> (Dirección General de Policía - Ministerio del Interior)</li> <li><a href="http://www.accv.es/" target="_blank" title="Ir a la página de la ACCCV"><strong>ACCV</strong> (Agencia de Tecnología y Certificación Electrónica de la Generalitat Valenciana)</a></li> <li>En general, todos aquellos certificados reconocidos en la plataforma <strong>@Firma</strong> del Ministerio de Hacienda y Administraciones Públicas</li> </ul> </div> <div class="entry-links"> </div> </div> </div> </div> <div class="portlet-boundary portlet-boundary_urlredirectmurcia_WAR_UrlRedirectMurciaportlet_ portlet-static portlet-static-end portlet-borderless Url-Redirect-Murcia-portlet " id="p_p_id_urlredirectmurcia_WAR_UrlRedirectMurciaportlet_INSTANCE_E05u2GHav48q_"> <span id="p_urlredirectmurcia_WAR_UrlRedirectMurciaportlet_INSTANCE_E05u2GHav48q"></span> <div class="portlet-borderless-container" style=""> <div class="portlet-body"> </div> </div> </div> </div> </div> 
-            </div> 
-        </div> 
-        
-        </div> 
-    </section> 
-</div> 
-<form action="#" id="hrefFm" method="post" name="hrefFm"> 
-    <span></span> 
-</form> 
-</div> <!-- scroll up --> 
-<a class="scrollup animate-scroll hidden" href="#content" rel="tooltip" data-original-title="Volver arriba" data-placement="left"> 
-    <span class="sr-only">Volver arriba</span> 
-</a> 
+        <section class="g-py-15 g-pl-30 g-pr-30">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 g-pr-40--lg g-mb-50 g-mb-0--lg">
+                    <div th:replace="~{fragments/sideMenuSede :: menu}"></div>
+                </div>
+                <!-- End Sidebar -->
 
-</body> </html> 
+                <div class="col-lg-9">
+                    <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.firma.certificados.admitidos.page.header})}"></div>
+
+                    <div>
+                        <p>
+                            <span th:text="#{message.firma.certificados.admitidos.p.one.span.one}">El </span>
+                            <strong th:text="#{message.firma.certificados.admitidos.p.one.strong}">Ayuntamiento de Murcia</strong>
+                            <span th:text="#{message.firma.certificados.admitidos.p.one.span.two}"> usa los certificados electr&oacute;nicos para la identificaci&oacute;n y firma electr&oacute;nicas
+                                en aquellos supuestos en los que la normativa vigente, bien lo permite o bien lo exige.</span>
+                        </p>
+                        <p th:text="#{message.firma.certificados.admitidos.p.two}">
+                            Actualmente se est&aacute; trabajando en la implantaci&oacute;n gradual de otros mecanismos alternativos y actualmente admitidos
+                            en el &aacute;mbito de las Administraciones P&uacute;blicas, tales como autentificaci&oacute;n
+                            de usuario certificada, Cl@ve y Cl@ve PIN, entre otros.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.firma.certificados.admitidos.section.one.header}">Certificados electr&oacute;nicos</h4>
+                        <p>
+                            <span th:text="#{message.firma.certificados.admitidos.section.one.p.one.span.one}">Un </span>
+                                <strong th:text="#{message.firma.certificados.admitidos.section.one.p.one.strong}">certificado electr&oacute;nico</strong>
+                                <span th:text="#{message.firma.certificados.admitidos.section.one.p.one.span.two}"> (o certificado digital) es un fichero inform&aacute;tico generado por una entidad de servicios
+                                    de certificaci&oacute;n que asocia unos datos de identidad a una persona f&iacute;sica,
+                                    organismo o empresa confirmando de esta manera su identidad digital en Internet.</span>
+                        </p>
+                        <p>
+                            <span th:text="#{message.firma.certificados.admitidos.section.one.p.two.span.one}">El </span>
+                            <strong th:text="#{message.firma.certificados.admitidos.section.one.p.two.strong.one}">certificado electr&oacute;nico</strong>
+                            <span th:text="#{message.firma.certificados.admitidos.section.one.p.two.span.two}"> es v&aacute;lido principalmente para autenticar a un usuario o sitio web en internet, por lo
+                                que es necesaria la colaboraci&oacute;n de un tercero que sea de confianza para cualquiera
+                                de las partes, al que se conoce como </span>
+                            <strong th:text="#{message.firma.certificados.admitidos.section.one.p.two.strong.two}">Autoridad Certificadora</strong>
+                            <span th:text="#{message.firma.certificados.admitidos.section.one.p.two.span.three}">, que participa en la comunicaci&oacute;n. Dicha Autoridad Certificadora puede ser un organismo
+                                p&uacute;blico o una empresa reconocida en el &aacute;mbito de Internet.</span>
+                        </p>
+                        <p>
+                            <span th:text="#{message.firma.certificados.admitidos.section.one.p.three.span.one}">El </span>
+                            <strong th:text="#{message.firma.certificados.admitidos.section.one.p.three.strong}">certificado electr&oacute;nico</strong>
+                            <span th:text="#{message.firma.certificados.admitidos.section.one.p.three.span.two}"> realiza tres funciones:</span>
+                        </p>
+                        <ul>
+                            <li>
+                                <strong th:text="#{message.firma.certificados.admitidos.section.one.list.one.li.one.strong}">Autenticar al poseedor</strong>
+                                <span th:text="#{message.firma.certificados.admitidos.section.one.list.one.li.one.span}">, a fin de acreditar -en el caso de la Sede Electr&oacute;nica- la identidad del ciudadano
+                                    que desea realizar una tramitaci&oacute;n online
+                                </span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.firma.certificados.admitidos.section.one.list.one.li.two.strong}">Firmar digitalmente</strong>
+                                <span th:text="#{message.firma.certificados.admitidos.section.one.list.one.li.two.span}"> los datos que se env&iacute;an de tal forma que se pueda acreditar y garantizar su integridad
+                                    y procedencia
+                                </span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.firma.certificados.admitidos.section.one.list.one.li.three.strong}">Cifrar las comunicaciones</strong>
+                                <span th:text="#{message.firma.certificados.admitidos.section.one.list.one.li.three.span}">, entre el ciudadano y otros terceros -personas o entidades- en este caso el Ayuntamiento
+                                    de Murcia</span>
+                            </li>
+                        </ul>
+                        <p>
+                            <span th:text="#{message.firma.certificados.admitidos.section.one.p.four.span.one}">Actualmente, el </span>
+                            <strong th:text="#{message.firma.certificados.admitidos.section.one.p.four.strong}">Ayuntamiento de Murcia</strong>
+                            <span th:text="#{message.firma.certificados.admitidos.section.one.p.four.span.two}"> admite certificados electr&oacute;nicos de los siguientes proveedores de servicios de certificaci&oacute;n:</span>
+                        </p>
+                        <ul>
+                            <li>
+                                <a href="https://www.dnielectronico.es/PortalDNIe/" th:text="#{message.firma.certificados.admitidos.section.one.list.two.li.one.link}">DNI electr&oacute;nico</a>
+                                <span th:text="#{message.firma.certificados.admitidos.section.one.list.two.li.one.span}"> (Direcci&oacute;n General de Polic&iacute;a - Ministerio del Interior)</span>
+                            </li>
+                            <li>
+                                <a href="https://www.accv.es/" th:text="#{message.firma.certificados.admitidos.section.one.list.two.li.two.link}">ACCV (Agencia de Tecnolog&iacute;a y Certificaci&oacute;n Electr&oacute;nica de la Generalitat
+                                    Valenciana)
+                                </a>
+                            </li>
+                            <li>
+                                <span th:text="#{message.firma.certificados.admitidos.section.one.list.two.li.three.span.one}">En general, todos aquellos certificados reconocidos en la plataforma </span>
+                                <strong th:text="#{message.firma.certificados.admitidos.section.one.list.two.li.three.strong}">@Firma</strong>
+                                <span th:text="#{message.firma.certificados.admitidos.section.one.list.two.li.three.span.two}"> del Ministerio de Hacienda y Administraciones P&uacute;blicas</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

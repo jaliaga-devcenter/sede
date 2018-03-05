@@ -46,17 +46,17 @@ public class HomeController {
 			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 		}
 		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
-
+		
 		model.addAttribute("categorias", categorias);
 		model.addAttribute("iconos", iconos);
-
+		
 		return "index";
 	}
 
 	@RequestMapping(value = "/servicios/{id_cat}", method = RequestMethod.GET)
 	public String getServiciosPorCategoria(@PathVariable("id_cat") Integer idCat, Model model) {
 
-		// TODO Que pasa si la categoria no existe?
+//		TODO Que pasa si la categoria no existe?
 		List<CategoriaDTO> categorias = null;
 		try {
 			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
@@ -70,30 +70,38 @@ public class HomeController {
 
 		model.addAttribute("categorias", categorias);
 		model.addAttribute("iconos", iconos);
+		
 		model.addAttribute("currentCat", categoria.isPresent() ? categoria.get() : null);
-
+		
 		return "servicios/areas";
-	}
-
-	@RequestMapping("/tramites")
-	public String tramites(Model model) {
-		List<CategoriaDTO> categorias;
-		try {
-			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
-		} catch (GexflowWSException e) {
-			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
-		}
-		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
-
-		model.addAttribute("categorias", categorias);
-		model.addAttribute("iconos", iconos);
-		return "tramites";
 	}
 
 	@RequestMapping("/perfil-del-contratante")
 	public String perfilContratante() {
 		return "perfil-del-contratante";
 	}
+	
+	@RequestMapping("/accesibilidad")
+	public String accesibilidad() {
+		return "accesibilidad";
+	}
+	
+	@RequestMapping("/obtener-certificado")
+	public String obtenerCertificado() {
+		return "obtener-certificado-electronico";
+	}
+	
+	@RequestMapping("/quejas-sugerencias")
+	public String quejasSugerencias() {
+		return "quejas-sugerencias";
+	}
+
+	
+	@RequestMapping("/instrucciones")
+	public String instrucciones() {
+		return "instrucciones";
+	}
+
 
 	private Map<Integer, IconoDTO> getIconosPorCategoria(List<CategoriaDTO> categorias) {
 		Map<Integer, IconoDTO> iconos = categorias.stream().map(categoria -> {
