@@ -38,6 +38,12 @@ import teralco.sedeelectronica.verifirma.VerifirmaClient;
 @Controller
 public class VerifirmaController {
 
+	private static String list = "adjudicaciones/adjudicaciones";
+	private static String redirList = "redirect:/adjudicaciones";
+	private static String form = "adjudicaciones/formAdjudicacion";
+
+	private static String verify = "verifirma/verifirma";
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(VerifirmaController.class);
 
 	private static final Integer ENTIDAD = 0;
@@ -51,7 +57,7 @@ public class VerifirmaController {
 	@RequestMapping("/verifirma")
 	public String verifirma(Model model) {
 		model.addAttribute("CSVValidation", new CSVValidation());
-		return "verifirma/verifirma";
+		return verify;
 	}
 
 	@PostMapping("/verifirma/send")
@@ -60,7 +66,7 @@ public class VerifirmaController {
 			HttpServletRequest request) {
 
 		if (bindingResult.hasErrors()) {
-			return "verifirma/verifirma";
+			return verify;
 		}
 
 		String ip = request.getRemoteAddr();
@@ -69,7 +75,7 @@ public class VerifirmaController {
 
 		if (!captchaVerifyMessage.isEmpty()) {
 			model.addAttribute("messageWarning", captchaVerifyMessage);
-			return "verifirma/verifirma";
+			return verify;
 		}
 		File fileDownload;
 		try {
@@ -77,15 +83,13 @@ public class VerifirmaController {
 		} catch (ServiceException e) {
 
 			LOGGER.error("ERROR CONTROLADO", e);
-			fileDownload = null;
 			model.addAttribute("message", "Ha ocurrido un error en el servicio.");
-			return "verifirma/verifirma";
+			return verify;
 		} catch (IOException e) {
 
 			LOGGER.error("ERROR CONTROLADO", e);
 			model.addAttribute("message", "Ha ocurrido un error con el fichero.");
-			fileDownload = null;
-			return "verifirma/verifirma";
+			return verify;
 		}
 
 		return "/verifirma/download/" + fileDownload;

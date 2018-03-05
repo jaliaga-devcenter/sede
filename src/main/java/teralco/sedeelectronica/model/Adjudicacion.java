@@ -68,7 +68,7 @@ public class Adjudicacion extends BaseModel {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_fichero", nullable = true)
-	private Fichero resultado; // private Long idFichero;
+	private Fichero resultado;
 
 	public String getDenominacion() {
 		return this.denominacion;

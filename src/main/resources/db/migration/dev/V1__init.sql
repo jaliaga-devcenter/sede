@@ -95,4 +95,11 @@ create table AVISO (
  alter table AVISO
    add constraint FK_AVISO_FICHERO foreign key (ID_FICHERO)
       references FICHERO (ID)
-      on delete restrict on update restrict;       
+      on delete restrict on update restrict;    
+
+create table PARADA (
+   ID                   SERIAL 		not null,
+   DESCRIPCION			TEXT 			null,
+   constraint PK_PARADA primary key (ID)
+ );
+ 

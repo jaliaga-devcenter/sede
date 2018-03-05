@@ -65,8 +65,8 @@ public class HomeController {
 		}
 		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
 
-
-		Optional<CategoriaDTO> categoria = categorias.stream().filter(cat -> cat.getIdCategoria().equals(idCat)).findFirst();
+		Optional<CategoriaDTO> categoria = categorias.stream().filter(cat -> cat.getIdCategoria().equals(idCat))
+				.findFirst();
 
 		model.addAttribute("categorias", categorias);
 		model.addAttribute("iconos", iconos);
