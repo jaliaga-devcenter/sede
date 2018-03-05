@@ -1,76 +1,121 @@
-<!DOCTYPE html> 
-<html lang="es" layout:decorate="~{/layouts/main}">
-    <head> 
-        <title th:text="#{message.title.sede.init}+' - '+#{message.title.sede}">Verifirma</title>
-    </head>     
-    <body class=" yui3-skin-sam controls-visible guest-site signed-out public-page site dockbar-bubbles over"> 
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Registro electrónico</title>
+</head>
+
+<body>
 
     <div layout:fragment="content">
-    <div class="2_1_col_murcia_columns" id="main-content" role="main"> 
-        <section id="content"> <div class="portlet-layout container"> 
-            <div class="portlet-layout row-fluid"> 
-                <div class="portlet-column portlet-column-first span3" id="column-1"> 
-                    <div class="portlet-dropzone portlet-column-content portlet-column-content-first" id="layout-column_column-1"> 
-                        <div class="portlet-boundary portlet-boundary_1_WAR_privacyportlet_ portlet-static portlet-static-start portlet-borderless smc-privacy-portlet " id="p_p_id_1_WAR_privacyportlet_" > 
-                            <span id="p_1_WAR_privacyportlet"></span> 
-                        </div> 
-                        <div class="portlet-boundary portlet-boundary_71_ portlet-static portlet-static-end portlet-borderless portlet-navigation " id="p_p_id_71_INSTANCE_AQ419Xbq2LeV_" > 
-                            <span id="p_71_INSTANCE_AQ419Xbq2LeV"></span> 
-                            <div class="portlet-borderless-container" style=""> 
-                                <div class="portlet-body"> 
-                                    <div class="nav-menu nav-menu-style-"> 
-                                        <h2> <a href="./conoce-la-sede-electronica" >La Sede Electrónica</a> </h2> 
-                                        <ul class="layouts level-1">
-                                            <li >
-                                                <a href="./normativa-sobre-la-sede" > Normativa sobre la Sede</a>
-                                            </li>
-                                            <li >
-                                                <a href="./contenidos-de-la-sede" > Contenidos de la Sede</a>
-                                            </li>
-                                            <li >
-                                                <a href="./servicios-de-la-sede" > Servicios de la Sede</a>
-                                            </li>
-                                            <li >
-                                                <a href="./registro-electronico" > Registro electrónico</a>
-                                            </li>
-                                            <li >
-                                                <a href="./firma-electronica-y-certificados-admitidos" > Firma electrónica y Certificados admitidos</a>
-                                            </li>
-                                            <li >
-                                                <a href="./verificacion-de-documentos" > Verificación de documentos</a>
-                                            </li>
-                                            <li >
-                                                <a href="./fecha-y-hora-oficial" > Fecha y Hora Oficial</a>
-                                            </li>
-                                            <li >
-                                                <a href="./calendario-dias-inhabiles" > Calendario de días inhábiles</a>
-                                            </li>
-                                            <li >
-                                                <a href="./sedes-fisicas" > Sedes Físicas del Ayuntamiento</a>
-                                            </li>
-                                            <li >
-                                                <a href="./paradas-programadas" > Paradas programadas</a>
-                                            </li>
-                                        </ul> 
-                                    </div> 
-                                </div> 
-                            </div> 
-                        </div> 
-                    </div> 
-                </div> 
-                <div class="portlet-column portlet-column-last span9" id="column-2"> <div class="portlet-dropzone portlet-column-content portlet-column-content-last" id="layout-column_column-2"> <div class="portlet-boundary portlet-boundary_56_ portlet-static portlet-static-end portlet-borderless portlet-journal-content " id="p_p_id_56_INSTANCE_mkb8j2dFsfg9_"> <span id="p_56_INSTANCE_mkb8j2dFsfg9"></span> <div class="portlet-borderless-container" style=""> <div class="portlet-body"> <div class="journal-content-article"> <div class="page-header"> <h2>Registro electrónico</h2> </div> <p>El<strong> Registro Electrónico del Ayuntamiento de Murcia</strong> es el canal electrónico que permite la presentación telemática de documentos tales como escritos, solicitudes y comunicaciones relacionadas con los trámites municipales. Se trata de un canal alternativo a la presentación de esos mismos documentos en las oficinas municipales de registro.</p> <p>El servicio de Registro Electrónico está disponible 24 horas al día, todos los días del año, a excepción de las interrupciones que sean necesarias por razones técnicas y que serán anuncidas con la debida antelación a través de la propia Sede Electrónica.</p> <h3>Acceso al Registro Electrónico</h3> <p>El acceso al servicio se ofrece directamente desde las fichas de los diferentes procedimientos que contemplan la posibilidad de tramitación electrónica, así como desde la <strong>Carpeta del Ciudadano</strong>.</p> <h3>Requisitos para el uso del Registro Electrónico</h3> <p>Es necesario disponer de alguno de los certificados electrónicos admitidos por el Ayuntamiento.</p> <p>Se debe cumplir con los requisitos técnicos que se especifican en la información de ayuda que se encuentra accesible dentro de cada ficha de procedimiento.</p> <p>Ha de tenerse en cuenta que la no recepción del recibo o, en su caso, la recepción de un mensaje de indicación de error o deficiencia de la transmisión implicará que podría no haberse producido la recepción, debiendo realizarse la presentación en otro momento o utilizando otros medios.</p> <p>En cualquier caso, dentro de la <strong>Carpeta del Ciudadano</strong> (accesible desde la página principal) podrá tener acceso a todos los trámites realizados así como al estado de los trámites en curso, pudiendo comprobar la correcta recepción de todas las solicitudes tramitadas y las resoluciones, y pudiendo obtener -asimismo- en cualquier momento los justificantes y copias de las mismas.</p> <h3>Consulta del Registro Electrónico</h3> <p>El servicio <strong>Carpeta del Ciudadano</strong> le permitirá consultar las anotaciones de entrada que haya realizado en el Registro del Ayuntamiento de Murcia a través de sus canales (presencial o electrónico). También se ofrece el acceso a la solicitud presentada, documentación y justificante o recibo de la anotación.</p> <p>Esta consulta puede ser realizada en la Sede Electrónica por el interesado, con su certificado electrónico desde el servicio <strong>Carpeta del Ciudadano</strong>, accesible desde la página principal de la Sede.</p> <p>También puede comprobar la autenticidad de los justificantes de registro electrónico mediante el Código Seguro de Verificación (CSV) que aparece en el mismos, utilizando el servicio <strong>Verifirma</strong>, de comprobación de documentos con Código Seguro de Verificación (CSV).</p> <p>&nbsp;</p> <h3>Calendario y cómputo de plazos</h3> <p>A efectos del cómputo de plazos, salvo lo regulado en procedimientos especiales, la presentación en un día inhábil se entenderá realizada a las cero horas del siguiente día hábil siguiente.</p> <p>En ningún caso la presentación electrónica de documentos implicará la modificación de los plazos establecidos legalmente.</p> <p>Se consideran días inhábiles, a efectos del registro electrónico del Ayuntamiento, los establecidos como días festivos en el calendario oficial de fiestas laborales de la Comunidad Autónoma de la Región de Murcia y de fiestas locales del municipio de Murcia. Este calendario está publicado en la Sede Electrónica.</p> <h3>Otros canales</h3> <p>La presentación a través de la Sede Electrónica tiene carácter voluntario. Por tanto, su uso constituye una alternativa a la utilización de los lugares de presentación señalados en el artículo 38.4 de la Ley 30/1992, de 26 de noviembre, con las excepciones contempladas en el artículo 27 de la Ley 11/2007, de 22 de junio.</p> <p>Si prefiere realizar su trámite presencialmente, puede acudir a las oficinas municipales de registro, cuya información de localización y contacto se encuentra publicada en esta Sede Electrónica.</p> </div> <div class="entry-links"> </div> </div> </div> </div> <div class="portlet-boundary portlet-boundary_urlredirectmurcia_WAR_UrlRedirectMurciaportlet_ portlet-static portlet-static-end portlet-borderless Url-Redirect-Murcia-portlet " id="p_p_id_urlredirectmurcia_WAR_UrlRedirectMurciaportlet_INSTANCE_4nVDMtlPICjr_"> <span id="p_urlredirectmurcia_WAR_UrlRedirectMurciaportlet_INSTANCE_4nVDMtlPICjr"></span> <div class="portlet-borderless-container" style=""> <div class="portlet-body"> </div> </div> </div> </div> </div>
-            </div> 
-        </div> 
-        
-        </div> 
-    </section> 
-</div> 
-<form action="#" id="hrefFm" method="post" name="hrefFm"> 
-    <span></span> 
-</form> 
-</div> <!-- scroll up --> 
-<a class="scrollup animate-scroll hidden" href="#content" rel="tooltip" data-original-title="Volver arriba" data-placement="left"> 
-    <span class="sr-only">Volver arriba</span> 
-</a> 
+        <section class="g-py-15 g-pl-30 g-pr-30">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 g-pr-40--lg g-mb-50 g-mb-0--lg">
+                    <div th:replace="~{fragments/sideMenuSede :: menu}"></div>
+                </div>
+                <!-- End Sidebar -->
 
-</body> </html> 
+                <div class="col-lg-9">
+                    <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.registro.electronico.page.header})}"></div>
+
+                    <div>
+                        <p>
+                            <span th:text="#{message.registro.electronico.p.one.span.one}">El </span>
+                            <strong th:text="#{message.registro.electronico.p.one.strong}">Registro Electr&oacaute;nico del Ayuntamiento de Murcia</strong>
+                            <span th:text="#{message.registro.electronico.p.one.span.two}"> es el canal electr&oacaute;nico que permite la presentaci&oacaute;n telem&aacute;tica de documentos
+                                tales como escritos, solicitudes y comunicaciones relacionadas con los tr&aacute;mites municipales.
+                                Se trata de un canal alternativo a la presentaci&oacaute;n de esos mismos documentos en las
+                                oficinas municipales de registro.</span>
+                        </p>
+                        <p th:text="#{message.registro.electronico.p.two}">
+                            El servicio de Registro Electr&oacaute;nico est&aacute; disponible 24 horas al d&iacute;a, todos los d&iacute;as del año,
+                            a excepci&oacaute;n de las interrupciones que sean necesarias por razones t&eacute;cnicas y que
+                            ser&aacute;n anuncidas con la debida antelaci&oacaute;n a trav&eacute;s de la propia Sede Electr&oacaute;nica.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.registro.electronico.section.one.header}">Acceso al Registro Electr&oacaute;nico</h4>
+                        <p>
+                            <span th:text="#{message.registro.electronico.section.one.p.span}">El acceso al servicio se ofrece directamente desde las fichas de los diferentes procedimientos
+                                que contemplan la posibilidad de tramitaci&oacaute;n electr&oacaute;nica, as&iacute; como
+                                desde la </span>
+                            <strong th:text="#{message.registro.electronico.section.one.p.strong}">Carpeta del Ciudadano.</strong>
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.registro.electronico.section.two.header}">Requisitos para el uso del Registro Electr&oacaute;nico</h4>
+                        <p th:text="#{message.registro.electronico.section.two.p.one}">Es necesario disponer de alguno de los certificados electr&oacaute;nicos admitidos por el Ayuntamiento.</p>
+                        <p th:text="#{message.registro.electronico.section.two.p.two}">Se debe cumplir con los requisitos t&eacute;cnicos que se especifican en la informaci&oacaute;n de
+                            ayuda que se encuentra accesible dentro de cada ficha de procedimiento.</p>
+                        <p th:text="#{message.registro.electronico.section.two.p.three}">Ha de tenerse en cuenta que la no recepci&oacaute;n del recibo o, en su caso, la recepci&oacaute;n
+                            de un mensaje de indicaci&oacaute;n de error o deficiencia de la transmisi&oacaute;n implicar&aacute;
+                            que podr&iacute;a no haberse producido la recepci&oacaute;n, debiendo realizarse la presentaci&oacaute;n
+                            en otro momento o utilizando otros medios.</p>
+                        <p>
+                            <span th:text="#{message.registro.electronico.section.two.p.four.span.one}">En cualquier caso, dentro de la </span>
+                            <strong th:text="#{message.registro.electronico.section.two.p.four.strong}">Carpeta del Ciudadano</strong>
+                            <span th:text="#{message.registro.electronico.section.two.p.four.span.two}"> (accesible desde la p&aacute;gina principal) podr&aacute; tener acceso a todos los tr&aacute;mites
+                                realizados as&iacute; como al estado de los tr&aacute;mites en curso, pudiendo comprobar
+                                la correcta recepci&oacaute;n de todas las solicitudes tramitadas y las resoluciones, y pudiendo
+                                obtener -asimismo- en cualquier momento los justificantes y copias de las mismas.</span>
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.registro.electronico.section.three.header}">Consulta del Registro Electr&oacaute;nico</h4>
+                        <p>
+                            <span th:text="#{message.registro.electronico.section.three.p.one.span.one}">El servicio </span>
+                            <strong th:text="#{message.registro.electronico.section.three.p.one.strong}">Carpeta del Ciudadano</strong>
+                            <span th:text="#{message.registro.electronico.section.three.p.one.span.two}"> le permitir&aacute; consultar las anotaciones de entrada que haya realizado en el Registro del
+                                Ayuntamiento de Murcia a trav&eacute;s de sus canales (presencial o electr&oacaute;nico).
+                                Tambi&eacute;n se ofrece el acceso a la solicitud presentada, documentaci&oacaute;n y justificante
+                                o recibo de la anotaci&oacaute;n.</span>
+                        </p>
+                        <p>
+                            <span th:text="#{message.registro.electronico.section.three.p.two.span.one}">Esta consulta puede ser realizada en la Sede Electr&oacaute;nica por el interesado, con su certificado
+                                electr&oacaute;nico desde el servicio </span>
+                            <strong th:text="#{message.registro.electronico.section.three.p.two.strong}">Carpeta del Ciudadano</strong>
+                            <span th:text="#{message.registro.electronico.section.three.p.two.span.two}">, accesible desde la p&aacute;gina principal de la Sede.</span>
+                        </p>
+                        <p>
+                            <span th:text="#{message.registro.electronico.section.three.p.three.span.one}">Tambi&eacute;n puede comprobar la autenticidad de los justificantes de registro electr&oacaute;nico
+                                mediante el C&oacaute;digo Seguro de Verificaci&oacaute;n (CSV) que aparece en el mismos,
+                                utilizando el servicio </span>
+                            <strong th:text="#{message.registro.electronico.section.three.p.three.strong}">Verifirma</strong>
+                            <span th:text="#{message.registro.electronico.section.three.p.three.span.two}">, de comprobaci&oacaute;n de documentos con C&oacaute;digo Seguro de Verificaci&oacaute;n (CSV).</span>
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.registro.electronico.section.four.header}">Calendario y c&oacaute;mputo de plazos</h4>
+                        <p th:text="#{message.registro.electronico.section.four.p.one}">A efectos del c&oacaute;mputo de plazos, salvo lo regulado en procedimientos especiales, la presentaci&oacaute;n
+                            en un d&iacute;a inh&aacute;bil se entender&aacute; realizada a las cero horas del siguiente
+                            d&iacute;a h&aacute;bil siguiente.</p>
+                        <p th:text="#{message.registro.electronico.section.four.p.two}">En ning&uacute;n caso la presentaci&oacaute;n electr&oacaute;nica de documentos implicar&aacute;
+                            la modificaci&oacaute;n de los plazos establecidos legalmente.</p>
+                        <p th:text="#{message.registro.electronico.section.four.p.three}">Se consideran d&iacute;as inh&aacute;biles, a efectos del registro electr&oacaute;nico del Ayuntamiento,
+                            los establecidos como d&iacute;as festivos en el calendario oficial de fiestas laborales de la
+                            Comunidad Aut&oacaute;noma de la Regi&oacaute;n de Murcia y de fiestas locales del municipio
+                            de Murcia. Este calendario est&aacute; publicado en la Sede Electr&oacaute;nica.</p>
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.registro.electronico.section.five.header}">Otros canales</h4>
+                        <p th:text="#{message.registro.electronico.section.five.p.one}">La presentaci&oacaute;n a trav&eacute;s de la Sede Electr&oacaute;nica tiene car&aacute;cter voluntario.
+                            Por tanto, su uso constituye una alternativa a la utilizaci&oacaute;n de los lugares de presentaci&oacaute;n
+                            señalados en el art&iacute;culo 38.4 de la Ley 30/1992, de 26 de noviembre, con las excepciones
+                            contempladas en el art&iacute;culo 27 de la Ley 11/2007, de 22 de junio.</p>
+                        <p th:text="#{message.registro.electronico.section.five.p.two}">Si prefiere realizar su tr&aacute;mite presencialmente, puede acudir a las oficinas municipales de
+                            registro, cuya informaci&oacaute;n de localizaci&oacaute;n y contacto se encuentra publicada
+                            en esta Sede Electr&oacaute;nica.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
