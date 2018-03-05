@@ -28,12 +28,16 @@ public class FlywayConfig {
 	@Bean
 	@Profile("test")
 	public FlywayMigrationStrategy cleanMigrateStrategy() {
-		FlywayMigrationStrategy strategy = flyway -> {
+		/*
+		 * FlywayMigrationStrategy strategy = flyway -> {
+		 * flyway.setLocations("classpath:db/migration/test");
+		 * flyway.setSchemas("sede"); };
+		 */
+
+		return flyway -> {
 			flyway.setLocations("classpath:db/migration/test");
 			flyway.setSchemas("sede");
 		};
-
-		return strategy;
 	}
 
 }
