@@ -26,17 +26,13 @@ public class EncryptUtils {
 
 	@Value("${file.strKey}")
 	private String fileStrKey;
-	
-	private Key aesKey;
-	
-	public EncryptUtils() {
 
-	}
-	
+	private Key aesKey;
+
 	@PostConstruct
-    public void init(){
-		this.aesKey =new SecretKeySpec(this.fileStrKey.getBytes(), "AES");
-    }
+	public void init() {
+		this.aesKey = new SecretKeySpec(this.fileStrKey.getBytes(), "AES");
+	}
 
 	public String encrypt(String strClearText) {
 
@@ -102,7 +98,7 @@ public class EncryptUtils {
 		} catch (IllegalBlockSizeException | BadPaddingException e) {
 			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 		}
-	
+
 		return decrypted;
 	}
 }

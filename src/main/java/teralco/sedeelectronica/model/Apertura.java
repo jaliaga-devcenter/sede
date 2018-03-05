@@ -49,7 +49,7 @@ public class Apertura extends BaseModel {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_fichero", nullable = true)
-	private Fichero resultado; // private Long idFichero;
+	private Fichero resultado;
 
 	public Date getFecha() {
 		return this.fecha;

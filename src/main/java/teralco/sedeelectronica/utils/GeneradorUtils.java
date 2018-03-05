@@ -4,6 +4,10 @@ import java.util.UUID;
 
 public final class GeneradorUtils {
 
+	private GeneradorUtils() {
+		throw new IllegalStateException("Utility class");
+	}
+
 	public static String generarToken() {
 		String token = UUID.randomUUID().toString();
 		return token;
