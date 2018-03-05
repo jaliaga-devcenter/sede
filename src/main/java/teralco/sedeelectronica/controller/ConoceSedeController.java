@@ -76,9 +76,4 @@ public class ConoceSedeController {
 		return "sede/paradas-programadas";
 	}
 	
-	@RequestMapping("/accesibilidad")
-	public String accesibilidad() {
-		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
-		return "sede/accesibilidad";
-	}
 }

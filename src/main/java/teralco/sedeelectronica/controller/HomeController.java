@@ -95,6 +95,28 @@ public class HomeController {
 	public String perfilContratante() {
 		return "perfil-del-contratante";
 	}
+	
+	@RequestMapping("/accesibilidad")
+	public String accesibilidad() {
+		return "accesibilidad";
+	}
+	
+	@RequestMapping("/obtener-certificado")
+	public String obtenerCertificado() {
+		return "obtener-certificado-electronico";
+	}
+	
+	@RequestMapping("/quejas-sugerencias")
+	public String quejasSugerencias() {
+		return "quejas-sugerencias";
+	}
+
+	
+	@RequestMapping("/instrucciones")
+	public String instrucciones() {
+		return "instrucciones";
+	}
+
 
 	private Map<Integer, IconoDTO> getIconosPorCategoria(List<CategoriaDTO> categorias) {
 		Map<Integer, IconoDTO> iconos = categorias.stream().map(categoria -> {
