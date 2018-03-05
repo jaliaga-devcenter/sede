@@ -37,7 +37,7 @@ public class ParadasController {
 		// DEVOLVER LA LISTA DE PARADAS ACTUALES
 		Page<Parada> pages = this.paradaService.listAllByPage(pageable);
 		model.addAttribute("paradas", pages);
-		PageWrapper<Parada> page = new PageWrapper<Parada>(pages, "/paradas");
+		PageWrapper<Parada> page = new PageWrapper<>(pages, "/paradas");
 		model.addAttribute("page", page);
 		model.addAttribute("", this.paradaService.list());
 		return list;

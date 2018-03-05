@@ -39,7 +39,7 @@ public class NoticiaController {
 		// DEVOLVER LA LISTA DE NOTICIAS ACTUALES
 		Page<Noticia> pages = this.noticiaService.listAllByPage(pageable);
 		model.addAttribute("noticias", pages);
-		PageWrapper<Noticia> page = new PageWrapper<Noticia>(pages, "/noticias");
+		PageWrapper<Noticia> page = new PageWrapper<>(pages, "/noticias");
 		model.addAttribute("page", page);
 
 		return list;

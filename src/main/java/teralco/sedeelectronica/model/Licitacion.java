@@ -21,9 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Licitacion extends BaseModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "fecha")
@@ -127,7 +124,8 @@ public class Licitacion extends BaseModel {
 
 	@Override
 	public String toString() {
-		return "Licitacion [ fechaPub=" + this.fechaPub + ", descripcion=" + this.descripcion + ", presupuesto=" + this.presupuesto
-				+ ", ivaInc=" + this.ivaInc + ", finPlazo=" + this.finPlazo + ", medio=" + this.medio + "]";
+		return "Licitacion [ fechaPub=" + this.fechaPub + ", descripcion=" + this.descripcion + ", presupuesto="
+				+ this.presupuesto + ", ivaInc=" + this.ivaInc + ", finPlazo=" + this.finPlazo + ", medio=" + this.medio
+				+ "]";
 	}
 }

@@ -30,6 +30,7 @@ public class DocumentacionController {
 	private static String list = "adjudicaciones/adjudicaciones";
 	private static String redirList = "redirect:/adjudicaciones";
 	private static String form = "adjudicaciones/formAdjudicacion";
+	private static String STATE_STRING = "estados";
 
 	private DocumentacionService documentacionService;
 	private FicheroService ficheroService;
@@ -48,7 +49,7 @@ public class DocumentacionController {
 		// DEVOLVER LA LISTA DE DOCUMENTOS ACTUALES
 		Page<Documentacion> pages = this.documentacionService.listAllByPage(pageable);
 		model.addAttribute("documentos", pages);
-		PageWrapper<Documentacion> page = new PageWrapper<Documentacion>(pages, "/documentos");
+		PageWrapper<Documentacion> page = new PageWrapper<>(pages, "/documentos");
 		model.addAttribute("page", page);
 		model.addAttribute("", this.documentacionService.list());
 
@@ -59,14 +60,14 @@ public class DocumentacionController {
 	@RequestMapping("/documentos/create")
 	public String create(Model model) {
 		model.addAttribute("documentacion", new Documentacion());
-		model.addAttribute("estados", Estado.values());
+		model.addAttribute(STATE_STRING, Estado.values());
 		return form;
 	}
 
 	@RequestMapping("/documentos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 		model.addAttribute("documentacion", this.documentacionService.get(id));
-		model.addAttribute("estados", Estado.values());
+		model.addAttribute(STATE_STRING, Estado.values());
 		return form;
 	}
 
@@ -81,7 +82,7 @@ public class DocumentacionController {
 	public String save(@Valid @ModelAttribute("documentacion") Documentacion documentacion, BindingResult bindingResult,
 			Model model) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("estados", Estado.values());
+			model.addAttribute(STATE_STRING, Estado.values());
 			return form;
 		}
 
