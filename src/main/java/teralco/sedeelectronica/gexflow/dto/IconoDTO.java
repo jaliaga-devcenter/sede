@@ -19,7 +19,7 @@ public class IconoDTO extends AbstractDTO {
 		this.nombre = _nombre;
 		this.extension = _extension;
 		this.fichero = _fichero;
-		this.setBase64encoded(Base64.encodeBase64String(this.fichero));
+		this.base64encoded = Base64.encodeBase64String(this.fichero);
 	}
 
 	public String getNombre() {
@@ -47,8 +47,5 @@ public class IconoDTO extends AbstractDTO {
 		return this.base64encoded;
 	}
 
-	public void setBase64encoded(String pBase64encoded) {
-		this.base64encoded = pBase64encoded;
-	}
 
 }
