@@ -27,9 +27,13 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class LicitacionController {
 
+	private static String list = "licitaciones/licitaciones";
+	private static String redirList = "redirect:/licitaciones";
+	private static String form = "licitaciones/formLicitacion";
+
 	private LicitacionService licitacionService;
 	private FicheroService ficheroService;
-	
+
 	@Autowired
 	private EncryptUtils encryptUtils;
 
@@ -49,28 +53,28 @@ public class LicitacionController {
 		model.addAttribute("page", page);
 
 		model.addAttribute("encrypt", this.encryptUtils);
-		return "licitaciones/licitaciones";
+		return list;
 	}
 
 	@RequestMapping("/licitaciones/create")
 	public String create(Model model) {
 		model.addAttribute("licitacion", new Licitacion());
 		model.addAttribute("medios", Medio.values());
-		return "licitaciones/formLicitacion";
+		return form;
 	}
 
 	@RequestMapping("/licitaciones/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 		model.addAttribute("licitacion", this.licitacionService.get(id));
 		model.addAttribute("medios", Medio.values());
-		return "licitaciones/formLicitacion";
+		return form;
 	}
 
 	@RequestMapping("/licitaciones/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
 		this.licitacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La licitacion " + id + " ha sido borrada.");
-		return "redirect:/licitaciones";
+		return redirList;
 	}
 
 	@PostMapping(value = "/licitaciones/save")
@@ -78,7 +82,7 @@ public class LicitacionController {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("medios", Medio.values());
-			return "licitaciones/formLicitacion";
+			return form;
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(lici.getFileToUpload());
@@ -87,7 +91,7 @@ public class LicitacionController {
 			lici.setFichero(file);
 		}
 		this.licitacionService.save(lici);
-		return "redirect:/licitaciones";
+		return redirList;
 	}
 
 }
