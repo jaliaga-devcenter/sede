@@ -36,7 +36,7 @@ public class Aviso extends BaseModel {
 
 	/* For upload file in form */
 	@Transient
-	private MultipartFile fileToUpload;
+	private transient MultipartFile fileToUpload;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_fichero", nullable = true)
@@ -76,7 +76,7 @@ public class Aviso extends BaseModel {
 
 	@Override
 	public String toString() {
-		return "Documentacion [descripcion=" + this.descripcion + ", fileToUpload=" + this.fileToUpload + ", fichero=" + this.fichero
-				+ "]";
+		return "Documentacion [descripcion=" + this.descripcion + ", fileToUpload=" + this.fileToUpload + ", fichero="
+				+ this.fichero + "]";
 	}
 }

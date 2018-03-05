@@ -27,7 +27,7 @@ public class Documentacion extends BaseModel {
 
 	/* For upload file in form */
 	@Transient
-	private MultipartFile fileToUpload;
+	private transient MultipartFile fileToUpload;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_fichero", nullable = true)
