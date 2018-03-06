@@ -955,8 +955,7 @@ a:focus, a:hover {
     border-color: #a43656;
   }
   .u-nav-v2-2 .nav-link.active, [class*="u-nav-v3"] .nav-link.active, [class*="u-nav-v3"].u-nav-light .nav-link.active, [class*="u-nav-v5"].u-nav-primary .nav-link.active, [class*="u-nav-v7"] .nav-link.active {
-    color: white;
-    background-color: #a43656;
+    color: #a43656;
   }
   .u-nav-v4-1.u-nav-primary .nav-link.active, [class*="u-nav-v6"] .nav-link.active::before {
     border-top-color: #a43656;
@@ -1141,4 +1140,8 @@ input[type="checkbox"]:checked+.g-overlay-primary-0_9--checked::after, input[typ
 
 .g-min-height-700 {
   min-height: 700px;
+}
+
+.g-width-100p {
+  width: 100%;
 }
