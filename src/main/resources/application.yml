@@ -11,3 +11,14 @@ server.uploadPath: C:\proyectos\sede\
 verifirma.url: http://demo.gexflow.com:8080
 verifirma.user: servicio.consulta.expedientes
 verifirma.password: servicio.consulta.expedientes
+
+
+sede:
+  conoce.tu.ayuntamiento: http://www.murcia.es/web/portal/institucional
+  portal.transparencia: http://www.murcia.es/web/portal/transparencia-municipal
+  procedimiento:
+    ocupacion.via.publica: 4
+    instancia.general: 11
+    quejas.sugerencias: 12
+    empadronamiento: 101
+    
