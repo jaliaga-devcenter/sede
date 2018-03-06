@@ -94,36 +94,22 @@
                         </p>
                     </div>
              
-                    <div id="accordion-07" class="u-accordion u-accordion-color-primary" role="tablist" aria-multiselectable="true">
+                    <div id="accordion-05" class="u-accordion" role="tablist" aria-multiselectable="true">
                         <!-- Card -->
-                        <div class="card rounded-0 g-brd-none" th:each="subcategoria: ${currentCat.subcategorias}">
-                            <div id="accordion-07-heading-01" class="u-accordion__header g-pa-0" role="tab">
-                                <h5 class="mb-0 text-uppercase g-font-size-default g-font-weight-700 g-pa-20a mb-0">
-                                <a class="d-block g-color-main g-text-underline--none--hover" href="#accordion-07-body-01" data-toggle="collapse" data-parent="#accordion-07"
-                                    aria-expanded="true" aria-controls="accordion-07-body-01">
-                                    <span class="u-accordion__control-icon d-inline-block g-brd-right g-brd-gray-light-v4 g-color-primary text-center g-pa-20">
-                                        <i class="fa fa-plus"></i>
-                                        <i class="fa fa-minus"></i>
-                                    </span>
-                                    <span class="d-inline-block g-pa-15" th:text="${subcategoria.nombre}">
-                                        COOPERACI&Oacute;N AL DESARROLLO
-                                    </span>
-                                </a>
-                                </h5>
-                             </div>
-                            
-                            <div id="accordion-07-body-01" class="collapse show" role="tabpanel" aria-labelledby="accordion-07-heading-01" th:each="servicio: ${servicios}" th:if="${subcategoria.idCategoria==servicio.idCategoria}">
-                                <div class="u-accordion__body">
+                        <div class="card rounded-0 g-brd-none">
+                            <div th:replace="~{fragments/accordionCard :: header('COOPERACI&Oacute;N AL DESARROLLO', '1', false, true)}"></div>
+                            <div id="accordion-05-body-1" class="collapse show" role="tabpanel" aria-labelledby="accordion-05-heading-1">
+                                <div class="u-accordion__body g-pa-0">
                                     <!-- Basic Table -->
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <tbody>
                                                 <tr>
-                                                    <td>
-                                                        <a href="#" th:text="${servicio.nombre}">Concesión de Subvenciones para la cooperación al desarollo</a>
+                                                    <td class="align-middle">
+                                                        <a href="#">Concesión de Subvenciones para la cooperación al desarollo</a>
                                                     </td>
-                                                    <td>Presencial</td>
-                                                    <td class="g-width-150">
+                                                    <td class="align-middle">Presencial</td>
+                                                    <td class="g-width-150 g-pa-0 align-middle">
                                                         <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
                                                             <i class="fa fa-info"></i>
                                                         </span>
@@ -146,33 +132,20 @@
 
                         <!-- Card -->
                         <div class="card rounded-0 g-brd-none">
-                            <div id="accordion-07-heading-02" class="u-accordion__header g-pa-0" role="tab">
-                                <h5 class="mb-0 text-uppercase g-font-size-default g-font-weight-700 g-pa-20a mb-0">
-                                    <a class="collapsed d-block g-color-main g-text-underline--none--hover" href="#accordion-07-body-02" data-toggle="collapse"
-                                        data-parent="#accordion-07" aria-expanded="false" aria-controls="accordion-07-body-02">
-                                        <span class="u-accordion__control-icon d-inline-block g-brd-right g-brd-gray-light-v4 g-color-primary text-center g-pa-20">
-                                            <i class="fa fa-plus"></i>
-                                            <i class="fa fa-minus"></i>
-                                        </span>
-                                        <span class="d-inline-block g-pa-15">
-                                            SANIDAD
-                                        </span>
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="accordion-07-body-02" class="collapse" role="tabpanel" aria-labelledby="accordion-07-heading-02">
-                                <div class="u-accordion__body">
+                            <div th:replace="~{fragments/accordionCard :: header('SANIDAD', '2', true, false)}"></div>
+                            <div id="accordion-05-body-2" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-2">
+                                <div class="u-accordion__body g-pa-0">
                                     <!-- Basic Table -->
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <tbody>
                                                 <tr>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         <a href="#">Autorización del Sacrificio de Cerdos en régimen de Matanzas Domiciliarias
                                                             para Consumo Familiar</a>
                                                     </td>
-                                                    <td>Presencial</td>
-                                                    <td class="g-width-150">
+                                                    <td class="align-middle">Presencial</td>
+                                                    <td class="g-width-150 g-pa-0 align-middle">
                                                         <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
                                                             <i class="fa fa-info"></i>
                                                         </span>
@@ -191,7 +164,7 @@
                                                         </a>
                                                     </td>
                                                     <td>Presencial</td>
-                                                    <td class="g-width-150">
+                                                    <td class="g-width-150 g-pa-0 align-middle">
                                                         <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
                                                             <i class="fa fa-info"></i>
                                                         </span>
@@ -208,7 +181,7 @@
                                                         <a href="#">Control de Aguas de Aljibe</a>
                                                     </td>
                                                     <td>Presencial</td>
-                                                    <td class="g-width-150">
+                                                    <td class="g-width-150 g-pa-0 align-middle">
                                                         <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
                                                             <i class="fa fa-info"></i>
                                                         </span>
@@ -225,7 +198,7 @@
                                                         <a href="#">Control del Agua de Consumo en Instalaciones Interiores</a>
                                                     </td>
                                                     <td>Presencial</td>
-                                                    <td class="g-width-150">
+                                                    <td class="g-width-150 g-pa-0 align-middle">
                                                         <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
                                                             <i class="fa fa-info"></i>
                                                         </span>
@@ -248,33 +221,20 @@
 
                         <!-- Card -->
                         <div class="card rounded-0 g-brd-none">
-                            <div id="accordion-07-heading-03" class="u-accordion__header g-pa-0" role="tab">
-                                <h5 class="mb-0 text-uppercase g-font-size-default g-font-weight-700 g-pa-20a mb-0">
-                                    <a class="collapsed d-block g-color-main g-text-underline--none--hover" href="#accordion-07-body-03" data-toggle="collapse"
-                                        data-parent="#accordion-07" aria-expanded="false" aria-controls="accordion-07-body-03">
-                                        <span class="u-accordion__control-icon d-inline-block g-brd-right g-brd-gray-light-v4 g-color-primary text-center g-pa-20">
-                                            <i class="fa fa-plus"></i>
-                                            <i class="fa fa-minus"></i>
-                                        </span>
-                                        <span class="d-inline-block g-pa-15">
-                                            SERVICIOS SOCIALES
-                                        </span>
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="accordion-07-body-03" class="collapse" role="tabpanel" aria-labelledby="accordion-07-heading-03">
-                                <div class="u-accordion__body">
+                            <div th:replace="~{fragments/accordionCard :: header('SERVICIOS SOCIALES', '3', true, true)}"></div>
+                            <div id="accordion-05-body-3" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-3">
+                                <div class="u-accordion__body g-pa-0">
                                     <!-- Basic Table -->
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <tbody>
                                                 <tr>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         <a href="#">Autorización del Sacrificio de Cerdos en régimen de Matanzas Domiciliarias
                                                             para Consumo Familiar</a>
                                                     </td>
-                                                    <td>Presencial</td>
-                                                    <td class="g-width-150">
+                                                    <td class="align-middle">Presencial</td>
+                                                    <td class="g-width-150 g-pa-0 align-middle">
                                                         <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
                                                             <i class="fa fa-info"></i>
                                                         </span>
@@ -293,7 +253,7 @@
                                                         </a>
                                                     </td>
                                                     <td>Presencial</td>
-                                                    <td class="g-width-150">
+                                                    <td class="g-width-150 g-pa-0 align-middle">
                                                         <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
                                                             <i class="fa fa-info"></i>
                                                         </span>
@@ -310,7 +270,7 @@
                                                         <a href="#">Control de Aguas de Aljibe</a>
                                                     </td>
                                                     <td>Presencial</td>
-                                                    <td class="g-width-150">
+                                                    <td class="g-width-150 g-pa-0 align-middle">
                                                         <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
                                                             <i class="fa fa-info"></i>
                                                         </span>
@@ -327,7 +287,7 @@
                                                         <a href="#">Control del Agua de Consumo en Instalaciones Interiores</a>
                                                     </td>
                                                     <td>Presencial</td>
-                                                    <td class="g-width-150">
+                                                    <td class="g-width-150 g-pa-0 align-middle">
                                                         <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
                                                             <i class="fa fa-info"></i>
                                                         </span>

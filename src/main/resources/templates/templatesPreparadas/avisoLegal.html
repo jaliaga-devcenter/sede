@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Aviso Legal</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <section class="g-py-15 g-pl-30 g-pr-30">
+            <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.aviso.legal.page.header})}"></div>
+
+            <div>
+                <p>
+                    <span th:text="#{message.aviso.legal.section.one.p.one.span.one}">En cumplimiento de las disposiciones vigentes en materia de acceso a los servicios de internet y Administraci&oacute;n
+                        Electr&oacute;nica, el </span>
+                    <strong th:text="#{message.aviso.legal.section.one.p.one.strong}">Excmo. Ayuntamiento de Murcia</strong>
+                    <span th:text="#{message.aviso.legal.section.one.p.one.span.two}"> informa a los usuarios que esta Sede Electr&oacute;nica est&aacute; gestionada por el Servicio de Inform&aacute;tica
+                        y la Oficina de Gobierno del Excmo. Ayuntamiento de Murcia.</span>
+                </p>
+                <p th:text="#{message.aviso.legal.section.one.p.two}">La informaci&oacute;n y los contenidos que se proporcionan en esta Sede Electr&oacute;nica son facilitados
+                    por los diferentes Servicios y Departamentos Municipales.</p>
+                <p>
+                    <span th:text="#{message.aviso.legal.section.one.p.three.span.one}">Dando cumplimiento a lo dispuesto en el art&iacute;culo 10 de la Ley 34/2002, de 11 de julio, de Servicios
+                        de la Sociedad de la Informaci&oacute;n y de Comercio Electr&oacute;nico, se informa en este aviso
+                        legal que </span>
+                    <strong th:text="#{message.aviso.legal.section.one.p.three.strong}">www.murcia.es</strong>
+                    <span th:text="#{message.aviso.legal.section.one.p.three.span.two}"> es un nombre de dominio, de titularidad el Excmo. Ayuntamiento de Murcia, quien proporciona servicios
+                        de Administraci&oacute;n Electr&oacute;nica a sus ciudadanos a trav&eacute;s de su sede electr&oacute;nica
+                        en la direcci&oacute;n </span>
+                    <a href="https://sede.murcia.es." th:text="#{message.aviso.legal.section.one.p.three.link}">https://sede.murcia.es.</a>
+                </p>
+                <p th:text="#{message.aviso.legal.section.one.p.four}">A efectos de lo dispuesto en el mencionado art&iacute;culo 10, los datos de titularidad de los servicios
+                    prestados desde el Sitio Web de la Sede Electr&oacute;nica son los siguientes:</p>
+                <ul>
+                    <li>
+                        <strong th:text="#{message.aviso.legal.section.one.li.one.strong}">Entidad titular de los servicios:</strong>
+                        <span th:text="#{message.aviso.legal.section.one.li.one.span}">Excmo. Ayuntamiento de Murcia</span>
+                    </li>
+                    <li>
+                        <strong th:text="#{message.aviso.legal.section.one.li.two.strong}">Direcci&oacute;n:</strong>
+                        <span th:text="#{message.aviso.legal.section.one.li.two.span}">Glorieta de España 1, 30004 - Murcia</span>
+                    </li>
+                    <li>
+                        <strong th:text="#{message.aviso.legal.section.one.li.three.strong}">CIF:</strong>
+                        <span th:text="#{message.aviso.legal.section.one.li.three.span}">P-3003000-A</span>
+                    </li>
+                    <li>
+                        <strong th:text="#{message.aviso.legal.section.one.li.four.strong}">Tel&eacute;fono:</strong>
+                        <span th:text="#{message.aviso.legal.section.one.li.four.span}">968 35 86 00</span>
+                    </li>
+                    <li>
+                        <strong th:text="#{message.aviso.legal.section.one.li.five.strong}">Correo electr&oacute;nico:</strong>
+                        <a href="mailto:sedeelectronica@ayto-murcia.es" th:text="#{message.aviso.legal.section.one.li.five.link}">sedeelectronica@ayto-murcia.es</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 th:text="#{message.aviso.legal.section.two.header}">Condiciones generales de uso</h4>
+                <p th:text="#{message.aviso.legal.section.two.p.one}">Tanto el acceso a este Sitio Web, como el uso que pueda hacerse de la informaci&oacute;n contenida en la
+                    misma son de la exclusiva responsabilidad de quien lo realiza.</p>
+                <p th:text="#{message.aviso.legal.section.two.p.two}">El Ayuntamiento de Murcia no se hace responsable de ninguna consecuencia, daño o perjuicio que pudieran derivarse
+                    de dicho acceso o uso de informaci&oacute;n, con excepci&oacute;n de todas aquellas actuaciones que resulten
+                    de la aplicaci&oacute;n de las disposiciones legales a las que deba someterse en el estricto ejercicio
+                    de sus competencias.</p>
+                <p th:text="#{message.aviso.legal.section.two.p.three}">Asimismo, El Ayuntamiento de Murcia se reserva el derecho a restringir el acceso al sitio web a aquellos
+                    usuarios que incumplan lo dispuesto en el presente documento de aviso legal.</p>
+            </div>
+
+            <div>
+                <h4 th:text="#{message.aviso.legal.section.three.header}">Propiedad Intelectual e industrial</h4>
+                <p th:text="#{message.aviso.legal.section.three.p.one}">Este sitio web y todos sus contenidos, incluyendo los textos, im&aacute;genes, sonido y cualquier otro material,
+                    son propiedad del Ayuntamiento de Murcia, y por tanto todos los derechos est&aacute;n reservados.</p>
+                <p th:text="#{message.aviso.legal.section.three.p.two}">S&oacute;lo est&aacute; autorizado el uso personal no comercial. No est&aacute; permitida la modificaci&oacute;n
+                    de la web ni de sus contenidos. La utilizaci&oacute;n indebida o no autorizada de la informaci&oacute;n
+                    contenida en esta web, as&iacute; como los perjuicios que se puedan ocasionar en los derechos de la propiedad
+                    intelectual del Organismo dar&aacute; lugar a las acciones que legalmente correspondan y, en su caso,
+                    a las responsabilidades que de dicho ejercicio se deriven.</p>
+                <p th:text="#{message.aviso.legal.section.three.p.three}">No se garantiza que la informaci&oacute;n facilitada a trav&eacute;s de esta web reproduzca exactamente un
+                    texto adoptado oficialmente. S&oacute;lo los textos publicados en los respectivos boletines oficiales
+                    tienen car&aacute;cter de autenticidad. Las disposiciones legislativas y dem&aacute;s documentos e informaciones
+                    contenidos en este sitio tienen &uacute;nicamente car&aacute;cter informativo.</p>
+                <p th:text="#{message.aviso.legal.section.three.p.four}">El Ayuntamiento de Murcia no es responsable de la informaci&oacute;n que se pueda obtener a trav&eacute;s
+                    de los enlaces a sistemas externos que no sean dependientes del propio Ayuntamiento de Murcia.</p>
+            </div>
+
+            <div>
+                <h4 th:text="#{message.aviso.legal.section.four.header}">Enlaces</h4>
+                <p th:text="#{message.aviso.legal.section.four.p.one}">Los enlaces dentro de la Sede Electr&oacute;nica del Ayuntamiento de Murcia pueden dirigir a p&aacute;ginas
+                    web de terceros ajenos al Ayuntamiento de Murcia sobre la que &eacute;ste no ejerce ning&uacute;n control.
+                    Por este motivo, El ayuntamiento de Murcia no asume ninguna responsabilidad sobre el contenido, informaciones
+                    o servicios que pudieran aparecer en dichos sitios y en consecuencia no ser&aacute; en ning&uacute;n
+                    caso responsable de los daños y perjuicios que pudieran derivarse.</p>
+            </div>
+
+            <div>
+                <h4 th:text="#{message.aviso.legal.section.five.header}">Pol&iacute;tica de Cookies</h4>
+                <p th:text="#{message.aviso.legal.section.five.p.one}">Cookie es un fichero que se descarga en su ordenador al acceder a determinadas p&aacute;ginas web. Las cookies
+                    permiten a una p&aacute;gina web, entre otras cosas, almacenar y recuperar informaci&oacute;n sobre los
+                    h&aacute;bitos de navegaci&oacute;n de un usuario o de su equipo y, dependiendo de la informaci&oacute;n
+                    que contengan y de la forma en que utilice su equipo, pueden utilizarse para reconocer al usuario. El
+                    navegador del usuario memoriza cookies en el disco duro solamente durante la sesi&oacute;n actual ocupando
+                    un espacio de memoria m&iacute;nimo y no perjudicando al ordenador. Las cookies no contienen ninguna
+                    clase de informaci&oacute;n personal espec&iacute;fica, y la mayor&iacute;a de las mismas se borran del
+                    disco duro al finalizar la sesi&oacute;n de navegador (las denominadas cookies de sesi&oacute;n).</p>
+                <p th:text="#{message.aviso.legal.section.five.p.two}">La mayor&iacute;a de los navegadores aceptan como est&aacute;ndar a las cookies y, con independencia de las
+                    mismas, permiten o impiden en los ajustes de seguridad las cookies temporales o memorizadas.</p>
+                <p th:text="#{message.aviso.legal.section.five.p.three}">Sin su expreso consentimiento –mediante la activaci&oacute;n de las cookies en su navegador– El Ayuntamiento
+                    de Murcia no enlazar&aacute; en las cookies los datos memorizados con sus datos personales proporcionados
+                    en el momento del registro o el tr&aacute;mite.</p>
+                <p>
+                    <strong th:text="#{message.aviso.legal.section.five.p.four.strong}">¿Qu&eacute; tipos de cookies utiliza esta p&aacute;gina web?</strong>
+                    <ul>
+                        <li>
+                            <strong th:text="#{message.aviso.legal.section.five.ul.one.li.one.strong}">Cookies t&eacute;cnicas:</strong>
+                            <span th:text="#{message.aviso.legal.section.five.ul.one.li.one.span}">Son aqu&eacute;llas que permiten al usuario la navegaci&oacute;n a trav&eacute;s de una p&aacute;gina
+                                web, plataforma o aplicaci&oacute;n y la utilizaci&oacute;n de las diferentes opciones o
+                                servicios que en ella existan como, por ejemplo, controlar el tr&aacute;fico y la comunicaci&oacute;n
+                                de datos, identificar la sesi&oacute;n, acceder a partes de acceso restringido, recordar
+                                los elementos que integran un pedido, realizar el proceso de compra de un pedido, realizar
+                                la solicitud de inscripci&oacute;n o participaci&oacute;n en un evento, utilizar elementos
+                                de seguridad durante la navegaci&oacute;n, almacenar contenidos para la difusi&oacute;n de
+                                videos o sonido o compartir contenidos a trav&eacute;s de redes sociales.</span>
+                        </li>
+                        <li>
+                            <strong th:text="#{message.aviso.legal.section.five.ul.one.li.two.strong}">Cookies de personalizaci&oacute;n:</strong>
+                            <span th:text="#{message.aviso.legal.section.five.ul.one.li.two.span}">Son aqu&eacute;llas que permiten al usuario acceder al servicio con algunas caracter&iacute;sticas
+                                de car&aacute;cter general predefinidas en funci&oacute;n de una serie de criterios en el
+                                terminal del usuario como por ejemplo serian el idioma, el tipo de navegador a trav&eacute;s
+                                del cual accede al servicio, la configuraci&oacute;n regional desde donde accede al servicio,
+                                etc.
+                            </span>
+                        </li>
+                        <li>
+                            <strong th:text="#{message.aviso.legal.section.five.ul.one.li.three.strong}">Cookies de an&aacute;lisis:</strong>
+                            <span th:text="#{message.aviso.legal.section.five.ul.one.li.three.span}">Son aqu&eacute;llas que bien tratadas por nosotros o por terceros, nos permiten cuantificar
+                                el n&uacute;mero de usuarios y as&iacute; realizar la medici&oacute;n y an&aacute;lisis estad&iacute;stico
+                                de la utilizaci&oacute;n que hacen los usuarios del servicio ofertado. Para ello se analiza
+                                su navegaci&oacute;n en nuestra p&aacute;gina web con el fin de mejorar la oferta de productos
+                                o servicios que le ofrecemos.</span>
+                        </li>
+                        <li>
+                            <strong th:text="#{message.aviso.legal.section.five.ul.one.li.four.strong}">Cookies de terceros:</strong>
+                            <span th:text="#{message.aviso.legal.section.five.ul.one.li.four.span}">La Web de la Sede Electr&oacute;nica del Ayuntamiento de Murcia puede utilizar servicios de
+                                terceros que, por cuenta del Ayuntamiento de Murcia, recopilaran informaci&oacute;n con fines
+                                estad&iacute;sticos, de uso del Sitio Web por parte del usuario y para la prestaci&oacute;n
+                                de otros servicios relacionados con la actividad del Website y otros servicios de Internet.</span>
+                        </li>
+                        <li>
+                            <spa th:text="#{message.aviso.legal.section.five.ul.one.li.five.span.one}" n>En particular, este sitio Web utiliza </span>
+                                <strong th:text="#{message.aviso.legal.section.five.ul.one.li.five.strong}">Google Analytics</strong>
+                                <span th:text="#{message.aviso.legal.section.five.ul.one.li.five.span.two}">, un servicio anal&iacute;tico de web prestado por Google, Inc. con domicilio en los Estados
+                                    Unidos con sede central en 1600 Amphitheatre Parkway, Mountain View, California 94043.
+                                    Para la prestaci&oacute;n de estos servicios, estos utilizan cookies que recopilan la
+                                    informaci&oacute;n, incluida la direcci&oacute;n IP del usuario, que ser&aacute; transmitida,
+                                    tratada y almacenada por Google en los t&eacute;rminos fijados en la Web Google.com.
+                                    Incluyendo la posible transmisi&oacute;n de dicha informaci&oacute;n a terceros por razones
+                                    de exigencia legal o cuando dichos terceros procesen la informaci&oacute;n por cuenta
+                                    de Google.</span>
+                        </li>
+                    </ul>
+                </p>
+                <p th:text="#{message.aviso.legal.section.five.p.five}">El usuario acepta expresamente, por la utilizaci&oacute;n de este Sitio web, el tratamiento de la informaci&oacute;n
+                    recabada en la forma y con los fines anteriormente mencionados. Y asimismo reconoce conocer la posibilidad
+                    de rechazar el tratamiento de tales datos o informaci&oacute;n rechazando el uso de Cookies mediante
+                    la selecci&oacute;n de la configuraci&oacute;n apropiada a tal fin en su navegador. Si bien esta opci&oacute;n
+                    de bloqueo de Cookies en su navegador puede no permitirle el uso pleno de todas las funcionalidades del
+                    Website.
+                </p>
+                <p>
+                    <span th:text="#{message.aviso.legal.section.five.p.six}">Puede usted permitir, bloquear o eliminar las cookies instaladas en su equipo mediante la configuraci&oacute;n
+                        de las opciones del navegador instalado en su ordenador:</span>
+                    <ul>
+                        <li>
+                            <a href="http://support.google.com/chrome/bin/answer.py?hl=es&answer=95647" th:text="#{message.aviso.legal.section.five.ul.two.li.one}">Chrome</a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/es-es/windows7/how-to-manage-cookies-in-internet-explorer-9" th:text="#{message.aviso.legal.section.five.ul.two.li.two}">Explorer</a>
+                        </li>
+                        <li>
+                            <a href="http://support.mozilla.org/es/kb/habilitar-y-deshabilitar-cookies-que-los-sitios-we" th:text="#{message.aviso.legal.section.five.ul.two.li.three}">Firefox</a>
+                        </li>
+                        <li>
+                            <a href="http://support.apple.com/kb/ph5042" th:text="#{message.aviso.legal.section.five.ul.two.li.four}">Safari</a>
+                        </li>
+                    </ul>
+                </p>
+            </div>
+
+            <div>
+                <h4 th:text="#{message.aviso.legal.section.six.header}">Pol&iacute;tica de Privacidad</h4>
+                <p th:text="#{message.aviso.legal.section.six.p.one}">De conformidad con la Ley Org&aacute;nica 15/1999 de 13 de diciembre de Protecci&oacute;n de Datos de Car&aacute;cter
+                    Personal (LOPD), los datos suministrados por el usuario quedar&aacute;n incorporados en un fichero automatizado,
+                    el cual ser&aacute; procesado exclusivamente para la finalidad descrita. Estos se recoger&aacute;n a
+                    trav&eacute;s de los mecanismos correspondientes, los cuales s&oacute;lo contendr&aacute;n los campos
+                    imprescindibles para poder prestar el servicio requerido por el usuario.</p>
+                <p th:text="#{message.aviso.legal.section.six.p.two}">Los datos de car&aacute;cter personal ser&aacute;n tratados con el grado de protecci&oacute;n adecuado, seg&uacute;n
+                    el Real Decreto 1720/2007 de 21 de diciembre, tom&aacute;ndose las medidas de seguridad necesarias para
+                    evitar su alteraci&oacute;n, p&eacute;rdida, tratamiento o acceso no autorizado por parte de terceros
+                    que lo puedan utilizar para finalidades distintas para las que han sido solicitados al Usuario. Los datos
+                    de car&aacute;cter personal objeto del tratamiento automatizado s&oacute;lo podr&aacute;n ser cedidos,
+                    seg&uacute;n consta en el art&iacute;culo 11 de la Ley Org&aacute;nica 15/1999 de 13 de diciembre, para
+                    el cumplimiento de fines directamente relacionados con las funciones leg&iacute;timas del cedente y del
+                    cesionario con el previo consentimiento del afectado.</p>
+            </div>
+
+            <div>
+                <h4 th:text="#{message.aviso.legal.section.seven.header}">Pol&iacute;tica de certificados electr&oacute;nicos</h4>
+                <p th:text="#{message.aviso.legal.section.seven.p.one}">Para poder acceder a los tr&aacute;mites de la Sede Electr&oacute;nica del Ayuntamiento de Murcia a trav&eacute;s
+                    de certificado electr&oacute;nico, deber&aacute; acreditar su identidad y firmar electr&oacute;nicamente
+                    las solicitudes y escritos presentados.</p>
+                <p>
+                    <span th:text="#{message.aviso.legal.section.seven.p.two.span.one}">A tal fin, ser&aacute;n admitidos el </span>
+                    <strong th:text="#{message.aviso.legal.section.seven.p.two.strong.one}">DNI electr&oacute;nico</strong>
+                    <span th:text="#{message.aviso.legal.section.seven.p.two.span.two}">, los certificados de la Agencia de Tecnolog&iacute;a y Certificaci&oacute;n Electr&oacute;nica de la
+                        Generalitat Valenciana (
+                    </span>
+                    <strong th:text="#{message.aviso.legal.section.seven.p.two.strong.two}">ACCV</strong>
+                    <span th:text="#{message.aviso.legal.section.seven.p.two.span.three}">) y, en general, los certificados electr&oacute;nicos soportados por la Plataforma </span>
+                    <strong th:text="#{message.aviso.legal.section.seven.p.two.strong.three}">@firma</strong>
+                    <span th:text="#{message.aviso.legal.section.seven.p.two.span.four}">, esto es, los emitidos por los prestadores de servicios reconocidos que puede consultar en la p&aacute;gina
+                        del Consejo Superior de Administraci&oacute;n Electr&oacute;nica del Ministerio de Hacienda y Administraciones
+                        P&uacute;blicas.
+                    </span>
+                </p>
+            </div>
+
+            <div>
+                <h4 th:text="#{message.aviso.legal.section.eight.header}">Legislaci&oacute;n aplicable</h4>
+                <p th:text="#{message.aviso.legal.section.eight.p.one}">Para la resoluci&oacute;n de todas las controversias o cuestiones relacionadas con el presente sitio web
+                    o de las actividades en &eacute;l desarrolladas, ser&aacute; de aplicaci&oacute;n la legislaci&oacute;n
+                    española, siendo competentes para la resoluci&oacute;n de todos los conflictos derivados o relacionados
+                    con su uso, los Juzgados y Tribunales de Murcia Capital.
+                </p>
+                <p th:text="#{message.aviso.legal.section.eight.p.two}">En caso de que alguna de las disposiciones contenidas en el presente aviso legal sea declarada nula, se proceder&aacute;
+                    a la retirada o sustituci&oacute;n de la misma. No obstante lo anterior, dicha declaraci&oacute;n de
+                    nulidad no afectar&aacute; a la validez del resto de disposiciones recogidas en el presente documento.</p>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Acceso</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <section class="g-py-15 g-pl-30 g-pr-30">
+            <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.acceso.page.header})}"></div>
+
+            <div>
+                <p>
+                    <span th:text="#{message.acceso.p.one.span.one}">Para acceder a la </span>
+                    <strong th:text="#{message.acceso.p.one.strong.one}">tramitaci&oacute;n electr&oacute;nica</strong>
+                    <span th:text="#{message.acceso.p.one.span.two}">, as&iacute; como a la </span>
+                    <strong th:text="#{message.acceso.p.one.strong.two}">carpeta del ciudadano</strong>
+                    <span th:text="#{message.acceso.p.one.span.three}"> y a toda la </span>
+                    <strong th:text="#{message.acceso.p.one.strong.three}">informaci&oacute;n personal</strong>
+                    <span th:text="#{message.acceso.p.one.span.four}"> relacionada, Ud. debe acreditar su identidad mediante el uso de un certificado electr&oacute;nico.</span>
+                </p>
+
+                <p>
+                    <span th:text="#{message.acceso.p.two}">Actualmente, la Sede Electr&oacute;nica del Ayuntamiento de Murcia admite certificados electr&oacute;nicos
+                        de los siguientes proveedores de servicios de certificaci&oacute;n:</span>
+                    <ul>
+                        <li>
+                            <strong th:text="#{message.acceso.p.two.li.one.strong}">DNI electr&oacute;nico</strong>
+                            <span th:text="#{message.acceso.p.two.li.one.span}"> (Direcci&oacute;n General de Polic&iacute;a - Ministerio del Interior)</span>
+                        </li>
+                        <li>
+                            <strong th:text="#{message.acceso.p.two.li.two.strong}">ACCV</strong>
+                            <span th:text="#{message.acceso.p.two.li.two.span}"> (Agencia de Tecnolog&iacute;a y Certificaci&oacute;n Electr&oacute;nica de la Generalitat Valenciana)</span>
+                        </li>
+                        <li>
+                            <span th:text="#{message.acceso.p.two.li.three.span.one}">En general, todos aquellos certificados reconocidos en la plataforma </span>
+                            <strong th:text="#{message.acceso.p.two.li.three.strong}">@Firma</strong>
+                            <span th:text="#{message.acceso.p.two.li.three.span.two}"> del Ministerio de Hacienda y Administraciones P&uacute;blicas</span>
+                        </li>
+                    </ul>
+                </p>
+
+                <p th:text="#{message.acceso.p.three}">Puede acceder con su certificado electr&oacute;nico a trav&eacute;s del siguiente enlace:</p>
+            </div>
+
+            <div class="text-center">
+                <p>
+                    <a href="#" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.acceso.button.one}">Acceso con Certificado Electr&oacute;nico</a>
+                </p>
+                <p>
+                    <a href="#">
+                        <strong th:text="#{message.acceso.button.two}">C&oacute;mo obtener el Certificado electr&oacute;nico</strong>
+                    </a>
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    <strong th:text="#{message.acceso.p.four.strong}">AVISO:</strong>
+                    <span th:text="#{message.acceso.p.four.span}">Una vez acreditada su identidad mediante el uso del certificado electr&oacute;nico correspondiente,
+                        si Ud. desea cerrar la sesi&oacute;n o cambiar la identidad del usuario mediante el uso de otro certificado
+                        electr&oacute;nico, deber&aacute; cerrar previamente el navegador y abrir una sesi&oacute;n de nuevo.</span>
+                </p>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
