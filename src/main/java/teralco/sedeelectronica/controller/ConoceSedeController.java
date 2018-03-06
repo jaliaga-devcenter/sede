@@ -1,10 +1,7 @@
 package teralco.sedeelectronica.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import teralco.sedeelectronica.model.CSVValidation;
 
 @Controller
 public class ConoceSedeController {
@@ -45,12 +42,11 @@ public class ConoceSedeController {
 		return "sede/firma-electronica-y-certificados-admitidos";
 	}
 
-	@RequestMapping("/verificacion-de-documentos")
-	public String verificacion(Model model) {
-		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
-		model.addAttribute("CSVValidation", new CSVValidation());
-		return "verifirma/verifirma";
-	}
+//	@RequestMapping("/verificacion-de-documentos")
+//	public String verificacion(Model model) {
+//		model.addAttribute("CSVValidation", new CSVValidation());
+//		return "verifirma/verifirma-sede";
+//	}
 
 	@RequestMapping("/fecha-y-hora-oficial")
 	public String fechaYhora() {

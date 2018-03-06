@@ -34,9 +34,7 @@ public class NoticiaController {
 	}
 
 	@RequestMapping(value = "/noticias", produces = "text/html;charset=UTF-8")
-
-	public String licitaciones(Model model, @PageableDefault(value = 10) Pageable pageable) {
-		// DEVOLVER LA LISTA DE NOTICIAS ACTUALES
+	public String noticias(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		Page<Noticia> pages = this.noticiaService.listAllByPage(pageable);
 		model.addAttribute("noticias", pages);
 		PageWrapper<Noticia> page = new PageWrapper<>(pages, "/noticias");

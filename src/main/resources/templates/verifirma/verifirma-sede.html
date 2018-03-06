@@ -2,7 +2,8 @@
 <html lang="es" layout:decorator="/layouts/main">
 
 <head>
-    <title>Paradas programadas</title>
+    <title th:text="#{message.title.sede.verifirma}+' - '+#{message.title.sede}">Verifirma</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -17,12 +18,7 @@
                 <!-- End Sidebar -->
 
                 <div class="col-lg-9">
-                    <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.paradas.programadas.page.header})}"></div>
-
-                    <p>
-                        <span>No existen paradas programadas para el servicio que presta la </span>
-                        <strong>Sede Electrónica.</strong>
-                    </p>
+                    <div th:replace="~{fragments/verifirmaView :: verifirma}"></div>
                 </div>
             </div>
         </section>
