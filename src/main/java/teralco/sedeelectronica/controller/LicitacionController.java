@@ -27,6 +27,8 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class LicitacionController {
 
+	private static final String MEDIO_MODEL = "medios";
+
 	private static String list = "licitaciones/licitaciones";
 	private static String redirList = "redirect:/licitaciones";
 	private static String form = "licitaciones/formLicitacion";
@@ -49,7 +51,7 @@ public class LicitacionController {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
 		Page<Licitacion> pages = this.licitacionService.listAllByPage(pageable);
 		model.addAttribute("licitaciones", pages);
-		PageWrapper<Licitacion> page = new PageWrapper<Licitacion>(pages, "/licitaciones");
+		PageWrapper<Licitacion> page = new PageWrapper<>(pages, "/licitaciones");
 		model.addAttribute("page", page);
 
 		model.addAttribute("encrypt", this.encryptUtils);
@@ -59,14 +61,14 @@ public class LicitacionController {
 	@RequestMapping("/licitaciones/create")
 	public String create(Model model) {
 		model.addAttribute("licitacion", new Licitacion());
-		model.addAttribute("medios", Medio.values());
+		model.addAttribute(MEDIO_MODEL, Medio.values());
 		return form;
 	}
 
 	@RequestMapping("/licitaciones/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 		model.addAttribute("licitacion", this.licitacionService.get(id));
-		model.addAttribute("medios", Medio.values());
+		model.addAttribute(MEDIO_MODEL, Medio.values());
 		return form;
 	}
 
@@ -81,7 +83,7 @@ public class LicitacionController {
 	public String save(@Valid @ModelAttribute("licitacion") Licitacion lici, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("medios", Medio.values());
+			model.addAttribute(MEDIO_MODEL, Medio.values());
 			return form;
 		}
 

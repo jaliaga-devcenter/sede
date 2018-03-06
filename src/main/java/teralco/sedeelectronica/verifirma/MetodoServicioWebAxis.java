@@ -23,7 +23,8 @@ public class MetodoServicioWebAxis {
 	private List<Object> parametrosEntrada = new ArrayList<Object>();
 	private ServicioWebAxisUtils servicio;
 
-	public static MetodoServicioWebAxis crearMetodoServicioWeb(String url, String nombreServicio, String nombreMetodo) throws ServiceException {
+	public static MetodoServicioWebAxis crearMetodoServicioWeb(String url, String nombreServicio, String nombreMetodo)
+			throws ServiceException {
 		URL endpoint;
 		try {
 			endpoint = new URL(url);
@@ -35,7 +36,8 @@ public class MetodoServicioWebAxis {
 		return stub.getMetodo(nombreMetodo);
 	}
 
-	protected MetodoServicioWebAxis(ServicioWebAxisUtils _servicio, String direccionServicio, String nombreMetodo) throws ServiceException {
+	protected MetodoServicioWebAxis(ServicioWebAxisUtils _servicio, String direccionServicio, String nombreMetodo)
+			throws ServiceException {
 		this.servicio = _servicio;
 
 		QName operationName = new QName(direccionServicio, nombreMetodo);
@@ -71,32 +73,30 @@ public class MetodoServicioWebAxis {
 		}
 
 		QName qName = MetodoServicioWebAxis.getQNameFromJavaClass(valor.getClass());
-		if (qName == null) {
-			if (valor.getClass() == byte[].class) {
-				qName = XMLType.SOAP_BASE64;
-			}
+		if (qName == null && valor.getClass() == byte[].class) {
+			qName = XMLType.SOAP_BASE64;
+
 		}
 		if (qName == null) {
 			throw new IllegalArgumentException("valor no pertenece a una clase permitida para invocar al servicio web");
 		}
 
-		ParameterDesc param = new ParameterDesc(new javax.xml.namespace.QName("", nombre), org.apache.axis.description.ParameterDesc.IN, qName, valor.getClass(), false, false);
+		ParameterDesc param = new ParameterDesc(new javax.xml.namespace.QName("", nombre),
+				org.apache.axis.description.ParameterDesc.IN, qName, valor.getClass(), false, false);
 
 		this.operationDesc.addParameter(param);
 		this.parametrosEntrada.add(valor);
 	}
 
-
 	public void setTipoSalidaFichero() {
 		this.operationDesc.setReturnClass(DataHandler.class);
 	}
-
 
 	public Object invocar() throws RemoteException {
 		this.call.setOperation(this.operationDesc);
 		return this.call.invoke(this.parametrosEntrada.toArray());
 	}
-	
+
 	public static QName getQNameFromJavaClass(Class<?> clase) {
 		if (clase == String.class) {
 			return XMLType.XSD_STRING;
@@ -107,5 +107,5 @@ public class MetodoServicioWebAxis {
 
 		return null;
 	}
-	
+
 }

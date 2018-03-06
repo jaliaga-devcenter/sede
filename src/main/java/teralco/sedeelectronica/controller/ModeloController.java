@@ -50,7 +50,7 @@ public class ModeloController {
 		model.addAttribute("encrypt", this.encryptUtils);
 		Page<Modelo> pages = this.modeloService.listAllByPage(pageable);
 		model.addAttribute("modelos", pages);
-		PageWrapper<Modelo> page = new PageWrapper<Modelo>(pages, "/modelos");
+		PageWrapper<Modelo> page = new PageWrapper<>(pages, "/modelos");
 		model.addAttribute("page", page);
 
 		return list;

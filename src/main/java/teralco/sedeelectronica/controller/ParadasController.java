@@ -34,10 +34,10 @@ public class ParadasController {
 
 	@RequestMapping(value = "/paradas", produces = "text/html;charset=UTF-8")
 	public String aperturas(Model model, @PageableDefault(value = 10) Pageable pageable) {
-		// DEVOLVER LA LISTA DE DOCUMENTOS ACTUALES
+		// DEVOLVER LA LISTA DE PARADAS ACTUALES
 		Page<Parada> pages = this.paradaService.listAllByPage(pageable);
 		model.addAttribute("paradas", pages);
-		PageWrapper<Parada> page = new PageWrapper<Parada>(pages, "/paradas");
+		PageWrapper<Parada> page = new PageWrapper<>(pages, "/paradas");
 		model.addAttribute("page", page);
 		model.addAttribute("", this.paradaService.list());
 		return list;

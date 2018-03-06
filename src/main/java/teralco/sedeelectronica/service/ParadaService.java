@@ -27,8 +27,8 @@ public class ParadaService {
 	}
 
 	// save
-	public Parada save(Parada doc) {
-		return this.paradaRepository.save(doc);
+	public Parada save(Parada parada) {
+		return this.paradaRepository.save(parada);
 	}
 
 	public void delete(Long id) {

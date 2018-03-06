@@ -16,6 +16,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Controller
 public class CustomErrorController implements ErrorController {
 
+	private static final String ERROR = "error";
 	private static final String ERROR_PATH = "/error";
 	private static final String ERROR_TEMPLATE = "customError";
 
@@ -31,7 +32,7 @@ public class CustomErrorController implements ErrorController {
 		Map<String, Object> error = getErrorAttributes(request, true);
 		model.addAttribute("timestamp", error.get("timestamp"));
 		model.addAttribute("status", error.get("status"));
-		model.addAttribute("error", error.get("error"));
+		model.addAttribute(ERROR, error.get(ERROR));
 		model.addAttribute("message", error.get("message"));
 		model.addAttribute("path", error.get("path"));
 		return ERROR_TEMPLATE;
@@ -44,7 +45,7 @@ public class CustomErrorController implements ErrorController {
 
 	@RequestMapping("/404")
 	public String pageNotFound(Model model, HttpServletRequest request) {
-		model.addAttribute("error", getErrorAttributes(request, true));
+		model.addAttribute(ERROR, getErrorAttributes(request, true));
 		return "404";
 	}
 

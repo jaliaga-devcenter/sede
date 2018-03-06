@@ -49,7 +49,7 @@ public class AperturaController {
 		// DEVOLVER LA LISTA DE APERTURAS ACTUALES
 		Page<Apertura> pages = this.aperturaService.listAllByPage(pageable);
 		model.addAttribute("aperturas", pages);
-		PageWrapper<Apertura> page = new PageWrapper<Apertura>(pages, "/aperturas");
+		PageWrapper<Apertura> page = new PageWrapper<>(pages, "/aperturas");
 		model.addAttribute("page", page);
 
 		return list;

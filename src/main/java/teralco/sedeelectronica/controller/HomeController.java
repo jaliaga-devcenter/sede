@@ -24,6 +24,9 @@ import teralco.sedeelectronica.gexflow.exception.GexflowWSException;
 @Controller
 public class HomeController {
 
+	private static final String CAT_MODEL = "categorias";
+	private static final String ICONO_MODEL = "iconos";
+
 	private String idioma = "es";
 	private static final Integer ENTIDAD = 0;
 	protected Locale locale;
@@ -47,10 +50,10 @@ public class HomeController {
 			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 		}
 		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
-		
-		model.addAttribute("categorias", categorias);
-		model.addAttribute("iconos", iconos);
-		
+
+		model.addAttribute(CAT_MODEL, categorias);
+		model.addAttribute(ICONO_MODEL, iconos);
+
 		return "index";
 	}
 
@@ -69,12 +72,26 @@ public class HomeController {
 		Optional<CategoriaDTO> categoria = categorias.stream().filter(cat -> cat.getIdCategoria().equals(idCat))
 				.findFirst();
 
-		model.addAttribute("categorias", categorias);
-		model.addAttribute("iconos", iconos);
-		
+		model.addAttribute(CAT_MODEL, categorias);
+		model.addAttribute(ICONO_MODEL, iconos);
 		model.addAttribute("currentCat", categoria.isPresent() ? categoria.get() : null);
 		
 		return "servicios/areas";
+	}
+
+	@RequestMapping("/tramites")
+	public String tramites(Model model) {
+		List<CategoriaDTO> categorias;
+		try {
+			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+		} catch (GexflowWSException e) {
+			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
+		}
+		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
+
+		model.addAttribute(CAT_MODEL, categorias);
+		model.addAttribute(ICONO_MODEL, iconos);
+		return "tramites";
 	}
 
 	@RequestMapping("/perfil-del-contratante")

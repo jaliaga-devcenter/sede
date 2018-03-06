@@ -102,4 +102,13 @@ create table PARADA (
    DESCRIPCION			TEXT 			null,
    constraint PK_PARADA primary key (ID)
  );
+
+ create table NOTICIA (
+   ID                   SERIAL 		not null,
+   TITULO			TEXT 			null,
+   DESCRIPCION			TEXT 			null,
+   constraint PK_NOTICIA primary key (ID)
+ );
+ 
+
  
