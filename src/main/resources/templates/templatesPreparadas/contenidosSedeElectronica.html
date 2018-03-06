@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Contenidos de la Sede</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <section class="g-py-15 g-pl-30 g-pr-30">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 g-pr-40--lg g-mb-50 g-mb-0--lg">
+                    <div th:replace="~{fragments/sideMenuSede :: menu}"></div>
+                </div>
+                <!-- End Sidebar -->
+
+                <div class="col-lg-9">
+                    <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.contenidos.sede.page.header})}"></div>
+
+                    <div>
+                        <p th:text="#{message.contenidos.sede.p.one}">A partir de las exigencias legales que se relacionaron en el ep&iacute;grafe anterior, se expresan de forma
+                            abreviada los elementos de sede electr&oacute;nica citados y, para los casos en que se considera m&aacute;s
+                            adecuada la publicaci&oacute;n de un elemento en otro entorno web diferente a la Sede Electr&oacute;nica, se
+                            consigna el entorno o los entornos designados por el Ayuntamiento. Los elementos se agrupan por
+                            un conjunto de categor&iacute;as:</p>
+                        <ul>
+                            <li>
+                                <strong th:text="#{message.contenidos.sede.li.one.strong}">Identificaci&oacute;n:</strong>
+                                <span th:text="#{message.contenidos.sede.li.one.span}">elementos necesarios para identificaci&oacute;n o acreditaci&oacute;n con garant&iacute;as de la propia sede,
+                                    interesados, representantes, etc
+                                </span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.contenidos.sede.li.two.strong}">Publicaci&oacute;n/Informaci&oacute;n:</strong>
+                                <span th:text="#{message.contenidos.sede.li.two.span}">Publicaciones e informaciones no transaccionales, dirigidas al p&uacute;blico en general y cuyo
+                                    uso no requiere autenticaci&oacute;n</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.contenidos.sede.li.three.strong}">Procedimientos y Registro:</strong>
+                                <span th:text="#{message.contenidos.sede.li.three.span}">servicios transaccionales por excelencia de presentaci&oacute;n telem&aacute;tica de documentos a procedimientos</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.contenidos.sede.li.four.strong}">Verificaci&oacute;n:</strong>
+                                <span th:text="#{message.contenidos.sede.li.four.span}">servicios de comprobaci&oacute;n de certificados, CSV, sellos de &oacute;rgano, etc</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.contenidos.sede.li.five.strong}">Enlaces</strong>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.contenidos.sede.table.header.one}">Identificaci&oacute;n</h4>
+                        <!-- Table Striped Rows -->
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Norma</th>
+                                        <th>Art&iacute;culo</th>
+                                        <th>Elemento Sede</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Identificaci&oacute;n</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 5. Representaci&oacute;n</td>
+                                        <td>Apoderamiento apud acta</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Identificaci&oacute;n</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 6. Registros electr&oacute;nicos de apoderamientos</td>
+                                        <td>Apoderamiento apud acta</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Identificaci&oacute;n</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 66. Solicitudes de iniciaci&oacute;n</td>
+                                        <td>C&oacute;digos de identificaci&oacute;n de los &oacute;rgano, centros o unidades administrativas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Identificaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 27. Identificaci&oacute;n de sitios web</td>
+                                        <td>Identificaci&oacute;n sede</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End Table Striped Rows -->
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.contenidos.sede.table.header.two}">Publicaci&oacute;n/Informaci&oacute;n</h4>
+                        <!-- Table Striped Rows -->
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Norma</th>
+                                        <th>Art&iacute;culo</th>
+                                        <th>Elemento Sede</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 131. Publicidad de las normas</td>
+                                        <td>BORM</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 12. Cat&aacute;logo unificado de procedimientos</td>
+                                        <td>Cat&aacute;logo de Procedimientos</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 16. Ámbito de la sede electr&oacute;nica</td>
+                                        <td>C&oacute;digos de identificaci&oacute;n de los &oacute;rgano, centros o unidades administrativas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>Colectivos de tramitaci&oacute;n telem&aacute;tica obligatoria</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Disposici&oacute;n adicional cuarta. Oficinas de asistencia en materia de registros.</td>
+                                        <td>Directorio geogr&aacute;fico de oficinas de asistencia en materia de registro</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 32. Ampliaci&oacute;n</td>
+                                        <td>Eventuales ampliaciones de plazos de registro</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 31. C&oacute;mputo de plazos en los registros</td>
+                                        <td>Fecha y hora oficiales</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>Fecha y hora oficiales</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 58. Informaci&oacute;n a los usuarios</td>
+                                        <td>Fecha y hora oficiales</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 83. Informaci&oacute;n p&uacute;blica</td>
+                                        <td>Informaci&oacute;n p&uacute;blica en un procedimiento publicada en sede electr&oacute;nica</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 31. C&oacute;mputo de plazos en los registros</td>
+                                        <td>Relaci&oacute;n de d&iacute;as inh&aacute;biles para el c&oacute;mputo de plazos de registro</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 60. C&oacute;mputo de plazos</td>
+                                        <td>Relaci&oacute;n de d&iacute;as inh&aacute;biles para el c&oacute;mputo de plazos de registro</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>Relaci&oacute;n de d&iacute;as inh&aacute;biles para el c&oacute;mputo de plazos de registro</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 58. Informaci&oacute;n a los usuarios</td>
+                                        <td>Relaci&oacute;n de d&iacute;as inh&aacute;biles para el c&oacute;mputo de plazos de registro</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>Relaci&oacute;n de personal habilitado</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>Relaci&oacute;n de sistemas de autenticaci&oacute;n y firma electr&oacute;nica aceptados</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 58. Informaci&oacute;n a los usuarios</td>
+                                        <td>Relaci&oacute;n de sistemas de autenticaci&oacute;n y firma electr&oacute;nica aceptados</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 19. Tabl&oacute;n Municipal Electr&oacute;nico</td>
+                                        <td>Tabl&oacute;n de anuncios y edictos</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Publicaci&oacute;n / informaci&oacute;n</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 16. Registros</td>
+                                        <td>Texto de disposici&oacute;n de creaci&oacute;n de registros</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End Table Striped Rows -->
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.contenidos.sede.table.header.three}">Procedimiento y Registro</h4>
+                        <!-- Table Striped Rows -->
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Norma</th>
+                                        <th>Art&iacute;culo</th>
+                                        <th>Elemento Sede</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Procedimientos y Registro</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 16. Registros</td>
+                                        <td>Cat&aacute;logo de Procedimientos</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Procedimientos y Registro</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 17. Contenidos relativos a los derechos pol&iacute;ticos.</td>
+                                        <td>Cat&aacute;logo de Procedimientos</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Procedimientos y Registro</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>Cat&aacute;logo de Procedimientos</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Procedimientos y Registro</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 58. Informaci&oacute;n a los usuarios</td>
+                                        <td>Cat&aacute;logo de Procedimientos</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Procedimientos y Registro</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 56. Creaci&oacute;n y naturaleza del Registro Electr&oacute;nico</td>
+                                        <td>Registro Electr&oacute;nico</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Procedimientos y Registro</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 46. Formatos</td>
+                                        <td>Relaci&oacute;n de informaci&oacute;n y servicios ofrecidos en la sede</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Procedimientos y Registro</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>Relaci&oacute;n de registros municipales</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End Table Striped Rows -->
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.contenidos.sede.table.header.four}">Carpeta Ciudadana</h4>
+                        <!-- Table Striped Rows -->
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Norma</th>
+                                        <th>Art&iacute;culo</th>
+                                        <th>Elemento Sede</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 53. Derechos del interesado en el procedimiento administrativo</td>
+                                        <td>Acceso del interesado al estado de tramitaci&oacute;n de sus expedientes</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 53. Derechos del interesado en el procedimiento administrativo</td>
+                                        <td>Actos de tr&aacute;mite dictados</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 41. Condiciones generales para la pr&aacute;ctica de las notificaciones</td>
+                                        <td>Aviso de env&iacute;o de notificaci&oacute;n (en Carpeta)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 20. Carpeta del Ciudadano</td>
+                                        <td>Consulta de datos y expedientes propios</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 22. Acceso a los contenidos de la sede electr&oacute;nica</td>
+                                        <td>Consulta de datos y expedientes propios</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 53. Derechos del interesado en el procedimiento administrativo</td>
+                                        <td>Efectos del silencio administrativo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 20. Carpeta del Ciudadano</td>
+                                        <td>Notificaciones electr&oacute;nicas</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 42. Pr&aacute;ctica de las notificaciones en papel.</td>
+                                        <td>Notificaciones en papel en Carpeta</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 43. Pr&aacute;ctica de las notificaciones a trav&eacute;s de medios electr&oacute;nicos</td>
+                                        <td>Notificaciones en papel en Carpeta. Acceso por interesado o representante</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 53. Derechos del interesado en el procedimiento administrativo</td>
+                                        <td>Obtenci&oacute;n de copias de los documentos contenidos en los expedientes propios</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 21. Operatoria para la validaci&oacute;n de copias verificables</td>
+                                        <td>Obtenci&oacute;n de copias de los documentos contenidos en los expedientes propios</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 49. Obtenci&oacute;n de copias verificables de documentos electr&oacute;nicos aut&eacute;nticos</td>
+                                        <td>Obtenci&oacute;n de copias de los documentos contenidos en los expedientes propios</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 53. Derechos del interesado en el procedimiento administrativo</td>
+                                        <td>Órgano instructor</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Carpeta</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 42. Pr&aacute;ctica de las notificaciones en papel.</td>
+                                        <td>Posibilidad de pasar a notificaciones electr&oacute;nicas</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End Table Striped Rows -->
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.contenidos.sede.table.header.five}">Verificaci&oacute;n</h4>
+                        <!-- Table Striped Rows -->
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Norma</th>
+                                        <th>Art&iacute;culo</th>
+                                        <th>Elemento Sede</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Verificaci&oacute;n</td>
+                                        <td>Ley 39/2015</td>
+                                        <td>Art. 27. Validez y eficacia de las copias realizadas por las Administraciones P&uacute;blicas</td>
+                                        <td>Verificaci&oacute;n CSV</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End Table Striped Rows -->
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.contenidos.sede.table.header.six}">Enlaces</h4>
+                        <!-- Table Striped Rows -->
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Norma</th>
+                                        <th>Art&iacute;culo</th>
+                                        <th>Elemento Sede</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Enlaces</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>Enlace a la Plataforma de Contrataci&oacute;n</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Enlaces</td>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 17. Contenidos relativos a los derechos pol&iacute;ticos.</td>
+                                        <td>Enlace al Portal de Participaci&oacute;n</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End Table Striped Rows -->
+                    </div>
+
+                    <div>
+                        <h4 th:text="#{message.contenidos.sede.table.header.seven}">Elementos a incluir en otros entornos</h4>
+                        <!-- Table Striped Rows -->
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Norma</th>
+                                        <th>Art&iacute;culo</th>
+                                        <th>Texto</th>
+                                        <th>Otros entornos recomendados</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>i) El perfil del contratante</td>
+                                        <td>Plataforma de Contrataci&oacute;n</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 17. Contenidos relativos a los derechos pol&iacute;ticos</td>
+                                        <td>3. El Ayuntamiento incorporar&aacute; a la sede electr&oacute;nica mecanismos de participaci&oacute;n
+                                            ciudadana,
+                                        </td>
+                                        <td>Portal de Participaci&oacute;n</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 17. Contenidos relativos a los derechos pol&iacute;ticos.</td>
+                                        <td>d) Los acuerdos del Pleno y extractos de acuerdos de la Junta de Gobierno</td>
+                                        <td>Portal corporativo / Portal de Trasparencia</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 17. Contenidos relativos a los derechos pol&iacute;ticos.</td>
+                                        <td>e) El presupuesto municipal y las memorias de gesti&oacute;n del Ayuntamiento de Murcia.</td>
+                                        <td>Portal corporativo / Portal de Trasparencia</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 17. Contenidos relativos a los derechos pol&iacute;ticos.</td>
+                                        <td>f) Un repositorio de documentaci&oacute;n e informaci&oacute;n administrativa accesible al p&uacute;blico.</td>
+                                        <td>Portal corporativo / Portal de Trasparencia</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 17. Contenidos relativos a los derechos pol&iacute;ticos.</td>
+                                        <td>a) La composici&oacute;n del Pleno del Ayuntamiento y del Gobierno de la ciudad de Murcia</td>
+                                        <td>Portal corporativo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 17. Contenidos relativos a los derechos pol&iacute;ticos.</td>
+                                        <td>b) Informaci&oacute;n sobre organizaci&oacute;n y competencias municipales.</td>
+                                        <td>Portal corporativo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 17. Contenidos relativos a los derechos pol&iacute;ticos.</td>
+                                        <td>c) La normativa propia del Ayuntamiento de Murcia</td>
+                                        <td>Portal corporativo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>j) La oferta de empleo</td>
+                                        <td>Portal corporativo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>k) Las convocatorias de subvenciones y los actos relacionados con los procedimientos
+                                            de otorgamiento</td>
+                                        <td>Portal corporativo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 18. Contenidos relativos a los servicios municipales</td>
+                                        <td>l) Los instrumentos de planeamiento urban&iacute;stico</td>
+                                        <td>Portal corporativo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ordenanza AE (BORM 43 21-02-13)</td>
+                                        <td>Art&iacute;culo 16. Ámbito de la sede electr&oacute;nica</td>
+                                        <td>La sede electr&oacute;nica incluir&aacute; tambi&eacute;n aquella informaci&oacute;n sobre el Ayuntamiento y
+                                            su funcionamiento que posibilite el ejercicio de los derechos pol&iacute;ticos de los
+                                            ciudadanos, ya sea trav&eacute;s de un mejor conocimiento de la instituci&oacute;n como potenciando
+                                            la transparencia de su funcionamiento</td>
+                                        <td>Portal corporativo / Portal de Trasparencia / Portal de Participaci&oacute;n</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- End Table Striped Rows -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
