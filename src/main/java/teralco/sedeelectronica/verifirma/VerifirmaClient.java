@@ -15,18 +15,17 @@ public class VerifirmaClient {
 
 	@Value("${verifirma.url}")
 	private String backend;
-	
+
 	@Value("${verifirma.user}")
 	private String usuario;
 
 	@Value("${verifirma.password}")
 	private String password;
-	
+
 	public File obtenerDocumentoPorCvd(Integer idEntidad, String cvd) throws ServiceException, IOException {
 
 		MetodoServicioWebAxis metodo = MetodoServicioWebAxis.crearMetodoServicioWeb(
-				this.backend + "/gexflow/services/EXPEDIENTES.v1_0_0", "EXPEDIENTES.v1_0_0",
-				"obtenerDocumentoPorCvd");
+				this.backend + "/gexflow/services/EXPEDIENTES.v1_0_0", "EXPEDIENTES.v1_0_0", "obtenerDocumentoPorCvd");
 
 		metodo.addParametroEntrada("usuario", this.usuario);
 		metodo.addParametroEntrada("clave", this.password);
@@ -41,7 +40,7 @@ public class VerifirmaClient {
 		FileUtils.copyInputStreamToFile(data.getDataSource().getInputStream(), tempFile);
 		return tempFile;
 	}
-	
+
 	public void setBackend(String pBackend) {
 		this.backend = pBackend;
 	}
@@ -53,5 +52,5 @@ public class VerifirmaClient {
 	public void setPassword(String pPassword) {
 		this.password = pPassword;
 	}
-	
+
 }

@@ -13,9 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Entity
 public class Modelo extends BaseModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@NotEmpty(message = "Debe introducir una descripción.")
@@ -24,11 +21,11 @@ public class Modelo extends BaseModel {
 
 	/* For upload file in form */
 	@Transient
-	private MultipartFile fileToUpload;
+	private transient MultipartFile fileToUpload;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_fichero", nullable = true)
-	private Fichero fichero; // private Long idFichero;
+	private Fichero fichero;
 
 	public String getDescripcion() {
 		return this.descripcion;
@@ -54,9 +51,4 @@ public class Modelo extends BaseModel {
 		this.fichero = pFichero;
 	}
 
-	@Override
-	public String toString() {
-		return "Documentacion [descripcion=" + this.descripcion + ", fileToUpload=" + this.fileToUpload + ", fichero=" + this.fichero
-				+ "]";
-	}
 }

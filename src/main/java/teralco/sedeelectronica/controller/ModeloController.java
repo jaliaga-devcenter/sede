@@ -28,11 +28,17 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class ModeloController {
 
+	private static String list = "modelos/modelos";
+	private static String redirList = "redirect:/modelos";
+	private static String form = "modelos/formModelo";
+
 	private ModeloService modeloService;
 	private FicheroService ficheroService;
 
 	@Autowired
+	private EncryptUtils encryptUtils;
 
+	@Autowired
 	public ModeloController(ModeloService pModeloService, FicheroService pFicheroService) {
 		this.modeloService = pModeloService;
 		this.ficheroService = pFicheroService;
@@ -41,19 +47,19 @@ public class ModeloController {
 	@RequestMapping(value = "/modelos", method = RequestMethod.GET)
 	public String modeloes(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		// DEVOLVER LA LISTA DE MODELOS ACTUALES
-		model.addAttribute("encrypt", new EncryptUtils());
+		model.addAttribute("encrypt", this.encryptUtils);
 		Page<Modelo> pages = this.modeloService.listAllByPage(pageable);
 		model.addAttribute("modelos", pages);
-		PageWrapper<Modelo> page = new PageWrapper<Modelo>(pages, "/modelos");
+		PageWrapper<Modelo> page = new PageWrapper<>(pages, "/modelos");
 		model.addAttribute("page", page);
 
-		return "modelos/modelos";
+		return list;
 	}
 
 	@RequestMapping("/modelos/create")
 	public String create(Model model) {
 		model.addAttribute("modelo", new Modelo());
-		return "modelos/formModelo";
+		return form;
 	}
 
 	@RequestMapping("/modelos/edit/{id}")
@@ -61,7 +67,7 @@ public class ModeloController {
 
 		model.addAttribute("modelo", this.modeloService.get(id));
 		model.addAttribute("medios", Medio.values());
-		return "modelos/formModelo";
+		return form;
 	}
 
 	@RequestMapping("/modelos/delete/{id}")
@@ -69,14 +75,14 @@ public class ModeloController {
 
 		this.modeloService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "El modelo " + id + " ha sido borrado.");
-		return "redirect:/modelos";
+		return redirList;
 	}
 
 	@PostMapping(value = "/modelos/save")
 	public String save(@Valid @ModelAttribute("modelo") Modelo modelo, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("medios", Medio.values());
-			return "modelos/formModelo";
+			return form;
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(modelo.getFileToUpload());
@@ -85,6 +91,6 @@ public class ModeloController {
 			modelo.setFichero(file);
 		}
 		this.modeloService.save(modelo);
-		return "redirect:/modelos";
+		return redirList;
 	}
 }

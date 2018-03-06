@@ -5,10 +5,10 @@ public class SubcategoriaDTO extends AbstractDTO {
 	private String nombre;
 	private String descripcion;
 
-	public SubcategoriaDTO(Integer _idSubcategoria, String _nombre, String _descripcion) {
-		this.idSubcategoria = _idSubcategoria;
-		this.nombre = _nombre;
-		this.descripcion = _descripcion;
+	public SubcategoriaDTO(Integer pIdSubcategoria, String pNombre, String pDescripcion) {
+		this.idSubcategoria = pIdSubcategoria;
+		this.nombre = pNombre;
+		this.descripcion = pDescripcion;
 	}
 
 	public Integer getIdSubcategoria() {
@@ -22,5 +22,4 @@ public class SubcategoriaDTO extends AbstractDTO {
 	public String getDescripcion() {
 		return this.descripcion;
 	}
-
 }

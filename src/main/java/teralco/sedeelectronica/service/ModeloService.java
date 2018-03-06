@@ -33,7 +33,6 @@ public class ModeloService {
 	}
 
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
 		this.modeloRepository.delete(id);
 	}
 

@@ -26,10 +26,6 @@ public class Application extends WebMvcConfigurerAdapter {
 		SpringApplication.run(Application.class, args);
 	}
 
-	/*
-	 * @Bean public RestTemplate restTemplate() { return new RestTemplate(); }
-	 */
-
 	@Bean
 	public LocaleResolver localeResolver() {
 		SessionLocaleResolver slr = new SessionLocaleResolver();

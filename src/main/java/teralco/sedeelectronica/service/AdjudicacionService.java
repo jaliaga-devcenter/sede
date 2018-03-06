@@ -32,7 +32,6 @@ public class AdjudicacionService {
 	}
 
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
 		this.adjudicacionRepository.delete(id);
 	}
 

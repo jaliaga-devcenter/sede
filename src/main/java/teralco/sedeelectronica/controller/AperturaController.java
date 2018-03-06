@@ -26,8 +26,15 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class AperturaController {
 
+	private static String list = "aperturas/aperturas";
+	private static String redirList = "redirect:/aperturas";
+	private static String form = "aperturas/formApertura";
+
 	private AperturaService aperturaService;
 	private FicheroService ficheroService;
+
+	@Autowired
+	private EncryptUtils encryptUtils;
 
 	@Autowired
 	public AperturaController(AperturaService pAperturaService, FicheroService pFicheroService) {
@@ -37,40 +44,40 @@ public class AperturaController {
 
 	@RequestMapping(value = "/aperturas", produces = "text/html;charset=UTF-8")
 	public String aperturas(Model model, @PageableDefault(value = 10) Pageable pageable) {
-		model.addAttribute("encrypt", new EncryptUtils());
+		model.addAttribute("encrypt", this.encryptUtils);
 
 		// DEVOLVER LA LISTA DE APERTURAS ACTUALES
 		Page<Apertura> pages = this.aperturaService.listAllByPage(pageable);
 		model.addAttribute("aperturas", pages);
-		PageWrapper<Apertura> page = new PageWrapper<Apertura>(pages, "/aperturas");
+		PageWrapper<Apertura> page = new PageWrapper<>(pages, "/aperturas");
 		model.addAttribute("page", page);
 
-		return "aperturas/aperturas";
+		return list;
 	}
 
 	@RequestMapping("/aperturas/create")
 	public String create(Model model) {
 		model.addAttribute("apertura", new Apertura());
-		return "aperturas/formApertura";
+		return form;
 	}
 
 	@RequestMapping("/aperturas/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 		model.addAttribute("apertura", this.aperturaService.get(id));
-		return "aperturas/formApertura";
+		return form;
 	}
 
 	@RequestMapping("/aperturas/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
 		this.aperturaService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La apertura " + id + " ha sido borrada.");
-		return "redirect:/aperturas";
+		return redirList;
 	}
 
 	@PostMapping(value = "/aperturas/save")
 	public String save(@Valid @ModelAttribute("apertura") Apertura apertura, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			return "aperturas/formApertura";
+			return form;
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(apertura.getFileToUpload());
@@ -79,6 +86,6 @@ public class AperturaController {
 			apertura.setResultado(file);
 		}
 		this.aperturaService.save(apertura);
-		return "redirect:/aperturas";
+		return redirList;
 	}
 }

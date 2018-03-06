@@ -27,8 +27,16 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class DocumentacionController {
 
+	private static String list = "adjudicaciones/adjudicaciones";
+	private static String redirList = "redirect:/adjudicaciones";
+	private static String form = "adjudicaciones/formAdjudicacion";
+	private static String STATE_STRING = "estados";
+
 	private DocumentacionService documentacionService;
 	private FicheroService ficheroService;
+
+	@Autowired
+	private EncryptUtils encryptUtils;
 
 	@Autowired
 	public DocumentacionController(DocumentacionService pDocumentacionService, FicheroService pFicheroService) {
@@ -41,41 +49,41 @@ public class DocumentacionController {
 		// DEVOLVER LA LISTA DE DOCUMENTOS ACTUALES
 		Page<Documentacion> pages = this.documentacionService.listAllByPage(pageable);
 		model.addAttribute("documentos", pages);
-		PageWrapper<Documentacion> page = new PageWrapper<Documentacion>(pages, "/documentos");
+		PageWrapper<Documentacion> page = new PageWrapper<>(pages, "/documentos");
 		model.addAttribute("page", page);
 		model.addAttribute("", this.documentacionService.list());
 
-		model.addAttribute("encrypt", new EncryptUtils());
-		return "documentos/documentos";
+		model.addAttribute("encrypt", this.encryptUtils);
+		return list;
 	}
 
 	@RequestMapping("/documentos/create")
 	public String create(Model model) {
 		model.addAttribute("documentacion", new Documentacion());
-		model.addAttribute("estados", Estado.values());
-		return "documentos/formDocumento";
+		model.addAttribute(STATE_STRING, Estado.values());
+		return form;
 	}
 
 	@RequestMapping("/documentos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 		model.addAttribute("documentacion", this.documentacionService.get(id));
-		model.addAttribute("estados", Estado.values());
-		return "documentos/formDocumento";
+		model.addAttribute(STATE_STRING, Estado.values());
+		return form;
 	}
 
 	@RequestMapping("/documentos/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
 		this.documentacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La documentación " + id + " ha sido borrada.");
-		return "redirect:/documentos";
+		return redirList;
 	}
 
 	@PostMapping(value = "/documentos/save")
 	public String save(@Valid @ModelAttribute("documentacion") Documentacion documentacion, BindingResult bindingResult,
 			Model model) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("estados", Estado.values());
-			return "documentos/formDocumento";
+			model.addAttribute(STATE_STRING, Estado.values());
+			return form;
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(documentacion.getFileToUpload());
@@ -85,6 +93,6 @@ public class DocumentacionController {
 		}
 
 		this.documentacionService.save(documentacion);
-		return "redirect:/documentos";
+		return redirList;
 	}
 }

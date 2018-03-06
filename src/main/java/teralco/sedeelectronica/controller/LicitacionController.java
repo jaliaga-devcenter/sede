@@ -27,8 +27,17 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class LicitacionController {
 
+	private static final String MEDIO_MODEL = "medios";
+
+	private static String list = "licitaciones/licitaciones";
+	private static String redirList = "redirect:/licitaciones";
+	private static String form = "licitaciones/formLicitacion";
+
 	private LicitacionService licitacionService;
 	private FicheroService ficheroService;
+
+	@Autowired
+	private EncryptUtils encryptUtils;
 
 	@Autowired
 	public LicitacionController(LicitacionService pLicitacionService, FicheroService pFicheroService) {
@@ -42,39 +51,40 @@ public class LicitacionController {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
 		Page<Licitacion> pages = this.licitacionService.listAllByPage(pageable);
 		model.addAttribute("licitaciones", pages);
-		PageWrapper<Licitacion> page = new PageWrapper<Licitacion>(pages, "/licitaciones");
+		PageWrapper<Licitacion> page = new PageWrapper<>(pages, "/licitaciones");
 		model.addAttribute("page", page);
-		model.addAttribute("encrypt", new EncryptUtils());
-		return "licitaciones/licitaciones";
+
+		model.addAttribute("encrypt", this.encryptUtils);
+		return list;
 	}
 
 	@RequestMapping("/licitaciones/create")
 	public String create(Model model) {
 		model.addAttribute("licitacion", new Licitacion());
-		model.addAttribute("medios", Medio.values());
-		return "licitaciones/formLicitacion";
+		model.addAttribute(MEDIO_MODEL, Medio.values());
+		return form;
 	}
 
 	@RequestMapping("/licitaciones/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 		model.addAttribute("licitacion", this.licitacionService.get(id));
-		model.addAttribute("medios", Medio.values());
-		return "licitaciones/formLicitacion";
+		model.addAttribute(MEDIO_MODEL, Medio.values());
+		return form;
 	}
 
 	@RequestMapping("/licitaciones/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
 		this.licitacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La licitacion " + id + " ha sido borrada.");
-		return "redirect:/licitaciones";
+		return redirList;
 	}
 
 	@PostMapping(value = "/licitaciones/save")
 	public String save(@Valid @ModelAttribute("licitacion") Licitacion lici, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("medios", Medio.values());
-			return "licitaciones/formLicitacion";
+			model.addAttribute(MEDIO_MODEL, Medio.values());
+			return form;
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(lici.getFileToUpload());
@@ -83,7 +93,7 @@ public class LicitacionController {
 			lici.setFichero(file);
 		}
 		this.licitacionService.save(lici);
-		return "redirect:/licitaciones";
+		return redirList;
 	}
 
 }

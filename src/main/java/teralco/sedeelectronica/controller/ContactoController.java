@@ -20,6 +20,8 @@ import teralco.sedeelectronica.service.EmailService;
 @Controller
 public class ContactoController {
 
+	private static String form = "contacto/formContacto";
+
 	@Autowired
 	private RecaptchaService captchaService;
 
@@ -35,34 +37,15 @@ public class ContactoController {
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE ADJUDICACIONES ACTUALES
 		model.addAttribute("contacto", new Contacto());
-		return "contacto/formContacto";
+		return form;
 	}
-
-	/*
-	 * @PostMapping(value = "/contacto/send")
-	 * 
-	 * @ResponseBody public String save(@Valid @ModelAttribute("contacto") Contacto
-	 * contacto, BindingResult bindingResult, Model model, HttpServletRequest
-	 * request) {
-	 * 
-	 * String response = request.getParameter("g-recaptcha-response");
-	 * captchaService.processResponse(response);
-	 * 
-	 * if (bindingResult.hasErrors()) { return "contacto/formContacto"; }
-	 * 
-	 * try { emailService.sendEmail(contacto); } catch (MailException |
-	 * InterruptedException e) { model.addAttribute("message",
-	 * "Ha ocurrido un error enviando el correo"); return "contacto/formContacto"; }
-	 * 
-	 * return "/contacto/formContacto"; }
-	 */
 
 	@PostMapping("/contacto/send")
 	public String signup(@Valid @ModelAttribute("contacto") Contacto contacto, BindingResult bindingResult, Model model,
 			@RequestParam(name = "g-recaptcha-response") String recaptchaResponse, HttpServletRequest request) {
 
 		if (bindingResult.hasErrors()) {
-			return "contacto/formContacto";
+			return form;
 		}
 
 		String ip = request.getRemoteAddr();
@@ -71,7 +54,7 @@ public class ContactoController {
 
 		if (!captchaVerifyMessage.isEmpty()) {
 			model.addAttribute("messageWarning", captchaVerifyMessage);
-			return "contacto/formContacto";
+			return form;
 		}
 
 		try {
@@ -79,10 +62,10 @@ public class ContactoController {
 			this.emailService.sendEmail(contacto);
 		} catch (@SuppressWarnings("unused") MailException e) {
 			model.addAttribute("message", "Ha ocurrido un error enviando el correo");
-			return "contacto/formContacto";
+			return form;
 		}
 
-		return "/contacto/formContacto";
+		return form;
 	}
 
 }

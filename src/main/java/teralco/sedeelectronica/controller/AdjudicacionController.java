@@ -26,8 +26,15 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class AdjudicacionController {
 
+	private static String list = "adjudicaciones/adjudicaciones";
+	private static String redirList = "redirect:/adjudicaciones";
+	private static String form = "adjudicaciones/formAdjudicacion";
+
 	private AdjudicacionService adjudicacionService;
 	private FicheroService ficheroService;
+
+	@Autowired
+	private EncryptUtils encryptUtils;
 
 	@Autowired
 	public AdjudicacionController(AdjudicacionService pAdjudicacionService, FicheroService pFicheroService) {
@@ -40,36 +47,36 @@ public class AdjudicacionController {
 		// DEVOLVER LA LISTA DE ADJUDICACIONES ACTUALES
 		Page<Adjudicacion> pages = this.adjudicacionService.listAllByPage(pageable);
 		model.addAttribute("adjudicaciones", pages);
-		PageWrapper<Adjudicacion> page = new PageWrapper<Adjudicacion>(pages, "/adjudicaciones");
+		PageWrapper<Adjudicacion> page = new PageWrapper<>(pages, "/adjudicaciones");
 		model.addAttribute("page", page);
 
-		model.addAttribute("encrypt", new EncryptUtils());
-		return "adjudicaciones/adjudicaciones";
+		model.addAttribute("encrypt", this.encryptUtils);
+		return list;
 	}
 
 	@RequestMapping("/adjudicaciones/create")
 	public String create(Model model) {
 		model.addAttribute("adjudicacion", new Adjudicacion());
-		return "adjudicaciones/formAdjudicacion";
+		return form;
 	}
 
 	@RequestMapping("/adjudicaciones/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 		model.addAttribute("adjudicacion", this.adjudicacionService.get(id));
-		return "adjudicaciones/formAdjudicacion";
+		return form;
 	}
 
 	@RequestMapping("/adjudicaciones/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
 		this.adjudicacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La adjudicación " + id + " ha sido borrada.");
-		return "redirect:/adjudicaciones";
+		return redirList;
 	}
 
 	@PostMapping(value = "/adjudicaciones/save")
 	public String save(@Valid @ModelAttribute("adjudicacion") Adjudicacion adjudicacion, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			return "adjudicaciones/formAdjudicacion";
+			return form;
 		}
 
 		Fichero file = FicheroUtils.convertirFichero(adjudicacion.getFileToUpload());
@@ -79,6 +86,6 @@ public class AdjudicacionController {
 		}
 
 		this.adjudicacionService.save(adjudicacion);
-		return "redirect:/adjudicaciones";
+		return redirList;
 	}
 }

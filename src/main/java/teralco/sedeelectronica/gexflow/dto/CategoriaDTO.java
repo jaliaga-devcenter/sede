@@ -33,4 +33,7 @@ public class CategoriaDTO extends AbstractDTO {
 		return this.subcategorias;
 	}
 
+	public void setSubcategorias(List<SubcategoriaDTO> pSubcategorias) {
+		this.subcategorias = pSubcategorias;
+	}
 }

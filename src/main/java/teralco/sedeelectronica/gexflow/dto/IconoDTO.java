@@ -1,5 +1,7 @@
 package teralco.sedeelectronica.gexflow.dto;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 public class IconoDTO extends AbstractDTO {
 
 	private String nombre;
@@ -8,6 +10,8 @@ public class IconoDTO extends AbstractDTO {
 
 	private byte[] fichero;
 
+	private String base64encoded;
+
 	private Integer idCategoria;
 
 	public IconoDTO(String _nombre, String _extension, byte[] _fichero) {
@@ -15,7 +19,7 @@ public class IconoDTO extends AbstractDTO {
 		this.nombre = _nombre;
 		this.extension = _extension;
 		this.fichero = _fichero;
-
+		this.base64encoded = Base64.encodeBase64String(this.fichero);
 	}
 
 	public String getNombre() {
@@ -38,5 +42,10 @@ public class IconoDTO extends AbstractDTO {
 		this.idCategoria = _idCategoria;
 		return this;
 	}
+
+	public String getBase64encoded() {
+		return this.base64encoded;
+	}
+
 
 }

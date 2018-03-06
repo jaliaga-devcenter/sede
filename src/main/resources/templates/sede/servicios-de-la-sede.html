@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Servicios de la Sede electrónica</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <section class="g-py-15 g-pl-30 g-pr-30">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 g-pr-40--lg g-mb-50 g-mb-0--lg">
+                    <div th:replace="~{fragments/sideMenuSede :: menu}"></div>
+                </div>
+                <!-- End Sidebar -->
+
+                <div class="col-lg-9">
+                    <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.servicios.sede.page.header})}"></div>
+
+                    <div>
+                        <p>
+                            <span th:text="#{message.servicios.sede.p.span.one}">Tal como establece la </span>
+                            <strong th:text="#{message.servicios.sede.p.strong}">Ordenanza Reguladora de la Administraci&oacute;n Electr&oacute;nica del Ayuntamiento de Murcia</strong>
+                            <span th:text="#{message.servicios.sede.p.span.two}">en relaci&oacute;n a los servicios municipales, entre los contenidos relativos a la prestaci&oacute;n de los
+                                servicios incluidos en la Sede Electr&oacute;nica se establecen los siguientes:</span>
+                        </p>
+                        <ol type="a">
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.one.strong}">Los servicios propios o asumidos por el Ayuntamiento de Murcia</strong>
+                                <span th:text="#{message.servicios.sede.li.one.span}">, con indicaci&oacute;n de la disponibilidad de cada uno de ellos y de sus prestaciones concretas.</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.two.strong}">Los procedimientos administrativos tramitados total o parcialmente por medios electr&oacute;nicos</strong>
+                                <span th:text="#{message.servicios.sede.li.two.span}">, con indicaci&oacute;n de los requisitos esenciales para la tramitaci&oacute;n, plazos de resoluci&oacute;n y
+                                    notificaci&oacute;n y el sentido del silencio, incluy&eacute;ndose asimismo los impresos y formularios
+                                    asociados.
+                                </span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.three.strong}">Los colectivos e instituciones que en su caso se determinen, como obligados a utilizar medios
+                                    electr&oacute;nicos
+                                </strong>
+                                <span th:text="#{message.servicios.sede.li.three.span}"> en sus relaciones con el Ayuntamiento de Murcia.</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.four.strong}">Los registros integrantes del sistema registral del Ayuntamiento de Murcia</strong>
+                                <span th:text="#{message.servicios.sede.li.four.span}">, con expresi&oacute;n de los documentos que en ellos se puedan presentar, su r&eacute;gimen de funcionamiento,
+                                    los sistemas de acceso y comunicaci&oacute;n, horarios y cualesquiera otras circunstancias relevantes.</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.five.strong}">La direcci&oacute;n de las sedes f&iacute;sicas municipales</strong>
+                                <span th:text="#{message.servicios.sede.li.five.span}"> y otros datos de localizaci&oacute;n, tales como los n&uacute;meros de tel&eacute;fono o las direcciones de correo
+                                    electr&oacute;nico habilitados para la atenci&oacute;n ciudadana.</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.six.strong}">Los miembros del personal municipal habilitados</strong>
+                                <span th:text="#{message.servicios.sede.li.six.span}"> para suplir a la ciudadan&iacute;a en la identificaci&oacute;n y autenticaci&oacute;n realizada por medios electr&oacute;nicos.</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.seven.strong}">Los medios de identificaci&oacute;n y autenticaci&oacute;n</strong>
+                                <span th:text="#{message.servicios.sede.li.seven.span}"> admitidos en las relaciones del Ayuntamiento de Murcia con los ciudadanos, incluidas las
+                                    clases de certificados electr&oacute;nicos admitidos y los prestadores de servicios de certificaci&oacute;n
+                                    que los emiten.</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.eight.strong}">Los sellos de tiempo</strong>
+                                <span th:text="#{message.servicios.sede.li.eight.span}"> utilizados por el Ayuntamiento de Murcia, con sus caracter&iacute;sticas principales.</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.nine.strong}">El perfil del contratante.</strong>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.ten.strong}">La oferta de empleo</strong>
+                                <span th:text="#{message.servicios.sede.li.ten.span}"> y la informaci&oacute;n relativa a los procedimientos de selecci&oacute;n de personal.</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.eleven.strong}">Las convocatorias de subvenciones</strong>
+                                <span th:text="#{message.servicios.sede.li.eleven.span}"> y los actos relacionados con los procedimientos de otorgamiento.</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.twelve.strong}">Los instrumentos de planeamiento urban&iacute;stico</strong>
+                                <span th:text="#{message.servicios.sede.li.twelve.span}">, as&iacute; como un enlace al sistema de informaci&oacute;n urban&iacute;stica.</span>
+                            </li>
+                            <li>
+                                <strong th:text="#{message.servicios.sede.li.thirteen.strong}">Cualesquiera otros exigidos por esta ordenanza</strong>
+                                <span th:text="#{message.servicios.sede.li.thirteen.span}"> o por la legislaci&oacute;n aplicable, en su caso.</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
