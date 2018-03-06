@@ -6,19 +6,37 @@
         <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.verifirma.page.header})}"></div>
 
         <div class="col-xs-12 col-sm-12 offset-md-4 col-md-4 col-lg-4 g-mb-20">
-            <form class="g-brd-around g-brd-transparent g-pa-30 g-mb-30">
+            <form class="g-brd-around g-brd-transparent g-pa-30 g-mb-30" th:object="${CSVValidation}" th:action="@{/verifirma/send}" method="post">
                 <div class="g-mb-10">
                     <div class="input-group">
-                        <input type="text" class="form-control rounded-0 form-control-md" placeholder="Introduzca el CSV..." th:placeholder="#{message.verifirma.csv.placeholder}">
+                        <input type="text"
+                        th:field="*{__csv__}"  class="form-control rounded-0 form-control-md" placeholder="Introduzca el CSV..." th:placeholder="#{message.verifirma.csv.placeholder}">
                     </div>
-                </div>
-                <div class="g-mb-10">
-                    <!-- Captcha -->
                 </div>
                 <div class="text-center">
                     <button class="btn btn-md u-btn-primary rounded-0" type="submit" th:text="#{message.verifirma.csv.button}">
                         Verificar
                     </button>
+                	<br />
+                	<br />                   
+                    
+                    <div th:if="${#fields.hasErrors('csv')}" class="alert alert-warning" role="alert">
+	                    <span th:errors="*{__csv__}" th:class="help-block">Errores</span>
+                	</div>
+                	
+                	<div th:if="${message}" class="alert alert-warning" role="alert">
+                    	<p th:text="${message}">success message</p>
+                	</div>
+                    
+                    <div th:if="${messageWarning}" class="alert alert-warning" role="alert">
+                        <p th:text="${messageWarning}">success message</p>
+                    </div>
+            
+                </div>
+                
+                <div class="g-mb-10">
+                        <div class="g-recaptcha col-sm-12 text-center" th:attr="data-sitekey=${@captchaSettings.getSite()}"></div>
+                            <span id="captchaError" class="alert alert-danger col-sm-4" style="display:none"></span>
                 </div>
             </form>
         </div>
@@ -47,7 +65,7 @@
                 generados por el Ayuntamiento de Murcia, justo debajo del c&oacute;digo de barras.
             </p>
             <div class="text-center">
-                <img class="g-width-780 g-min-width-150" src="https://sede.murcia.es/documents/20181/0/EjemploCSV.gif" alt="" th:alt="#{message.verifirma.explanation.img.alt}"
+                <img class="g-width-780 g-min-width-150" src="/sede/img/EjemploCSV.gif" alt="" th:alt="#{message.verifirma.explanation.img.alt}"
                 />
             </div>
         </div>

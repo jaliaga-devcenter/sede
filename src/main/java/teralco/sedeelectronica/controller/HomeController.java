@@ -33,7 +33,7 @@ public class HomeController {
 
 	@Autowired
 	private GexflowClient clienteWS;
-
+	
 	@Autowired
 	public HomeController() {
 		this.locale = LocaleContextHolder.getLocale();
@@ -43,6 +43,7 @@ public class HomeController {
 	@RequestMapping("/")
 	public String greeting(Model model) {
 		List<CategoriaDTO> categorias;
+		
 		try {
 			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
 		} catch (GexflowWSException e) {
@@ -96,27 +97,6 @@ public class HomeController {
 	@RequestMapping("/perfil-del-contratante")
 	public String perfilContratante() {
 		return "perfil-del-contratante";
-	}
-	
-	@RequestMapping("/accesibilidad")
-	public String accesibilidad() {
-		return "accesibilidad";
-	}
-	
-	@RequestMapping("/obtener-certificado")
-	public String obtenerCertificado() {
-		return "obtener-certificado-electronico";
-	}
-	
-	@RequestMapping("/quejas-sugerencias")
-	public String quejasSugerencias() {
-		return "quejas-sugerencias";
-	}
-
-	
-	@RequestMapping("/instrucciones")
-	public String instrucciones() {
-		return "instrucciones";
 	}
 
 
