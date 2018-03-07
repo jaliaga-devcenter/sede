@@ -1,5 +1,7 @@
 package teralco.sedeelectronica.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -13,6 +15,9 @@ public class Noticia extends BaseModel {
 	@NotEmpty(message = "Debe introducir un título.")
 	@Column(nullable = false)
 	private String titulo;
+
+	@Column(columnDefinition = "TIMESTAMP")
+	private Timestamp fecha;
 
 	@NotEmpty(message = "Debe introducir una noticia.")
 	@Column(nullable = false)
@@ -32,6 +37,14 @@ public class Noticia extends BaseModel {
 
 	public void setDescripcion(String pDescripcion) {
 		this.descripcion = pDescripcion;
+	}
+
+	public Timestamp getFecha() {
+		return this.fecha;
+	}
+
+	public void setFecha(Timestamp pFecha) {
+		this.fecha = pFecha;
 	}
 
 }

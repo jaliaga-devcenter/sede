@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +22,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import teralco.sedeelectronica.captcha.service.RecaptchaService;
@@ -57,9 +54,9 @@ public class VerifirmaController {
 	}
 
 	@PostMapping("/verifirma/send")
-	public String signup(@Valid @ModelAttribute("CSVValidation") CSVValidation CSV, BindingResult bindingResult,
+	public Object signup(@Valid @ModelAttribute("CSVValidation") CSVValidation CSV, BindingResult bindingResult,
 			Model model, @RequestParam(name = "g-recaptcha-response") String recaptchaResponse,
-			HttpServletRequest request) {
+			HttpServletRequest request, HttpServletResponse response) {
 
 		if (bindingResult.hasErrors()) {
 			return verify;
@@ -88,23 +85,19 @@ public class VerifirmaController {
 			return verify;
 		}
 
-		return "/verifirma/download/" + fileDownload;
-	}
-
-	@RequestMapping(value = "/verifirma/download/{file_name}", method = RequestMethod.GET)
-	public ResponseEntity<Resource> getFile(@PathVariable("file_name") File file, HttpServletResponse response) {
 		try {
-			Path path = Paths.get(file.getAbsolutePath());
+			Path path = Paths.get(fileDownload.getAbsolutePath());
 			ByteArrayResource resource = new ByteArrayResource(Files.readAllBytes(path));
 			response.setContentType("application/pdf");
 			HttpHeaders headers = new HttpHeaders();
-			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getName());
+			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileDownload.getName());
 			return ResponseEntity.ok().headers(headers).contentLength(resource.contentLength())
 					.contentType(MediaType.parseMediaType("application/pdf")).body(resource);
 
 		} catch (IOException | NumberFormatException e) {
 			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 		}
+
 	}
 
 }
