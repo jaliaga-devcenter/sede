@@ -112,7 +112,7 @@
                                         <table class="table table-hover">
                                             <tbody>
                                                 <tr th:each="servicio: ${servicios.get(subCategoria.idSubcategoria)}" th:data-online="${servicio.tramitacionOnline}">
-                                                    <td class="align-middle">
+                                                    <td class="align-middle g-width-340">
                                                         <a href="#">
                                                         <span th:text="${servicio.denominacion}">Titulo</span>
                                                         </a>
@@ -142,6 +142,22 @@
                     </div>
                 </div>
             </div>
+
+            <script type="text/javascript">
+                $( document ).ready(function() {
+                    $('#inlineRadio1').change(function() {
+                        $('*[data-online=false]').each(function() {
+                            $(this).removeClass('d-none');
+                        })
+                    });
+
+                    $('#inlineRadio2').change(function() {
+                        $('*[data-online=false]').each(function() {
+                            $(this).addClass('d-none');
+                        })
+                    });
+                })
+            </script>
 
         </section>
         <!-- End Promo Block - Parallax -->
