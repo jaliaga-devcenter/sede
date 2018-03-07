@@ -79,6 +79,11 @@ public class HomeController {
 		return "servicios/areas";
 	}
 
+	@RequestMapping("/buscador-procedimientos")
+	public String buscadorProcedimientos() {
+		return "servicios/buscador-procedimientos";
+	}
+
 	@RequestMapping("/perfil-del-contratante")
 	public String perfilContratante() {
 		return "perfil-del-contratante";
