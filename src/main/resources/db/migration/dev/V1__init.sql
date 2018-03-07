@@ -105,6 +105,7 @@ create table PARADA (
 
  create table NOTICIA (
    ID                   SERIAL 		not null,
+   FECHA            TIMESTAMP  null,
    TITULO			TEXT 			null,
    DESCRIPCION			TEXT 			null,
    constraint PK_NOTICIA primary key (ID)

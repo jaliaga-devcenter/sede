@@ -1,5 +1,8 @@
 package teralco.sedeelectronica.controller;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +71,7 @@ public class NoticiaController {
 		if (bindingResult.hasErrors()) {
 			return form;
 		}
-
+		noticia.setFecha(Timestamp.valueOf(LocalDateTime.now()));
 		this.noticiaService.save(noticia);
 		return redirList;
 	}

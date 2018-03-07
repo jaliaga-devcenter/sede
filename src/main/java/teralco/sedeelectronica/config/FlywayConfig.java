@@ -19,6 +19,7 @@ public class FlywayConfig {
 		flyway.setLocations("classpath:db/migration/dev");
 		flyway.setSchemas("sede");
 		/* persist data base */
+		flyway.clean();
 		flyway.repair();
 		flyway.migrate();
 
