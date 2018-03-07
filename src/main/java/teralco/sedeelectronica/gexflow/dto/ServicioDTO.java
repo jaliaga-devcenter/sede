@@ -6,13 +6,17 @@ public class ServicioDTO extends AbstractDTO {
 	private String descripcion;
 	private String documentacion;
 	private String tipoTramite;
+	private Boolean tramitacionOnline;
 	private Integer idCategoria;
+	private Integer idSubCategoria;
 
-	public ServicioDTO(String pDenominacion, String pDescripcion, String pTipoTramite, String pDocumentacion) {
+	public ServicioDTO(String pDenominacion, String pDescripcion, String pTipoTramite, String pDocumentacion,
+			Boolean pTramitacionOnline) {
 		this.denominacion = pDenominacion;
 		this.descripcion = pDescripcion;
 		this.documentacion = pDocumentacion;
 		this.tipoTramite = pTipoTramite;
+		this.tramitacionOnline = pTramitacionOnline;
 	}
 
 	public String getDenominacion() {
@@ -51,8 +55,22 @@ public class ServicioDTO extends AbstractDTO {
 		return this.idCategoria;
 	}
 
-	public void setIdCategoria(Integer pIdCategoria) {
+	public ServicioDTO setIdCategoria(Integer pIdCategoria) {
 		this.idCategoria = pIdCategoria;
+		return this;
+	}
+
+	public Integer getIdSubCategoria() {
+		return this.idSubCategoria;
+	}
+
+	public ServicioDTO setIdSubCategoria(Integer pIdSubCategoria) {
+		this.idSubCategoria = pIdSubCategoria;
+		return this;
+	}
+
+	public Boolean getTramitacionOnline() {
+		return this.tramitacionOnline;
 	}
 
 }

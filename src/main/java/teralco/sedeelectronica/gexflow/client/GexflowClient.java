@@ -20,12 +20,15 @@ import gexflow.wsdl.EntradaConsultaServicioCatalogo;
 import gexflow.wsdl.EstadoRespuesta;
 import gexflow.wsdl.ObjectFactory;
 import gexflow.wsdl.RespuestaCategoriaWS;
+import gexflow.wsdl.SubcategoriaFiltroWS;
+import gexflow.wsdl.SubcategoriasFiltroWS;
 import teralco.sedeelectronica.gexflow.converter.CategoriaConverter;
 import teralco.sedeelectronica.gexflow.converter.IconoConverter;
 import teralco.sedeelectronica.gexflow.converter.ServicioConverter;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
 import teralco.sedeelectronica.gexflow.dto.ServicioDTO;
+import teralco.sedeelectronica.gexflow.dto.SubcategoriaDTO;
 import teralco.sedeelectronica.gexflow.exception.GexflowWSException;
 
 public class GexflowClient extends WebServiceGatewaySupport {
@@ -74,14 +77,20 @@ public class GexflowClient extends WebServiceGatewaySupport {
 				.setIdCategoria(idCategoria);
 	}
 
-	public List<ServicioDTO> getServicios(Integer entidad, String idioma, Integer idCategoria)
-			throws GexflowWSException {
+	public List<ServicioDTO> getServicios(Integer entidad, String idioma, CategoriaDTO categoria,
+			SubcategoriaDTO subcategoria) throws GexflowWSException {
 
 		ConsultaCatalogoServicioPorCategoria request = new ConsultaCatalogoServicioPorCategoria();
 		request.setIdEntidad(entidad);
 		request.setCodigoIdioma(idioma);
 		request.setEntradaConsultaCategoria(new EntradaConsultaCategoria());
-		request.getEntradaConsultaCategoria().setIdCategoria(idCategoria);
+		request.getEntradaConsultaCategoria().setIdCategoria(categoria.getIdCategoria());
+		request.getEntradaConsultaCategoria().setSubcategorias(new SubcategoriasFiltroWS());
+
+		SubcategoriaFiltroWS subcategoriaFiltroWS = new SubcategoriaFiltroWS();
+		subcategoriaFiltroWS.setIdSubcategoria(subcategoria.getIdSubcategoria());
+
+		request.getEntradaConsultaCategoria().getSubcategorias().getSubcategoria().add(subcategoriaFiltroWS);
 
 		@SuppressWarnings("unchecked")
 		JAXBElement<ConsultaCatalogoServicioPorCategoriaResponse> response = (JAXBElement<ConsultaCatalogoServicioPorCategoriaResponse>) invokeWS(
@@ -89,8 +98,16 @@ public class GexflowClient extends WebServiceGatewaySupport {
 
 		EstadoRespuesta estado = response.getValue().getResultado().getEstadoRespuesta();
 		comprobarError(estado);
-		return this.servicioConverter
+
+		List<ServicioDTO> servicios = this.servicioConverter
 				.createFromEntities(response.getValue().getResultado().getServicios().getServicio());
+
+		servicios.stream().forEach(servicio -> {
+			servicio.setIdCategoria(categoria.getIdCategoria()).setIdSubCategoria(subcategoria.getIdSubcategoria());
+		});
+
+		return servicios;
+
 	}
 
 	public List<ServicioDTO> buscarServicios(Integer entidad, String idioma, String textoBusqueda)

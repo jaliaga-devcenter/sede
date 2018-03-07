@@ -13,7 +13,7 @@ public class ServicioConverterImpl implements ServicioConverter {
 	public ServicioDTO createFrom(ServicioWSJB entity) {
 
 		ServicioDTO servicio = new ServicioDTO(entity.getDenominacion(), entity.getDescripcion(),
-				entity.getTipoTramite(), entity.getDocumentacion());
+				entity.getTipoTramite(), entity.getDocumentacion(), entity.isCanalInternetHabilitado());
 		return servicio;
 	}
 

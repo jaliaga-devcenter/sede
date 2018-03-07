@@ -1,11 +1,14 @@
 package teralco.sedeelectronica.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -19,13 +22,18 @@ import teralco.sedeelectronica.exception.SedeElectronicaException;
 import teralco.sedeelectronica.gexflow.client.GexflowClient;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
+import teralco.sedeelectronica.gexflow.dto.ServicioDTO;
+import teralco.sedeelectronica.gexflow.dto.SubcategoriaDTO;
 import teralco.sedeelectronica.gexflow.exception.GexflowWSException;
 
 @Controller
 public class HomeController {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+
 	private static final String CAT_MODEL = "categorias";
 	private static final String ICONO_MODEL = "iconos";
+	private static final String SERVICIOS_MODEL = "servicios";
 
 	private String idioma = "es";
 	private static final Integer ENTIDAD = 0;
@@ -57,10 +65,9 @@ public class HomeController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/servicios/{id_cat}", method = RequestMethod.GET)
-	public String getServiciosPorCategoria(@PathVariable("id_cat") Integer idCat, Model model) {
+	@RequestMapping(value = { "/servicios", "/servicios/{id_cat}" }, method = RequestMethod.GET)
+	public String getServiciosPorCategoria(@PathVariable("id_cat") Optional<Integer> idCat, Model model) {
 
-		// TODO Que pasa si la categoria no existe?
 		List<CategoriaDTO> categorias = null;
 		try {
 			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
@@ -69,14 +76,24 @@ public class HomeController {
 		}
 		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
 
-		Optional<CategoriaDTO> categoria = categorias.stream().filter(cat -> cat.getIdCategoria().equals(idCat))
-				.findFirst();
+		CategoriaDTO categoriaActual = getCategoriaActual(categorias, idCat);
+		Map<Integer, List<ServicioDTO>> servicios = getServiciosPorSubCategorias(categoriaActual);
 
 		model.addAttribute(CAT_MODEL, categorias);
 		model.addAttribute(ICONO_MODEL, iconos);
-		model.addAttribute("currentCat", categoria.isPresent() ? categoria.get() : null);
+		model.addAttribute(SERVICIOS_MODEL, servicios);
+		model.addAttribute("currentCat", categoriaActual);
 
 		return "servicios/areas";
+	}
+
+	private static CategoriaDTO getCategoriaActual(List<CategoriaDTO> categorias, Optional<Integer> idCat) {
+		if (!idCat.isPresent()) {
+			return categorias.get(0);
+		}
+		Optional<CategoriaDTO> categoriaActual = categorias.stream()
+				.filter(cat -> cat.getIdCategoria().equals(idCat.get())).findFirst();
+		return categoriaActual.isPresent() ? categoriaActual.get() : categorias.get(0);
 	}
 
 	@RequestMapping("/buscador-procedimientos")
@@ -98,6 +115,25 @@ public class HomeController {
 			}
 		}).collect(Collectors.toMap(IconoDTO::getIdCategoria, icono -> icono));
 		return iconos;
+	}
+
+	private Map<Integer, List<ServicioDTO>> getServiciosPorSubCategorias(CategoriaDTO categoria) {
+		Map<Integer, List<ServicioDTO>> returnList = new HashMap<>();
+
+		for (SubcategoriaDTO subcategoria : categoria.getSubcategorias()) {
+			List<ServicioDTO> servicios = null;
+			try {
+				servicios = this.clienteWS.getServicios(ENTIDAD, this.idioma, categoria, subcategoria);
+			} catch (GexflowWSException e) {
+				LOGGER.error(
+						"Error en la invocación al servicio, probablemente no hayan servicios para esa subcategoria.",
+						e);
+
+			}
+			returnList.put(subcategoria.getIdSubcategoria(), servicios);
+		}
+
+		return returnList;
 	}
 
 }
