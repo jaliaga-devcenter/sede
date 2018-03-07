@@ -6,9 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
+@ComponentScan(basePackages = "teralco.sedeelectronica")
 @EntityScan("teralco.sedeelectronica.model")
 @EnableJpaRepositories("teralco.sedeelectronica.repository")
-@ComponentScan(basePackages = { "teralco.sedeelectronica.gexflow", "teralco.sedeelectronica.verifirma" })
 public class TestApplication {
 
 	public static void main(String[] args) {

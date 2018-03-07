@@ -25,6 +25,7 @@ public class NoticiaController {
 	private static String list = "noticias/noticias";
 	private static String redirList = "redirect:/noticias";
 	private static String form = "noticias/formNoticia";
+	private static String actualidad = "noticias/actualidad";
 
 	private NoticiaService noticiaService;
 
@@ -34,9 +35,7 @@ public class NoticiaController {
 	}
 
 	@RequestMapping(value = "/noticias", produces = "text/html;charset=UTF-8")
-
-	public String licitaciones(Model model, @PageableDefault(value = 10) Pageable pageable) {
-		// DEVOLVER LA LISTA DE NOTICIAS ACTUALES
+	public String noticias(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		Page<Noticia> pages = this.noticiaService.listAllByPage(pageable);
 		model.addAttribute("noticias", pages);
 		PageWrapper<Noticia> page = new PageWrapper<>(pages, "/noticias");
@@ -72,5 +71,18 @@ public class NoticiaController {
 
 		this.noticiaService.save(noticia);
 		return redirList;
+	}
+
+	@RequestMapping("/actualidad")
+	public String actualidad() {
+		// Listado de noticias usando el template que hay en noticias/actualidad.html
+		return actualidad;
+	}
+
+	@RequestMapping("/actualidad/{id}")
+	public String detalle() {
+		// Detalle de la noticia seleccionada. Crear un nuevo template a partir del
+		// actualidad.html
+		return actualidad;
 	}
 }

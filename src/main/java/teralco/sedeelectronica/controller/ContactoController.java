@@ -34,7 +34,7 @@ public class ContactoController {
 	}
 
 	@RequestMapping(value = "/contacto", produces = "text/html;charset=UTF-8")
-	public String aperturas(Model model) {
+	public String contacto(Model model) {
 		// DEVOLVER LA LISTA DE ADJUDICACIONES ACTUALES
 		model.addAttribute("contacto", new Contacto());
 		return form;

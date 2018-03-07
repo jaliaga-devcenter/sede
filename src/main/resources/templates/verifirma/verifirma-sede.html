@@ -2,7 +2,8 @@
 <html lang="es" layout:decorator="/layouts/main">
 
 <head>
-    <title>Calendario de días inhábiles</title>
+    <title th:text="#{message.title.sede.verifirma}+' - '+#{message.title.sede}">Verifirma</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
@@ -17,7 +18,7 @@
                 <!-- End Sidebar -->
 
                 <div class="col-lg-9">
-                    <div th:replace="~{fragments/diasInhabilesView :: diasinhabiles}"></div>
+                    <div th:replace="~{fragments/verifirmaView :: verifirma}"></div>
                 </div>
             </div>
         </section>

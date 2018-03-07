@@ -13,6 +13,7 @@ public class GexflowWSConfiguration {
 	public Jaxb2Marshaller marshaller() {
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 		marshaller.setContextPath("gexflow.wsdl");
+		marshaller.setMtomEnabled(true);
 		return marshaller;
 	}
 
