@@ -14,7 +14,11 @@ public class ServicioConverterImpl implements ServicioConverter {
 
 		ServicioDTO servicio = new ServicioDTO(entity.getIdentificadorServicio(), entity.getDenominacion(),
 				entity.getDescripcion(), entity.getTipoTramite(), entity.getDocumentacion(),
-				entity.isCanalInternetHabilitado());
+				entity.getCanalPresencialTexto(), entity.isCanalInternetHabilitado(), entity.getCanalInternetTexto(),
+				entity.isCanalTelefonicoHabilitado(), entity.getCanalTelefonico(), entity.getDestinatarios(),
+				entity.getFormaInicio(), entity.getCosteFormaPago(), entity.getPlazoMaximoResolucion(),
+				entity.getOrganosCompetentes(), entity.getRecursos(), entity.getFundamentoLegal(),
+				entity.getPreguntasFrecuentes(), entity.getContactar());
 		return servicio;
 	}
 

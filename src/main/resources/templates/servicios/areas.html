@@ -111,7 +111,7 @@
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <tbody>
-                                                <tr th:each="servicio: ${servicios.get(subCategoria.idSubcategoria)}" th:data-online="${servicio.tramitacionOnline}">
+                                                <tr th:each="servicio: ${servicios.get(subCategoria.idSubcategoria)}" th:data-online="${servicio.canalOnline}">
                                                     <td class="align-middle g-width-340">
                                                         <a th:href="@{/ficha-procedimiento}+'?id='+${servicio.idServicio}">
                                                         <span th:text="${servicio.denominacion}">Titulo</span>
