@@ -96,10 +96,8 @@
                                 presencial.
                             </p>
                             <ul>
-                                <li>
-                                    <a href="" th:text="#{message.instancia.general.accordion.three.list.link}">Formulario de Instancia General</a>
-                                    <a href="" th:text="#{message.instancia.general.accordion.three.list.link}">Formulario de Instancia General</a>
-                                    <a href="" th:text="#{message.instancia.general.accordion.three.list.link}">Formulario de Instancia General</a>
+                                <li th:each="documento: ${servicio.documentos}">
+                                    <a th:href="@{${@environment.getProperty('sede.url.descarga')}} + ${documento.enlace}" th:text="${documento.nombre}">Formulario de Instancia General</a>
                                 </li>
                             </ul>
                         </div>
