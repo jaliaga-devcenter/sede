@@ -31,4 +31,9 @@ public class AyudaController {
 		return "instrucciones";
 	}
 
+	@RequestMapping("/aviso-legal")
+	public String avisoLegal() {
+		return "aviso-legal";
+	}
+
 }
