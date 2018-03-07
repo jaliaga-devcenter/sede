@@ -25,6 +25,7 @@ public class NoticiaController {
 	private static String list = "noticias/noticias";
 	private static String redirList = "redirect:/noticias";
 	private static String form = "noticias/formNoticia";
+	private static String actualidad = "noticias/actualidad";
 
 	private NoticiaService noticiaService;
 
@@ -70,5 +71,18 @@ public class NoticiaController {
 
 		this.noticiaService.save(noticia);
 		return redirList;
+	}
+
+	@RequestMapping("/actualidad")
+	public String actualidad() {
+		// Listado de noticias usando el template que hay en noticias/actualidad.html
+		return actualidad;
+	}
+
+	@RequestMapping("/actualidad/{id}")
+	public String detalle() {
+		// Detalle de la noticia seleccionada. Crear un nuevo template a partir del
+		// actualidad.html
+		return actualidad;
 	}
 }

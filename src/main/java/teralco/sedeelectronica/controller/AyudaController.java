@@ -10,12 +10,12 @@ public class AyudaController {
 	public String accesibilidad() {
 		return "accesibilidad";
 	}
-	
+
 	@RequestMapping("/obtener-certificado")
 	public String obtenerCertificado() {
 		return "obtener-certificado-electronico";
 	}
-	
+
 	@RequestMapping("/quejas-sugerencias")
 	public String quejasSugerencias() {
 		return "quejas-sugerencias";
@@ -25,11 +25,10 @@ public class AyudaController {
 	public String acceso() {
 		return "acceso";
 	}
-	
+
 	@RequestMapping("/instrucciones")
 	public String instrucciones() {
 		return "instrucciones";
 	}
-
 
 }
