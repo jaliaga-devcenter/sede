@@ -36,4 +36,9 @@ public class AyudaController {
 		return "aviso-legal";
 	}
 
+	@RequestMapping("/mapa-web")
+	public String mapaWeb() {
+		return "mapa-web";
+	}
+
 }
