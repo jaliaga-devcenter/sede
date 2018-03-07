@@ -21,11 +21,6 @@ public class AyudaController {
 		return "quejas-sugerencias";
 	}
 
-	@RequestMapping("/acceso")
-	public String acceso() {
-		return "acceso";
-	}
-
 	@RequestMapping("/instrucciones")
 	public String instrucciones() {
 		return "instrucciones";

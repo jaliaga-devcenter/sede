@@ -33,7 +33,7 @@ public class HomeController {
 
 	@Autowired
 	private GexflowClient clienteWS;
-	
+
 	@Autowired
 	public HomeController() {
 		this.locale = LocaleContextHolder.getLocale();
@@ -43,7 +43,7 @@ public class HomeController {
 	@RequestMapping("/")
 	public String greeting(Model model) {
 		List<CategoriaDTO> categorias;
-		
+
 		try {
 			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
 		} catch (GexflowWSException e) {
@@ -60,7 +60,7 @@ public class HomeController {
 	@RequestMapping(value = "/servicios/{id_cat}", method = RequestMethod.GET)
 	public String getServiciosPorCategoria(@PathVariable("id_cat") Integer idCat, Model model) {
 
-//		TODO Que pasa si la categoria no existe?
+		// TODO Que pasa si la categoria no existe?
 		List<CategoriaDTO> categorias = null;
 		try {
 			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
@@ -75,30 +75,14 @@ public class HomeController {
 		model.addAttribute(CAT_MODEL, categorias);
 		model.addAttribute(ICONO_MODEL, iconos);
 		model.addAttribute("currentCat", categoria.isPresent() ? categoria.get() : null);
-		
+
 		return "servicios/areas";
-	}
-
-	@RequestMapping("/tramites")
-	public String tramites(Model model) {
-		List<CategoriaDTO> categorias;
-		try {
-			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
-		} catch (GexflowWSException e) {
-			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
-		}
-		Map<Integer, IconoDTO> iconos = getIconosPorCategoria(categorias);
-
-		model.addAttribute(CAT_MODEL, categorias);
-		model.addAttribute(ICONO_MODEL, iconos);
-		return "tramites";
 	}
 
 	@RequestMapping("/perfil-del-contratante")
 	public String perfilContratante() {
 		return "perfil-del-contratante";
 	}
-
 
 	private Map<Integer, IconoDTO> getIconosPorCategoria(List<CategoriaDTO> categorias) {
 		Map<Integer, IconoDTO> iconos = categorias.stream().map(categoria -> {
