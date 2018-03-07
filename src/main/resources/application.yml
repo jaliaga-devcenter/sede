@@ -14,8 +14,10 @@ verifirma.password: servicio.consulta.expedientes
 
 
 sede:
+  requisitos.tecnicos: https://sede.murcia.es:8443/CarpetaCiudadana/requisitos.html
   conoce.tu.ayuntamiento: http://www.murcia.es/web/portal/institucional
   portal.transparencia: http://www.murcia.es/web/portal/transparencia-municipal
+  url.descarga: http://demo.gexflow.com:8080/gexflowzk
   procedimiento:
     ocupacion.via.publica: 4
     instancia.general: 11

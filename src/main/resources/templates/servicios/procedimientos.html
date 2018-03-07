@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Procedimientos</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <section class="g-py-15 g-pl-30 g-pr-30">
+            <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.procedimientos.page.header})}"></div>
+
+            <div class="col-xs-12 col-sm-12 offset-md-4 col-md-4 col-lg-4 g-mb-20">
+                <form class="g-brd-around g-brd-transparent g-pa-30 g-mb-30">
+                    <div class="g-mb-10">
+                        <div class="input-group">
+                            <input type="text" class="form-control rounded-0 form-control-md" th:placeholder="#{message.procedimientos.section.one.search.input.placeholder}"
+                                placeholder="Busca procedimientos...">
+                        </div>
+                    </div>
+
+                    <div class=" g-mb-10">
+                        <strong class="g-mr-10" th:text="#{message.procedimientos.section.one.show.label}">Mostrar:</strong>
+                        <!-- Inline Radios -->
+                        <div class="form-check form-check-inline mb-0">
+                            <label class="form-check-label mr-2">
+                                <input class="form-check-input mr-1" checked type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <span th:text="#{message.procedimientos.section.one.show.check.one.label}">Todos</span>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline mb-0">
+                            <label class="form-check-label mr-2">
+                                <input class="form-check-input mr-1" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <span th:text="#{message.procedimientos.section.one.show.check.two.label}">Online</span>
+                            </label>
+                        </div>
+                        <!-- End Inline Radios -->
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-md u-btn-primary rounded-0" type="submit" th:text="#{message.procedimientos.section.one.button}">
+                            Buscar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="accordion-05" class="u-accordion" role="tablist" aria-multiselectable="true">
+                <div>
+                    <p>
+                        <span th:text="#{message.procedimientos.section.two.legend}">Nivel de tramitaci&oacute;n:</span>
+                        <span class="u-label g-color-black g-mr-10 g-mb-15">
+                            <i class="g-color-primary fa fa-info g-mr-3"></i>
+                            <span th:text="#{message.procedimientos.section.two.legend.icon.one}">Informaci&oacute;n</span>
+                        </span>
+                        <span class="u-label g-color-black g-mr-10 g-mb-15">
+                            <i class="g-color-primary fa fa-download g-mr-3"></i>
+                            <span th:text="#{message.procedimientos.section.two.legend.icon.two}">Descarga de formularios</span>
+                        </span>
+                        <span class="u-label g-color-black g-mb-15">
+                            <i class="g-color-primary fa fa-at"></i>
+                            <span th:text="#{message.procedimientos.section.two.legend.icon.three}">Tramitaci&oacute;n electr&oacute;nica</span>
+                        </span>
+                    </p>
+                </div>
+
+                <h5>
+                    <i class="fa fa-info g-ml-20 g-mr-20"></i> INFORMACIÓN GENERAL Y PADRÓN DE HABITANTES
+                </h5>
+                <!-- Card -->
+                <div class="card rounded-0 g-brd-none">
+                    <div th:replace="~{fragments/accordionCard :: header('INFORMACIÓN Y ATENCIÓN AL CIUDADANO', '1', false, true)}"></div>
+                    <div id="accordion-05-body-1" class="collapse show" role="tabpanel" aria-labelledby="accordion-05-heading-1">
+                        <div class="u-accordion__body g-pa-0">
+                            <!-- Basic Table -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Instancia general</a>
+                                            </td>
+                                            <td class="align-middle">Online</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Quejas y sugerencias</a>
+                                            </td>
+                                            <td class="align-middle">Online</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Publicaci&oacute;n en el Tabl&oacute;n de Anuncios y Edictos</a>
+                                            </td>
+                                            <td class="align-middle">Online</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Escrito de subsanaci&oacute;n y mejora de la solicitud</a>
+                                            </td>
+                                            <td class="align-middle">Online</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Acceso a la Informaci&oacute;n P&uacute;blica</a>
+                                            </td>
+                                            <td class="align-middle">Online</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- End Basic Table -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Card -->
+
+                <!-- Card -->
+                <div class="card rounded-0 g-brd-none">
+                    <div th:replace="~{fragments/accordionCard :: header('PADRÓN DE HABITANTES', '2', true, false)}"></div>
+                    <div id="accordion-05-body-2" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-2">
+                        <div class="u-accordion__body g-pa-0">
+                            <!-- Basic Table -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Volante de empadronamiento en un click
+                                                    <i class="fa fa-check-circle"></i>
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">Online</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Alta y cambio de domicilio en el Padr&oacute;n Municipal de Habitantes</a>
+                                            </td>
+                                            <td class="align-middle">Online</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Baja en el Padr&oacute;n Municipal de Habitantes</a>
+                                            </td>
+                                            <td class="align-middle">Online</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Modificaci&oacute;n de datos personales en el Padr&oacute;n Municipal de Habitantes</a>
+                                            </td>
+                                            <td class="align-middle">Online</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Confirmaci&oacute;n en el Padr&oacute;n de Habitantes</a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Renovaci&oacute;n en el Padr&oacute;n de Habitantes</a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- End Basic Table -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Card -->
+
+                <h5 class="g-mt-40">
+                    <i class="fa fa-users g-ml-20 g-mr-20"></i>SERVICIOS SOCIALES, SANIDAD Y COOPERACIÓN</h5>
+                <!-- Card -->
+                <div class="card rounded-0 g-brd-none">
+                    <div th:replace="~{fragments/accordionCard :: header('COOPERACIÓN AL DESARROLLO', '3', true, true)}"></div>
+                    <div id="accordion-05-body-3" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-3">
+                        <div class="u-accordion__body g-pa-0">
+                            <!-- Basic Table -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Concesi&oacute;n de Subvenciones para la cooperaci&oacute;n al desarollo</a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- End Basic Table -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Card -->
+
+                <!-- Card -->
+                <div class="card rounded-0 g-brd-none">
+                    <div th:replace="~{fragments/accordionCard :: header('SANIDAD', '4', true, false)}"></div>
+                    <div id="accordion-05-body-4" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-4">
+                        <div class="u-accordion__body g-pa-0">
+                            <!-- Basic Table -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Autorizaci&oacute;n del Sacrificio de Cerdos en r&eacute;gimen de Matanzas Domiciliarias
+                                                    para Consumo Familiar</a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Prestaci&oacute;n de Servicios en el Cementerio Municipal de Nuestro Padre Jes&uacute;s
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Control de Aguas de Aljibe</a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Control del Agua de Consumo en Instalaciones Interiores</a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Declaraci&oacute;n de Peligrosidad de un Animal</a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Licencia para Tenencia de Animales Potencialmente Peligrosos, Obtenci&oacute;n,
+                                                    Renovaci&oacute;n y Modificaci&oacute;n
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Subsanaci&oacute;n Deficiencias Higi&eacute;nico-Sanitarias y/o acumulaci&oacute;n de Animales
+                                                    en viviendas o edificios</a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Denuncia por Infracci&oacute;n de la Ordenanza Municipal sobre Animales de Compañ&iacute;a</a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Vertidos Dom&eacute;sticos Fuera del Alcantarillado p&uacute;blico</a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Denuncia de Establecimientos de Alimentaci&oacute;n por Infracci&oacute;n de Legislaci&oacute;n
+                                                    Sanitaria
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">Presencial</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-gray g-color-gray">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- End Basic Table -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Card -->
+
+                <!-- Card -->
+                <div class="card rounded-0 g-brd-none">
+                    <div th:replace="~{fragments/accordionCard :: header('SERVICIOS SOCIALES', '5', true, true)}"></div>
+                    <div id="accordion-05-body-5" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-5">
+                        <div class="u-accordion__body g-pa-0">
+                            <!-- Basic Table -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Solicitud de ayudas econ&oacute;micas municipales para la atenci&oacute;n de necesidades
+                                                    sociales
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">Online</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">
+                                                <a href="#">Subvenciones nominativas para la realizaci&oacute;n de Proyectos de Servicios Sociales
+                                                </a>
+                                            </td>
+                                            <td class="align-middle">Online</td>
+                                            <td class="g-width-150 g-pa-0 align-middle">
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-info"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                    <i class="fa fa-download"></i>
+                                                </span>
+                                                <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                    <i class="fa fa-at"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- End Basic Table -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Card -->
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>
