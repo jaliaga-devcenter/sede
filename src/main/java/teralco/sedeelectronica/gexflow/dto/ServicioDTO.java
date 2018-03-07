@@ -2,6 +2,7 @@ package teralco.sedeelectronica.gexflow.dto;
 
 public class ServicioDTO extends AbstractDTO {
 
+	private Integer idServicio;
 	private String denominacion;
 	private String descripcion;
 	private String documentacion;
@@ -10,8 +11,9 @@ public class ServicioDTO extends AbstractDTO {
 	private Integer idCategoria;
 	private Integer idSubCategoria;
 
-	public ServicioDTO(String pDenominacion, String pDescripcion, String pTipoTramite, String pDocumentacion,
-			Boolean pTramitacionOnline) {
+	public ServicioDTO(Integer pIdServicio, String pDenominacion, String pDescripcion, String pTipoTramite,
+			String pDocumentacion, Boolean pTramitacionOnline) {
+		this.idServicio = pIdServicio;
 		this.denominacion = pDenominacion;
 		this.descripcion = pDescripcion;
 		this.documentacion = pDocumentacion;
@@ -71,6 +73,10 @@ public class ServicioDTO extends AbstractDTO {
 
 	public Boolean getTramitacionOnline() {
 		return this.tramitacionOnline;
+	}
+
+	public Integer getIdServicio() {
+		return this.idServicio;
 	}
 
 }

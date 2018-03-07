@@ -35,6 +35,7 @@ public class HomeController {
 	private static final String CAT_MODEL = "categorias";
 	private static final String ICONO_MODEL = "iconos";
 	private static final String SERVICIOS_MODEL = "servicios";
+	private static final String SERVICIO_MODEL = "servicio";
 
 	private String idioma = "es";
 	private static final Integer ENTIDAD = 0;
@@ -99,8 +100,15 @@ public class HomeController {
 	}
 
 	@RequestMapping("/ficha-procedimiento")
-	public String fichaProcedimiento(@RequestParam(value = "id", required = true) Integer idServicio) {
-		idServicio.intValue();
+	public String fichaProcedimiento(@RequestParam(value = "id", required = true) Integer idServicio, Model model) {
+		ServicioDTO servicio = null;
+		try {
+			servicio = this.clienteWS.getServicio(ENTIDAD, this.idioma, idServicio);
+		} catch (GexflowWSException e) {
+			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
+		}
+
+		model.addAttribute(SERVICIO_MODEL, servicio);
 		return "servicios/ficha-procedimiento";
 	}
 

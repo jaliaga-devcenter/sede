@@ -12,8 +12,9 @@ public class ServicioConverterImpl implements ServicioConverter {
 	@Override
 	public ServicioDTO createFrom(ServicioWSJB entity) {
 
-		ServicioDTO servicio = new ServicioDTO(entity.getDenominacion(), entity.getDescripcion(),
-				entity.getTipoTramite(), entity.getDocumentacion(), entity.isCanalInternetHabilitado());
+		ServicioDTO servicio = new ServicioDTO(entity.getIdentificadorServicio(), entity.getDenominacion(),
+				entity.getDescripcion(), entity.getTipoTramite(), entity.getDocumentacion(),
+				entity.isCanalInternetHabilitado());
 		return servicio;
 	}
 

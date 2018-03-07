@@ -113,7 +113,7 @@
                                             <tbody>
                                                 <tr th:each="servicio: ${servicios.get(subCategoria.idSubcategoria)}" th:data-online="${servicio.tramitacionOnline}">
                                                     <td class="align-middle g-width-340">
-                                                        <a href="#">
+                                                        <a th:href="@{/ficha-procedimiento}+'?id='+${servicio.idServicio}">
                                                         <span th:text="${servicio.denominacion}">Titulo</span>
                                                         </a>
                                                     </td>

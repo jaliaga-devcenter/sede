@@ -12,6 +12,8 @@ import gexflow.wsdl.ConsultaCatalogoCategoriasResponse;
 import gexflow.wsdl.ConsultaCatalogoServicio;
 import gexflow.wsdl.ConsultaCatalogoServicioPorCategoria;
 import gexflow.wsdl.ConsultaCatalogoServicioPorCategoriaResponse;
+import gexflow.wsdl.ConsultaCatalogoServicioPorId;
+import gexflow.wsdl.ConsultaCatalogoServicioPorIdResponse;
 import gexflow.wsdl.ConsultaCatalogoServicioResponse;
 import gexflow.wsdl.ConsultaIconoCategoria;
 import gexflow.wsdl.ConsultaIconoCategoriaResponse;
@@ -108,6 +110,24 @@ public class GexflowClient extends WebServiceGatewaySupport {
 
 		return servicios;
 
+	}
+
+	public ServicioDTO getServicio(Integer entidad, String idioma, Integer idServicio) throws GexflowWSException {
+
+		ConsultaCatalogoServicioPorId request = new ConsultaCatalogoServicioPorId();
+		request.setIdEntidad(entidad);
+		request.setCodigoIdioma(idioma);
+		request.setIdentificadorServicio(idServicio);
+
+		@SuppressWarnings("unchecked")
+		JAXBElement<ConsultaCatalogoServicioPorIdResponse> response = (JAXBElement<ConsultaCatalogoServicioPorIdResponse>) invokeWS(
+				this.factory.createConsultaCatalogoServicioPorId(request));
+
+		EstadoRespuesta estado = response.getValue().getResultado().getEstadoRespuesta();
+		comprobarError(estado);
+
+		return this.servicioConverter
+				.createFrom(response.getValue().getResultado().getServicios().getServicio().get(0));
 	}
 
 	public List<ServicioDTO> buscarServicios(Integer entidad, String idioma, String textoBusqueda)
