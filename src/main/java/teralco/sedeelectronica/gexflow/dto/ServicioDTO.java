@@ -1,5 +1,8 @@
 package teralco.sedeelectronica.gexflow.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ServicioDTO extends AbstractDTO {
 
 	private Integer idServicio;
@@ -25,6 +28,8 @@ public class ServicioDTO extends AbstractDTO {
 	private String fundamentoLegal;
 	private String preguntasFrecuentes;
 	private String contactar;
+
+	private List<DocumentoDTO> documentos = new ArrayList<>();
 
 	public ServicioDTO(Integer pIdServicio, String pDenominacion, String pDescripcion, String pTipoTramite,
 			String pDocumentacion, String pTextoPresencial, Boolean pCanalOnline, String pTextoOnline,
@@ -163,6 +168,10 @@ public class ServicioDTO extends AbstractDTO {
 
 	public String getContactar() {
 		return this.contactar;
+	}
+
+	public List<DocumentoDTO> getDocumentos() {
+		return this.documentos;
 	}
 
 }
