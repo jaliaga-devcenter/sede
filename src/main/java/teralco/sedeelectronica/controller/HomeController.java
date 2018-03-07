@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import teralco.sedeelectronica.exception.ExceptionType;
 import teralco.sedeelectronica.exception.SedeElectronicaException;
@@ -81,6 +82,7 @@ public class HomeController {
 
 		model.addAttribute(CAT_MODEL, categorias);
 		model.addAttribute(ICONO_MODEL, iconos);
+
 		model.addAttribute(SERVICIOS_MODEL, servicios);
 		model.addAttribute("currentCat", categoriaActual);
 
@@ -94,6 +96,12 @@ public class HomeController {
 		Optional<CategoriaDTO> categoriaActual = categorias.stream()
 				.filter(cat -> cat.getIdCategoria().equals(idCat.get())).findFirst();
 		return categoriaActual.isPresent() ? categoriaActual.get() : categorias.get(0);
+	}
+
+	@RequestMapping("/ficha-procedimiento")
+	public String fichaProcedimiento(@RequestParam(value = "id", required = true) Integer idServicio) {
+		idServicio.intValue();
+		return "servicios/ficha-procedimiento";
 	}
 
 	@RequestMapping("/buscador-procedimientos")
