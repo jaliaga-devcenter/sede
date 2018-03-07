@@ -23,10 +23,11 @@ public final class FicheroUtils {
 
 	private static String serverUploadPath;
 
+	@SuppressWarnings("static-method")
 	@Autowired
 	@Value("${server.uploadPath}")
-	public static void testValue(String value) {
-		serverUploadPath = value;
+	public void setServerUploadPath(String uploadPath) {
+		serverUploadPath = uploadPath;
 	}
 
 	public static String guardarFichero(MultipartFile fichero) throws IOException {
