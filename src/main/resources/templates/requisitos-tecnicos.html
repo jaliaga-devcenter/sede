@@ -78,7 +78,7 @@
                 </div>
                 <div>
                     <h4 th:text="#{message.requisitos.tecnicos.section.three.header}">Comprobaci&oacute;n de los requisitos t&eacute;cnicos</h4>
-                    <iframe class="g-brd-0" src="" width="100%" height="600" scrolling="no" title="Requisitos técnicos tramitador" target="_blank"></iframe>
+                    <iframe class="g-brd-0" th:src="@{${@environment.getProperty('sede.requisitos.tecnicos')}}" width="100%" height="600" scrolling="no" title="Requisitos técnicos tramitador" target="_blank"></iframe>
                 </div>
             </div>
         </section>
