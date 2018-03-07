@@ -10,6 +10,10 @@ public class CategoriaDTO extends AbstractDTO {
 	private String descripcion;
 	private List<SubcategoriaDTO> subcategorias;
 
+	public CategoriaDTO() {
+
+	}
+
 	public CategoriaDTO(Integer _idCategoria, String _nombre, String _descripcion) {
 		this.idCategoria = _idCategoria;
 		this.nombre = _nombre;
