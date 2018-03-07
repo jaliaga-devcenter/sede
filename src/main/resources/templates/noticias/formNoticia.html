@@ -4,7 +4,8 @@
 	layout:decorate="~{/layouts/main}">
 <head>
 	<title th:text="*{noticia!=null}?  #{message.news.form.edit} : #{message.news.form.new}"></title>
-	<script src="https://cdn.ckeditor.com/4.8.0/standard-all/ckeditor.js"></script>
+	<script src="../static/vendor/ckeditor/ckeditor.js" th:src="@{/vendor/ckeditor/ckeditor.js}"></script>
+
 </head>
 <body>
 		
@@ -17,7 +18,7 @@
 		<form class="g-pa-30 g-mb-30" th:object="${noticia}" th:action="@{/noticias/save}" method="post" >
 			<input type="hidden" th:field="*{id}" />
 			<div th:replace="~{fragments/inputs/textField :: input(#{message.news.form.label.title}, 'titulo', 'text', true)}"></div>
-			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.news.form.label.new}, 'descripcion', #{message.news.form.error.new}, 4, 50, true, false)}"></div>
+			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.news.form.label.new}, 'descripcion', #{message.news.form.error.new}, 4, 48, true, false)}"></div>
 
 			<div class="d-flex justify-content-between g-mt-30">
 				<div>
@@ -28,46 +29,7 @@
 				</div>
 			</div>
 			<script>
-			CKEDITOR.replace( 'descripcion');
-			CKEDITOR.editorConfig = function( config ) {
-			config.toolbarGroups = [
-				{ name: 'document', groups: [ 'mode', 'document', 'doctools' ] },
-				{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-				{ name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-				{ name: 'forms', groups: [ 'forms' ] },
-				'/',
-				{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
-				{ name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi', 'paragraph' ] },
-				{ name: 'links', groups: [ 'links' ] },
-				{ name: 'insert', groups: [ 'insert' ] },
-				'/',
-				{ name: 'styles', groups: [ 'styles' ] },
-				{ name: 'colors', groups: [ 'colors' ] },
-				{ name: 'tools', groups: [ 'tools' ] },
-				{ name: 'others', groups: [ 'others' ] },
-				{ name: 'about', groups: [ 'about' ] }
-			];
-
-			config.removeButtons = 'Save,Source,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,CopyFormatting,RemoveFormat,Flash,About';
-			};
-			CKEDITOR.plugins.add( 'readmore', {
-    			icons: 'readmore',
-    			init: function( editor ) {
-        			editor.addCommand( 'insertReadmore', { 
-            			modes : { wysiwyg:1, source:0 }, canUndo : true,
-            			exec: function( editor ) {    
-                			editor.insertHtml( '<p style="border-top: 1px dotted #999999;background: url(' + 
-							CKEDITOR.plugins.getPath('readmore') + 'icons/readmore.png' + ') no-repeat center center;"><!--readmore--></p>' );
-						},
-            			editorFocus : true
-        			});
-        			editor.ui.addButton( 'Readmore', {
-            			label: 'Insert Readmore',
-            			command: 'insertReadmore'
-        			});
-    			}
-			});
-
+				CKEDITOR.replace( 'descripcion');
 			</script>
 	</form>
 	</div>

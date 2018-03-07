@@ -77,14 +77,15 @@ public class NoticiaController {
 	}
 
 	@RequestMapping("/actualidad")
-	public String actualidad() {
-		// Listado de noticias usando el template que hay en noticias/actualidad.html
+	public String actualidad(Model model) {
+		model.addAttribute("noticias", this.noticiaService.list());
+
 		return actualidad;
 	}
 
 	@RequestMapping("/actualidad/{id}")
-	public String detalle() {
-		// Detalle de la noticia seleccionada. Crear un nuevo template a partir del
+	public String detalle(@PathVariable Long id, Model model) {
+		model.addAttribute("noticiaDetalle", this.noticiaService.get(id));
 		// actualidad.html
 		return actualidad;
 	}
