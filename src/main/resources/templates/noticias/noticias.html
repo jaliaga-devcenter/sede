@@ -16,7 +16,6 @@
 				<tr class="g-col-border-top-0">
 					<th>#</th>
 					<th th:text="#{message.news.table.header.title}">Titulo</th>
-					<th th:text="#{message.news.table.header.description}">Descripcion</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,8 +31,7 @@
 						</fieldset>
 					</th>
 					<td th:text="${#dates.format(noticia.fecha, 'dd/MM/yyyy HH:mm')}"></td>
-					<td th:text="${noticia.titulo}"></td>
-					<td th:text="${#strings.substring(noticia.descripcion, 0, 99)}"></td>					
+					<td th:text="${noticia.titulo}"></td>				
 				</tr>
 			</tbody>
 		</table>

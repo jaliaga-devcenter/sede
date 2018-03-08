@@ -90,6 +90,27 @@ public class HomeController {
 		return "servicios/areas";
 	}
 
+	@RequestMapping(value = "/procedimientos/")
+	public String getTodosServicios(Model model) {
+
+		List<CategoriaDTO> categorias = null;
+		try {
+			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+		} catch (GexflowWSException e) {
+			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
+		}
+
+		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
+
+		// servicios.putAll(categorias.stream().forEach(this::getServiciosPorSubCategorias));
+
+		model.addAttribute(CAT_MODEL, categorias);
+
+		model.addAttribute(SERVICIOS_MODEL, servicios);
+
+		return "servicios/areas";
+	}
+
 	private static CategoriaDTO getCategoriaActual(List<CategoriaDTO> categorias, Optional<Integer> idCat) {
 		if (!idCat.isPresent()) {
 			return categorias.get(0);
@@ -123,14 +144,13 @@ public class HomeController {
 	}
 
 	private Map<Integer, IconoDTO> getIconosPorCategoria(List<CategoriaDTO> categorias) {
-		Map<Integer, IconoDTO> iconos = categorias.stream().map(categoria -> {
+		return categorias.stream().map(categoria -> {
 			try {
 				return this.clienteWS.getIconoCategoria(ENTIDAD, this.idioma, categoria.getIdCategoria());
 			} catch (GexflowWSException e) {
 				throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 			}
 		}).collect(Collectors.toMap(IconoDTO::getIdCategoria, icono -> icono));
-		return iconos;
 	}
 
 	private Map<Integer, List<ServicioDTO>> getServiciosPorSubCategorias(CategoriaDTO categoria) {
