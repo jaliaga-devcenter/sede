@@ -12,10 +12,10 @@
             <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.procedimientos.page.header})}"></div>
 
             <div class="col-xs-12 col-sm-12 offset-md-4 col-md-4 col-lg-4 g-mb-20">
-                <form class="g-brd-around g-brd-transparent g-pa-30 g-mb-30">
+                <form class="g-brd-around g-brd-transparent g-pa-30 g-mb-30" method="POST" action="../buscar-procedimientos">
                     <div class="g-mb-10">
                         <div class="input-group">
-                            <input type="text" class="form-control rounded-0 form-control-md" th:placeholder="#{message.procedimientos.section.one.search.input.placeholder}"
+                            <input type="text" name="searchText" class="form-control rounded-0 form-control-md" th:placeholder="#{message.procedimientos.section.one.search.input.placeholder}"
                                 placeholder="Busca procedimientos...">
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                     </p>
                 </div>
 
-                <div th:each="cat,iter: ${categorias}" >
+                <div th:each="cat,iter: ${categorias}"  th:if="${servicios}">
                     <h5>
                         <i class="fa fa-info g-ml-20 g-mr-20"></i><span th:text="${#strings.toUpperCase(cat.nombre)}"> Categoria</span>
                     </h5>
@@ -104,8 +104,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
                     <!-- End Card -->
+                </div>
+                    
 
                    
                 
