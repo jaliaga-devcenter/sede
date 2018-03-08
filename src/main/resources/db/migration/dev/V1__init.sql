@@ -99,6 +99,7 @@ create table AVISO (
 
 create table PARADA (
    ID                   SERIAL 		not null,
+   FECHA            DATE  null,
    DESCRIPCION			TEXT 			null,
    constraint PK_PARADA primary key (ID)
  );

@@ -33,6 +33,7 @@ public class HomeController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
 	private static final String CAT_MODEL = "categorias";
+	private static final String SUBCAT_MODEL = "subcategorias";
 	private static final String ICONO_MODEL = "iconos";
 	private static final String SERVICIOS_MODEL = "servicios";
 	private static final String SERVICIO_MODEL = "servicio";
@@ -90,7 +91,7 @@ public class HomeController {
 		return "servicios/areas";
 	}
 
-	@RequestMapping(value = "/procedimientos/")
+	@RequestMapping(value = "/procedimientos")
 	public String getTodosServicios(Model model) {
 
 		List<CategoriaDTO> categorias = null;
@@ -101,14 +102,15 @@ public class HomeController {
 		}
 
 		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
-
-		// servicios.putAll(categorias.stream().forEach(this::getServiciosPorSubCategorias));
+		for (CategoriaDTO cat : categorias) {
+			servicios.putAll(this.getServiciosPorSubCategorias(cat));
+		}
 
 		model.addAttribute(CAT_MODEL, categorias);
-
 		model.addAttribute(SERVICIOS_MODEL, servicios);
 
-		return "servicios/areas";
+		return "servicios/procedimientos";
+
 	}
 
 	private static CategoriaDTO getCategoriaActual(List<CategoriaDTO> categorias, Optional<Integer> idCat) {

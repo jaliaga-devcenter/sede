@@ -15,6 +15,7 @@
 			<thead>
 				<tr class="g-col-border-top-0">
 					<th>#</th>
+					<th th:text="#{message.stop.table.header.date}">Fecha</th>
 					<th th:text="#{message.stop.table.header.description}">Descripción</th>
 				</tr>
 			</thead>
@@ -29,7 +30,8 @@
 								</label>
 							</div>
 						</fieldset>
-					</th>	
+					</th>
+					<td th:text="${#dates.format(parada.fecha, 'dd/MM/yyyy')}"></td>
 					<td th:text="${parada.descripcion}" ></td>					
 				</tr>
 			</tbody>

@@ -1,5 +1,8 @@
 package teralco.sedeelectronica.controller;
 
+import java.time.Instant;
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,4 +74,13 @@ public class ParadasController {
 		this.paradaService.save(parada);
 		return redirList;
 	}
+
+	@RequestMapping("/paradas-programadas")
+	public String paradas(Model model) {
+		Date output = Date.from(Instant.now());
+		model.addAttribute("paradas", this.paradaService.findAllByFechaOrderByFecha(output));
+
+		return "sede/paradas-programadas";
+	}
+
 }
