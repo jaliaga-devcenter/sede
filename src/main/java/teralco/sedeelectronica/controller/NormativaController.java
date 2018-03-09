@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.model.Normativa;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.NormativaService;
 import teralco.sedeelectronica.utils.EncryptUtils;
-import teralco.sedeelectronica.utils.FicheroUtils;
 import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
@@ -47,7 +45,6 @@ public class NormativaController {
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE NORMATIVAS
 		model.addAttribute("normativas", this.normativaService.list());
-		model.addAttribute("encrypt", this.encryptUtils);
 		return normas;
 	}
 
@@ -58,8 +55,6 @@ public class NormativaController {
 		model.addAttribute("normativas", pages);
 		PageWrapper<Normativa> page = new PageWrapper<>(pages, "/normativa");
 		model.addAttribute("page", page);
-
-		model.addAttribute("encrypt", this.encryptUtils);
 		return list;
 	}
 
@@ -86,12 +81,6 @@ public class NormativaController {
 	public String save(@Valid @ModelAttribute("normativa") Normativa normativa, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return form;
-		}
-
-		Fichero file = FicheroUtils.convertirFichero(normativa.getFileToUpload());
-		if (file != null) {
-			file = this.ficheroService.save(file);
-			normativa.setFichero(file);
 		}
 
 		this.normativaService.save(normativa);
