@@ -15,6 +15,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import teralco.sedeelectronica.security.ProcedimientoHandlerInterceptorAdapter;
+
 @SpringBootApplication
 @ComponentScan(basePackages = "teralco.sedeelectronica")
 @EntityScan("teralco.sedeelectronica.model")
@@ -40,8 +42,16 @@ public class Application extends WebMvcConfigurerAdapter {
 		return lci;
 	}
 
+	@Bean
+	public ProcedimientoHandlerInterceptorAdapter procedimientoInterceptor() {
+		return new ProcedimientoHandlerInterceptorAdapter();
+	}
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
+		registry.addInterceptor(procedimientoInterceptor()).addPathPatterns("/procedimiento", "/procedimiento/**",
+				"/carpeta-ciudadana");
 	}
+
 }

@@ -13,6 +13,7 @@ verifirma.user: servicio.consulta.expedientes
 verifirma.password: servicio.consulta.expedientes
 
 sede:
+  entidad: 0
   ws.tramites: http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites
   ws.admin: http://demo.gexflow.com:8080/gexflowzk/ws/WSAdminGexflowZK
   ws.pasarela: https://demo.gexflow.com:8443/pasarelaintegracion/ws/Autenticacion

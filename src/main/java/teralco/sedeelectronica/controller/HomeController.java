@@ -112,8 +112,8 @@ public class HomeController {
 		return "servicios/ficha-procedimiento";
 	}
 
-	@RequestMapping("/procedimiento")
-	public String procedimientos(@RequestParam(value = "id", required = true) Integer idServicio, Model model) {
+	@RequestMapping("/procedimiento/{id}")
+	public String procedimientos(@PathVariable("id") Integer idServicio, Model model) {
 		model.addAttribute("idServicio", idServicio);
 		return "servicios/procedimiento";
 	}
