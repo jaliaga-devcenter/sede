@@ -2,12 +2,12 @@
 <html lang="es" layout:decorate="~{/layouts/main}">
 <head>
 	<head>
-		<title th:text="#{message.news.table.header}">Noticias</title>
+		<title th:text="#{message.annuncement.table.header}">Tablón anuncios</title>
 	</head>
 	<body>
 	
 		<div layout:fragment="content">	
-			<div th:replace="~{fragments/genericTable :: genericTable('user', #{message.news.table.header}, 'noticias', ~{::table})}"></div>
+			<div th:replace="~{fragments/genericTable :: genericTable('user', #{message.annuncement.table.header}, 'anuncios', ~{::table})}"></div>
 			<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
 		</div>
 	
@@ -15,24 +15,32 @@
 			<thead>
 				<tr class="g-col-border-top-0">
 					<th>#</th>
-					<th th:text="#{message.news.table.header.date}">Fecha</th>
-					<th th:text="#{message.news.table.header.title}">Titulo</th>
+					<th th:text="#{message.annuncement.table.header.dateFrom}">Fecha</th>
+					<th th:text="#{message.annuncement.table.header.dateTo}">Fecha</th>
+					<th th:text="#{message.annuncement.table.header.title}">Titulo</th>
+					<th th:text="#{message.annuncement.table.header.title}">Titulo</th>
+
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="noticia, itr : ${noticias}" th:href="@{/noticias/edit/{id}(id=${noticia.id})}">
+				<tr th:each="anuncio, itr : ${anuncios}" th:href="@{/anuncios/edit/{id}(id=${anuncio.id})}">
 					<th scope="row">
 						<fieldset class="g-pt-2">
 							<div>
 								<label>
-									<input type="radio" name="optionsRadios" th:id="${'option' + noticia.id}" th:checked="${itr.index == 0}" th:value="${noticia.id}"
+									<input type="radio" name="optionsRadios" th:id="${'option' + anuncio.id}" th:checked="${itr.index == 0}" th:value="${anuncio.id}"
 									/>
 								</label>
 							</div>
 						</fieldset>
 					</th>
-					<td th:text="${#dates.format(noticia.fecha, 'dd/MM/yyyy HH:mm')}"></td>
-					<td th:text="${noticia.titulo}"></td>				
+					<td th:text="${#dates.format(anuncio.fechaDe, 'dd/MM/yyyy')}"></td>
+					<td th:text="${#dates.format(anuncio.fechaHasta, 'dd/MM/yyyy')}"></td>
+					<td th:text="${anuncio.titulo}"></td>		
+					<td th:switch="${anuncio.fichero}">
+						<span th:case="null" >No</span>
+						<span th:case="*" th:text="${anuncio.fichero.nombreOriginal}">Si</span>
+					</td>		
 				</tr>
 			</tbody>
 		</table>

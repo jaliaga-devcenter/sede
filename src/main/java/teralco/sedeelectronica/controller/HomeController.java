@@ -100,6 +100,7 @@ public class HomeController {
 		} catch (GexflowWSException e) {
 			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 		}
+		// TODO
 		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
 		for (CategoriaDTO cat : categorias) {
 			servicios.putAll(this.getServiciosPorSubCategorias(cat));

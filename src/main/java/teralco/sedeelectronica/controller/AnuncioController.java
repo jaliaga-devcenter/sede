@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import teralco.sedeelectronica.model.Adjudicacion;
 import teralco.sedeelectronica.model.Anuncio;
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.service.AnuncioService;
@@ -27,10 +26,10 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class AnuncioController {
 
-	private static String list = "tablon-anuncios/tablon";
-	private static String redirList = "redirect:/tablon";
-	private static String form = "tablon-anuncios/formAnuncios";
-	private static String anuncios = "tablon-anuncios/tablon-anuncios";
+	private static String list = "tablon-anuncios/anuncios";
+	private static String redirList = "redirect:/anuncios";
+	private static String form = "tablon-anuncios/formAnuncio";
+	private static String anuncios = "tablon-anuncios/tablon";
 
 	private AnuncioService anuncioService;
 	private FicheroService ficheroService;
@@ -48,7 +47,7 @@ public class AnuncioController {
 	public String aperturas(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		// DEVOLVER LA LISTA DE ADJUDICACIONES ACTUALES
 		Page<Anuncio> pages = this.anuncioService.listAllByPage(pageable);
-		model.addAttribute("adjudicaciones", pages);
+		model.addAttribute("anuncios", pages);
 		PageWrapper<Anuncio> page = new PageWrapper<>(pages, "/tablon-anuncios");
 		model.addAttribute("page", page);
 
@@ -58,7 +57,7 @@ public class AnuncioController {
 
 	@RequestMapping("/anuncios/create")
 	public String create(Model model) {
-		model.addAttribute("anuncio", new Adjudicacion());
+		model.addAttribute("anuncio", new Anuncio());
 		return form;
 	}
 
@@ -101,7 +100,8 @@ public class AnuncioController {
 	@RequestMapping("/tablon-anuncios/{id}")
 	public String detalle(@PathVariable Long id, Model model) {
 		model.addAttribute("anuncioDetalle", this.anuncioService.get(id));
-		// actualidad.html
+		model.addAttribute("encrypt", this.encryptUtils);
+
 		return anuncios;
 	}
 }

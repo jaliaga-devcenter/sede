@@ -78,15 +78,19 @@ public class Anuncio extends BaseModel {
 		this.fechaDe = pFecha;
 	}
 
-	public Date getFecha() {
+	public Date getFechaHasta() {
 		return this.fechaHasta;
 	}
 
-	public void setFecha(Date pFecha) {
+	public void setFechaHasta(Date pFecha) {
 		this.fechaHasta = pFecha;
 	}
 
 	public MultipartFile getFileToUpload() {
 		return this.fileToUpload;
+	}
+
+	public void setFileToUpload(MultipartFile pFileToUpload) {
+		this.fileToUpload = pFileToUpload;
 	}
 }
