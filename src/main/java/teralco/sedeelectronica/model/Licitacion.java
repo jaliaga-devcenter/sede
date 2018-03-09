@@ -110,10 +110,4 @@ public class Licitacion extends BaseModel {
 	public void setFileToUpload(MultipartFile file) {
 		this.fileToUpload = file;
 	}
-
-	@Override
-	public String toString() {
-		return "Licitacion [ fechaPub=" + this.fechaPub + ", descripcion=" + this.descripcion + ", presupuesto="
-				+ this.presupuesto + ", finPlazo=" + this.finPlazo + ", medio=" + this.medio + "]";
-	}
 }

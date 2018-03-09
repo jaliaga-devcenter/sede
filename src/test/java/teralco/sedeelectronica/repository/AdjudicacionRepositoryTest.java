@@ -32,4 +32,5 @@ public class AdjudicacionRepositoryTest {
 		// ASSERT
 		assertThat(found.getDenominacion()).isEqualTo(adju.getDenominacion());
 	}
+
 }

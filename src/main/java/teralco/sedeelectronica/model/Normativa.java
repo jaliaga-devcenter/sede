@@ -11,19 +11,21 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-public class Documentacion extends BaseModel {
+public class Normativa extends BaseModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty(message = "Debe introducir una descripción.")
 	@Column(nullable = false)
-	private String descripcion;
+	@NotEmpty(message = "Debe introducir una norma.")
+	private String norma;
 
-	@Column(columnDefinition = "INT2")
-	private Estado estado;
+	@Column(nullable = false)
+	@NotEmpty(message = "Debe introducir una artículo.")
+	private String articulo;
+
+	@Column(nullable = true)
+	@NotEmpty(message = "Debe introducir un texto.")
+	private String texto;
 
 	/* For upload file in form */
 	@Transient
@@ -33,20 +35,28 @@ public class Documentacion extends BaseModel {
 	@JoinColumn(name = "id_fichero", nullable = true)
 	private Fichero fichero;
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getNorma() {
+		return this.norma;
 	}
 
-	public void setDescripcion(String pDescripcion) {
-		this.descripcion = pDescripcion;
+	public void setNorma(String pNorma) {
+		this.norma = pNorma;
 	}
 
-	public Estado getEstado() {
-		return this.estado;
+	public String getArticulo() {
+		return this.articulo;
 	}
 
-	public void setEstado(Estado pEstado) {
-		this.estado = pEstado;
+	public void setArticulo(String pArticulo) {
+		this.articulo = pArticulo;
+	}
+
+	public String getTexto() {
+		return this.texto;
+	}
+
+	public void setTexto(String pTexto) {
+		this.texto = pTexto;
 	}
 
 	public MultipartFile getFileToUpload() {
@@ -64,4 +74,5 @@ public class Documentacion extends BaseModel {
 	public void setFichero(Fichero pFichero) {
 		this.fichero = pFichero;
 	}
+
 }

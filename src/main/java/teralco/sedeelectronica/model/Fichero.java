@@ -51,9 +51,4 @@ public class Fichero extends BaseModel {
 	public void setNombreOriginal(String pNombreOriginal) {
 		this.nombreOriginal = pNombreOriginal;
 	}
-
-	@Override
-	public String toString() {
-		return "Fichero [tipo=" + this.tipo + ", fichero=" + this.nombreOriginal + "]";
-	}
 }

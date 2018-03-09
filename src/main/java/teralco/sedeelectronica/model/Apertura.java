@@ -98,11 +98,4 @@ public class Apertura extends BaseModel {
 	public void setResultado(Fichero pResultado) {
 		this.resultado = pResultado;
 	}
-
-	@Override
-	public String toString() {
-		return "Apertura [fecha=" + this.fecha + ", denominacion=" + this.denominacion + ", hora=" + this.hora
-				+ ", plica=" + this.plica + ", fileToUpload=" + this.fileToUpload + ", resultado=" + this.resultado
-				+ "]";
-	}
 }

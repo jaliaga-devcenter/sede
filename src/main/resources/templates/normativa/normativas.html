@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorate="~{/layouts/main}">
+<head>
+	<title th:text="#{message.normative.table.header}"></title>
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<div th:replace="~{fragments/genericTable :: genericTable('user', #{message.normative.table.header}, 'normativa', ~{::table})}"></div>
+		<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
+	</div>
+
+	<table class="table u-table--v1 mb-0 table-striped table-hover">
+		<thead>
+			<tr class="g-col-border-top-0">
+				<th>#</th>
+				<th th:text="#{message.normative.table.header.rule}">Norma</th>
+				<th th:text="#{message.normative.table.header.article}">Articulo</th>
+				<th th:text="#{message.normative.table.header.text}">Texto</th>
+			</tr>
+		</thead>
+			<tbody>
+				<tr th:each="normativa, itr : ${normativas}" th:href="@{/normativa/edit/{id}(id=${normativa.id})}">
+					<th scope="row">
+						<fieldset class="g-pt-2">
+							<div>
+								<label>
+									<input type="radio" name="optionsRadios" th:id="${'option' + normativa.id}" th:checked="${itr.index == 0}" th:value="${normativa.id}"
+									/>
+								</label>
+							</div>
+						</fieldset>
+					</th>
+					<td th:switch="${normativa.fichero}">
+							<span th:case="null" th:text="${normativa.norma}" ></span>
+							<span th:case="*"><a th:text="${normativa.norma}" th:href="'./normativa/download/'+${encrypt.encrypt(normativa.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
+					</td>	
+					<td th:text="${normativa.articulo}"></td>
+					<td th:text="${normativa.texto}"> </td>							
+				</tr>
+			</tbody>
+		</table> 	
+ </body>
+ </html>

@@ -41,8 +41,8 @@ public class DownloadController {
 		this.ficheroService = pFicheroService;
 	}
 
-	@RequestMapping(value = { "/download/{file_name}",
-			"/tablon-anuncios/download/{file_name}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/download/{file_name}", "/tablon-anuncios/download/{file_name}",
+			"/normativa/download/{file_name}" }, method = RequestMethod.GET)
 	public ResponseEntity<Resource> getFile(@PathVariable("file_name") String fileName, HttpServletResponse response) {
 		try {
 
