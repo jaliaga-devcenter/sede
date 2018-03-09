@@ -12,10 +12,10 @@
             <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.procedimientos.page.header})}"></div>
 
             <div class="col-xs-12 col-sm-12 offset-md-4 col-md-4 col-lg-4 g-mb-20">
-                <form class="g-brd-around g-brd-transparent g-pa-30 g-mb-30" method="POST" action="/buscar-procedimientos">
+                <form class="g-brd-around g-brd-transparent g-pa-30 g-mb-30" method="POST" action="../buscar-procedimientos">
                     <div class="g-mb-10">
                         <div class="input-group">
-                            <input type="text" class="form-control rounded-0 form-control-md" th:placeholder="#{message.procedimientos.section.one.search.input.placeholder}"
+                            <input type="text" name="searchText" class="form-control rounded-0 form-control-md" th:placeholder="#{message.procedimientos.section.one.search.input.placeholder}"
                                 placeholder="Busca procedimientos...">
                         </div>
                     </div>
@@ -65,47 +65,51 @@
                     </p>
                 </div>
 
-                <div th:each="cat,iter: ${categorias}" th:if="${servicios}" >
-                        <h5>
-                            <i class="fa fa-info g-ml-20 g-mr-20"></i><span th:text="${#strings.toUpperCase(cat.nombre)}"> Categoria</span>
-                        </h5>
-                        <!-- Card -->
-                        
-                        <div class="card rounded-0 g-brd-none" >
-                            <div th:each="sub,itersub: ${cat.subcategorias}" th:if="${servicios.get(sub.idSubcategoria)}" th:with="index = ${#ids.seq('')}">
-                            <div th:replace="~{fragments/accordionCard :: header(${#strings.toUpperCase(sub.nombre)},${index}, ${iter.index==0}? false : true, ${itersub.odd} ? true : false )}"></div>
-                            <div th:id="${'accordion-05-body-'+ index}" class="collapse" th:classappend="${iter.index==0}? 'show':''" role="tabpanel" aria-labelledby="accordion-05-heading-1">
-                                <div class="u-accordion__body g-pa-0">
-                                    <!-- Basic Table -->
-                                    <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <tbody>
-                                                <tr th:each="servicio : ${servicios.get(sub.idSubcategoria)}">
-                                                    <td class="align-middle">
-                                                        <a href="#" th:text="${servicio.denominacion}">Instancia general</a>
-                                                    </td>
-                                                    <td class="align-middle" >Online</td>
-                                                    <td class="g-width-150 g-pa-0 align-middle">
-                                                        <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
-                                                            <i class="fa fa-info"></i>
-                                                        </span>
-                                                        <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
-                                                            <i class="fa fa-download"></i>
-                                                        </span>
-                                                        <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
-                                                            <i class="fa fa-at"></i>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- End Basic Table -->
+                <div th:each="cat,iter: ${categorias}"  th:if="${servicios}">
+                    <h5>
+                        <i class="fa fa-info g-ml-20 g-mr-20"></i><span th:text="${#strings.toUpperCase(cat.nombre)}"> Categoria</span>
+                    </h5>
+                    <!-- Card -->
+                    
+                    <div class="card rounded-0 g-brd-none" >
+                        <div th:each="sub,itersub: ${cat.subcategorias}" th:if="${servicios.get(sub.idSubcategoria)}" th:with="index = ${#ids.seq('')}">
+                        <div th:replace="~{fragments/accordionCard :: header(${#strings.toUpperCase(sub.nombre)},${index}, ${iter.index==0}? false : true, ${itersub.odd} ? true : false )}"></div>
+                        <div th:id="${'accordion-05-body-'+ index}" class="collapse" th:classappend="${iter.index==0}? 'show':''" role="tabpanel" aria-labelledby="accordion-05-heading-1">
+                            <div class="u-accordion__body g-pa-0">
+                                <!-- Basic Table -->
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <tbody>
+                                            <tr th:each="servicio : ${servicios.get(sub.idSubcategoria)}">
+                                                <td class="align-middle">
+                                                    <a href="#" th:text="${servicio.denominacion}">Instancia general</a>
+                                                </td>
+                                                <td class="align-middle" >Online</td>
+                                                <td class="g-width-150 g-pa-0 align-middle">
+                                                    <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                        <i class="fa fa-info"></i>
+                                                    </span>
+                                                    <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
+                                                        <i class="fa fa-download"></i>
+                                                    </span>
+                                                    <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                        <i class="fa fa-at"></i>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
+                                <!-- End Basic Table -->
                             </div>
                         </div>
-                        <!-- End Card -->
                     </div>
+                    <!-- End Card -->
+                </div>
+                    
+
+                   
+                
             </div>
         </section>
     </div>

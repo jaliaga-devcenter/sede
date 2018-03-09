@@ -28,12 +28,11 @@ import teralco.sedeelectronica.utils.EncryptUtils;
 @Controller
 public class DownloadController {
 
-	 
 	private FicheroService ficheroService;
-	
+
 	@Value("${server.uploadPath}")
 	private String serverUploadPath;
-	
+
 	@Autowired
 	private EncryptUtils encryptUtils;
 
@@ -42,7 +41,8 @@ public class DownloadController {
 		this.ficheroService = pFicheroService;
 	}
 
-	@RequestMapping(value = "/download/{file_name}", method = RequestMethod.GET)
+	@RequestMapping(value = { "/download/{file_name}",
+			"/tablon-anuncios/download/{file_name}" }, method = RequestMethod.GET)
 	public ResponseEntity<Resource> getFile(@PathVariable("file_name") String fileName, HttpServletResponse response) {
 		try {
 
@@ -55,8 +55,8 @@ public class DownloadController {
 			headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getNombreOriginal());
 			return ResponseEntity.ok().headers(headers).contentLength(resource.contentLength())
 					.contentType(MediaType.parseMediaType("application/pdf")).body(resource);
-		} catch (IOException | NumberFormatException  ex ) {
+		} catch (IOException | NumberFormatException ex) {
 			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, ex);
-		} 
+		}
 	}
 }

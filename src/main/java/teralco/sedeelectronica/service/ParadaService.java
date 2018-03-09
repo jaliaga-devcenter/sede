@@ -1,5 +1,8 @@
 package teralco.sedeelectronica.service;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,5 +41,9 @@ public class ParadaService {
 	// Pagination
 	public Page<Parada> listAllByPage(Pageable pageable) {
 		return this.paradaRepository.findAll(pageable);
+	}
+
+	public List<Parada> findAllByFechaOrderByFecha(Date pDate) {
+		return this.paradaRepository.findAllByFechaGreaterThanEqualOrderByFecha(pDate);
 	}
 }

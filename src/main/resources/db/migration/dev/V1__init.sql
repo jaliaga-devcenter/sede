@@ -97,8 +97,24 @@ create table AVISO (
       references FICHERO (ID)
       on delete restrict on update restrict;    
 
+create table ANUNCIO (
+   ID                   SERIAL 		not null,
+   ID_FICHERO           INT8            null,
+   FECHA_DE            DATE  null,
+   FECHA_HASTA            DATE  null,   
+   TITULO			TEXT 			null,
+   DESCRIPCION			TEXT 			null,
+   constraint PK_ANUNCIO primary key (ID)
+ );
+ 
+ alter table ANUNCIO
+   add constraint FK_ANUNCIO_FICHERO foreign key (ID_FICHERO)
+      references FICHERO (ID)
+      on delete restrict on update restrict;  
+
 create table PARADA (
    ID                   SERIAL 		not null,
+   FECHA            DATE  null,
    DESCRIPCION			TEXT 			null,
    constraint PK_PARADA primary key (ID)
  );

@@ -174,4 +174,18 @@ public class ServicioDTO extends AbstractDTO {
 		return this.documentos;
 	}
 
+	@Override
+	public String toString() {
+		return "ServicioDTO [idServicio=" + this.idServicio + ", denominacion=" + this.denominacion + ", descripcion="
+				+ this.descripcion + ", documentacion=" + this.documentacion + ", tipoTramite=" + this.tipoTramite
+				+ ", idCategoria=" + this.idCategoria + ", idSubCategoria=" + this.idSubCategoria + ", textoPresencial="
+				+ this.textoPresencial + ", canalOnline=" + this.canalOnline + ", textoOnline=" + this.textoOnline
+				+ ", canalTelefonico=" + this.canalTelefonico + ", textoTelefonico=" + this.textoTelefonico
+				+ ", destinatarios=" + this.destinatarios + ", formaInicio=" + this.formaInicio + ", costeYFormadePago="
+				+ this.costeYFormadePago + ", plazoResolucion=" + this.plazoResolucion + ", organosCompetentes="
+				+ this.organosCompetentes + ", recursos=" + this.recursos + ", fundamentoLegal=" + this.fundamentoLegal
+				+ ", preguntasFrecuentes=" + this.preguntasFrecuentes + ", contactar=" + this.contactar
+				+ ", documentos=" + this.documentos + "]";
+	}
+
 }

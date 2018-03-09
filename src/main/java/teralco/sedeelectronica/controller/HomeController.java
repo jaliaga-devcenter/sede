@@ -33,6 +33,7 @@ public class HomeController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
 	private static final String CAT_MODEL = "categorias";
+	private static final String SUBCAT_MODEL = "subcategorias";
 	private static final String ICONO_MODEL = "iconos";
 	private static final String SERVICIOS_MODEL = "servicios";
 	private static final String SERVICIO_MODEL = "servicio";
@@ -90,6 +91,47 @@ public class HomeController {
 		return "servicios/areas";
 	}
 
+	@RequestMapping(value = "/procedimientos")
+	public String getTodosServicios(Model model) {
+
+		List<CategoriaDTO> categorias = null;
+		try {
+			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+		} catch (GexflowWSException e) {
+			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
+		}
+		// TODO
+		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
+		for (CategoriaDTO cat : categorias) {
+			servicios.putAll(this.getServiciosPorSubCategorias(cat));
+		}
+
+		model.addAttribute(CAT_MODEL, categorias);
+		model.addAttribute(SERVICIOS_MODEL, servicios);
+
+		return "servicios/procedimientos";
+	}
+
+	@RequestMapping(value = "/buscar-procedimientos", method = RequestMethod.POST)
+	public String getBusquedaServicios(@RequestParam("searchText") String searchText, Model model) {
+
+		List<CategoriaDTO> categorias = null;
+		Map<Integer, List<ServicioDTO>> servicios = null;
+
+		try {
+			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+			servicios = this.getServiciosPorTexto(searchText);
+
+		} catch (GexflowWSException e) {
+			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
+		}
+
+		model.addAttribute(CAT_MODEL, categorias);
+		model.addAttribute(SERVICIOS_MODEL, servicios);
+
+		return "servicios/procedimientos";
+	}
+
 	private static CategoriaDTO getCategoriaActual(List<CategoriaDTO> categorias, Optional<Integer> idCat) {
 		if (!idCat.isPresent()) {
 			return categorias.get(0);
@@ -123,14 +165,13 @@ public class HomeController {
 	}
 
 	private Map<Integer, IconoDTO> getIconosPorCategoria(List<CategoriaDTO> categorias) {
-		Map<Integer, IconoDTO> iconos = categorias.stream().map(categoria -> {
+		return categorias.stream().map(categoria -> {
 			try {
 				return this.clienteWS.getIconoCategoria(ENTIDAD, this.idioma, categoria.getIdCategoria());
 			} catch (GexflowWSException e) {
 				throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 			}
 		}).collect(Collectors.toMap(IconoDTO::getIdCategoria, icono -> icono));
-		return iconos;
 	}
 
 	private Map<Integer, List<ServicioDTO>> getServiciosPorSubCategorias(CategoriaDTO categoria) {
@@ -150,6 +191,23 @@ public class HomeController {
 		}
 
 		return returnList;
+	}
+
+	private Map<Integer, List<ServicioDTO>> getServiciosPorTexto(String searchText) {
+		List<ServicioDTO> servicios = null;
+		try {
+			servicios = this.clienteWS.buscarServicios(ENTIDAD, this.idioma, searchText);
+		} catch (GexflowWSException e) {
+			LOGGER.error("Error en la invocación al servicio, probablemente no hayan servicios para esa subcategoria.",
+					e);
+
+		}
+		if (servicios != null) {
+			return servicios.stream().collect(Collectors.groupingBy(ServicioDTO::getIdSubCategoria));
+		}
+
+		return null;
+
 	}
 
 }
