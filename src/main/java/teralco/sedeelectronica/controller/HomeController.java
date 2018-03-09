@@ -24,7 +24,6 @@ import teralco.sedeelectronica.gexflow.client.GexflowClient;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
 import teralco.sedeelectronica.gexflow.dto.ServicioDTO;
-import teralco.sedeelectronica.gexflow.dto.SubcategoriaDTO;
 import teralco.sedeelectronica.gexflow.exception.GexflowWSException;
 
 @Controller
@@ -100,11 +99,9 @@ public class HomeController {
 		} catch (GexflowWSException e) {
 			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 		}
-		// TODO
 		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
-		for (CategoriaDTO cat : categorias) {
-			servicios.putAll(this.getServiciosPorSubCategorias(cat));
-		}
+
+		categorias.forEach(cat -> servicios.putAll(this.getServiciosPorSubCategorias(cat)));
 
 		model.addAttribute(CAT_MODEL, categorias);
 		model.addAttribute(SERVICIOS_MODEL, servicios);
@@ -177,18 +174,17 @@ public class HomeController {
 	private Map<Integer, List<ServicioDTO>> getServiciosPorSubCategorias(CategoriaDTO categoria) {
 		Map<Integer, List<ServicioDTO>> returnList = new HashMap<>();
 
-		for (SubcategoriaDTO subcategoria : categoria.getSubcategorias()) {
+		categoria.getSubcategorias().forEach(sub -> {
 			List<ServicioDTO> servicios = null;
 			try {
-				servicios = this.clienteWS.getServicios(ENTIDAD, this.idioma, categoria, subcategoria);
+				servicios = this.clienteWS.getServicios(ENTIDAD, this.idioma, categoria, sub);
 			} catch (GexflowWSException e) {
 				LOGGER.error(
 						"Error en la invocación al servicio, probablemente no hayan servicios para esa subcategoria.",
 						e);
-
 			}
-			returnList.put(subcategoria.getIdSubcategoria(), servicios);
-		}
+			returnList.put(sub.getIdSubcategoria(), servicios);
+		});
 
 		return returnList;
 	}
