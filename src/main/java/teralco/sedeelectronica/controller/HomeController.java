@@ -112,6 +112,12 @@ public class HomeController {
 		return "servicios/ficha-procedimiento";
 	}
 
+	@RequestMapping("/procedimiento")
+	public String procedimientos(@RequestParam(value = "id", required = true) Integer idServicio, Model model) {
+		model.addAttribute("idServicio", idServicio);
+		return "servicios/procedimiento";
+	}
+
 	@RequestMapping("/buscador-procedimientos")
 	public String buscadorProcedimientos() {
 		return "servicios/buscador-procedimientos";

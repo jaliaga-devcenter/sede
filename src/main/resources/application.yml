@@ -12,9 +12,13 @@ verifirma.url: http://demo.gexflow.com:8080
 verifirma.user: servicio.consulta.expedientes
 verifirma.password: servicio.consulta.expedientes
 
-
 sede:
-  requisitos.tecnicos: https://sede.murcia.es:8443/CarpetaCiudadana/requisitos.html
+  ws.tramites: http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites
+  ws.admin: http://demo.gexflow.com:8080/gexflowzk/ws/WSAdminGexflowZK
+  ws.pasarela: https://demo.gexflow.com:8443/pasarelaintegracion/ws/Autenticacion
+  carpeta.ciudadana: https://demo.gexflow.com:8443/CarpetaCiudadana/{idEntidad}/VerMisTramites
+  iniciar.tramite: https://demo.gexflow.com:8443/CarpetaCiudadana/IniciarTramiteConTicket?idEntidad={idEntidad}&id={idServicio}&idTicket={ticket}
+  requisitos.tecnicos: https://demo.gexflow.com:8443/CarpetaCiudadana/requisitos.html
   conoce.tu.ayuntamiento: http://www.murcia.es/web/portal/institucional
   portal.transparencia: http://www.murcia.es/web/portal/transparencia-municipal
   url.descarga: http://demo.gexflow.com:8080/gexflowzk

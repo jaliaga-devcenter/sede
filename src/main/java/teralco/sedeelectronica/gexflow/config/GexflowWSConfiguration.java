@@ -1,5 +1,6 @@
 package teralco.sedeelectronica.gexflow.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
@@ -8,6 +9,9 @@ import teralco.sedeelectronica.gexflow.client.GexflowClient;
 
 @Configuration
 public class GexflowWSConfiguration {
+
+	@Value("${sede.ws.tramites}")
+	private String wsTramites;
 
 	@Bean
 	public Jaxb2Marshaller marshaller() {
@@ -20,7 +24,7 @@ public class GexflowWSConfiguration {
 	@Bean
 	public GexflowClient quoteClient(Jaxb2Marshaller marshaller) {
 		GexflowClient client = new GexflowClient();
-		client.setDefaultUri("http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites");
+		client.setDefaultUri(this.wsTramites);
 		client.setMarshaller(marshaller);
 		client.setUnmarshaller(marshaller);
 		return client;

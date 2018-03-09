@@ -53,6 +53,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.ws</groupId>
 			<artifactId>spring-ws-core</artifactId>
 		</dependency>
@@ -110,7 +114,7 @@
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 	<!-- Para generar las clases necesarias para conectar con gexflow hay que 
@@ -131,22 +135,55 @@
 						<version>0.13.2</version>
 						<executions>
 							<execution>
+								<id>tramites</id>
 								<goals>
 									<goal>generate</goal>
 								</goals>
+								<configuration>
+									<schemaLanguage>WSDL</schemaLanguage>
+									<generatePackage>gexflow.wsdl</generatePackage>
+									<generateDirectory>${project.build.directory}/generated-sources/xjc</generateDirectory>
+									<schemas>
+										<schema>
+											<url>http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites?wsdl</url>
+										</schema>
+									</schemas>
+								</configuration>
+							</execution>
+							<execution>
+								<id>admin</id>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+								<configuration>
+									<schemaLanguage>WSDL</schemaLanguage>
+									<generatePackage>admin.wsdl</generatePackage>
+									<generateDirectory>${project.build.directory}/generated-sources/xjc-a</generateDirectory>
+									<schemas>
+										<schema>
+											<url>http://demo.gexflow.com:8080/gexflowzk/ws/WSAdminGexflowZK?wsdl</url>
+										</schema>
+									</schemas>
+								</configuration>
+							</execution>
+							<execution>
+								<id>autenticacion</id>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+								<configuration>
+									<schemaLanguage>WSDL</schemaLanguage>
+									<generatePackage>pasarela.wsdl</generatePackage>
+									<generateDirectory>${project.build.directory}/generated-sources/xjc-c</generateDirectory>
+									<schemas>
+										<schema>
+											<url>https://demo.gexflow.com:8443/pasarelaintegracion/ws/Autenticacion?wsdl</url>
+										</schema>
+									</schemas>
+								</configuration>
 							</execution>
 						</executions>
-						<configuration>
-							<schemaLanguage>WSDL</schemaLanguage>
-							<generatePackage>gexflow.wsdl</generatePackage>
-							<schemas>
-								<schema>
-									<url>http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites?wsdl</url>
-								</schema>
-							</schemas>
-						</configuration>
 					</plugin>
-					<!-- http://demo.gexflow.com:8080/gexflow/services/EXPEDIENTES.v1_0_0?wsdl -->
 				</plugins>
 			</build>
 		</profile>

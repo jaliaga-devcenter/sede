@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" th:href="@{/vendor/bootstrap/bootstrap.min.css}" />
+    <!-- CSS Global Icons -->
+    <link rel="stylesheet" th:href="@{/vendor/icon-awesome/css/font-awesome.min.css}" />
+
+    <!-- CSS Unify -->
+    <link rel="stylesheet" th:href="@{/css/unify-core.css}" />
+    <link rel="stylesheet" th:href="@{/css/unify-components.css}" />
+    <link rel="stylesheet" th:href="@{/css/unify-globals.css}" />
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" th:href="@{/css/custom.css}" />
+    <style type="text/css" id="less:preview-unify-v2:5-assets-include-less-themes-custom"></style>
+
+    <link rel="stylesheet" href="../static/css/css.css" th:href="@{/css/css.css}" />
+
+    <!-- JavaScript -->
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/jquery-migrate/jquery-migrate.min.js}"></script>
+    <script src="../static/js/sede.js" th:src="@{/js/sede.js}"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css' />
+    <link href='https://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <main>
+        <!-- Login -->
+        <section class="g-bg-gray-light-v5">
+            <div class="container g-py-100 g-height-100vh">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 col-lg-5">
+                        <div class="u-shadow-v21 g-bg-white rounded g-py-40 g-px-30">
+                            <header class="text-center mb-4">
+                                <h2 class="h2 g-color-black g-font-weight-600" th:text="#{message.login.header}">Administraci&oacute;n</h2>
+                            </header>
+
+                            <!-- Form -->
+                            <form class="g-py-15" th:action="@{/login}" method="post">
+	                             <div th:if="${param.error}" class="alert alert-error">
+					                <span th:text="#{message.login.error}">Usuario o password incorrecto</span>
+					            </div>
+					            <div th:if="${param.logout}" class="alert alert-success">
+					                <span th:text="#{message.login.logout}">Sesión cerrada correctmanente</span>
+					            </div>
+                                <div class="mb-4">
+                                    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13" th:text="#{message.login.input.email.label}">Email:</label>
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15"
+                                        type="text" id="username" name="username" th:placeholder="#{message.login.input.email.placeholder}" placeholder="usuario">
+                                </div>
+
+                                <div class="g-mb-35">
+                                    <label class="g-color-gray-dark-v2 g-font-weight-600 g-font-size-13" th:text="#{message.login.input.password.label}">Contraseña:</label>
+                                    <input class="form-control g-color-black g-bg-white g-bg-white--focus g-brd-gray-light-v4 g-brd-primary--hover rounded g-py-15 g-px-15 mb-3"
+                                        type="password" id="password" name="password" th:placeholder="#{message.login.input.password.placeholder}" placeholder="Contraseña">
+                                    <div class="row justify-content-between">
+                                        <div class="col align-self-center">
+                                            <label class="form-check-inline u-check g-color-gray-dark-v5 g-font-size-12 g-pl-25 mb-0">
+                                                <input class="g-hidden-xs-up g-pos-abs g-top-0 g-left-0" type="checkbox">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <button class="btn btn-md btn-block u-btn-primary rounded g-py-13" type="submit" th:text="#{message.login.button}">Iniciar Sesi&oacute;n</button>
+                                </div>
+                            </form>
+                            <!-- End Form -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Login -->
+    </main>
+
+    <div class="u-outer-spaces-helper"></div>
+</body>
+
+</html>

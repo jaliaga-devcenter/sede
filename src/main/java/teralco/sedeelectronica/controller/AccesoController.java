@@ -11,4 +11,9 @@ public class AccesoController {
 		return "acceso/acceso";
 	}
 
+	@RequestMapping("/login")
+	public String login() {
+		return "acceso/login";
+	}
+
 }
