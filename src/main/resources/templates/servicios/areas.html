@@ -14,7 +14,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <ul class="list-unstyled g-pl-20 g-pr-20">
                         <li class="g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1 text-center text-uppercase">
-                            <a href="#">
+                            <a th:href="@{/buscador-procedimientos}">
                                 <span class="u-label g-color-black">
                                     <i class="g-color-primary fa fa-search g-mr-5"></i>
                                     <span th:text="#{message.areas.sidemenu.search.label}">Todas las &aacute;reas</span>
@@ -22,7 +22,7 @@
                             </a>
                         </li>
                         <li class="g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1" th:each="categoria: ${categorias}">
-                                <a th:href="@{/servicios/}+${categoria.idCategoria}" class="g-text-underline--none--hover" th:classappend="${categoria.idCategoria} == ${currentCat.idCategoria} ? adminclass : ''">
+                                <a th:href="@{/categorias/}+${categoria.idCategoria}" class="g-text-underline--none--hover" th:classappend="${categoria.idCategoria} == ${currentCat.idCategoria} ? adminclass : ''">
                                     <div class="media">
                                         <div class="d-flex g-mt-2 g-mr-15">
                                             <span class="d-inline-block u-icon-v3 u-icon-size--sm u-icon-scale-1_2--hover g-bg-primary g-color-white rounded-circle">

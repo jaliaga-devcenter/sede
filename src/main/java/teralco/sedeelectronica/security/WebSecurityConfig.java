@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/admin/**").authenticated();
+		http.authorizeRequests().antMatchers("/admin/**").hasRole(CustomAuthenticationProvider.ADMIN_SEDE);
 		http.formLogin().loginPage("/login").defaultSuccessUrl("/admin");
 		http.logout().logoutUrl("/logout").invalidateHttpSession(true);
 		http.anonymous().disable();

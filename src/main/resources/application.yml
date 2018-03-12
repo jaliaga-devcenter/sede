@@ -27,8 +27,10 @@ sede:
   portal.transparencia: http://www.murcia.es/web/portal/transparencia-municipal
   url.descarga: http://demo.gexflow.com:8080/gexflowzk
   procedimiento:
-    ocupacion.via.publica: 4
-    instancia.general: 11
-    quejas.sugerencias: 12
-    empadronamiento: 101
+    destacado.uno: 101
+    destacado.dos: 109
+    destacado.tres: 106
+    destacado.cuatro: 100
+    instancia.general: 100
+    quejas.sugerencias: 102
     

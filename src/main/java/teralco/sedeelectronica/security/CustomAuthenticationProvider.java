@@ -19,6 +19,7 @@ import teralco.sedeelectronica.auth.client.AuthClient;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
+	protected static final String ADMIN_SEDE = "ADMIN_SEDE";
 	protected static final String ROLE_ADMIN_SEDE = "ROLE_ADMIN_SEDE";
 
 	@Value("${sede.entidad}")

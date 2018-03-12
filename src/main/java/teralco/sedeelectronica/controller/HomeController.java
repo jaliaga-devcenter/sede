@@ -3,7 +3,6 @@ package teralco.sedeelectronica.controller;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -12,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +30,7 @@ import teralco.sedeelectronica.security.CertAuthenticationToken;
 import teralco.sedeelectronica.security.UsuarioSede;
 
 @Controller
-public class HomeController {
+public class HomeController extends LocaleController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
@@ -41,23 +39,17 @@ public class HomeController {
 	private static final String SERVICIOS_MODEL = "servicios";
 	private static final String SERVICIO_MODEL = "servicio";
 
-	private String idioma = "es";
-
 	@Value("${sede.entidad}")
 	private Integer ENTIDAD;
 
 	@Value("${sede.iniciar.tramite}")
 	private String iniciarTramiteUrlPattern;
 
-	protected Locale locale;
-
 	@Autowired
 	private GexflowClient clienteWS;
 
-	@Autowired
 	public HomeController() {
-		this.locale = LocaleContextHolder.getLocale();
-		this.idioma = this.locale.getLanguage();
+		super();
 	}
 
 	@RequestMapping("/")
@@ -77,7 +69,7 @@ public class HomeController {
 		return "index";
 	}
 
-	@RequestMapping(value = { "/servicios", "/servicios/{id_cat}" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/categorias", "/categorias/{id_cat}" }, method = RequestMethod.GET)
 	public String getServiciosPorCategoria(@PathVariable("id_cat") Optional<Integer> idCat, Model model) {
 
 		List<CategoriaDTO> categorias = null;
@@ -100,7 +92,16 @@ public class HomeController {
 		return "servicios/areas";
 	}
 
-	@RequestMapping(value = "/procedimientos")
+	private static CategoriaDTO getCategoriaActual(List<CategoriaDTO> categorias, Optional<Integer> idCat) {
+		if (!idCat.isPresent()) {
+			return categorias.get(0);
+		}
+		Optional<CategoriaDTO> categoriaActual = categorias.stream()
+				.filter(cat -> cat.getIdCategoria().equals(idCat.get())).findFirst();
+		return categoriaActual.isPresent() ? categoriaActual.get() : categorias.get(0);
+	}
+
+	@RequestMapping(value = "/buscador-procedimientos")
 	public String getTodosServicios(Model model) {
 
 		List<CategoriaDTO> categorias = null;
@@ -139,15 +140,6 @@ public class HomeController {
 		return "servicios/procedimientos";
 	}
 
-	private static CategoriaDTO getCategoriaActual(List<CategoriaDTO> categorias, Optional<Integer> idCat) {
-		if (!idCat.isPresent()) {
-			return categorias.get(0);
-		}
-		Optional<CategoriaDTO> categoriaActual = categorias.stream()
-				.filter(cat -> cat.getIdCategoria().equals(idCat.get())).findFirst();
-		return categoriaActual.isPresent() ? categoriaActual.get() : categorias.get(0);
-	}
-
 	@RequestMapping("/ficha-procedimiento/{id}")
 	public String fichaProcedimiento(@PathVariable(value = "id") Integer idServicio, Model model) {
 		ServicioDTO servicio = null;
@@ -172,16 +164,6 @@ public class HomeController {
 				.toString();
 		model.addAttribute("iframeUrl", url);
 		return "servicios/procedimiento";
-	}
-
-	@RequestMapping("/buscador-procedimientos")
-	public String buscadorProcedimientos() {
-		return "servicios/buscador-procedimientos";
-	}
-
-	@RequestMapping("/perfil-del-contratante")
-	public String perfilContratante() {
-		return "perfil-del-contratante";
 	}
 
 	private Map<Integer, IconoDTO> getIconosPorCategoria(List<CategoriaDTO> categorias) {

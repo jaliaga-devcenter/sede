@@ -1,4 +1,4 @@
-package teralco.sedeelectronica.midu;
+package teralco.sedeelectronica.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
