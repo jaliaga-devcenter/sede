@@ -19,10 +19,18 @@
                 <div class="col-lg-9">
                     <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.paradas.programadas.page.header})}"></div>
 
-                    <p>
-                        <span>No existen paradas programadas para el servicio que presta la </span>
-                        <strong>Sede Electrónica.</strong>
-                    </p>
+                    <div th:each="parada: ${paradas}" th:if="${paradas}">
+                            <p th:text="${parada.descripcion}"></p>
+                            <p th:text="${parada.fecha}">
+                                    
+                            </p>
+                    </div>
+                    <div th:unless="${paradas}">
+                        <p>
+                            <span>No existen paradas programadas para el servicio que presta la </span>
+                            <strong>Sede Electrónica.</strong>
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>

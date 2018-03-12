@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import teralco.sedeelectronica.exception.ExceptionType;
@@ -26,7 +27,6 @@ import teralco.sedeelectronica.gexflow.client.GexflowClient;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
 import teralco.sedeelectronica.gexflow.dto.ServicioDTO;
-import teralco.sedeelectronica.gexflow.dto.SubcategoriaDTO;
 import teralco.sedeelectronica.gexflow.exception.GexflowWSException;
 import teralco.sedeelectronica.security.CertAuthenticationToken;
 import teralco.sedeelectronica.security.UsuarioSede;
@@ -100,6 +100,45 @@ public class HomeController {
 		return "servicios/areas";
 	}
 
+	@RequestMapping(value = "/procedimientos")
+	public String getTodosServicios(Model model) {
+
+		List<CategoriaDTO> categorias = null;
+		try {
+			categorias = this.clienteWS.getCategorias(this.ENTIDAD, this.idioma);
+		} catch (GexflowWSException e) {
+			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
+		}
+		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
+
+		categorias.forEach(cat -> servicios.putAll(this.getServiciosPorSubCategorias(cat)));
+
+		model.addAttribute(CAT_MODEL, categorias);
+		model.addAttribute(SERVICIOS_MODEL, servicios);
+
+		return "servicios/procedimientos";
+	}
+
+	@RequestMapping(value = "/buscar-procedimientos", method = RequestMethod.POST)
+	public String getBusquedaServicios(@RequestParam("searchText") String searchText, Model model) {
+
+		List<CategoriaDTO> categorias = null;
+		Map<Integer, List<ServicioDTO>> servicios = null;
+
+		try {
+			categorias = this.clienteWS.getCategorias(this.ENTIDAD, this.idioma);
+			servicios = this.getServiciosPorTexto(searchText);
+
+		} catch (GexflowWSException e) {
+			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
+		}
+
+		model.addAttribute(CAT_MODEL, categorias);
+		model.addAttribute(SERVICIOS_MODEL, servicios);
+
+		return "servicios/procedimientos";
+	}
+
 	private static CategoriaDTO getCategoriaActual(List<CategoriaDTO> categorias, Optional<Integer> idCat) {
 		if (!idCat.isPresent()) {
 			return categorias.get(0);
@@ -146,20 +185,19 @@ public class HomeController {
 	}
 
 	private Map<Integer, IconoDTO> getIconosPorCategoria(List<CategoriaDTO> categorias) {
-		Map<Integer, IconoDTO> iconos = categorias.stream().map(categoria -> {
+		return categorias.stream().map(categoria -> {
 			try {
 				return this.clienteWS.getIconoCategoria(this.ENTIDAD, this.idioma, categoria.getIdCategoria());
 			} catch (GexflowWSException e) {
 				throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 			}
 		}).collect(Collectors.toMap(IconoDTO::getIdCategoria, icono -> icono));
-		return iconos;
 	}
 
 	private Map<Integer, List<ServicioDTO>> getServiciosPorSubCategorias(CategoriaDTO categoria) {
 		Map<Integer, List<ServicioDTO>> returnList = new HashMap<>();
 
-		for (SubcategoriaDTO subcategoria : categoria.getSubcategorias()) {
+		categoria.getSubcategorias().forEach(subcategoria -> {
 			List<ServicioDTO> servicios = null;
 			try {
 				servicios = this.clienteWS.getServicios(this.ENTIDAD, this.idioma, categoria, subcategoria);
@@ -167,12 +205,28 @@ public class HomeController {
 				LOGGER.error(
 						"Error en la invocación al servicio, probablemente no hayan servicios para esa subcategoria.",
 						e);
-
 			}
 			returnList.put(subcategoria.getIdSubcategoria(), servicios);
-		}
+		});
 
 		return returnList;
+	}
+
+	private Map<Integer, List<ServicioDTO>> getServiciosPorTexto(String searchText) {
+		List<ServicioDTO> servicios = null;
+		try {
+			servicios = this.clienteWS.buscarServicios(this.ENTIDAD, this.idioma, searchText);
+		} catch (GexflowWSException e) {
+			LOGGER.error("Error en la invocación al servicio, probablemente no hayan servicios para esa subcategoria.",
+					e);
+
+		}
+		if (servicios != null) {
+			return servicios.stream().collect(Collectors.groupingBy(ServicioDTO::getIdSubCategoria));
+		}
+
+		return null;
+
 	}
 
 }

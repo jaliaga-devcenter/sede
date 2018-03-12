@@ -149,12 +149,4 @@ public class Adjudicacion extends BaseModel {
 	public void setFechaAdjudicacion(Date pFechaAdjudicacion) {
 		this.fechaAdjudicacion = pFechaAdjudicacion;
 	}
-
-	@Override
-	public String toString() {
-		return "Adjudicacion [denominacion=" + this.denominacion + ", fecha=" + this.fecha + ", hora=" + this.hora
-				+ ", plica=" + this.plica + ", fechaFormalizacion=" + this.fechaFormalizacion + ", adjudicacion="
-				+ this.empresaAdjudicacion + ", presupuesto=" + this.presupuesto + ", fileToUpload=" + this.fileToUpload
-				+ ", resultado=" + this.resultado + "]";
-	}
 }

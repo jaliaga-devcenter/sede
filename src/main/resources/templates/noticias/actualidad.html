@@ -26,9 +26,10 @@
                     </h4>
                     <div class="row">
                         <div class="col-sm-10">
-                            <p class="g-mb-0" 
-                            th:utext="${#strings.substring(noticia.descripcion,0,#strings.indexOf(noticia.descripcion,'<!--more-->')) }"
-                            >Cuerpo noticia</p>
+                            <p class="g-mb-0" th:if="${#strings.indexOf(noticia.descripcion,'<!--more-->')>0}"
+                            th:utext="${#strings.substring(noticia.descripcion,0,#strings.indexOf(noticia.descripcion,'<!--more-->')) }"/>Cuerpo noticia</p>
+                            <p class="g-mb-0" th:unless="${#strings.indexOf(noticia.descripcion,'<!--more-->')>0}"
+                                    th:utext="${noticia.descripcion}"/>Cuerpo noticia</p>
                             <p>
                                 <a th:href="'./actualidad/'+ ${noticia.id}">Leer Más
                                     <i class="fa fa-angle-double-right"></i>

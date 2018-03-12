@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorator="/layouts/main">
+
+<head>
+    <title>Actualidad/Actividades</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <section class="g-py-15 g-pl-30 g-pr-30">
+            <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.anuncios.actividades.page.header})}"></div>
+
+            <div class="g-mb-20">
+                <p>
+                    <span th:text="#{message.anuncios.actividades.p.span.one}">En esta sección se regogen todas las noticias, eventos y actualidad relacionada con la </span>
+                    <strong th:text="#{message.anuncios.actividades.p.strong}">Sede Electrónica del Ayuntamiento de Murcia</strong>
+                    <span th:text="#{message.anuncios.actividades.p.span.two}">, tales como novedades, nuevas funcionalidades, avisos de paradas programadas de la Sede, etc.</span>
+                </p>
+            </div>
+
+            <div th:if="${anuncios}" th:each="anuncio: ${anuncios}" >
+                <div class="g-mb-20">
+                    <h4 class="g-brd-bottom g-brd-gray-light-v4">
+                        <a th:href="'./tablon-anuncios/'+ ${anuncio.id}" th:text="${anuncio.titulo}">Titulo anuncio</a>
+                    </h4>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <p class="g-mb-0" th:if="${#strings.indexOf(anuncio.descripcion,'<!--more-->')>0}"
+                            th:utext="${#strings.substring(anuncio.descripcion,0,#strings.indexOf(anuncio.descripcion,'<!--more-->')) }"/>Cuerpo anuncio</p>
+                            <p class="g-mb-0" th:unless="${#strings.indexOf(anuncio.descripcion,'<!--more-->')>0}"
+                                    th:utext="${anuncio.descripcion}"/>Cuerpo anuncio</p>
+                            <p>
+                                <a th:href="'./tablon-anuncios/'+ ${anuncio.id}">Leer Más
+                                    <i class="fa fa-angle-double-right"></i>
+                                </a>
+                            </p>
+                            <p>
+                                <small th:text="${#dates.format(anuncio.fechaDe, 'dd/MM/yyyy')}">25/09/2016 </small>
+                            </p>
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="g-width-100p" src="http://sede.murcia.es/documents/20181/0/Portada+Sede.gif/7edcc76b-67d5-4148-81ac-43a509beaf06?t=1469642903313"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div th:if="${anuncioDetalle}"> 
+                    <div class="portlet-borderless-container" style=""> 
+                            <div class="portlet-body"> <div> 
+                                <div class="taglib-header "> 
+                                    <span class="header-back-to"> 
+                                        <a class="icon-circle-arrow-left previous-level" href="../tablon-anuncios"  title="Atrás"> 
+                                            <span class="helper-hidden-accessible"> Atrás </span> 
+                                        </a> 
+                                    </span> 
+                                    <h3 class="header-title"> 
+                                        <span th:text="${anuncioDetalle.titulo}">Titulo noticia detalle</span> 
+                                    </h3> 
+                                </div> 
+                                <div class="asset-full-content show-asset-title"> 
+                                    <div class="asset-content"> 
+                                        <div class="journal-content-article" th:utext="${anuncioDetalle.descripcion}"> 
+                                        
+                                        </div>
+
+                                        </div> 
+                                        <div class="asset-metada">  
+                                            <h4 th:text="#{message.anuncios.actividades.h4.date}"></h4>
+                                            <p>
+                                            <span th:text="#{message.anuncios.actividades.dateFrom}"></span>
+                                            <span class="metadata-entry metadata-publish-date" 
+                                            th:text="${#dates.format(anuncioDetalle.fechaDe, 'dd/MM/yyyy')}"> fecha </span> 
+                                            <span th:text="#{message.anuncios.actividades.dateTo}"></span>
+                                            <span class="metadata-entry metadata-publish-date" 
+                                            th:text="${#dates.format(anuncioDetalle.fechaHasta, 'dd/MM/yyyy')}"> fecha </span> 
+                                        </p>
+                                        </div>
+                                        <div th:if="${anuncioDetalle.fichero}">
+                                                <h4 th:text="#{message.anuncios.actividades.h4.file}"></h4>
+                                                <a th:text="#{message.anuncios.actividades.link.file}" th:href="'./download/'+${encrypt.encrypt(anuncioDetalle.fichero.id)}" target="_blank" ></a>
+                                        </div>
+                                    </div> 
+                                </div> 
+                            </div> 
+                        </div> 
+
+
+
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>

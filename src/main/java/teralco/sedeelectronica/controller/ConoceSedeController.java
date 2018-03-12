@@ -42,12 +42,6 @@ public class ConoceSedeController {
 		return "sede/firma-electronica-y-certificados-admitidos";
 	}
 
-//	@RequestMapping("/verificacion-de-documentos")
-//	public String verificacion(Model model) {
-//		model.addAttribute("CSVValidation", new CSVValidation());
-//		return "verifirma/verifirma-sede";
-//	}
-
 	@RequestMapping("/fecha-y-hora-oficial")
 	public String fechaYhora() {
 		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
@@ -66,10 +60,4 @@ public class ConoceSedeController {
 		return "sede/sedes-fisicas";
 	}
 
-	@RequestMapping("/paradas-programadas")
-	public String paradas() {
-		// DEVOLVER LA LISTA DE LICITACIONES ACTUALES
-		return "sede/paradas-programadas";
-	}
-	
 }
