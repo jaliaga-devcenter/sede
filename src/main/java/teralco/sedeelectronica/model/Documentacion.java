@@ -64,10 +64,4 @@ public class Documentacion extends BaseModel {
 	public void setFichero(Fichero pFichero) {
 		this.fichero = pFichero;
 	}
-
-	@Override
-	public String toString() {
-		return "Documentacion [descripcion=" + this.descripcion + ", estado=" + this.estado + ", fileToUpload="
-				+ this.fileToUpload + ", fichero=" + this.fichero + "]";
-	}
 }

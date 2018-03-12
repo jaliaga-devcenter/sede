@@ -112,6 +112,15 @@ create table ANUNCIO (
       references FICHERO (ID)
       on delete restrict on update restrict;  
 
+create table NORMATIVA (
+   ID                   SERIAL 		not null,
+   URL_NORMA           TEXT            null,
+   NORMA            TEXT  null,   
+   ARTICULO			TEXT 			null,
+   TEXTO			TEXT 			null,
+   constraint PK_NORMATIVA primary key (ID)
+ );
+
 create table PARADA (
    ID                   SERIAL 		not null,
    FECHA            DATE  null,

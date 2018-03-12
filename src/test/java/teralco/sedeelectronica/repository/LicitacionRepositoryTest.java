@@ -23,7 +23,7 @@ public class LicitacionRepositoryTest {
 	private LicitacionRepository licitacionRepository;
 
 	@Test
-	public void notEmptyTest() {
+	public void saveTest() {
 		assertNotNull(this.entityManager);
 		assertNotNull(this.licitacionRepository);
 	}
