@@ -1,5 +1,6 @@
 package teralco.sedeelectronica.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import teralco.sedeelectronica.exception.ExceptionType;
 import teralco.sedeelectronica.exception.SedeElectronicaException;
@@ -25,6 +28,8 @@ import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
 import teralco.sedeelectronica.gexflow.dto.ServicioDTO;
 import teralco.sedeelectronica.gexflow.exception.GexflowWSException;
+import teralco.sedeelectronica.security.CertAuthenticationToken;
+import teralco.sedeelectronica.security.UsuarioSede;
 
 @Controller
 public class HomeController {
@@ -32,13 +37,18 @@ public class HomeController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
 	private static final String CAT_MODEL = "categorias";
-	private static final String SUBCAT_MODEL = "subcategorias";
 	private static final String ICONO_MODEL = "iconos";
 	private static final String SERVICIOS_MODEL = "servicios";
 	private static final String SERVICIO_MODEL = "servicio";
 
 	private String idioma = "es";
-	private static final Integer ENTIDAD = 0;
+
+	@Value("${sede.entidad}")
+	private Integer ENTIDAD;
+
+	@Value("${sede.iniciar.tramite}")
+	private String iniciarTramiteUrlPattern;
+
 	protected Locale locale;
 
 	@Autowired
@@ -55,7 +65,7 @@ public class HomeController {
 		List<CategoriaDTO> categorias;
 
 		try {
-			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+			categorias = this.clienteWS.getCategorias(this.ENTIDAD, this.idioma);
 		} catch (GexflowWSException e) {
 			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 		}
@@ -72,7 +82,7 @@ public class HomeController {
 
 		List<CategoriaDTO> categorias = null;
 		try {
-			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+			categorias = this.clienteWS.getCategorias(this.ENTIDAD, this.idioma);
 		} catch (GexflowWSException e) {
 			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 		}
@@ -95,7 +105,7 @@ public class HomeController {
 
 		List<CategoriaDTO> categorias = null;
 		try {
-			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+			categorias = this.clienteWS.getCategorias(this.ENTIDAD, this.idioma);
 		} catch (GexflowWSException e) {
 			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 		}
@@ -116,7 +126,7 @@ public class HomeController {
 		Map<Integer, List<ServicioDTO>> servicios = null;
 
 		try {
-			categorias = this.clienteWS.getCategorias(ENTIDAD, this.idioma);
+			categorias = this.clienteWS.getCategorias(this.ENTIDAD, this.idioma);
 			servicios = this.getServiciosPorTexto(searchText);
 
 		} catch (GexflowWSException e) {
@@ -138,17 +148,30 @@ public class HomeController {
 		return categoriaActual.isPresent() ? categoriaActual.get() : categorias.get(0);
 	}
 
-	@RequestMapping("/ficha-procedimiento")
-	public String fichaProcedimiento(@RequestParam(value = "id", required = true) Integer idServicio, Model model) {
+	@RequestMapping("/ficha-procedimiento/{id}")
+	public String fichaProcedimiento(@PathVariable(value = "id") Integer idServicio, Model model) {
 		ServicioDTO servicio = null;
 		try {
-			servicio = this.clienteWS.getServicio(ENTIDAD, this.idioma, idServicio);
+			servicio = this.clienteWS.getServicio(this.ENTIDAD, this.idioma, idServicio);
 		} catch (GexflowWSException e) {
 			throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 		}
 
 		model.addAttribute(SERVICIO_MODEL, servicio);
 		return "servicios/ficha-procedimiento";
+	}
+
+	@RequestMapping("/procedimiento/{id}")
+	public String procedimientos(@PathVariable("id") Integer idServicio, Model model, Principal authentication) {
+		UsuarioSede usuario = (UsuarioSede) ((CertAuthenticationToken) authentication).getPrincipal();
+
+		Map<String, Object> uriVariables = new HashMap<>();
+		uriVariables.put("idServicio", idServicio);
+		uriVariables.put("ticket", usuario.getTicket());
+		String url = UriComponentsBuilder.fromHttpUrl(this.iniciarTramiteUrlPattern).buildAndExpand(uriVariables)
+				.toString();
+		model.addAttribute("iframeUrl", url);
+		return "servicios/procedimiento";
 	}
 
 	@RequestMapping("/buscador-procedimientos")
@@ -164,7 +187,7 @@ public class HomeController {
 	private Map<Integer, IconoDTO> getIconosPorCategoria(List<CategoriaDTO> categorias) {
 		return categorias.stream().map(categoria -> {
 			try {
-				return this.clienteWS.getIconoCategoria(ENTIDAD, this.idioma, categoria.getIdCategoria());
+				return this.clienteWS.getIconoCategoria(this.ENTIDAD, this.idioma, categoria.getIdCategoria());
 			} catch (GexflowWSException e) {
 				throw new SedeElectronicaException(ExceptionType.THIRD_PARTY_SERVICE_ERROR, e);
 			}
@@ -174,16 +197,16 @@ public class HomeController {
 	private Map<Integer, List<ServicioDTO>> getServiciosPorSubCategorias(CategoriaDTO categoria) {
 		Map<Integer, List<ServicioDTO>> returnList = new HashMap<>();
 
-		categoria.getSubcategorias().forEach(sub -> {
+		categoria.getSubcategorias().forEach(subcategoria -> {
 			List<ServicioDTO> servicios = null;
 			try {
-				servicios = this.clienteWS.getServicios(ENTIDAD, this.idioma, categoria, sub);
+				servicios = this.clienteWS.getServicios(this.ENTIDAD, this.idioma, categoria, subcategoria);
 			} catch (GexflowWSException e) {
 				LOGGER.error(
 						"Error en la invocación al servicio, probablemente no hayan servicios para esa subcategoria.",
 						e);
 			}
-			returnList.put(sub.getIdSubcategoria(), servicios);
+			returnList.put(subcategoria.getIdSubcategoria(), servicios);
 		});
 
 		return returnList;
@@ -192,7 +215,7 @@ public class HomeController {
 	private Map<Integer, List<ServicioDTO>> getServiciosPorTexto(String searchText) {
 		List<ServicioDTO> servicios = null;
 		try {
-			servicios = this.clienteWS.buscarServicios(ENTIDAD, this.idioma, searchText);
+			servicios = this.clienteWS.buscarServicios(this.ENTIDAD, this.idioma, searchText);
 		} catch (GexflowWSException e) {
 			LOGGER.error("Error en la invocación al servicio, probablemente no hayan servicios para esa subcategoria.",
 					e);

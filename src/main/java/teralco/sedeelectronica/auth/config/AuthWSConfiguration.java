@@ -1,4 +1,4 @@
-package teralco.sedeelectronica.gexflow.config;
+package teralco.sedeelectronica.auth.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -6,26 +6,29 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
-import teralco.sedeelectronica.gexflow.client.GexflowClient;
+import teralco.sedeelectronica.auth.client.AuthClient;
 
 @Configuration
-public class GexflowWSConfiguration {
+public class AuthWSConfiguration {
 
-	@Value("${sede.ws.tramites}")
-	private String wsTramites;
+	@Value("${sede.ws.admin}")
+	private String wsAdmin;
 
-	@Bean(name = "gexflowMarshaller")
+	@Bean(name = "adminMarshaller")
 	public Jaxb2Marshaller marshaller() {
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-		marshaller.setContextPath("gexflow.wsdl");
-		marshaller.setMtomEnabled(true);
+		marshaller.setContextPath("admin.wsdl");
+		marshaller.setMtomEnabled(false);
 		return marshaller;
 	}
 
+	/**
+	 * @param marshaller
+	 */
 	@Bean
-	public GexflowClient quoteClient(@Qualifier("gexflowMarshaller") Jaxb2Marshaller marshaller) {
-		GexflowClient client = new GexflowClient();
-		client.setDefaultUri(this.wsTramites);
+	public AuthClient adminClient(@Qualifier("adminMarshaller") Jaxb2Marshaller marshaller) {
+		AuthClient client = new AuthClient(this.wsAdmin);
+		client.setDefaultUri(this.wsAdmin);
 		client.setMarshaller(marshaller);
 		client.setUnmarshaller(marshaller);
 		return client;

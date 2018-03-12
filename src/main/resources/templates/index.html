@@ -57,7 +57,7 @@
 								<div class="media-body">
 									<h3 class="h6">
 										<a class="u-link-v5 g-color-white g-color-primary--hover"
-										th:href="'./ficha-procedimiento?id='+@{${@environment.getProperty('sede.procedimiento.ocupacion.via.publica')}}"
+										th:href="'./ficha-procedimiento/'+@{${@environment.getProperty('sede.procedimiento.ocupacion.via.publica')}}"
 										>Autorizaci&oacute;n de ocupaci&oacute;n de la v&iacute;a p&uacute;blica</a>
 									</h3>
 								</div>
@@ -70,7 +70,7 @@
 								<div class="media-body">
 									<h3 class="h6">
 										<a class="u-link-v5 g-color-white g-color-primary--hover" 
-										th:href="'./ficha-procedimiento?id='+@{${@environment.getProperty('sede.procedimiento.instancia.general')}}">
+										th:href="'./ficha-procedimiento/'+@{${@environment.getProperty('sede.procedimiento.instancia.general')}}">
 										Instancia general</a>
 									</h3>
 								</div>
@@ -83,7 +83,7 @@
 								<div class="media-body">
 									<h3 class="h6">
 										<a class="u-link-v5 g-color-white g-color-primary--hover" 
-										th:href="'./ficha-procedimiento?id='+@{${@environment.getProperty('sede.procedimiento.quejas.sugerencias')}}">Quejas y sugerencias</a>
+										th:href="'./ficha-procedimiento/'+@{${@environment.getProperty('sede.procedimiento.quejas.sugerencias')}}">Quejas y sugerencias</a>
 									</h3>
 								</div>
 							</article>
@@ -95,7 +95,7 @@
 								<div class="media-body">
 									<h3 class="h6">
 										<a class="u-link-v5 g-color-white g-color-primary--hover" 
-										th:href="'./ficha-procedimiento?id='+@{${@environment.getProperty('sede.procedimiento.empadronamiento')}}">Volante de empadronamiento en un click</a>
+										th:href="'./ficha-procedimiento/'+@{${@environment.getProperty('sede.procedimiento.empadronamiento')}}">Volante de empadronamiento en un click</a>
 									</h3>
 								</div>
 							</article>
@@ -131,7 +131,7 @@
 								<a 
                 th:text="#{message.landing.button.menu.two}"
                 class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
-								 href="login.html" >ACCESO</a>
+								th:href="@{'/acceso'}"  href="login.html" >ACCESO</a>
 							</h3>
 						</div>
 						<!-- End Icon Blocks -->
@@ -227,7 +227,7 @@
 								</li>
 								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
 									<h4 class="h6 g-pr-20 mb-0">
-										<a class="g-color-white-opacity-0_8 g-color-white--hover" th:href="'./ficha-procedimiento?id='+@{${@environment.getProperty('sede.procedimiento.instancia.general')}}" th:text="#{message.landing.help.link.five}">Registro electr&oacute;nico</a>
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" th:href="'./ficha-procedimiento/'+@{${@environment.getProperty('sede.procedimiento.instancia.general')}}" th:text="#{message.landing.help.link.five}">Registro electr&oacute;nico</a>
 										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
 									</h4>
 								</li>

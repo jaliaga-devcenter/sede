@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Normativa;
-import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.NormativaService;
-import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
@@ -30,15 +28,10 @@ public class NormativaController {
 	private static String normas = "normativa/normativa-sobre-la-sede";
 
 	private NormativaService normativaService;
-	private FicheroService ficheroService;
 
 	@Autowired
-	private EncryptUtils encryptUtils;
-
-	@Autowired
-	public NormativaController(NormativaService pNormativaService, FicheroService pFicheroService) {
+	public NormativaController(NormativaService pNormativaService) {
 		this.normativaService = pNormativaService;
-		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/normativa/normativa-sobre-la-sede", produces = "text/html;charset=UTF-8")
