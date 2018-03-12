@@ -13,10 +13,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class CertAuthenticationProvider implements AuthenticationProvider {
 
+	protected static final String ROLE_USER_SEDE = "ROLE_USUARIO_SEDE";
+
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		Collection<GrantedAuthority> grantedAuths = new ArrayList<>();
-		grantedAuths.add(new SimpleGrantedAuthority("ADMIN_SEDE"));
+		grantedAuths.add(new SimpleGrantedAuthority(ROLE_USER_SEDE));
 		return new CertAuthenticationToken(authentication.getPrincipal(), grantedAuths);
 	}
 

@@ -19,6 +19,8 @@ import teralco.sedeelectronica.auth.client.AuthClient;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
+	protected static final String ROLE_ADMIN_SEDE = "ROLE_ADMIN_SEDE";
+
 	@Value("${sede.entidad}")
 	private Integer ENTIDAD;
 
@@ -34,7 +36,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		}
 
 		Collection<GrantedAuthority> grantedAuths = new ArrayList<>();
-		grantedAuths.add(new SimpleGrantedAuthority("ADMIN_SEDE"));
+		grantedAuths.add(new SimpleGrantedAuthority(ROLE_ADMIN_SEDE));
 		return new UsernamePasswordAuthenticationToken(username, password, grantedAuths);
 	}
 

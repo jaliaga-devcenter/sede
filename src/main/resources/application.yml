@@ -16,9 +16,12 @@ sede:
   entidad: 0
   ws.tramites: http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites
   ws.admin: http://demo.gexflow.com:8080/gexflowzk/ws/WSAdminGexflowZK
-  ws.pasarela: https://demo.gexflow.com:8443/pasarelaintegracion/ws/Autenticacion
-  carpeta.ciudadana: https://demo.gexflow.com:8443/CarpetaCiudadana/{idEntidad}/VerMisTramites
-  iniciar.tramite: https://demo.gexflow.com:8443/CarpetaCiudadana/IniciarTramiteConTicket?idEntidad={idEntidad}&id={idServicio}&idTicket={ticket}
+  ws.pasarela: 
+    url: https://demo.gexflow.com:8443/pasarelaintegracion/ws/Autenticacion
+    usuario: teralco
+    password: 481a5fe58d2ace784783158c4b8be6dd
+  carpeta.ciudadana: https://demo.gexflow.com:8443/CarpetaCiudadana/${sede.entidad}/VerMisTramites
+  iniciar.tramite: https://demo.gexflow.com:8443/CarpetaCiudadana/IniciarTramiteConTicket?idEntidad=${sede.entidad}&id={idServicio}&idTicket={ticket}
   requisitos.tecnicos: https://demo.gexflow.com:8443/CarpetaCiudadana/requisitos.html
   conoce.tu.ayuntamiento: http://www.murcia.es/web/portal/institucional
   portal.transparencia: http://www.murcia.es/web/portal/transparencia-municipal

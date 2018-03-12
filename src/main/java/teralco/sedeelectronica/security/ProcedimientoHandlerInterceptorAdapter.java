@@ -31,16 +31,25 @@ public class ProcedimientoHandlerInterceptorAdapter extends HandlerInterceptorAd
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
 		String salidaJson = request.getParameter("salida_json");
 
 		if (authentication == null && salidaJson == null) {
 			String returnTo = request.getRequestURL().toString();
-			response.sendRedirect(
-					"https://demo.gexflow.com:8443/midu/LoginCertificadoWS?idEntidad=0&urlRetornoCorrecto=" + returnTo
-							+ "&urlRetornoError=http://localhost:8081/sede/loginKO");
+			try {
+				response.sendRedirect(
+						"https://demo.gexflow.com:8443/midu/LoginCertificadoWS?idEntidad=0&urlRetornoCorrecto="
+								+ returnTo + "&urlRetornoError=http://localhost:8081/sede/loginKO");
+			} catch (IOException e) {
+				throw new SedeElectronicaException(ExceptionType.LOGIN_NO_OK, e);
+			}
 
-			// https://demo.gexflow.com:8443/midu/LoginCertificadoWS?idEntidad=0&urlRetornoCorrecto=http://localhost:8081/sede/loginOK&urlRetornoError=http://localhost:8081/sede/loginKO
 			return false;
+		}
+
+		if (authentication != null && authentication.isAuthenticated()
+				&& request.isUserInRole(CertAuthenticationProvider.ROLE_USER_SEDE)) {
+			return true;
 		}
 
 		String jsonDesencriptado = this.pasarelaClient.desencriptar(salidaJson);
@@ -57,6 +66,7 @@ public class ProcedimientoHandlerInterceptorAdapter extends HandlerInterceptorAd
 		UsuarioSede user = usuarios.get(0);
 
 		authentication = this.authenticationManager.authenticate(new CertAuthenticationToken(user));
+
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		return super.preHandle(request, response, handler);
 	}

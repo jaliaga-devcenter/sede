@@ -22,8 +22,6 @@ public class PasarelaClient extends WebServiceGatewaySupport {
 	public String desencriptar(String datosCifrados) {
 		DesencriptarDatos request = new DesencriptarDatos();
 		request.setDatosCifrados(datosCifrados);
-		// teralco/481a5fe58d2ace784783158c4b8be6dd
-		// teralco/481a5fe58d2ace784783158c4b8be6dd
 
 		@SuppressWarnings("unchecked")
 		JAXBElement<DesencriptarDatosResponse> response = (JAXBElement<DesencriptarDatosResponse>) invokeWS(

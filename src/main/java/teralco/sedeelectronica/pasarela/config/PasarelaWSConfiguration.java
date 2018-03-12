@@ -13,8 +13,14 @@ import teralco.sedeelectronica.pasarela.client.PasarelaClient;
 @Configuration
 public class PasarelaWSConfiguration {
 
-	@Value("${sede.ws.pasarela}")
+	@Value("${sede.ws.pasarela.url}")
 	private String wsPasarela;
+
+	@Value("${sede.ws.pasarela.usuario}")
+	private String user;
+
+	@Value("${sede.ws.pasarela.password}")
+	private String password;
 
 	@Bean(name = "pasarelaMarshaller")
 	public Jaxb2Marshaller marshaller() {
@@ -42,8 +48,8 @@ public class PasarelaWSConfiguration {
 	public Wss4jSecurityInterceptor wsseSecurityInterceptor() {
 		Wss4jSecurityInterceptor interceptor = new Wss4jSecurityInterceptor();
 		interceptor.setSecurementActions("UsernameToken");
-		interceptor.setSecurementUsername("teralco");
-		interceptor.setSecurementPassword("481a5fe58d2ace784783158c4b8be6dd");
+		interceptor.setSecurementUsername(this.user);
+		interceptor.setSecurementPassword(this.password);
 		return interceptor;
 	}
 }
