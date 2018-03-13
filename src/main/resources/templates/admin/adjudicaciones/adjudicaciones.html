@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorate="~{/layouts/main}">
+<head>
+	<title th:text="message.adjudicaciones.table.header"></title>
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<div th:replace="~{fragments/admin/navbar :: navbar}"></div>
+		<div th:replace="~{fragments/adminTable :: adminTable('user', #{message.adjudicaciones.table.header}, 'admin/adjudicaciones', ~{::table})}"></div>
+		<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
+	</div>
+
+	<table class="table u-table--v1 mb-0 table-striped table-hover">
+		<thead>
+			<tr class="g-col-border-top-0">
+				<th>#</th>
+				<th th:text="#{message.adjudicaciones.table.header.type}">Tipo</th>
+				<th th:text="#{message.adjudicaciones.table.header.description}">Denominaci&oacute;n</th>
+				<th th:text="#{message.adjudicaciones.table.header.sealedbid}">Apertura plicas</th>
+				<th th:text="#{message.adjudicaciones.table.header.result}">Tama&ntilde;o</th>
+				<th th:text="#{message.adjudicaciones.table.header.size}">Tama&nacute;o</th>
+				<th th:text="#{message.adjudicaciones.table.header.formalizationdate}">F. formalizaci&oacute;n</th>
+				<th th:text="#{message.adjudicaciones.table.header.awarded}">Adjudicaci&oacute;n definitiva</th>
+			</tr>
+		</thead>
+			<tbody>
+				<tr th:each="adjudicacion, itr : ${adjudicaciones}" th:href="@{/admin/adjudicaciones/edit/{id}(id=${adjudicacion.id})}">
+					<th scope="row">
+						<fieldset class="g-pt-2">
+							<div>
+								<label>
+									<input type="radio" name="optionsRadios" th:id="${'option' + adjudicacion.id}" th:checked="${itr.index == 0}" th:value="${adjudicacion.id}"
+									/>
+								</label>
+							</div>
+						</fieldset>
+					</th>
+					<td th:text="${adjudicacion.resultado!=null} ? ${adjudicacion.resultado.tipo}: ''"></td>
+					<td th:text="${adjudicacion.denominacion}"> </td>					
+					<td th:utext="${adjudicacion.fecha!=null} ? ${#dates.format(adjudicacion.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
+					(${adjudicacion.hora!=null} ? ${#dates.format(adjudicacion.hora,'hh:mm')}:'') + '&lt;br/&gt;' +${adjudicacion.plica} : ''"></td>
+					<td th:switch="${adjudicacion.resultado}">
+							<span th:case="null" ></span>
+							<span th:case="*"><a class="downa" th:href="@{/download/}+${encrypt.encrypt(adjudicacion.resultado.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
+					</td>	
+					<td th:text="${adjudicacion.resultado!=null} ? 
+					${#numbers.formatDecimal((adjudicacion.resultado.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
+					+' MB': ''"></td>
+					<td th:utext="${adjudicacion.fechaFormalizacion!=null} ? ${#dates.format(adjudicacion.fechaFormalizacion, 'dd/MM/yyyy')} : ''"></td>
+					<td th:utext="((${adjudicacion.presupuesto!=null} ? 
+					${adjudicacion.presupuesto}+' &euro; &lt;br/&gt;': '' ) +
+					(${adjudicacion.fechaAdjudicacion!=null} ? 
+					${#dates.format(adjudicacion.fechaAdjudicacion, 'dd/MM/yyyy')} : '' )
+					+ '&lt;br/&gt;' +${adjudicacion.empresaAdjudicacion})"></td>
+				</tr>
+			</tbody>
+		</table> 	
+ </body>
+ </html>

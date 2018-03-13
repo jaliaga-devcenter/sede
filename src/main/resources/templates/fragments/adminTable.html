@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<body>
+    <th:block th:fragment="adminTable (iconHeader, labelHeader, url, table)">
+        <div th:replace="/fragments/modals/deleteTable :: modalDeleteTable(${url + '/delete/'})"></div>
+
+        <!-- Basic Table (Spacing) -->
+        <div class="card rounded-0 g-brd-transparent">
+            <div class="card-header g-bg-primary g-brd-transparent g-color-white g-font-size-16 rounded-0 mb-0">
+                <div class="row">
+                    <div class="col-3 d-flex align-items-center">
+                        <i th:class="${'fa g-mr-5 fa-' + iconHeader}"></i>
+                        <span th:text="${labelHeader}"></span>
+                    </div>
+                    <div class="col-9 text-right">
+                        <a th:href="@{/{url}/create(url=${url})}" class="btn btn-sm u-btn-primary g-mr-10">
+                            <i class="fa fa-plus g-mr-3"></i>
+                            <span th:text="#{message.table.button.new}">Nuevo</span>
+                        </a>
+                        <a th:href="@{/{url}/edit/(url=${url})}" id="editButton" class="btn btn-sm u-btn-primary g-mr-10">
+                            <i class="fa fa-pencil g-mr-3"></i>
+                            <span th:text="#{message.table.button.edit}">Editar</span>
+                        </a>
+                        <a href="#modalDelete" data-modal-target="#modalDelete" data-modal-effect="rotate" class="btn btn-sm u-btn-primary g-mr-10">
+                            <i class="fa fa-trash g-mr-3"></i>
+                            <span th:text="#{message.table.button.delete}">Borrar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="g-min-height-45">
+                <div th:if="${message}" class="alert alert-success alert-dismissible fade show g-ma-0" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <div class="media">
+                        <span class="d-flex mr-2 g-mt-5">
+                            <i class="fa fa-check-circle-o"></i>
+                        </span>
+                        <div class="media-body">
+                            <p class="g-ma-0" th:text="${message}">success message</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-block table-responsive g-pa-0">
+                <table th:replace="${table}" />
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $("input[id^='option']").on("change", function () {
+                var itemId = $(this).attr("id").slice(6);
+                var isChecked = $(this).prop('checked');
+
+                if (isChecked) {
+                    var editButtonUrl = $("#editButton").prop('href');
+                    var formDeleteTableUrl = $("#formModalDeleteTable").prop('action');
+
+                    if (editButtonUrl.match(/\/\d+/g)) $("#editButton").prop('href', editButtonUrl.replace(/\/\d+/g, '/' + itemId));
+                    else $("#editButton").prop('href', editButtonUrl + itemId);
+
+                    if (formDeleteTableUrl.match(/\/\d+/g)) $("#formModalDeleteTable").prop('action', formDeleteTableUrl.replace(/\/\d+/g, '/' + itemId));
+                    else $("#formModalDeleteTable").prop('action', formDeleteTableUrl + itemId);
+                }
+            });
+
+            $("input[id^='option']").change();
+        </script>
+    </th:block>
+</body>
+
+</html>

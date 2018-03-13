@@ -34,7 +34,11 @@ public class ProcedimientoHandlerInterceptorAdapter extends HandlerInterceptorAd
 
 		String salidaJson = request.getParameter("salida_json");
 
-		if (authentication == null && salidaJson == null) {
+		boolean noHayUsuario = authentication == null && salidaJson == null;
+		boolean hayUsuarioAdmin = authentication != null
+				&& request.isUserInRole(CustomAuthenticationProvider.ROLE_ADMIN_SEDE) && salidaJson == null;
+
+		if (noHayUsuario || hayUsuarioAdmin) {
 			String returnTo = request.getRequestURL().toString();
 			try {
 				response.sendRedirect(
@@ -47,8 +51,10 @@ public class ProcedimientoHandlerInterceptorAdapter extends HandlerInterceptorAd
 			return false;
 		}
 
-		if (authentication != null && authentication.isAuthenticated()
-				&& request.isUserInRole(CertAuthenticationProvider.ROLE_USER_SEDE)) {
+		boolean hayUsuarioSede = authentication != null && authentication.isAuthenticated()
+				&& request.isUserInRole(CertAuthenticationProvider.ROLE_USER_SEDE);
+
+		if (hayUsuarioSede) {
 			return true;
 		}
 
