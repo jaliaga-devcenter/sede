@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CarpetaCiudadanaController {
 
 	@RequestMapping("/carpeta-ciudadana")
-	public String buscadorProcedimientos() {
+	public String carpetaCiudadana() {
+		return "carpeta/carpeta-ciudadana";
+	}
+
+	@RequestMapping("/notifica")
+	public String notifica() {
 		return "carpeta/carpeta-ciudadana";
 	}
 

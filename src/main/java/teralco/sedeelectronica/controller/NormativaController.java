@@ -34,7 +34,7 @@ public class NormativaController {
 		this.normativaService = pNormativaService;
 	}
 
-	@RequestMapping(value = "/normativa/normativa-sobre-la-sede", produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/normativa-sobre-la-sede", produces = "text/html;charset=UTF-8")
 	public String aperturas(Model model) {
 		// DEVOLVER LA LISTA DE NORMATIVAS
 		model.addAttribute("normativas", this.normativaService.list());
