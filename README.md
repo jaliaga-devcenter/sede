@@ -14,7 +14,9 @@
 
 [SonarCloud](https://sonarcloud.io/organizations/devcenter-es/projects "Sonar") 
 
+### Entorno de aceptación
 
+http://ec2-18-188-92-227.us-east-2.compute.amazonaws.com:8080/sede
 
 ## Parametros arranque 
 Para activar el perfil de dev es necesario el siguiente parametro:
@@ -24,3 +26,12 @@ Para activar el perfil de dev es necesario el siguiente parametro:
 Para permitir recibir por request parameter Json es necesario añadir:
 
 *-Dtomcat.util.http.parser.HttpParser.requestTargetAllow=|{}*
+
+
+## Captcha
+
+Es necesario configurar el captcha de google 
+
+## Hay que cambiar los parámetros antes de arrancar
+
+ 
