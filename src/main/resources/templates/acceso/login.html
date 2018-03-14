@@ -45,7 +45,7 @@
 
                             <!-- Form -->
                             <form class="g-py-15" th:action="@{/login}" method="post">
-	                             <div th:if="${param.error}" class="alert alert-error">
+	                             <div th:if="${param.error}" class="alert alert-danger">
 					                <span th:text="#{message.login.error}">Usuario o password incorrecto</span>
 					            </div>
 					            <div th:if="${param.logout}" class="alert alert-success">

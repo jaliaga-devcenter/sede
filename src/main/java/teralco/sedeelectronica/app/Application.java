@@ -16,6 +16,7 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import teralco.sedeelectronica.security.ProcedimientoHandlerInterceptorAdapter;
+import teralco.sedeelectronica.utils.LanguageUtils;
 
 @SpringBootApplication
 @ComponentScan(basePackages = "teralco.sedeelectronica")
@@ -31,7 +32,7 @@ public class Application extends WebMvcConfigurerAdapter {
 	@Bean
 	public LocaleResolver localeResolver() {
 		SessionLocaleResolver slr = new SessionLocaleResolver();
-		slr.setDefaultLocale(Locale.forLanguageTag("es"));
+		slr.setDefaultLocale(Locale.forLanguageTag(LanguageUtils.SPANISH));
 		return slr;
 	}
 

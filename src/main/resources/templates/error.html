@@ -1,17 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es"
+	layout:decorate="~{/layouts/main}">
 <head>
-	<title>Sede electr&oacute;nica - 404 Error</title>
+	<title>Sede electr&oacute;nica - Error</title>
 </head>
 <body>
 		
 	<div layout:fragment="content">		
 		
-		<h2>Standard Error Handler</h2>
+		<h2>Error</h2>
 		
-		<p th:text="${error}">error</p>
-		<p th:text="${message}">message</p>	
-		
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>Key</td>
+					<td>Value</td> 
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>TimeStamp</td>
+					<td th:text="${timestamp}"></td>
+				</tr>
+				<tr>
+					<td>Status</td>
+					<td th:text="${status}"></td>
+				</tr>
+				<tr>
+					<td>Message</td>
+					<td th:text="${message}"></td>
+				</tr>
+				<tr>
+					<td>Error</td>
+					<td th:text="${error}"></td>
+				</tr>
+				<tr>
+					<td>Path</td>
+					<td th:text="${path}"></td>
+				</tr>																
+			</tbody>
+		</table>
 	
 	</div>
 

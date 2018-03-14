@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorate="~{/layouts/main}">
+<head>
+	<head>
+		<title th:text="#{message.stop.table.header}">Paradas</title>
+	</head>
+	<body>
+	
+		<div layout:fragment="content">	
+			<div th:replace="~{fragments/admin/navbar :: navbar}"></div>		
+			<div th:replace="~{fragments/adminTable :: adminTable('user', #{message.stop.table.header}, 'admin/paradas', ~{::table})}"></div>
+			<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
+		</div>
+	
+		<table class="table u-table--v1 mb-0 table-striped table-hover">
+			<thead>
+				<tr class="g-col-border-top-0">
+					<th>#</th>
+					<th th:text="#{message.stop.table.header.date}">Fecha</th>
+					<th th:text="#{message.stop.table.header.description}">Descripción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="parada, itr : ${paradas}" th:href="@{/admin/paradas/edit/{id}(id=${parada.id})}">
+					<th scope="row">
+						<fieldset class="g-pt-2">
+							<div>
+								<label>
+									<input type="radio" name="optionsRadios" th:id="${'option' + parada.id}" th:checked="${itr.index == 0}" th:value="${parada.id}"
+									/>
+								</label>
+							</div>
+						</fieldset>
+					</th>
+					<td th:text="${#dates.format(parada.fecha, 'dd/MM/yyyy')}"></td>
+					<td th:text="${parada.descripcion}" ></td>					
+				</tr>
+			</tbody>
+		</table>
+ </body>
+ </html>

@@ -19,6 +19,7 @@ import teralco.sedeelectronica.auth.client.AuthClient;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
+	protected static final String ADMIN_SEDE = "ADMIN_SEDE";
 	protected static final String ROLE_ADMIN_SEDE = "ROLE_ADMIN_SEDE";
 
 	@Value("${sede.entidad}")
@@ -31,8 +32,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String username = (String) authentication.getPrincipal();
 		String password = (String) authentication.getCredentials();
-		if (!this.authClient.tienePermiso(0, username, password, "ADMCONTSEDE")) {
-			throw new BadCredentialsException("External system authentication failed");
+		try {
+			if (!this.authClient.tienePermiso(0, username, password, "ADMCONTSEDE")) {
+				throw new BadCredentialsException("External system authentication failed");
+			}
+		} catch (Exception e) {
+			throw new BadCredentialsException("External system authentication failed", e);
 		}
 
 		Collection<GrantedAuthority> grantedAuths = new ArrayList<>();

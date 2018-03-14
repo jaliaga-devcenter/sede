@@ -137,7 +137,6 @@ public class GexflowClient extends WebServiceGatewaySupport {
 		request.setIdEntidad(entidad);
 		request.setCodigoIdioma(idioma);
 		request.setEntradaConsultaServicioCatalogo(new EntradaConsultaServicioCatalogo());
-		request.getEntradaConsultaServicioCatalogo().setDenominacionServicio(textoBusqueda);
 		request.getEntradaConsultaServicioCatalogo().setDescripcion(textoBusqueda);
 
 		@SuppressWarnings("unchecked")

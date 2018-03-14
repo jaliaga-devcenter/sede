@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorate="~{/layouts/main}">
+
+<head>
+	<title th:text="#{message.licitaciones.table.header}"></title>
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<div th:replace="~{fragments/admin/navbar :: navbar}"></div>
+		<div th:replace="~{fragments/adminTable :: adminTable('user', #{message.licitaciones.table.header}, 'admin/licitaciones', ~{::table})}"></div>
+		<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
+	</div>
+
+	<table class="table u-table--v1 mb-0 table-striped table-hover">
+		<thead>
+			<tr class="g-col-border-top-0">
+				<th>#</th>
+				<th th:text="#{message.licitaciones.table.header.type}">Tipo</th>
+				<th th:text="#{message.licitaciones.table.header.publishdate}">Fecha Publicaci&oacute;n</th>
+				<th th:text="#{message.licitaciones.table.header.description}">Descripci&oacute;n</th>
+				<th th:text="#{message.licitaciones.table.header.budget}">Presupuesto</th>
+				<th th:text="#{message.licitaciones.table.header.enddate}">Fin plazo</th>
+				<th th:text="#{message.licitaciones.table.header.means}">Medio</th>
+				<th th:text="#{message.licitaciones.table.header.size}">Tama&ntilde;o</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="licitacion, itr : ${licitaciones}" th:href="@{/admin/licitaciones/edit/{id}(id=${licitacion.id})}">
+				<th scope="row">
+					<fieldset class="g-pt-2">
+						<div>
+							<label>
+								<input type="radio" name="optionsRadios" th:id="${'option' + licitacion.id}" th:checked="${itr.index == 0}" th:value="${licitacion.id}"
+								/>
+							</label>
+						</div>
+					</fieldset>
+				</th>
+				<td th:text="${licitacion.fichero!=null} ? ${licitacion.fichero.tipo}: ''"></td>
+				<td th:text="${#dates.format(licitacion.fechaPub, 'dd-MM-yyyy')}"></td>
+				<td th:switch="${licitacion.fichero}">
+					<span th:case="null" th:text="${licitacion.descripcion}"></span>
+					<span th:case="*">
+						<a th:text="${licitacion.descripcion}" th:href="@{/download/}+${encrypt.encrypt(licitacion.fichero.id)}" target="_blank"></a>
+					</span>
+				</td>
+				<td th:text="${licitacion.presupuesto}+' &euro;'"></td>
+				<td th:text="${#dates.format(licitacion.finPlazo, 'dd-MM-yyyy')}"></td>
+				<td th:text="${licitacion.medio!=null}? ${licitacion.medio.text} : ''"></td>
+				<td th:text="${licitacion.fichero!=null} ? 
+					${#numbers.formatDecimal((licitacion.fichero.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
+					+' MB': ''"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>

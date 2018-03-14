@@ -1,12 +1,18 @@
 package teralco.sedeelectronica.auth.client;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.xml.bind.JAXBElement;
 
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
+import admin.wsdl.ConsultaDiasFestivos;
+import admin.wsdl.ConsultaDiasFestivosResponse;
 import admin.wsdl.ConsultaPermisoUsuario;
 import admin.wsdl.ConsultaPermisoUsuarioResponse;
 import admin.wsdl.ObjectFactory;
+import teralco.sedeelectronica.auth.dto.DiaFestivoDTO;
 
 public class AuthClient extends WebServiceGatewaySupport {
 
@@ -32,6 +38,21 @@ public class AuthClient extends WebServiceGatewaySupport {
 
 		return response.getValue().isSalida();
 
+	}
+
+	public List<DiaFestivoDTO> getCalendario(Integer entidad, String idioma, Integer anyo) {
+		ConsultaDiasFestivos request = new ConsultaDiasFestivos();
+		request.setIdEntidad(entidad);
+		request.setCodigoIdioma(idioma);
+		request.setAnyo(anyo);
+
+		@SuppressWarnings("unchecked")
+		JAXBElement<ConsultaDiasFestivosResponse> response = (JAXBElement<ConsultaDiasFestivosResponse>) invokeWS(
+				this.factory.createConsultaDiasFestivos(request));
+
+		response.getValue().getSalida();
+
+		return new ArrayList<>();
 	}
 
 	private JAXBElement<?> invokeWS(JAXBElement<?> requestWS) {
