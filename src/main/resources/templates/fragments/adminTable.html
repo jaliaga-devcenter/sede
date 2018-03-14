@@ -3,7 +3,7 @@
 
 <body>
     <th:block th:fragment="adminTable (iconHeader, labelHeader, url, table)">
-        <div th:replace="/fragments/modals/deleteTable :: modalDeleteTable(${url + '/delete/'})"></div>
+        <div th:replace="fragments/modals/deleteTable :: modalDeleteTable(${url + '/delete/'})"></div>
 
         <!-- Basic Table (Spacing) -->
         <div class="card rounded-0 g-brd-transparent">
