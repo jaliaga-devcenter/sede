@@ -10,7 +10,7 @@ public class LanguageUtils {
 
 	}
 
-	public static String SPANISH = "es";
+	public static final String SPANISH = "es";
 
 	public static String getLanguage() {
 		String language = LocaleContextHolder.getLocale().getLanguage();
