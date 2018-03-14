@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
 	xmlns:th="http://www.thymeleaf.org"
-	layout:decorate="~{/layouts/main}">
+	layout:decorate="~{layouts/main}">
 <head>
 	<title th:text="*{apertura!=null}?  #{message.licitaciones.form.edit} : #{message.licitaciones.form.new}"></title>
 </head>
@@ -19,7 +19,7 @@
 			<div th:replace="~{fragments/inputs/dateField :: input(#{message.aperturas.form.label.datesealedbid}, 'fecha', #{message.aperturas.form.error.datesealedbid}, true, false)}"></div>
 			<div th:replace="~{fragments/inputs/timeField :: input(#{message.aperturas.form.label.timesealedbid}, 'hora', #{message.aperturas.form.error.timesealedbid}, true, false)}"></div>
 			<div th:replace="~{fragments/inputs/textareaField :: input(#{message.aperturas.form.label.sealedbid}, 'plica', #{message.aperturas.form.error.sealedbid}, 4, 50, false, false)}"></div>
-			<div th:replace="~{/fragments/inputs/fileField :: input(#{message.aperturas.form.label.file}, #{message.aperturas.form.button.file}, 'fileToUpload', #{message.aperturas.form.error.file}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/fileField :: input(#{message.aperturas.form.label.file}, #{message.aperturas.form.button.file}, 'fileToUpload', #{message.aperturas.form.error.file}, false, false)}"></div>
 			<div class="d-flex justify-content-between g-mt-30">
 					<div>
 						<a href="aperturas.html" th:href="@{/admin/aperturas}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.aperturas.form.button.back}">Atras</a>

@@ -41,6 +41,11 @@ public class HomeController {
 	@Autowired
 	private CategoriaService categoriaService;
 
+	@RequestMapping("/test")
+	public String test() {
+		return "test";
+	}
+
 	@RequestMapping("/")
 	public String greeting(Model model) {
 
