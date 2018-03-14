@@ -4,18 +4,32 @@ import static java.time.temporal.ChronoField.HOUR_OF_DAY;
 import static java.time.temporal.ChronoField.MINUTE_OF_HOUR;
 import static java.time.temporal.ChronoField.SECOND_OF_MINUTE;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.FormatStyle;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import teralco.sedeelectronica.auth.client.AuthClient;
+import teralco.sedeelectronica.auth.dto.DiaFestivoDTO;
+import teralco.sedeelectronica.utils.LanguageUtils;
+
 @Controller
 public class ConoceSedeController {
+
+	@Autowired
+	private AuthClient authClient;
+
+	@Value("${sede.entidad}")
+	private Integer ENTIDAD;
 
 	@RequestMapping("/conoce-la-sede-electronica")
 	public String conceLaSede() {
@@ -60,7 +74,10 @@ public class ConoceSedeController {
 	}
 
 	@RequestMapping("/calendario-dias-inhabiles")
-	public String calendario() {
+	public String calendario(Model model) {
+		List<DiaFestivoDTO> calendario = this.authClient.getCalendario(this.ENTIDAD, LanguageUtils.getLanguage(),
+				LocalDate.now().getYear());
+		model.addAttribute("calendario", calendario);
 		return "sede/calendario-dias-inhabiles";
 	}
 
