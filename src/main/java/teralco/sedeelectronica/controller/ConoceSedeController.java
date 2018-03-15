@@ -29,16 +29,11 @@ public class ConoceSedeController {
 	private AuthClient authClient;
 
 	@Value("${sede.entidad}")
-	private Integer ENTIDAD;
+	private Integer entidad;
 
 	@RequestMapping("/conoce-la-sede-electronica")
 	public String conceLaSede() {
 		return "sede/conoce-la-sede-electronica";
-	}
-
-	@RequestMapping("/normativa-sobre-la-sede")
-	public String normativaSede() {
-		return "sede/normativa-sobre-la-sede";
 	}
 
 	@RequestMapping("/contenidos-de-la-sede")
@@ -75,7 +70,7 @@ public class ConoceSedeController {
 
 	@RequestMapping("/calendario-dias-inhabiles")
 	public String calendario(Model model) {
-		List<DiaFestivoDTO> calendario = this.authClient.getCalendario(this.ENTIDAD, LanguageUtils.getLanguage(),
+		List<DiaFestivoDTO> calendario = this.authClient.getCalendario(this.entidad, LanguageUtils.getLanguage(),
 				LocalDate.now().getYear());
 		model.addAttribute("calendario", calendario);
 		return "sede/calendario-dias-inhabiles";

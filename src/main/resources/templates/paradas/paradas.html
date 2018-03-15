@@ -19,7 +19,7 @@
 					<th th:text="#{message.stop.table.header.description}">Descripción</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody th:if="${paradas.getNumberOfElements()}">
 				<tr th:each="parada, itr : ${paradas}" th:href="@{/paradas/edit/{id}(id=${parada.id})}">
 					<th scope="row">
 						<fieldset class="g-pt-2">
@@ -33,6 +33,11 @@
 					</th>
 					<td th:text="${#dates.format(parada.fecha, 'dd/MM/yyyy')}"></td>
 					<td th:text="${parada.descripcion}" ></td>					
+				</tr>
+			</tbody>
+			<tbody th:unless="${paradas.getNumberOfElements()}"> 
+				<tr>
+					<td colspan="7" th:text="#{message.warning.not.exist}"></td>
 				</tr>
 			</tbody>
 		</table>

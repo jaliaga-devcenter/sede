@@ -29,7 +29,7 @@
                                     <th th:text="#{message.normative.table.header.text}">Texto</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody th:if="${normativas.size()}">
                                 <tr th:each="normativa, itr : ${normativas}" th:href="@{/normativa/edit/{id}(id=${normativa.id})}">
                                     <td th:switch="${normativa.url}">
                                         <span th:case="null" th:text="${normativa.norma}" ></span>
@@ -39,6 +39,11 @@
                                     <td th:text="${normativa.texto}"> </td>							
                                 </tr>
                             </tbody>
+                            <tbody th:unless="${normativas.size()}"> 
+                                <tr>
+                                    <td colspan="3" th:text="#{message.warning.not.exist}"></td>
+                                </tr>
+                            </tbody>	                            
                         </table> 	
                     </div>
                     <!-- End Table Striped Rows -->

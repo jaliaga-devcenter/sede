@@ -20,7 +20,7 @@
 					<th th:text="#{message.news.table.header.title}">Titulo</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody th:if="${noticias.getNumberOfElements()}">
 				<tr th:each="noticia, itr : ${noticias}" th:href="@{/admin/noticias/edit/{id}(id=${noticia.id})}">
 					<th scope="row">
 						<fieldset class="g-pt-2">
@@ -34,6 +34,11 @@
 					</th>
 					<td th:text="${#dates.format(noticia.fecha, 'dd/MM/yyyy HH:mm')}"></td>
 					<td th:text="${noticia.titulo}"></td>				
+				</tr>
+			</tbody>
+			<tbody th:unless="${noticias.getNumberOfElements()}"> 
+				<tr>
+					<td colspan="7" th:text="#{message.warning.not.exist}"></td>
 				</tr>
 			</tbody>
 		</table>

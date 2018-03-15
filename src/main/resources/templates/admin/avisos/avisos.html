@@ -20,7 +20,7 @@
 					<th th:text="#{message.avisos.table.header.description}">Descripción</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody th:if="${avisos.getNumberOfElements()}">
 				<tr th:each="aviso, itr : ${avisos}" th:href="@{/admin/avisos/edit/{id}(id=${aviso.id})}">
 					<th scope="row">
 						<fieldset class="g-pt-2">
@@ -40,6 +40,11 @@
 
 				</tr>
 			</tbody>
+			<tbody th:unless="${avisos.getNumberOfElements()}"> 
+				<tr>
+					<td colspan="7" th:text="#{message.warning.not.exist}"></td>
+				</tr>
+			</tbody>			
 		</table>		
  </body>
  </html>

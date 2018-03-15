@@ -21,7 +21,7 @@
 					<th th:text="#{message.documentos.table.header.state}">Estado</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody th:if="${documentos.getNumberOfElements()}">
 				<tr th:each="documento, itr : ${documentos}" th:href="@{/admin/documentos/edit/{id}(id=${documento.id})}">
 					<th scope="row">
 						<fieldset class="g-pt-2">
@@ -41,6 +41,11 @@
 					<td th:text="${#strings.capitalize(documento.estado)}"> </td>
 				</tr>
 			</tbody>
+			<tbody th:unless="${documentos.getNumberOfElements()}"> 
+				<tr>
+					<td colspan="7" th:text="#{message.warning.not.exist}"></td>
+				</tr>
+			</tbody>			
 		</table>
  </body>
  </html>

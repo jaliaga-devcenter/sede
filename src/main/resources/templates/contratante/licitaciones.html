@@ -13,7 +13,7 @@
 		<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
 	</div>
 
-	<table class="table u-table--v1 mb-0 table-striped table-hover">
+	<table class="table u-table--v1 mb-0 table-striped table-hover" >
 		<thead>
 			<tr class="g-col-border-top-0">
 				<th th:text="#{message.licitaciones.table.header.type}">Tipo</th>
@@ -26,8 +26,8 @@
 			</tr>
 		</thead>
 
-		<tbody>
-			<tr th:each="licitacion, itr : ${licitaciones}">
+		<tbody th:if="${licitaciones.getNumberOfElements()}">
+			<tr th:each="licitacion, itr : ${licitaciones}" > 
 				<td th:text="${licitacion.fichero!=null} ? ${licitacion.fichero.tipo}: ''"></td>
 				<td th:text="${#dates.format(licitacion.fechaPub, 'dd-MM-yyyy')}"></td>
 				<td th:switch="${licitacion.fichero}">
@@ -44,6 +44,11 @@
 					+' MB': ''"></td>
 			</tr>
 		</tbody>
+		<tbody th:unless="${licitaciones.getNumberOfElements()}"> 
+			<tr>
+				<td colspan="7" th:text="#{message.warning.not.exist}"></td>
+			</tr>
+		</tbody>	
 	</table>
 </body>
 

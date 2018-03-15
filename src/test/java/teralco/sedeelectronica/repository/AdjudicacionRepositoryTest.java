@@ -6,11 +6,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import teralco.sedeelectronica.app.TestApplication;
 import teralco.sedeelectronica.model.Adjudicacion;
@@ -18,7 +18,6 @@ import teralco.sedeelectronica.model.Adjudicacion;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
 @DataJpaTest
-@Transactional
 public class AdjudicacionRepositoryTest {
 	@Autowired
 	private TestEntityManager entityManager;
@@ -26,14 +25,17 @@ public class AdjudicacionRepositoryTest {
 	@Autowired
 	private AdjudicacionRepository adjudicacionRepository;
 
+	@Value("${spring.datasource.url}")
+	private String url_s;
+
 	@Test
 	@Ignore
 	public void saveTest() {
+		System.out.println(this.url_s);
 		// ARRANGE
 		Adjudicacion adju = new Adjudicacion();
 		adju.setDenominacion("una denominacion");
 		this.entityManager.persist(adju);
-		this.entityManager.flush();
 
 		// ACT
 		Adjudicacion found = this.adjudicacionRepository.findById((long) 1);

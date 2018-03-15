@@ -19,7 +19,7 @@
 					<th th:text="#{message.avisos.table.header.description}">Descripción</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody th:if="${avisos.getNumberOfElements()}">
 				<tr th:each="aviso, itr : ${avisos}">
 					<td th:text="${#dates.format(aviso.fecha, 'dd/MM/yyyy')}"></td>
 					<td th:switch="${aviso.fichero}">
@@ -27,6 +27,11 @@
 							<span th:case="*"><a th:text="${aviso.descripcion}" th:href="'./download/'+${encrypt.encrypt(aviso.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>									
 
+				</tr>
+			</tbody>
+			<tbody th:unless="${avisos.getNumberOfElements()}"> 
+				<tr>
+					<td colspan="7" th:text="#{message.warning.not.exist}"></td>
 				</tr>
 			</tbody>
 		</table>		

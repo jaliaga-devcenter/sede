@@ -20,7 +20,7 @@
 				<th th:text="#{message.modelos.table.header.description}">Descripción</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody th:if="${modelos.getNumberOfElements()}">
 			<tr th:each="modelo, itr : ${modelos}">
 				<td th:text="${modelo.fichero!=null} ? ${modelo.fichero.tipo}: ''"></td>
 				<td th:switch="${modelo.fichero}"><span th:case="null"
@@ -28,6 +28,11 @@
 						th:text="${modelo.descripcion}"
 						th:href="'./download/'+${encrypt.encrypt(modelo.fichero.id)}"
 						target="_blank"><div class="download">&nbsp;</div></a></span></td>
+			</tr>
+		</tbody>
+		<tbody th:unless="${modelos.getNumberOfElements()}"> 
+			<tr>
+				<td colspan="7" th:text="#{message.warning.not.exist}"></td>
 			</tr>
 		</tbody>
 	</table>

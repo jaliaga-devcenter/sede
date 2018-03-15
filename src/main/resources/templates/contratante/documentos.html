@@ -20,7 +20,7 @@
 					<th th:text="#{message.documentos.table.header.state}">Estado</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody th:if="${documentos.getNumberOfElements()}">
 				<tr th:each="documento, itr : ${documentos}">
 					<td th:text="${documento.fichero!=null} ? ${documento.fichero.tipo}: ''"></td>
 					<td th:switch="${documento.fichero}">
@@ -28,6 +28,11 @@
 							<span th:case="*"><a th:text="${documento.descripcion}" th:href="'./download/'+${encrypt.encrypt(documento.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>					
 					<td th:text="${#strings.capitalize(documento.estado)}"> </td>
+				</tr>
+			</tbody>
+			<tbody th:unless="${documentos.getNumberOfElements()}"> 
+				<tr>
+					<td colspan="7" th:text="#{message.warning.not.exist}"></td>
 				</tr>
 			</tbody>
 		</table>

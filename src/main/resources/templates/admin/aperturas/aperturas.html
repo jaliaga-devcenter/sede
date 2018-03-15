@@ -22,7 +22,7 @@
 				<th th:text="#{message.aperturas.table.header.size}">Tama&ntilde;o</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody th:if="${aperturas.getNumberOfElements()}">
 			<tr th:each="apertura, itr : ${aperturas}" th:href="@{/admin/aperturas/edit/{id}(id=${apertura.id})}">
 				<th scope="row">
 					<fieldset class="g-pt-2">
@@ -47,6 +47,11 @@
 				+' MB': ''"></td>
 			</tr>
 		</tbody>
+		<tbody th:unless="${aperturas.getNumberOfElements()}"> 
+			<tr>
+				<td colspan="7" th:text="#{message.warning.not.exist}"></td>
+			</tr>
+		</tbody>		
 	</table> 	
  </body>
  </html>
