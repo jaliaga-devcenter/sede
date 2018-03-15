@@ -1,8 +1,11 @@
 package teralco.sedeelectronica.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -60,38 +63,34 @@ public class CategoriaService {
 
 	public Map<Integer, List<ServicioDTO>> getServiciosPorSubCategorias(Integer entidad, String language,
 			CategoriaDTO categoria) {
+		return getServiciosPorSubCategorias(entidad, language, categoria, Optional.empty());
+	}
+
+	public Map<Integer, List<ServicioDTO>> getServiciosPorSubCategorias(Integer entidad, String language,
+			CategoriaDTO categoria, Optional<Predicate<ServicioDTO>> filter) {
 		Map<Integer, List<ServicioDTO>> returnList = new HashMap<>();
 
 		categoria.getSubcategorias().forEach(subcategoria -> {
-			List<ServicioDTO> servicios = null;
+			List<ServicioDTO> serviciosSinFiltrar = null;
+			List<ServicioDTO> serviciosFiltrados = new ArrayList<>();
 			try {
-				servicios = this.clienteWS.getServicios(entidad, language, categoria, subcategoria);
+				serviciosSinFiltrar = this.clienteWS.getServicios(entidad, language, categoria, subcategoria);
+				serviciosFiltrados = serviciosSinFiltrar;
+				if (filter.isPresent()) {
+					serviciosFiltrados = serviciosSinFiltrar.stream().filter(filter.get()).collect(Collectors.toList());
+				}
 			} catch (GexflowWSException e) {
 				LOGGER.error(
 						"Error en la invocación al servicio, probablemente no hayan servicios para esa subcategoria.",
 						e);
 			}
-			returnList.put(subcategoria.getIdSubcategoria(), servicios);
+
+			if (!serviciosFiltrados.isEmpty()) {
+				returnList.put(subcategoria.getIdSubcategoria(), serviciosFiltrados);
+			}
 		});
 
 		return returnList;
-	}
-
-	public Map<Integer, List<ServicioDTO>> getServiciosPorTexto(Integer entidad, String language, String searchText) {
-		List<ServicioDTO> servicios = null;
-		try {
-			servicios = this.clienteWS.buscarServicios(entidad, language, searchText);
-		} catch (GexflowWSException e) {
-			LOGGER.error("Error en la invocación al servicio, probablemente no hayan servicios para esa subcategoria.",
-					e);
-
-		}
-		if (servicios != null) {
-			return servicios.stream().collect(Collectors.groupingBy(ServicioDTO::getIdSubCategoria));
-		}
-
-		return null;
-
 	}
 
 }

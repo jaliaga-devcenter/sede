@@ -16,7 +16,7 @@
                     <div class="g-mb-10">
                         <div class="input-group">
                             <input type="text" name="searchText" class="form-control rounded-0 form-control-md" th:placeholder="#{message.procedimientos.section.one.search.input.placeholder}"
-                                placeholder="Busca procedimientos...">
+                                placeholder="Busca procedimientos..." th:value="${searchText}">
                         </div>
                     </div>
 
@@ -80,11 +80,14 @@
                                 <div class="table-responsive">
                                     <table class="table table-hover">
                                         <tbody>
-                                            <tr th:each="servicio : ${servicios.get(sub.idSubcategoria)}">
+                                            <tr th:each="servicio : ${servicios.get(sub.idSubcategoria)}" th:data-online="${servicio.canalOnline}">
                                                 <td class="align-middle">
                                                     <a href="#" th:text="${servicio.denominacion}">Instancia general</a>
                                                 </td>
-                                                <td class="align-middle" >Online</td>
+                                                <td class="align-middle" >
+                                                	<span th:if="${!servicio.canalOnline}" th:text="#{message.procedimiento.presencial}">Presencial</span>
+                                                	<span th:if="${servicio.canalOnline}" th:text="#{message.procedimiento.online}">Online</span>
+                                                </td>
                                                 <td class="g-width-150 g-pa-0 align-middle">
                                                     <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
                                                         <i class="fa fa-info"></i>
@@ -92,7 +95,7 @@
                                                     <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white g-mr-5">
                                                         <i class="fa fa-download"></i>
                                                     </span>
-                                                    <span class="u-icon-v2 u-icon-size--xs rounded-circle g-bg-primary g-color-white">
+                                                    <span class="u-icon-v2 u-icon-size--xs rounded-circle" th:classappend="${servicio.canalOnline} ? 'g-bg-primary g-color-white' : 'g-bg-gray g-color-gray'">
                                                         <i class="fa fa-at"></i>
                                                     </span>
                                                 </td>
@@ -108,7 +111,21 @@
                 </div>
                     
 
-                   
+                <script type="text/javascript">
+                $( document ).ready(function() {
+                    $('#inlineRadio1').change(function() {
+                        $('*[data-online=false]').each(function() {
+                            $(this).removeClass('d-none');
+                        })
+                    });
+
+                    $('#inlineRadio2').change(function() {
+                        $('*[data-online=false]').each(function() {
+                            $(this).addClass('d-none');
+                        })
+                    });
+                })
+            </script>
                 
             </div>
         </section>

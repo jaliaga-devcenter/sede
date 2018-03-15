@@ -36,11 +36,6 @@ public class ConoceSedeController {
 		return "sede/conoce-la-sede-electronica";
 	}
 
-	@RequestMapping("/normativa-sobre-la-sede")
-	public String normativaSede() {
-		return "sede/normativa-sobre-la-sede";
-	}
-
 	@RequestMapping("/contenidos-de-la-sede")
 	public String contenidosSede() {
 		return "sede/contenidos-de-la-sede";
