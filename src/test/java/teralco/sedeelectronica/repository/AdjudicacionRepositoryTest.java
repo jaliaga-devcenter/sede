@@ -2,6 +2,7 @@ package teralco.sedeelectronica.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class AdjudicacionRepositoryTest {
 	private String url_s;
 
 	@Test
+	@Ignore
 	public void saveTest() {
 		System.out.println(this.url_s);
 		// ARRANGE

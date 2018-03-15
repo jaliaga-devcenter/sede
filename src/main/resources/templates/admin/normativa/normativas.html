@@ -21,7 +21,7 @@
 				<th th:text="#{message.normative.table.header.text}">Texto</th>
 			</tr>
 		</thead>
-			<tbody>
+			<tbody th:if="${normativas.getNumberOfElements()}">
 				<tr th:each="normativa, itr : ${normativas}" th:href="@{/admin/normativa/edit/{id}(id=${normativa.id})}">
 					<th scope="row">
 						<fieldset class="g-pt-2">
@@ -41,6 +41,11 @@
 					<td th:text="${normativa.texto}"> </td>							
 				</tr>
 			</tbody>
+			<tbody th:unless="${normativas.getNumberOfElements()}"> 
+				<tr>
+					<td colspan="7" th:text="#{message.warning.not.exist}"></td>
+				</tr>
+			</tbody>			
 		</table> 	
  </body>
  </html>

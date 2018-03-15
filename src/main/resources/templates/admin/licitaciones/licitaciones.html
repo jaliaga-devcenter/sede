@@ -55,6 +55,11 @@
 					+' MB': ''"></td>
 			</tr>
 		</tbody>
+		<tbody th:unless="${licitaciones.getNumberOfElements()}"> 
+			<tr>
+				<td colspan="7" th:text="#{message.warning.not.exist}"></td>
+			</tr>
+		</tbody>		
 	</table>
 </body>
 

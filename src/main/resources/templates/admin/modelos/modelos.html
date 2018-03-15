@@ -20,7 +20,7 @@
 					<th th:text="#{message.modelos.table.header.description}">Descripción</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody th:if="${modelos.getNumberOfElements()}">
 				<tr th:each="modelo, itr : ${modelos}" th:href="@{/admin/modelos/edit/{id}(id=${modelo.id})}">
 					<th scope="row">
 						<fieldset class="g-pt-2">
@@ -39,6 +39,11 @@
 					</td>					
 				</tr>
 			</tbody>
+			<tbody th:unless="${modelos.getNumberOfElements()}"> 
+				<tr>
+					<td colspan="7" th:text="#{message.warning.not.exist}"></td>
+				</tr>
+			</tbody>			
 		</table>
  </body>
  </html>

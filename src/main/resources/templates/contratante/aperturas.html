@@ -23,7 +23,7 @@
 				<th th:text="#{message.aperturas.table.header.size}">Tama&ntilde;o</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody th:if="${aperturas.getNumberOfElements()}">
 			<tr th:each="apertura, itr : ${aperturas}">
 				<td
 					th:text="${apertura.resultado!=null} ? ${apertura.resultado.tipo}: ''"></td>
@@ -39,6 +39,11 @@
 					th:text="${apertura.resultado!=null} ? 
 				${#numbers.formatDecimal((apertura.resultado.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
 				+' MB': ''"></td>
+			</tr>
+		</tbody>
+		<tbody th:unless="${aperturas.getNumberOfElements()}"> 
+			<tr>
+				<td colspan="7" th:text="#{message.warning.not.exist}"></td>
 			</tr>
 		</tbody>
 	</table>

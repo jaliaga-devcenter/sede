@@ -24,7 +24,7 @@
 				<th th:text="#{message.adjudicaciones.table.header.awarded}">Adjudicaci&oacute;n definitiva</th>
 			</tr>
 		</thead>
-			<tbody>
+			<tbody th:if="${adjudicaciones.getNumberOfElements()}">
 				<tr th:each="adjudicacion, itr : ${adjudicaciones}">
 					<td th:text="${adjudicacion.resultado!=null} ? ${adjudicacion.resultado.tipo}: ''"></td>
 					<td th:text="${adjudicacion.denominacion}"> </td>					
@@ -43,6 +43,11 @@
 					(${adjudicacion.fechaAdjudicacion!=null} ? 
 					${#dates.format(adjudicacion.fechaAdjudicacion, 'dd/MM/yyyy')} : '' )
 					+ '&lt;br/&gt;' +${adjudicacion.empresaAdjudicacion})"></td>
+				</tr>
+			</tbody>
+			<tbody th:unless="${adjudicaciones.getNumberOfElements()}"> 
+				<tr>
+					<td colspan="7" th:text="#{message.warning.not.exist}"></td>
 				</tr>
 			</tbody>
 		</table> 	

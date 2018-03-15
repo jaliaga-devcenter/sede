@@ -68,7 +68,6 @@ public class PerfilContratanteController {
 	public String aperturas(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		Page<Apertura> pages = this.aperturaService.listAllByPage(pageable);
 		model.addAttribute("aperturas", pages);
-
 		PageWrapper<Apertura> page = new PageWrapper<>(pages, "/aperturas");
 
 		model.addAttribute("page", page);
