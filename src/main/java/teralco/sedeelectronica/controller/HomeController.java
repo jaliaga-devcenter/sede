@@ -1,10 +1,12 @@
 package teralco.sedeelectronica.controller;
 
 import java.security.Principal;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -88,31 +90,31 @@ public class HomeController {
 		return categoriaActual.isPresent() ? categoriaActual.get() : categorias.get(0);
 	}
 
-	@RequestMapping(value = "/buscador-procedimientos")
-	public String getTodosServicios(Model model) {
+	public Boolean isEmpty(Collection<?> collection) {
+		return collection == null || collection.size() == 0;
+	}
+
+	@RequestMapping(value = "/buscar-procedimientos", method = { RequestMethod.POST, RequestMethod.GET })
+	public String getBusquedaServicios(@RequestParam(value = "searchText", required = false) String searchText,
+			Model model) {
 
 		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.ENTIDAD, LanguageUtils.getLanguage());
 		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
 
-		categorias.forEach(cat -> servicios.putAll(
-				this.categoriaService.getServiciosPorSubCategorias(this.ENTIDAD, LanguageUtils.getLanguage(), cat)));
+		Predicate<ServicioDTO> filtro = searchText == null ? null
+				: servicio -> servicio.getDescripcion() != null && servicio.getDescripcion().contains(searchText);
+
+		categorias.forEach(cat -> servicios.putAll(this.categoriaService.getServiciosPorSubCategorias(this.ENTIDAD,
+				LanguageUtils.getLanguage(), cat, Optional.ofNullable(filtro))));
+
+		Predicate<CategoriaDTO> noContieneServicios = cat -> cat.getSubcategorias().stream()
+				.filter(sub -> !isEmpty(servicios.get(sub.getIdSubcategoria()))).count() == 0;
+
+		categorias.removeIf(noContieneServicios);
 
 		model.addAttribute(CAT_MODEL, categorias);
 		model.addAttribute(SERVICIOS_MODEL, servicios);
-
-		return "servicios/procedimientos";
-	}
-
-	@RequestMapping(value = "/buscar-procedimientos", method = RequestMethod.POST)
-	public String getBusquedaServicios(@RequestParam("searchText") String searchText, Model model) {
-
-		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.ENTIDAD, LanguageUtils.getLanguage());
-		Map<Integer, List<ServicioDTO>> servicios = null;
-
-		this.categoriaService.getServiciosPorTexto(this.ENTIDAD, LanguageUtils.getLanguage(), searchText);
-
-		model.addAttribute(CAT_MODEL, categorias);
-		model.addAttribute(SERVICIOS_MODEL, servicios);
+		model.addAttribute("searchText", searchText);
 
 		return "servicios/procedimientos";
 	}
