@@ -70,6 +70,12 @@
 			<artifactId>flyway-core</artifactId>
 		</dependency>
 		<dependency>
+   			<groupId>org.flywaydb.flyway-test-extensions</groupId>
+   			<artifactId>flyway-spring-test</artifactId>
+   			<version>5.0.0</version>
+   			<scope>test</scope> 
+		</dependency>		
+		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 		</dependency>
@@ -83,9 +89,6 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
-
-
-
 		<dependency>
 			<groupId>axis</groupId>
 			<artifactId>axis</artifactId>
