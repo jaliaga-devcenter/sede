@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorate="~{layouts/main}">
+<head>
+	<head>
+		<title th:text="#{message.modelos.table.header}">Modelos</title>
+	</head>
+	<body>
+	
+		<div layout:fragment="content">	
+			<div th:replace="~{fragments/admin/navbar :: navbar}"></div>		
+			<div th:replace="~{fragments/adminTable :: adminTable('user', #{message.modelos.table.header}, 'admin/modelos', ~{::table})}"></div>
+			<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
+		</div>
+	
+		<table class="table u-table--v1 mb-0 table-striped table-hover">
+			<thead>
+				<tr class="g-col-border-top-0">
+					<th>#</th>
+					<th th:text="#{message.modelos.table.header.type}">tipo</th>
+					<th th:text="#{message.modelos.table.header.description}">Descripción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="modelo, itr : ${modelos}" th:href="@{/admin/modelos/edit/{id}(id=${modelo.id})}">
+					<th scope="row">
+						<fieldset class="g-pt-2">
+							<div>
+								<label>
+									<input type="radio" name="optionsRadios" th:id="${'option' + modelo.id}" th:checked="${itr.index == 0}" th:value="${modelo.id}" 
+									/>
+								</label>
+							</div>
+						</fieldset>
+					</th>	
+					<td th:text="${modelo.fichero!=null} ? ${modelo.fichero.tipo}: ''"></td>
+					<td th:switch="${modelo.fichero}">
+							<span th:case="null" th:text="${modelo.descripcion}"></span>
+							<span th:case="*"><a th:text="${modelo.descripcion}" th:href="@{/download/}+${encrypt.encrypt(modelo.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
+					</td>					
+				</tr>
+			</tbody>
+		</table>
+ </body>
+ </html>

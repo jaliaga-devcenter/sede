@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorate="~{layouts/main}">
+<head>
+	<head>
+		<title th:text="#{message.avisos.table.header}">Avisos</title>
+	</head>
+	<body>
+	
+		<div layout:fragment="content">	
+			<div th:replace="~{fragments/admin/navbar :: navbar}"></div>		
+			<div th:replace="~{fragments/adminTable :: adminTable('user', #{message.avisos.table.header}, 'admin/avisos', ~{::table})}"></div>
+			<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
+		</div>
+	
+		<table class="table u-table--v1 mb-0 table-striped table-hover">
+			<thead>
+				<tr class="g-col-border-top-0">
+					<th>#</th>
+					<th th:text="#{message.avisos.table.header.date}">Fecha</th>
+					<th th:text="#{message.avisos.table.header.description}">Descripción</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="aviso, itr : ${avisos}" th:href="@{/admin/avisos/edit/{id}(id=${aviso.id})}">
+					<th scope="row">
+						<fieldset class="g-pt-2">
+							<div>
+								<label>
+									<input type="radio" name="optionsRadios" th:id="${'option' + aviso.id}" th:checked="${itr.index == 0}" th:value="${aviso.id}"
+									/>
+								</label>
+							</div>
+						</fieldset>
+					</th>	
+					<td th:text="${#dates.format(aviso.fecha, 'dd/MM/yyyy')}"></td>
+					<td th:switch="${aviso.fichero}">
+							<span th:case="null" th:text="${aviso.descripcion}"></span>
+							<span th:case="*"><a th:text="${aviso.descripcion}" th:href="@{/download/}+${encrypt.encrypt(aviso.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
+					</td>									
+
+				</tr>
+			</tbody>
+		</table>		
+ </body>
+ </html>

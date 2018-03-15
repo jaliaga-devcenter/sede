@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" layout:decorate="~{layouts/main}">
+<head>
+<title th:text="#{message.aperturas.table.header}">Aperturas</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<div th:replace="~{fragments/contratante/navbar :: navbar}"></div>
+		<div
+			th:replace="~{fragments/genericTable :: genericTable('user', #{message.aperturas.table.header}, ~{::table})}"></div>
+		<div th:replace="~{fragments/paginationBar :: paginationBar(${page})}"></div>
+	</div>
+
+	<table class="table u-table--v1 mb-0 table-striped table-hover">
+		<thead>
+			<tr class="g-col-border-top-0">
+				<th th:text="#{message.aperturas.table.header.type}">Tipo</th>
+				<th th:text="#{message.aperturas.table.header.description}">Descripci&oacute;n</th>
+				<th th:text="#{message.aperturas.table.header.sealedbid}">Apertura
+					plicas</th>
+				<th th:text="#{message.aperturas.table.header.result}">Resultado</th>
+				<th th:text="#{message.aperturas.table.header.size}">Tama&ntilde;o</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="apertura, itr : ${aperturas}">
+				<td
+					th:text="${apertura.resultado!=null} ? ${apertura.resultado.tipo}: ''"></td>
+				<td th:text="${apertura.denominacion}"></td>
+				<td
+					th:utext="${#dates.format(apertura.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
+				${#dates.format(apertura.hora,'hh:mm')} + '&lt;br/&gt;' +${apertura.plica}"></td>
+				<td th:switch="${apertura.resultado}"><span th:case="null"></span>
+					<span th:case="*"><a class="downa"
+						th:href="'./download/'+${encrypt.encrypt(apertura.resultado.id)}"
+						target="_blank"><div class="download">&nbsp;</div></a></span></td>
+				<td
+					th:text="${apertura.resultado!=null} ? 
+				${#numbers.formatDecimal((apertura.resultado.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
+				+' MB': ''"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorator="/layouts/main">
+<html lang="es" layout:decorator="layouts/main">
 
 <head>
     <title>Acceso</title>
@@ -47,13 +47,10 @@
 
             <div class="text-center">
                 <p>
-                    <a th:href="@{https://demo.gexflow.com:8443/midu/LoginCertificadoWS(idEntidad=0, 
-   										urlRetornoCorrecto=${'http://localhost:8081/sede/loginOK'},
-   										urlRetornoError=${'http://localhost:8081/sede/loginKO'}
-   									)}" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.acceso.button.one}">Acceso con Certificado Electr&oacute;nico</a>
+                    <a th:href="@{/carpeta-ciudadana}" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.acceso.button.one}">Acceso con Certificado Electr&oacute;nico</a>
                 </p>
                 <p>
-                    <a th:href="'./obtener-certificado'">
+                    <a th:href="@{/obtener-certificado}">
                         <strong th:text="#{message.acceso.button.two}">C&oacute;mo obtener el Certificado electr&oacute;nico</strong>
                     </a>
                 </p>

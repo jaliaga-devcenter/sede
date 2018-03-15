@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorator="/layouts/main">
+<html lang="es" layout:decorator="layouts/main">
 
 <head>
     <title>Fecha y Hora Oficial</title>
@@ -62,37 +62,13 @@
                     <div class="text-center">
                         <h4>
                             <span>Hora oficial:</span>
-                            <strong id="horaOficial"></strong>
+                            <strong id="horaOficial" th:text="${fecha} + ',  ' + ${hora}"></strong>
                         </h4>
-                        <button type="button" onclick="getHoraOficial()" class="btn btn-md u-btn-primary rounded-0">Actualizar</button>
+                        <a th:href="@{/fecha-y-hora-oficial}" class="btn btn-md u-btn-primary rounded-0 g-color-white" >Actualizar</a>
                     </div>
                 </div>
             </div>
         </section>
-
-        <script type="text/javascript">
-            $(window).on("load", function () {
-                getHoraOficial();
-            });
-
-            function getHoraOficial() {
-                var weekArray = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-                var monthArray = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-
-                var date = new Date();
-
-                var dayWeek = date.getDay();
-                var day = date.getDate();
-                var monthNumber = date.getMonth();
-                var y = date.getFullYear();
-                var h = date.getHours();
-                var m = date.getMinutes();
-                var s = date.getSeconds();
-
-
-                $('#horaOficial').text(weekArray[dayWeek] + ', ' + day + ' ' + monthArray[monthNumber] + ' ' + y + ', ' + h + ':' + m + ':' + ('0' + s).slice(-2));
-            }
-        </script>
     </div>
 </body>
 

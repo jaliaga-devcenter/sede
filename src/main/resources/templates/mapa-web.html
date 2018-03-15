@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorator="/layouts/main">
+<html lang="es" layout:decorator="layouts/main">
 
 <head>
     <title>Mapa Web</title>
@@ -11,108 +11,99 @@
         <section class="g-py-15 g-pl-30 g-pr-30">
             <ul>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.one}">Home</a>
+                    <a th:href="@{/}" th:text="#{message.mapa.web.link.one}">Home</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.two}">Tabl&oacute;n de anuncios</a>
+                    <a th:href="@{/tablon-anuncios}" th:text="#{message.mapa.web.link.two}">Tabl&oacute;n de anuncios</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.three}">Actualidad/Actividad</a>
+                    <a th:href="@{/actualidad}" th:text="#{message.mapa.web.link.three}">Actualidad/Actividad</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.four}">Notifica</a>
+                    <a th:href="@{/notifica}" th:text="#{message.mapa.web.link.four}">Notifica</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.five}">Verifirma</a>
+                    <a th:href="@{/verifirma}" th:text="#{message.mapa.web.link.five}">Verifirma</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.six}">Carpeta del ciudadano</a>
+                    <a th:href="@{/carpeta-ciudadana}" th:text="#{message.mapa.web.link.six}">Carpeta del ciudadano</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.seven}">Perfil del contratante</a>
+                    <a th:href="@{/perfil-del-contratante}" th:text="#{message.mapa.web.link.seven}">Perfil del contratante</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.eight}">Áreas</a>
+                    <a th:href="@{/categorias}" th:text="#{message.mapa.web.link.eight}">Areas</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.nine}">Procedimientos</a>
+                    <a th:href="@{/procedimientos}" th:text="#{message.mapa.web.link.nine}">Procedimientos</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.ten}">Acceso</a>
+                    <a th:href="@{/acceso}" th:text="#{message.mapa.web.link.ten}">Acceso</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.eleven}">Resultados de b&uacute;squeda</a>
+                    <a th:href="@{/buscador-procedimientos}" th:text="#{message.mapa.web.link.eleven}">Resultados de b&uacute;squeda</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.twelve}">¿Te ha sido &uacute;til esta p&aacute;gina?</a>
+                    <a th:href="@{/}" th:text="#{message.mapa.web.link.twelve}">¿Te ha sido &uacute;til esta p&aacute;gina?</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.thirteen}">La Sede Electr&oacute;nica</a>
+                    <a th:href="@{/conoce-la-sede-electronica}" th:text="#{message.mapa.web.link.thirteen}">La Sede Electr&oacute;nica</a>
                     <ul>
                         <li>
-                            <a href="" th:text="#{message.mapa.web.link.thirteen.li.link.one}">Normativa sobre la Sede</a>
+                            <a th:href="@{/normativa-sobre-la-sede}" th:text="#{message.mapa.web.link.thirteen.li.link.one}">Normativa sobre la Sede</a>
                         </li>
                         <li>
-                            <a href="" th:text="#{message.mapa.web.link.thirteen.li.link.two}">Contenidos de la Sede</a>
+                            <a th:href="@{/contenidos-de-la-sede}" th:text="#{message.mapa.web.link.thirteen.li.link.two}">Contenidos de la Sede</a>
                         </li>
                         <li>
-                            <a href="" th:text="#{message.mapa.web.link.thirteen.li.link.three}">Servicios de la Sede</a>
+                            <a th:href="@{/servicios-de-la-sede}" th:text="#{message.mapa.web.link.thirteen.li.link.three}">Servicios de la Sede</a>
                         </li>
                         <li>
-                            <a href="" th:text="#{message.mapa.web.link.thirteen.li.link.four}">Registro electr&oacute;nico</a>
+                            <a th:href="@{/registro-electronico}" th:text="#{message.mapa.web.link.thirteen.li.link.four}">Registro electr&oacute;nico</a>
                         </li>
                         <li>
-                            <a href="" th:text="#{message.mapa.web.link.thirteen.li.link.five}">Firma electr&oacute;nica y Certificados admitidos</a>
+                            <a th:href="@{/firma-electronica-y-certificados-admitidos}" th:text="#{message.mapa.web.link.thirteen.li.link.five}">Firma electr&oacute;nica y Certificados admitidos</a>
                         </li>
                         <li>
-                            <a href="" th:text="#{message.mapa.web.link.thirteen.li.link.six}">Verificaci&oacute;n de documentos</a>
+                            <a th:href="@{/verifirma}" th:text="#{message.mapa.web.link.thirteen.li.link.six}">Verificaci&oacute;n de documentos</a>
                         </li>
                         <li>
-                            <a href="" th:text="#{message.mapa.web.link.thirteen.li.link.seven}">Fecha y Hora Oficial</a>
+                            <a th:href="@{/fecha-y-hora-oficial}" th:text="#{message.mapa.web.link.thirteen.li.link.seven}">Fecha y Hora Oficial</a>
                         </li>
                         <li>
-                            <a href="" th:text="#{message.mapa.web.link.thirteen.li.link.eight}">Calendario de d&iacute;as inh&aacute;biles</a>
+                            <a th:href="@{/calendario-dias-inhabiles}" th:text="#{message.mapa.web.link.thirteen.li.link.eight}">Calendario de d&iacute;as inh&aacute;biles</a>
                         </li>
+<!--                         <li> -->
+<!--                             <a th:href="@{/}" th:text="#{message.mapa.web.link.thirteen.li.link.nine}">Sedes F&iacute;sicas del Ayuntamiento</a> -->
+<!--                         </li> -->
                         <li>
-                            <a href="" th:text="#{message.mapa.web.link.thirteen.li.link.nine}">Sedes F&iacute;sicas del Ayuntamiento</a>
-                        </li>
-                        <li>
-                            <a href="" th:text="#{message.mapa.web.link.thirteen.li.link.ten}">Paradas programadas</a>
+                            <a th:href="@{/paradas}" th:text="#{message.mapa.web.link.thirteen.li.link.ten}">Paradas programadas</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.fourteen}">C&oacute;mo obtener el certificado electr&oacute;nico</a>
+                    <a th:href="@{/obtener-certificado}" th:text="#{message.mapa.web.link.fourteen}">C&oacute;mo obtener el certificado electr&oacute;nico</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.fifteen}">Requisitos t&eacute;cnicos</a>
+                    <a th:href="@{/requisitos-tecnicos}" th:text="#{message.mapa.web.link.fifteen}">Requisitos t&eacute;cnicos</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.sixteen}">Acceso Portal</a>
+                    <a th:href="@{/acceso}" th:text="#{message.mapa.web.link.sixteen}">Acceso Portal</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.seventeen}">Accesibilidad</a>
+                    <a th:href="@{/accesibilidad}" th:text="#{message.mapa.web.link.seventeen}">Accesibilidad</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.eighteen}">Contacto</a>
+                    <a th:href="@{/contacto}" th:text="#{message.mapa.web.link.eighteen}">Contacto</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.nineteen}">Aviso legal</a>
+                    <a th:href="@{/aviso-legal}" th:text="#{message.mapa.web.link.nineteen}">Aviso legal</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.twenty}">Datos Personales</a>
+                    <a th:href="@{/instrucciones}" th:text="#{message.mapa.web.link.twentythree}">Como hacer tramite</a>
                 </li>
                 <li>
-                    <a href="" th:text="#{message.mapa.web.link.twentyone}">Solicitud de acceso a Informaci&oacute;n P&uacute;blica</a>
-                </li>
-                <li>
-                    <a href="" th:text="#{message.mapa.web.link.twentytwo}">Corporaci&oacute;n</a>
-                </li>
-                <li>
-                    <a href="" th:text="#{message.mapa.web.link.twentythree}">Como hacer tramite</a>
-                </li>
-                <li>
-                    <a href="" th:text="#{message.mapa.web.link.twentyfour}">Mapa Web</a>
+                    <a th:href="@{/mapa-web}" th:text="#{message.mapa.web.link.twentyfour}">Mapa Web</a>
                 </li>
             </ul>
         </section>

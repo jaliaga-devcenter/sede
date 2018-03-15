@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorate="~{/layouts/main}">
+<html lang="es" layout:decorate="~{layouts/main}">
 
 <head>
 	<title th:text="#{message.title.sede.init}+' - '+#{message.title.sede}">Inicio</title>
@@ -26,11 +26,11 @@
 							</div>
 							<div class="col-12">
 								<!-- Search Form -->
-								<form class="w-100">
+								<form class="w-100"  method="POST" th:action="@{/buscar-procedimientos}">
 									<!-- Search Field -->
 									<div class="g-max-width-540 mx-auto g-mb-20">
 										<div class="input-group">
-											<input type="text" class="form-control g-font-size-16 border-0" placeholder="Busca procedimientos..." th:placeholder="#{message.landing.search.placeholder}" aria-label="Busca procedimientos..."></input>
+											<input type="text" name="searchText" class="form-control g-font-size-16 border-0" placeholder="Busca procedimientos..." th:placeholder="#{message.landing.search.placeholder}" aria-label="Busca procedimientos..."></input>
 											<span class="input-group-btn">
 												<button class="btn btn-primary g-font-size-18 g-py-12 g-px-25" type="submit">
 													<i class="fa fa-search"></i>
@@ -57,8 +57,8 @@
 								<div class="media-body">
 									<h3 class="h6">
 										<a class="u-link-v5 g-color-white g-color-primary--hover"
-										th:href="'./ficha-procedimiento?id='+@{${@environment.getProperty('sede.procedimiento.ocupacion.via.publica')}}"
-										>Autorizaci&oacute;n de ocupaci&oacute;n de la v&iacute;a p&uacute;blica</a>
+										th:href="'./ficha-procedimiento/'+@{${@environment.getProperty('sede.procedimiento.destacado.uno')}}"
+										th:text="#{message.landing.destacado.uno}">Destacado 1</a>
 									</h3>
 								</div>
 							</article>
@@ -70,8 +70,8 @@
 								<div class="media-body">
 									<h3 class="h6">
 										<a class="u-link-v5 g-color-white g-color-primary--hover" 
-										th:href="'./ficha-procedimiento?id='+@{${@environment.getProperty('sede.procedimiento.instancia.general')}}">
-										Instancia general</a>
+										th:href="'./ficha-procedimiento/'+@{${@environment.getProperty('sede.procedimiento.destacado.dos')}}"
+										th:text="#{message.landing.destacado.dos}">Destacado 2</a>
 									</h3>
 								</div>
 							</article>
@@ -83,7 +83,8 @@
 								<div class="media-body">
 									<h3 class="h6">
 										<a class="u-link-v5 g-color-white g-color-primary--hover" 
-										th:href="'./ficha-procedimiento?id='+@{${@environment.getProperty('sede.procedimiento.quejas.sugerencias')}}">Quejas y sugerencias</a>
+										th:href="'./ficha-procedimiento/'+@{${@environment.getProperty('sede.procedimiento.destacado.tres')}}"
+										th:text="#{message.landing.destacado.tres}">Destacado 3</a>
 									</h3>
 								</div>
 							</article>
@@ -95,7 +96,8 @@
 								<div class="media-body">
 									<h3 class="h6">
 										<a class="u-link-v5 g-color-white g-color-primary--hover" 
-										th:href="'./ficha-procedimiento?id='+@{${@environment.getProperty('sede.procedimiento.empadronamiento')}}">Volante de empadronamiento en un click</a>
+										th:href="'./ficha-procedimiento/'+@{${@environment.getProperty('sede.procedimiento.destacado.cuatro')}}"
+										th:text="#{message.landing.destacado.cuatro}">Destacado 4</a>
 									</h3>
 								</div>
 							</article>
@@ -118,7 +120,7 @@
 						<div class="text-center">
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mt-2">
 								<a th:text="#{message.landing.button.menu.one}" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
-								 th:href="'./procedimientos'">PROCEDIMIENTOS</a>
+								 th:href="'./categorias'">PROCEDIMIENTOS</a>
 							</h3>
 						</div>
 						<!-- End Icon Blocks -->
@@ -131,7 +133,7 @@
 								<a 
                 th:text="#{message.landing.button.menu.two}"
                 class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
-								 href="login.html" >ACCESO</a>
+								th:href="@{'/acceso'}"  href="login.html" >ACCESO</a>
 							</h3>
 						</div>
 						<!-- End Icon Blocks -->
@@ -174,7 +176,7 @@
 								</i>								
 							</span>
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase" th:utext="${categoria.nombre}">Categoria</h3>
-							<a th:href="'./servicios/'+${categoria.idCategoria}" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
+							<a th:href="@{/categorias/}+${categoria.idCategoria}" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
 								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
 							</a>
 						</div>
@@ -227,7 +229,7 @@
 								</li>
 								<li class="g-pos-rel g-brd-bottom g-brd-white-opacity-0_1 g-py-10">
 									<h4 class="h6 g-pr-20 mb-0">
-										<a class="g-color-white-opacity-0_8 g-color-white--hover" th:href="'./ficha-procedimiento?id='+@{${@environment.getProperty('sede.procedimiento.instancia.general')}}" th:text="#{message.landing.help.link.five}">Registro electr&oacute;nico</a>
+										<a class="g-color-white-opacity-0_8 g-color-white--hover" th:href="'./ficha-procedimiento/'+@{${@environment.getProperty('sede.procedimiento.instancia.general')}}" th:text="#{message.landing.help.link.five}">Registro electr&oacute;nico</a>
 										<i class="fa fa-angle-right g-absolute-centered--y g-right-0"></i>
 									</h4>
 								</li>

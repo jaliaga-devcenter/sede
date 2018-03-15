@@ -13,12 +13,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import teralco.sedeelectronica.exception.ExceptionType;
+import teralco.sedeelectronica.exception.SedeElectronicaException;
+
 @Controller
 public class CustomErrorController implements ErrorController {
 
+	// private static Logger LOGGER =
+	// LoggerFactory.getLogger(CustomErrorController.class);
+
 	private static final String ERROR = "error";
 	private static final String ERROR_PATH = "/error";
-	private static final String ERROR_TEMPLATE = "customError";
+	private static final String ERROR_TEMPLATE = "error";
 
 	private final ErrorAttributes errorAttributes;
 
@@ -38,15 +44,14 @@ public class CustomErrorController implements ErrorController {
 		return ERROR_TEMPLATE;
 	}
 
+	@RequestMapping("/loginKO")
+	public String loginKO() {
+		throw new SedeElectronicaException(ExceptionType.LOGIN_NO_OK);
+	}
+
 	@Override
 	public String getErrorPath() {
 		return ERROR_PATH;
-	}
-
-	@RequestMapping("/404")
-	public String pageNotFound(Model model, HttpServletRequest request) {
-		model.addAttribute(ERROR, getErrorAttributes(request, true));
-		return "404";
 	}
 
 	private Map<String, Object> getErrorAttributes(HttpServletRequest request, boolean includeStackTrace) {
