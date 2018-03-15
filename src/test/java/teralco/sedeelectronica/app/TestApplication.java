@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+import teralco.sedeelectronica.security.ProcedimientoHandlerInterceptorAdapter;
+
 @Configuration
 @ComponentScan(basePackages = "teralco.sedeelectronica")
 @EntityScan("teralco.sedeelectronica.model")
@@ -21,6 +23,11 @@ public class TestApplication {
 	}
 
 	@Bean
+	public ProcedimientoHandlerInterceptorAdapter procedimientoInterceptor() {
+		return new ProcedimientoHandlerInterceptorAdapter();
+	}
+
+	@Bean
 	public ErrorAttributes errorAttributes() {
 		return new DefaultErrorAttributes();
 	}
@@ -28,11 +35,9 @@ public class TestApplication {
 	@Bean
 	public JavaMailSenderImpl mailSender() {
 		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-
 		javaMailSender.setProtocol("SMTP");
 		javaMailSender.setHost("127.0.0.1");
 		javaMailSender.setPort(25);
-
 		return javaMailSender;
 	}
 
