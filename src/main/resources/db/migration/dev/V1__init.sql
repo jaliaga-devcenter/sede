@@ -14,7 +14,7 @@ create table LICITACION (
    DESCRIPCION			TEXT 			null,
    PRESUPUESTO			DECIMAL 		null,
    FIN_PLAZO			DATE 			null, 
-   MEDIO				TEXT 		null,
+   MEDIO				SMALLINT 		null,
    constraint PK_LICITACION primary key (ID)
  );
  

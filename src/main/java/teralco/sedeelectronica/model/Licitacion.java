@@ -44,8 +44,8 @@ public class Licitacion extends BaseModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date finPlazo;
 
-	@NotEmpty(message = "Debe introducir un medio.")
-	private String medio;
+	@NotNull(message = "Debe introducir un medio.")
+	private Short medio;
 
 	/* For upload file in form */
 	@Transient
@@ -95,11 +95,11 @@ public class Licitacion extends BaseModel {
 		this.finPlazo = pFinPlazo;
 	}
 
-	public String getMedio() {
+	public Short getMedio() {
 		return this.medio;
 	}
 
-	public void setMedio(String pMedio) {
+	public void setMedio(Short pMedio) {
 		this.medio = pMedio;
 	}
 

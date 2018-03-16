@@ -33,7 +33,7 @@ public class HomeController {
 	private static final String SERVICIO_MODEL = "servicio";
 
 	@Value("${sede.entidad}")
-	private Integer ENTIDAD;
+	private Integer entidad;
 
 	@Value("${sede.iniciar.tramite}")
 	private String iniciarTramiteUrlPattern;
@@ -49,8 +49,8 @@ public class HomeController {
 	@RequestMapping("/")
 	public String greeting(Model model) {
 
-		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.ENTIDAD, LanguageUtils.getLanguage());
-		Map<Integer, IconoDTO> iconos = this.categoriaService.getIconosPorCategoria(this.ENTIDAD,
+		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.entidad, LanguageUtils.getLanguage());
+		Map<Integer, IconoDTO> iconos = this.categoriaService.getIconosPorCategoria(this.entidad,
 				LanguageUtils.getLanguage(), categorias);
 
 		model.addAttribute(CAT_MODEL, categorias);
@@ -62,12 +62,12 @@ public class HomeController {
 	@RequestMapping(value = { "/categorias", "/categorias/{id_cat}" }, method = RequestMethod.GET)
 	public String getServiciosPorCategoria(@PathVariable("id_cat") Optional<Integer> idCat, Model model) {
 
-		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.ENTIDAD, LanguageUtils.getLanguage());
-		Map<Integer, IconoDTO> iconos = this.categoriaService.getIconosPorCategoria(this.ENTIDAD,
+		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.entidad, LanguageUtils.getLanguage());
+		Map<Integer, IconoDTO> iconos = this.categoriaService.getIconosPorCategoria(this.entidad,
 				LanguageUtils.getLanguage(), categorias);
 
 		CategoriaDTO categoriaActual = getCategoriaActual(categorias, idCat);
-		Map<Integer, List<ServicioDTO>> servicios = this.categoriaService.getServiciosPorSubCategorias(this.ENTIDAD,
+		Map<Integer, List<ServicioDTO>> servicios = this.categoriaService.getServiciosPorSubCategorias(this.entidad,
 				LanguageUtils.getLanguage(), categoriaActual);
 
 		model.addAttribute(CAT_MODEL, categorias);
@@ -91,11 +91,11 @@ public class HomeController {
 	@RequestMapping(value = "/buscador-procedimientos")
 	public String getTodosServicios(Model model) {
 
-		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.ENTIDAD, LanguageUtils.getLanguage());
+		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.entidad, LanguageUtils.getLanguage());
 		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
 
 		categorias.forEach(cat -> servicios.putAll(
-				this.categoriaService.getServiciosPorSubCategorias(this.ENTIDAD, LanguageUtils.getLanguage(), cat)));
+				this.categoriaService.getServiciosPorSubCategorias(this.entidad, LanguageUtils.getLanguage(), cat)));
 
 		model.addAttribute(CAT_MODEL, categorias);
 		model.addAttribute(SERVICIOS_MODEL, servicios);
@@ -106,10 +106,10 @@ public class HomeController {
 	@RequestMapping(value = "/buscar-procedimientos", method = RequestMethod.POST)
 	public String getBusquedaServicios(@RequestParam("searchText") String searchText, Model model) {
 
-		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.ENTIDAD, LanguageUtils.getLanguage());
+		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.entidad, LanguageUtils.getLanguage());
 		Map<Integer, List<ServicioDTO>> servicios = null;
 
-		this.categoriaService.getServiciosPorTexto(this.ENTIDAD, LanguageUtils.getLanguage(), searchText);
+		this.categoriaService.getServiciosPorTexto(this.entidad, LanguageUtils.getLanguage(), searchText);
 
 		model.addAttribute(CAT_MODEL, categorias);
 		model.addAttribute(SERVICIOS_MODEL, servicios);
@@ -119,7 +119,7 @@ public class HomeController {
 
 	@RequestMapping("/ficha-procedimiento/{id}")
 	public String fichaProcedimiento(@PathVariable(value = "id") Integer idServicio, Model model) {
-		ServicioDTO servicio = this.categoriaService.getServicio(this.ENTIDAD, LanguageUtils.getLanguage(), idServicio);
+		ServicioDTO servicio = this.categoriaService.getServicio(this.entidad, LanguageUtils.getLanguage(), idServicio);
 		model.addAttribute(SERVICIO_MODEL, servicio);
 		return "servicios/ficha-procedimiento";
 	}

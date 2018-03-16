@@ -10,7 +10,7 @@
 				</label>
 				<select class="form-control" th:field="*{__${name}__}">
 					<option th:text="${voidText}" value=""></option>
-					<option th:each="option : ${options}" th:value="${option}" th:text="${option}"></option>
+					<option th:each="option,iter : ${options}" th:value="${iter.index}" th:text="${option}"></option>
 				</select>
 				<div th:if="${#fields.hasErrors(name)}" th:errors="*{__${name}__}" th:class="form-control-feedback" th:text="${errorMSG}"></div>
 			</div>

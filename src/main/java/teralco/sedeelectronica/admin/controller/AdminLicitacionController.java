@@ -1,11 +1,8 @@
 package teralco.sedeelectronica.admin.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -42,9 +39,6 @@ public class AdminLicitacionController {
 	private LicitacionService licitacionService;
 	private FicheroService ficheroService;
 
-	@Value("#{'${sede.medio}'.split(',')}")
-	private List<String> medios;
-
 	@Autowired
 	private EncryptUtils encryptUtils;
 
@@ -73,14 +67,12 @@ public class AdminLicitacionController {
 	@RequestMapping("/admin/licitaciones/create")
 	public String create(Model model) {
 		model.addAttribute("licitacion", new Licitacion());
-		model.addAttribute(MEDIO_MODEL, this.medios);
 		return form;
 	}
 
 	@RequestMapping("/admin/licitaciones/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 		model.addAttribute("licitacion", this.licitacionService.get(id));
-		model.addAttribute(MEDIO_MODEL, this.medios);
 		return form;
 	}
 
@@ -92,10 +84,8 @@ public class AdminLicitacionController {
 	}
 
 	@PostMapping(value = "/admin/licitaciones/save")
-	public String save(@Valid @ModelAttribute("licitacion") Licitacion lici, BindingResult bindingResult, Model model) {
-
+	public String save(@Valid @ModelAttribute("licitacion") Licitacion lici, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute(MEDIO_MODEL, this.medios);
 			return form;
 		}
 
