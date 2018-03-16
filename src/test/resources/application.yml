@@ -1,12 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:test;MODE=MySQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+flyway:
+  url: "jdbc:h2:mem:test;MODE=MySQL;INIT=RUNSCRIPT FROM 'classpath:flyway_init.sql'"
+  user: sa
+  password:
+  baseline-on-migrate: true
+
 #spring.datasource.driver-class-name: org.h2.Driver
 #spring.datasource.url: jdbc:h2:mem:sede;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
 #spring.datasource.username: sa
 #spring.datasource.password: 
 
+
 spring.h2.console.enabled: true
 spring.h2.console.path: /h2
-
-flyway.locations: /sampletest
 
 # hibernate.X
 hibernate.dialect: org.hibernate.dialect.H2Dialect
@@ -22,7 +33,7 @@ server:
   port: 8081
 
 spring.jpa.show-sql: true
-flyway.enabled: true
+
 
 server.basePathBack: http://localhost:8081
 server.contextPath: /sede 
@@ -35,12 +46,6 @@ verifirma.user: servicio.consulta.expedientes
 verifirma.password: servicio.consulta.expedientes
 
 
-spring:
-  thymeleaf: 
-    cache: false
-    mode: HTML
-    enconding: UTF-8
-    
 spring.http.multipart.max-file-size: 100Mb
 spring.http.multipart.max-request-size: 100Mb
 

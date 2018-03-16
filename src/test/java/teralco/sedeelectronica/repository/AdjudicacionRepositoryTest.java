@@ -2,8 +2,6 @@ package teralco.sedeelectronica.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.flywaydb.test.annotation.FlywayTest;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import teralco.sedeelectronica.model.Adjudicacion;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
-@FlywayTest
 @DataJpaTest
 public class AdjudicacionRepositoryTest {
 	@Autowired
@@ -27,8 +24,6 @@ public class AdjudicacionRepositoryTest {
 	private AdjudicacionRepository adjudicacionRepository;
 
 	@Test
-	@FlywayTest
-	@Ignore
 	public void saveTest() {
 		// ARRANGE
 		Adjudicacion adju = new Adjudicacion();

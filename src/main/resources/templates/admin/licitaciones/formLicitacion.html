@@ -21,7 +21,7 @@
 				<div th:replace="~{fragments/inputs/textareaField :: input(#{message.licitaciones.form.label.description}, 'descripcion', #{message.licitaciones.form.error.description}, 4, 50, true, false)}"></div>
 				<div th:replace="~{fragments/inputs/numberField :: input(#{message.licitaciones.form.label.budget}, 'presupuesto', 0.01, #{message.licitaciones.form.error.budget}, true, false)}"></div>
 				<div th:replace="~{fragments/inputs/dateField :: input(#{message.licitaciones.form.label.enddate}, 'finPlazo', #{message.licitaciones.form.error.enddate}, true, false)}"></div>
-				<div th:replace="~{fragments/inputs/selectField :: input(#{message.licitaciones.form.label.means}, 'medio', ${medios}, #{message.licitaciones.form.voidselection.means}, #{message.licitaciones.form.error.means}, false, false)}"></div>
+				<div th:replace="~{fragments/inputs/selectField :: input(#{message.licitaciones.form.label.means}, 'medio', ${medios}, #{message.licitaciones.form.voidselection.means}, #{message.licitaciones.form.error.means}, true, false)}"></div>
 				<div th:replace="~{fragments/inputs/fileField :: input(#{message.licitaciones.form.label.file}, #{message.licitaciones.form.button.file}, 'fileToUpload', #{message.licitaciones.form.error.file}, false, false)}"></div>
 
 				<div class="d-flex justify-content-between g-mt-30">
