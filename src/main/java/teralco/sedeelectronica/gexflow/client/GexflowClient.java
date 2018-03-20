@@ -9,16 +9,13 @@ import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 
 import gexflow.wsdl.ConsultaCatalogoCategorias;
 import gexflow.wsdl.ConsultaCatalogoCategoriasResponse;
-import gexflow.wsdl.ConsultaCatalogoServicio;
 import gexflow.wsdl.ConsultaCatalogoServicioPorCategoria;
 import gexflow.wsdl.ConsultaCatalogoServicioPorCategoriaResponse;
 import gexflow.wsdl.ConsultaCatalogoServicioPorId;
 import gexflow.wsdl.ConsultaCatalogoServicioPorIdResponse;
-import gexflow.wsdl.ConsultaCatalogoServicioResponse;
 import gexflow.wsdl.ConsultaIconoCategoria;
 import gexflow.wsdl.ConsultaIconoCategoriaResponse;
 import gexflow.wsdl.EntradaConsultaCategoria;
-import gexflow.wsdl.EntradaConsultaServicioCatalogo;
 import gexflow.wsdl.EstadoRespuesta;
 import gexflow.wsdl.ObjectFactory;
 import gexflow.wsdl.RespuestaCategoriaWS;
@@ -128,25 +125,6 @@ public class GexflowClient extends WebServiceGatewaySupport {
 
 		return this.servicioConverter
 				.createFrom(response.getValue().getResultado().getServicios().getServicio().get(0));
-	}
-
-	public List<ServicioDTO> buscarServicios(Integer entidad, String idioma, String textoBusqueda)
-			throws GexflowWSException {
-
-		ConsultaCatalogoServicio request = new ConsultaCatalogoServicio();
-		request.setIdEntidad(entidad);
-		request.setCodigoIdioma(idioma);
-		request.setEntradaConsultaServicioCatalogo(new EntradaConsultaServicioCatalogo());
-		request.getEntradaConsultaServicioCatalogo().setDescripcion(textoBusqueda);
-
-		@SuppressWarnings("unchecked")
-		JAXBElement<ConsultaCatalogoServicioResponse> response = (JAXBElement<ConsultaCatalogoServicioResponse>) invokeWS(
-				this.factory.createConsultaCatalogoServicio(request));
-
-		EstadoRespuesta estado = response.getValue().getResultado().getEstadoRespuesta();
-		comprobarError(estado);
-		return this.servicioConverter
-				.createFromEntities(response.getValue().getResultado().getServicios().getServicio());
 	}
 
 	private JAXBElement<?> invokeWS(JAXBElement<?> requestWS) {
