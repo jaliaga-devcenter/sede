@@ -20,8 +20,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
 import teralco.sedeelectronica.gexflow.dto.ServicioDTO;
-import teralco.sedeelectronica.security.CertAuthenticationToken;
-import teralco.sedeelectronica.security.UsuarioSede;
+import teralco.sedeelectronica.security.principal.UsuarioSede;
+import teralco.sedeelectronica.security.provider.CertAuthenticationToken;
 import teralco.sedeelectronica.service.CategoriaService;
 import teralco.sedeelectronica.utils.LanguageUtils;
 

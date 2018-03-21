@@ -15,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import teralco.sedeelectronica.security.ProcedimientoHandlerInterceptorAdapter;
+import teralco.sedeelectronica.security.interceptor.ProcedimientoHandlerInterceptorAdapter;
 import teralco.sedeelectronica.utils.LanguageUtils;
 
 @SpringBootApplication

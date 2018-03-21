@@ -23,8 +23,8 @@ sede:
   carpeta.ciudadana: https://demo.gexflow.com:8443/CarpetaCiudadana/${sede.entidad}/VerMisTramites
   iniciar.tramite: https://demo.gexflow.com:8443/CarpetaCiudadana/IniciarTramiteConTicket?idEntidad=${sede.entidad}&id={idServicio}&idTicket={ticket}
   requisitos.tecnicos: https://demo.gexflow.com:8443/CarpetaCiudadana/requisitos.html
-  conoce.tu.ayuntamiento: http://www.murcia.es/web/portal/institucional
-  portal.transparencia: http://www.murcia.es/web/portal/transparencia-municipal
+  conoce.tu.ayuntamiento: http://www.ibi.es/seccion.asp?idseccion=11454
+  portal.transparencia: https://ibi.transparencialocal.gob.es/
   url.descarga: http://demo.gexflow.com:8080/gexflowzk
   procedimiento:
     destacado.uno: 101
