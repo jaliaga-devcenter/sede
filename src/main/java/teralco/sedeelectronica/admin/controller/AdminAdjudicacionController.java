@@ -61,15 +61,26 @@ public class AdminAdjudicacionController {
 
 	@RequestMapping("/admin/adjudicaciones/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
+		if (id == null) {
+			return list;
+		}
 		model.addAttribute("adjudicacion", this.adjudicacionService.get(id));
 		return form;
 	}
 
 	@RequestMapping("/admin/adjudicaciones/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirectAttrs) {
+		if (id == null) {
+			return list;
+		}
 		this.adjudicacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La adjudicación " + id + " ha sido borrada.");
 		return redirList;
+	}
+
+	@RequestMapping({ "/admin/adjudicaciones/edit/", "/admin/adjudicaciones/delete/" })
+	public String noAction() {
+		return "redirect:../";
 	}
 
 	@PostMapping(value = "/admin/adjudicaciones/save")

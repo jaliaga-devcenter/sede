@@ -74,6 +74,11 @@ public class AdminAvisoController {
 		return redirList;
 	}
 
+	@RequestMapping({ "/admin/avisos/edit/", "/admin/avisos/delete/" })
+	public String noAction() {
+		return "redirect:../";
+	}
+
 	@PostMapping(value = "/admin/avisos/save")
 
 	public String save(@Valid @ModelAttribute("aviso") Aviso aviso, BindingResult bindingResult) {

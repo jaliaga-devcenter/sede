@@ -72,6 +72,11 @@ public class AdminAnuncioController {
 		return redirList;
 	}
 
+	@RequestMapping({ "/admin/anuncios/edit/", "/admin/anuncios/delete/" })
+	public String noAction() {
+		return "redirect:../";
+	}
+
 	@PostMapping(value = "/admin/anuncios/save")
 	public String save(@Valid @ModelAttribute("anuncio") Anuncio anuncio, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
