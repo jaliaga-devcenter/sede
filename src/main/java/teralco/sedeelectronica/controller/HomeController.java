@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -103,16 +104,27 @@ public class HomeController {
 		return "servicios/procedimientos";
 	}
 
-	@RequestMapping(value = "/buscar-procedimientos", method = RequestMethod.POST)
-	public String getBusquedaServicios(@RequestParam("searchText") String searchText, Model model) {
+	@RequestMapping(value = "/buscar-procedimientos", method = { RequestMethod.POST, RequestMethod.GET })
+	public String getBusquedaServicios(@RequestParam(value = "searchText", required = false) String searchText,
+			Model model) {
 
 		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.entidad, LanguageUtils.getLanguage());
-		Map<Integer, List<ServicioDTO>> servicios = null;
+		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
 
-		this.categoriaService.getServiciosPorTexto(this.entidad, LanguageUtils.getLanguage(), searchText);
+		Predicate<ServicioDTO> filtro = searchText == null ? null
+				: servicio -> servicio.getDescripcion() != null && servicio.getDescripcion().contains(searchText);
+
+		categorias.forEach(cat -> servicios.putAll(this.categoriaService.getServiciosPorSubCategorias(this.entidad,
+				LanguageUtils.getLanguage(), cat, Optional.ofNullable(filtro))));
+
+		Predicate<CategoriaDTO> noContieneServicios = cat -> cat.getSubcategorias().stream()
+				.filter(sub -> !isEmpty(servicios.get(sub.getIdSubcategoria()))).count() == 0;
+
+		categorias.removeIf(noContieneServicios);
 
 		model.addAttribute(CAT_MODEL, categorias);
 		model.addAttribute(SERVICIOS_MODEL, servicios);
+		model.addAttribute("searchText", searchText);
 
 		return "servicios/procedimientos";
 	}
