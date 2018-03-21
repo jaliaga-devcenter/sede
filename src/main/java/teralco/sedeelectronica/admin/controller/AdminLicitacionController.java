@@ -20,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.model.Licitacion;
 import teralco.sedeelectronica.service.FicheroService;
-import teralco.sedeelectronica.service.LenguajeService;
 import teralco.sedeelectronica.service.LicitacionService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
@@ -47,8 +46,7 @@ public class AdminLicitacionController {
 	}
 
 	@Autowired
-	public AdminLicitacionController(LicitacionService pLicitacionService, LenguajeService pLenguajeService,
-			FicheroService pFicheroService) {
+	public AdminLicitacionController(LicitacionService pLicitacionService, FicheroService pFicheroService) {
 		this.licitacionService = pLicitacionService;
 		this.ficheroService = pFicheroService;
 	}
