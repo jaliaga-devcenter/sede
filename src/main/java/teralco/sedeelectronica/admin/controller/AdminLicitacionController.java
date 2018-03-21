@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,13 +20,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.model.Licitacion;
 import teralco.sedeelectronica.service.FicheroService;
+import teralco.sedeelectronica.service.LenguajeService;
 import teralco.sedeelectronica.service.LicitacionService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
 import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
-@PropertySource(value = "classpath:messages/messages.properties")
 public class AdminLicitacionController {
 
 	private static final String MEDIO_MODEL = "medios";
@@ -37,6 +36,7 @@ public class AdminLicitacionController {
 	private static String form = "admin/licitaciones/formLicitacion";
 
 	private LicitacionService licitacionService;
+	private LenguajeService lenguajeService;
 	private FicheroService ficheroService;
 
 	@Autowired
@@ -48,8 +48,10 @@ public class AdminLicitacionController {
 	}
 
 	@Autowired
-	public AdminLicitacionController(LicitacionService pLicitacionService, FicheroService pFicheroService) {
+	public AdminLicitacionController(LicitacionService pLicitacionService, LenguajeService pLenguajeService,
+			FicheroService pFicheroService) {
 		this.licitacionService = pLicitacionService;
+		this.lenguajeService = pLenguajeService;
 		this.ficheroService = pFicheroService;
 	}
 
@@ -81,6 +83,11 @@ public class AdminLicitacionController {
 		this.licitacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La licitacion " + id + " ha sido borrada.");
 		return redirList;
+	}
+
+	@RequestMapping({ "/admin/licitaciones/edit/", "/admin/licitaciones/delete/" })
+	public String noAction() {
+		return "redirect:../";
 	}
 
 	@PostMapping(value = "/admin/licitaciones/save")

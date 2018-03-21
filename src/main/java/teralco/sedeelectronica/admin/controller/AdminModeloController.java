@@ -75,6 +75,11 @@ public class AdminModeloController {
 		return redirList;
 	}
 
+	@RequestMapping({ "/admin/modelos/edit/", "/admin/modelos/delete/" })
+	public String noAction() {
+		return "redirect:../";
+	}
+
 	@PostMapping(value = "/admin/modelos/save")
 	public String save(@Valid @ModelAttribute("modelo") Modelo modelo, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {

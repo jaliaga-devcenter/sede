@@ -61,6 +61,11 @@ public class AdminNormativaController {
 		return redirList;
 	}
 
+	@RequestMapping({ "/admin/normativa/edit/", "/admin/normativa/delete/" })
+	public String noAction() {
+		return "redirect:../";
+	}
+
 	@PostMapping(value = "/admin/normativa/save")
 	public String save(@Valid @ModelAttribute("normativa") Normativa normativa, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {

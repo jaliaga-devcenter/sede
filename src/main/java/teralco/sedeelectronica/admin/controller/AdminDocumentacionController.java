@@ -78,6 +78,11 @@ public class AdminDocumentacionController {
 		return redirList;
 	}
 
+	@RequestMapping({ "/admin/documentos/edit/", "/admin/documentos/delete/" })
+	public String noAction() {
+		return "redirect:../";
+	}
+
 	@PostMapping(value = "/admin/documentos/save")
 	public String save(@Valid @ModelAttribute("documentacion") Documentacion documentacion, BindingResult bindingResult,
 			Model model) {
