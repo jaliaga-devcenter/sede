@@ -118,7 +118,7 @@ public class HomeController {
 				LanguageUtils.getLanguage(), cat, Optional.ofNullable(filtro))));
 
 		Predicate<CategoriaDTO> noContieneServicios = cat -> cat.getSubcategorias().stream()
-				.filter(sub -> !isEmpty(servicios.get(sub.getIdSubcategoria()))).count() == 0;
+				.filter(sub -> !(servicios.get(sub.getIdSubcategoria()).isEmpty())).count() == 0;
 
 		categorias.removeIf(noContieneServicios);
 
