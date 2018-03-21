@@ -36,7 +36,6 @@ public class AdminLicitacionController {
 	private static String form = "admin/licitaciones/formLicitacion";
 
 	private LicitacionService licitacionService;
-	private LenguajeService lenguajeService;
 	private FicheroService ficheroService;
 
 	@Autowired
@@ -51,7 +50,6 @@ public class AdminLicitacionController {
 	public AdminLicitacionController(LicitacionService pLicitacionService, LenguajeService pLenguajeService,
 			FicheroService pFicheroService) {
 		this.licitacionService = pLicitacionService;
-		this.lenguajeService = pLenguajeService;
 		this.ficheroService = pFicheroService;
 	}
 
