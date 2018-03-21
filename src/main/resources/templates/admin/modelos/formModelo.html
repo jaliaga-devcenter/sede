@@ -3,14 +3,14 @@
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorate="~{layouts/main}">
 <head>
-	<title th:text="*{modelo!=null}?  #{message.modelos.form.edit} : #{message.modelos.form.new}"></title>
+	<title th:text="*{modelo.id!=null}?  #{message.modelos.form.edit} : #{message.modelos.form.new}"></title>
 </head>
 <body>
 		
 	<div layout:fragment="content" class=".col-md">
 		<section class="g-py-15">
 			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
-				<h2 class="h3 u-heading-v1__title" th:text="*{modelo!=null}?  #{message.modelos.form.edit} : #{message.modelos.form.new}"></h2>
+				<h2 class="h3 u-heading-v1__title" th:text="*{modelo.id!=null}?  #{message.modelos.form.edit} : #{message.modelos.form.new}"></h2>
 			</div>
 
 		<form class="g-pa-30 g-mb-30" th:object="${modelo}" th:action="@{/admin/modelos/save}" method="post" enctype="multipart/form-data">

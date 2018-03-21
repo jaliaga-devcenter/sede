@@ -3,6 +3,9 @@ package teralco.sedeelectronica.admin.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -17,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Fichero;
 import teralco.sedeelectronica.model.Licitacion;
-import teralco.sedeelectronica.model.Medio;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.LicitacionService;
 import teralco.sedeelectronica.utils.EncryptUtils;
@@ -25,6 +27,7 @@ import teralco.sedeelectronica.utils.FicheroUtils;
 import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
+@PropertySource(value = "classpath:messages/messages.properties")
 public class AdminLicitacionController {
 
 	private static final String MEDIO_MODEL = "medios";
@@ -38,6 +41,11 @@ public class AdminLicitacionController {
 
 	@Autowired
 	private EncryptUtils encryptUtils;
+
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
 
 	@Autowired
 	public AdminLicitacionController(LicitacionService pLicitacionService, FicheroService pFicheroService) {
@@ -59,14 +67,12 @@ public class AdminLicitacionController {
 	@RequestMapping("/admin/licitaciones/create")
 	public String create(Model model) {
 		model.addAttribute("licitacion", new Licitacion());
-		model.addAttribute(MEDIO_MODEL, Medio.values());
 		return form;
 	}
 
 	@RequestMapping("/admin/licitaciones/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 		model.addAttribute("licitacion", this.licitacionService.get(id));
-		model.addAttribute(MEDIO_MODEL, Medio.values());
 		return form;
 	}
 
@@ -78,10 +84,8 @@ public class AdminLicitacionController {
 	}
 
 	@PostMapping(value = "/admin/licitaciones/save")
-	public String save(@Valid @ModelAttribute("licitacion") Licitacion lici, BindingResult bindingResult, Model model) {
-
+	public String save(@Valid @ModelAttribute("licitacion") Licitacion lici, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute(MEDIO_MODEL, Medio.values());
 			return form;
 		}
 

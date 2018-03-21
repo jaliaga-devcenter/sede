@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorate="~{layouts/main}">
 <head>
-	<title th:text="*{anuncio!=null}?  #{message.annuncement.form.edit} : #{message.annuncement.form.new}"></title>
+	<title th:text="*{anuncio.id!=null}?  #{message.annuncement.form.edit} : #{message.annuncement.form.new}"></title>
 	<script src="../static/vendor/ckeditor/ckeditor.js" th:src="@{/vendor/ckeditor/ckeditor.js}"></script>
 
 </head>
@@ -12,7 +12,7 @@
 	<div layout:fragment="content" class=".col-md">
 		<section class="g-py-15">
 			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
-				<h2 class="h3 u-heading-v1__title" th:text="*{anuncio!=null}?  #{message.annuncement.form.edit} : #{message.annuncement.form.new}"></h2>
+				<h2 class="h3 u-heading-v1__title" th:text="*{anuncio.id!=null}?  #{message.annuncement.form.edit} : #{message.annuncement.form.new}"></h2>
 			</div>
 
 		<form class="g-pa-30 g-mb-30" th:object="${anuncio}" th:action="@{/admin/anuncios/save}" method="post" enctype="multipart/form-data">

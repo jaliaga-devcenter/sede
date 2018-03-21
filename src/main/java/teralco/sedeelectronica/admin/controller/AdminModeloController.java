@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Fichero;
-import teralco.sedeelectronica.model.Medio;
 import teralco.sedeelectronica.model.Modelo;
 import teralco.sedeelectronica.service.FicheroService;
 import teralco.sedeelectronica.service.ModeloService;
@@ -65,7 +64,6 @@ public class AdminModeloController {
 	public String edit(@PathVariable Long id, Model model) {
 
 		model.addAttribute("modelo", this.modeloService.get(id));
-		model.addAttribute("medios", Medio.values());
 		return form;
 	}
 
@@ -78,9 +76,8 @@ public class AdminModeloController {
 	}
 
 	@PostMapping(value = "/admin/modelos/save")
-	public String save(@Valid @ModelAttribute("modelo") Modelo modelo, BindingResult bindingResult, Model model) {
+	public String save(@Valid @ModelAttribute("modelo") Modelo modelo, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("medios", Medio.values());
 			return form;
 		}
 
