@@ -42,9 +42,9 @@
 				<td th:text="${licitacion.fichero!=null} ? ${licitacion.fichero.tipo}: ''"></td>
 				<td th:text="${#dates.format(licitacion.fechaPub, 'dd-MM-yyyy')}"></td>
 				<td th:switch="${licitacion.fichero}">
-					<span th:case="null" th:text="${licitacion.descripcion}"></span>
+					<span th:case="null" th:text="${licitacion.traducciones[0].descripcion}"></span>
 					<span th:case="*">
-						<a th:text="${licitacion.descripcion}" th:href="@{/download/}+${encrypt.encrypt(licitacion.fichero.id)}" target="_blank"></a>
+						<a th:text="${licitacion.traducciones[0].descripcion}" th:href="@{/download/}+${encrypt.encrypt(licitacion.fichero.id)}" target="_blank"></a>
 					</span>
 				</td>
 				<td th:text="${#numbers.formatDecimal(licitacion.presupuesto,3,'POINT',2,'COMMA')}+' &euro;'"></td>
@@ -57,7 +57,7 @@
 		</tbody>
 		<tbody th:unless="${licitaciones.getNumberOfElements()}"> 
 			<tr>
-				<td colspan="7" th:text="#{message.warning.not.exist}"></td>
+				<td colspan="8" th:text="#{message.warning.not.exist}"></td>
 			</tr>
 		</tbody>		
 	</table>

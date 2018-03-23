@@ -7,6 +7,13 @@ create table FICHERO (
    constraint PK_FICHERO primary key (ID)
 );
 
+create table LENGUAJE (
+   ID                   SERIAL 		 not null,
+   CODIGO		VARCHAR(255) null UNIQUE,
+   IDIOMA				TEXT			 null,
+   constraint PK_LENGUAJE primary key (ID)
+);
+
 create table LICITACION (
    ID                   SERIAL 		not null,
    ID_FICHERO           INT8            null,
@@ -22,7 +29,17 @@ create table LICITACION (
    add constraint FK_LICITACION_FICHERO foreign key (ID_FICHERO)
       references FICHERO (ID)
       on delete restrict on update restrict;
-      
+
+create table LICITACION_LENGUAJE (
+  licitacion_id SERIAL not null, 
+  DESCRIPCION TEXT, 
+  idioma varchar(255)
+  );
+
+alter table LICITACION_LENGUAJE
+ add constraint FK_LICITACION_LICITACION_LENGUAJE foreign key (licitacion_id) 
+ references LICITACION(ID)
+ on delete restrict on update restrict;
 
 create table APERTURA (
    ID                   SERIAL 		not null,
@@ -135,6 +152,8 @@ create table PARADA (
    DESCRIPCION			TEXT 			null,
    constraint PK_NOTICIA primary key (ID)
  );
+
+INSERT INTO lenguaje(CODIGO, IDIOMA) VALUES ("es","Castellano");
  
 
  
