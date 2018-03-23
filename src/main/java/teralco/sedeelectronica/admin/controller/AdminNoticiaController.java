@@ -65,6 +65,11 @@ public class AdminNoticiaController {
 		return redirList;
 	}
 
+	@RequestMapping({ "/admin/noticias/edit/", "/admin/noticias/delete/" })
+	public String noAction() {
+		return "redirect:../";
+	}
+
 	@PostMapping(value = "/admin/noticias/save")
 	public String save(@Valid @ModelAttribute("noticia") Noticia noticia, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {

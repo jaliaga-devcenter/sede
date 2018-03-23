@@ -1,4 +1,4 @@
-package teralco.sedeelectronica.security;
+package teralco.sedeelectronica.security.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,8 +19,8 @@ import teralco.sedeelectronica.auth.client.AuthClient;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-	protected static final String ADMIN_SEDE = "ADMIN_SEDE";
-	protected static final String ROLE_ADMIN_SEDE = "ROLE_ADMIN_SEDE";
+	public static final String ADMIN_SEDE = "ADMIN_SEDE";
+	public static final String ROLE_ADMIN_SEDE = "ROLE_" + ADMIN_SEDE;
 
 	@Value("${sede.entidad}")
 	private Integer ENTIDAD;

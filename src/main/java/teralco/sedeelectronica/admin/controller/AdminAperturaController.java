@@ -73,6 +73,11 @@ public class AdminAperturaController {
 		return redirList;
 	}
 
+	@RequestMapping({ "/admin/aperturas/edit/", "/admin/aperturas/delete/" })
+	public String noAction() {
+		return "redirect:../";
+	}
+
 	@PostMapping(value = "/admin/aperturas/save")
 	public String save(@Valid @ModelAttribute("apertura") Apertura apertura, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
