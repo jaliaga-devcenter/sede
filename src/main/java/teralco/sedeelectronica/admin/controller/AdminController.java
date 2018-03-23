@@ -8,7 +8,7 @@ public class AdminController {
 
 	@RequestMapping("/admin")
 	public String admin() {
-		return "admin/index";
+		return "redirect:admin/licitaciones";
 	}
 
 }

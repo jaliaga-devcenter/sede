@@ -21,13 +21,13 @@ public class Aviso extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty(message = "Debe introducir una descripción.")
+	@NotEmpty
 	@Column(nullable = false)
 	private String descripcion;
 
 	@Column(name = "fecha")
 	@Temporal(TemporalType.DATE)
-	@NotNull(message = "Debe introducir la fecha.")
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fecha;
 

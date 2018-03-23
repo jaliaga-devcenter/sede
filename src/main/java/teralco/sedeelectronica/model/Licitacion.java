@@ -25,26 +25,26 @@ public class Licitacion extends BaseModel {
 
 	@Column(name = "fecha")
 	@Temporal(TemporalType.DATE)
-	@NotNull(message = "Debe introducir la fecha de publicación.")
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaPub;
 
-	@NotEmpty(message = "Debe introducir una descripción.")
+	@NotEmpty
 	@Column(nullable = false)
 	private String descripcion;
 
 	@Min(1)
-	@NotNull(message = "Debe introducir el presupuesto.")
+	@NotNull
 	@Column
 	private BigDecimal presupuesto;
 
 	@Column(name = "finPlazo")
 	@Temporal(TemporalType.DATE)
-	@NotNull(message = "Debe introducir la fecha de fin de plazo.")
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date finPlazo;
 
-	@NotNull(message = "Debe introducir un medio.")
+	@NotNull
 	private Short medio;
 
 	/* For upload file in form */

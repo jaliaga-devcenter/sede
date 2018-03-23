@@ -17,11 +17,12 @@
 			<form class="g-pa-30 g-mb-30" th:object="${licitacion}" th:action="@{/admin/licitaciones/save}" method="post" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
 
-				<div th:replace="~{fragments/inputs/dateField :: input(#{message.licitaciones.form.label.publishdate}, 'fechaPub', #{message.licitaciones.form.error.publishdate}, true, false)}"></div>
-				<div th:replace="~{fragments/inputs/numberField :: input(#{message.licitaciones.form.label.budget}, 'presupuesto', 0.01, #{message.licitaciones.form.error.budget}, true, false)}"></div>
-				<div th:replace="~{fragments/inputs/dateField :: input(#{message.licitaciones.form.label.enddate}, 'finPlazo', #{message.licitaciones.form.error.enddate}, true, false)}"></div>
-				<div th:replace="~{fragments/inputs/selectField :: input(#{message.licitaciones.form.label.means}, 'medio', ${#strings.arraySplit(#messages.msg('sede.medio'), ',')}, #{message.licitaciones.form.voidselection.means}, #{message.licitaciones.form.error.means}, true, false)}"></div>
-				<div th:replace="~{fragments/inputs/fileField :: input(#{message.licitaciones.form.label.file}, #{message.licitaciones.form.button.file}, 'fileToUpload', #{message.licitaciones.form.error.file}, false, false)}"></div>
+				<div th:replace="~{fragments/inputs/dateField :: input(#{message.licitaciones.form.label.publishdate}, 'fechaPub', #{message.error.date}, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/textareaField :: input (#{message.licitaciones.form.label.description}, 'descripcion', #{message.error.notempty}, 4, 48, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/numberField :: input(#{message.licitaciones.form.label.budget}, 'presupuesto', 0.01, #{message.error.notempty}, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/dateField :: input(#{message.licitaciones.form.label.enddate}, 'finPlazo', #{message.error.date}, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/selectField :: input(#{message.licitaciones.form.label.means}, 'medio', ${#strings.arraySplit(#messages.msg('sede.medio'), ',')}, #{message.licitaciones.form.voidselection.means}, #{message.error.notempty}, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/fileField :: input(#{message.licitaciones.form.label.file}, #{message.licitaciones.form.button.file}, 'fileToUpload', #{message.error.notempty}, false, false)}"></div>
 
 				<div class="d-flex justify-content-between g-mt-30">
 					<div>

@@ -15,8 +15,8 @@
 
 		<form class="g-pa-30 g-mb-30" th:object="${modelo}" th:action="@{/admin/modelos/save}" method="post" enctype="multipart/form-data">
 			<input type="hidden" th:field="*{id}" />
-			<div th:replace="~{fragments/inputs/textareaField :: input(#{message.modelos.form.label.description}, 'descripcion', #{message.modelos.form.error.description}, 4, 50, true, false)}"></div>
-			<div th:replace="~{fragments/inputs/fileField :: input(#{message.modelos.form.label.file}, #{message.modelos.form.button.file}, 'fileToUpload', #{message.modelos.form.error.file}, false, false)}"></div>	
+			<div th:replace="~{fragments/inputs/textareaField :: input(#{message.modelos.form.label.description}, 'descripcion', #{message.error.notempty}, 4, 50, true, false)}"></div>
+			<div th:replace="~{fragments/inputs/fileField :: input(#{message.modelos.form.label.file}, #{message.modelos.form.button.file}, 'fileToUpload', #{message.error.notempty}, false, false)}"></div>	
 			<div class="d-flex justify-content-between g-mt-30">
 				<div>
 					<a href="modelos.html" th:href="@{/admin/modelos}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.modelos.form.button.back}">Atras</a>
