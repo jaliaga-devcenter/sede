@@ -1,32 +1,26 @@
 <!DOCTYPE html>
-<html lang="en"
-	xmlns:th="http://www.thymeleaf.org"
-	layout:decorate="~{layouts/main}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main}">
+
 <head>
 	<title th:text="*{parada!=null}?  #{message.stop.form.edit} : #{message.stop.form.new}"></title>
 </head>
+
 <body>
-		
+
 	<div layout:fragment="content" class=".col-md">
-		<section class="g-py-15">
+		<section class="g-py-15 g-pt-130">
 			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
 				<h2 class="h3 u-heading-v1__title" th:text="*{parada!=null}?  #{message.stop.form.edit} : #{message.stop.form.new}"></h2>
 			</div>
 
-		<form class="g-pa-30 g-mb-30" th:object="${parada}" th:action="@{/admin/paradas/save}" method="post">
-			<input type="hidden" th:field="*{id}" />
-			<div th:replace="~{fragments/inputs/textareaField :: input(#{message.stop.form.label.description}, 'descripcion', #{message.stop.form.error.description}, 4, 50, true, false)}"></div>
-			<div th:replace="~{fragments/inputs/dateField :: input(#{message.stop.form.label.date}, 'fecha', #{message.stop.form.error.date}, true, false)}"></div>
-
-			<div class="d-flex justify-content-between g-mt-30">
-				<div>
-					<a href="paradas.html" th:href="@{/admin/paradas}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.stop.form.button.back}">Atras</a>
-				</div>
-				<div>
-					<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.stop.form.button.save}">Guardar Parada</button>
-				</div>
-			</div>
-	</form>
+			<form class="g-pa-30 g-mb-30" th:object="${parada}" th:action="@{/admin/paradas/save}" method="post">
+				<input type="hidden" th:field="*{id}" />
+				<div th:replace="~{fragments/inputs/textareaField :: input(#{message.stop.form.label.description}, 'descripcion', #{message.stop.form.error.description}, 4, 50, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/dateField :: input(#{message.stop.form.label.date}, 'fecha', #{message.stop.form.error.date}, true, false)}"></div>
+				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/paradas}, #{message.stop.form.button.back}, #{message.stop.form.button.save})}"></div>
+			</form>
+		</section>
 	</div>
 </body>
+
 </html>

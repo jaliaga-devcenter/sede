@@ -21,24 +21,24 @@
 
                         <!-- Logo -->
                         <a href="index.html" th:href="@{/}" class="navbar-brand">
-                            <img src="https://sede.murcia.es/murcia-theme/images/murcia-theme-laptop.png" width="auto" height="95px" alt="Logo Sede"></img>
+                            <img th:src="@{/img/ayuntamientoLogo.png}" width="auto" height="125px" alt="Logo Sede"></img>
                         </a>
                         <!-- End Logo -->
 
                         <!-- Navigation -->
-                        <div class="collapse navbar-collapse align-items-center flex-sm-row g-font-size-12" id="navBar">
+                        <div class="collapse navbar-collapse align-items-center flex-sm-row g-font-size-13" id="navBar">
                             <ul class="navbar-nav text-uppercase g-pos-rel g-font-weight-600 ml-auto">
-                            	<!-- Intro -->
+                                <!-- Intro -->
                                 <li class="nav-item  g-mx-10--lg g-mx-15--xl">
                                     <a class="nav-link g-py-7 g-px-0" href="tablon-anuncios.html" th:href="@{/tablon-anuncios}" th:text="#{message.header.menu.link.one}">Tablon de anuncios</a>
                                 </li>
                                 <!-- End Intro -->
-                            	<!-- Intro -->
+                                <!-- Intro -->
                                 <li class="nav-item  g-mx-10--lg g-mx-15--xl">
                                     <a class="nav-link g-py-7 g-px-0" href="actualidad.html" th:href="@{/actualidad}" th:text="#{message.header.menu.link.two}">Actualidad/Actividad</a>
                                 </li>
                                 <!-- End Intro -->
-                            	<!-- Intro -->
+                                <!-- Intro -->
                                 <li class="nav-item  g-mx-10--lg g-mx-15--xl">
                                     <a class="nav-link g-py-7 g-px-0" href="verifirma.html" th:href="@{/verifirma}" th:text="#{message.header.menu.link.three}">Verifirma</a>
                                 </li>
@@ -53,6 +53,17 @@
                                     <a class="nav-link g-py-7 g-px-0" href="perfil-del-contratante.html" th:href="@{/perfil-del-contratante}" th:text="#{message.header.menu.link.five}">Perfil del contratante</a>
                                 </li>
                                 <!-- End Intro -->
+
+                                <div class="nav-item g-mx-10--lg g-mx-15--xl">
+                                    <button type="button" class="btn u-btn-white g-px-0 g-color-main dropdown-toggle rounded-0 g-font-size-13 g-text-transform-uppercase g-font-weight-unset" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Idioma
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="?lang=es" th:text="#{message.idioma.castellano}">Castellano</a>
+                                        <a class="dropdown-item" href="?lang=val" th:text="#{message.idioma.valenciano}">Valenciano</a>
+                                    </div>
+                                </div>
 
                             </ul>
                         </div>

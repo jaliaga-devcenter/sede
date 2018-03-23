@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<body>
+    <th:block th:fragment="formButtons (thref, backText, saveText)">
+        <div class="d-flex justify-content-between g-mt-30">
+            <div>
+                <a th:href="${thref}" class="btn btn-md u-btn-outline-black g-mr-10 g-mb-15" th:text="${backText}">Atras</a>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-md u-btn-primary g-color-black" th:text="${saveText}">Guardar</button>
+            </div>
+        </div>
+    </th:block>
+</body>
+
+</html>

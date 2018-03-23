@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<html lang="en"
-	xmlns:th="http://www.thymeleaf.org"
-	layout:decorate="~{layouts/main}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main}">
+
 <head>
 	<title th:text="*{modelo!=null}?  #{message.modelos.form.edit} : #{message.modelos.form.new}"></title>
 </head>
+
 <body>
-		
+
 	<div layout:fragment="content" class=".col-md">
-		<section class="g-py-15">
+		<section class="g-py-15 g-pt-130">
 			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
 				<h2 class="h3 u-heading-v1__title" th:text="*{modelo!=null}?  #{message.modelos.form.edit} : #{message.modelos.form.new}"></h2>
 			</div>
 
-		<form class="g-pa-30 g-mb-30" th:object="${modelo}" th:action="@{/admin/modelos/save}" method="post" enctype="multipart/form-data">
-			<input type="hidden" th:field="*{id}" />
-			<div th:replace="~{fragments/inputs/textareaField :: input(#{message.modelos.form.label.description}, 'descripcion', #{message.modelos.form.error.description}, 4, 50, true, false)}"></div>
-			<div th:replace="~{fragments/inputs/fileField :: input(#{message.modelos.form.label.file}, #{message.modelos.form.button.file}, 'fileToUpload', #{message.modelos.form.error.file}, false, false)}"></div>	
-			<div class="d-flex justify-content-between g-mt-30">
-				<div>
-					<a href="modelos.html" th:href="@{/admin/modelos}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.modelos.form.button.back}">Atras</a>
-				</div>
-				<div>
-					<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.modelos.form.button.save}">Guardar Modelo</button>
-				</div>
-			</div>
-	</form>
+			<form class="g-pa-30 g-mb-30" th:object="${modelo}" th:action="@{/admin/modelos/save}" method="post" enctype="multipart/form-data">
+				<input type="hidden" th:field="*{id}" />
+				<div th:replace="~{fragments/inputs/textareaField :: input(#{message.modelos.form.label.description}, 'descripcion', #{message.modelos.form.error.description}, 4, 50, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/fileField :: input(#{message.modelos.form.label.file}, #{message.modelos.form.button.file}, 'fileToUpload', #{message.modelos.form.error.file}, false, false)}"></div>
+				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/modelos}, #{message.modelos.form.button.back}, #{message.modelos.form.button.save})}"></div>
+			</form>
+		</section>
 	</div>
 </body>
+
 </html>
