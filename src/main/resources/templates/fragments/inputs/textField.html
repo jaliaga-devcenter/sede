@@ -2,12 +2,12 @@
 
 <body>
 	<form>
-		<th:block th:fragment="input (label, name, tipo, requerido)" th:with="nombre=${name.substring(name.indexOf('.')+1)}">
-			<div th:id="${'padre-'+nombre}" th:with="valid=${!#fields.hasErrors(name)}" th:class="${'form-group form-group-custom' + (valid ? '' : ' has-error')}">
+    <th:block th:fragment="input (label, name, tipo, errorMSG, requerido)" th:with="nombre=${name.substring(name.indexOf('.')+1)}">  
+     <div th:id="${'padre-'+nombre}" th:with="valid=${!#fields.hasErrors(name)}" th:class="${'form-group form-group-custom' + (valid ? '' : ' has-error has-danger')}">
 				<label class="control-label" th:text="${requerido} ? ${label}+ ' * :': ${label} +' :'">Label</label>
 				<div>
 					<input class="form-control" th:type="${tipo}" th:placeholder="${label}" th:field="*{__${name}__}" th:readonly="${desactivado}" />
-					<span th:if="${#fields.hasErrors(name)}" th:errors="*{__${name}__}" th:class="help-block">Errores</span>
+          <div th:if="${#fields.hasErrors(name)}" th:errors="*{__${name}__}" th:class="form-control-feedback" th:text="${errorMSG}"></div>
 				</div>
 			</div>
 		</th:block>

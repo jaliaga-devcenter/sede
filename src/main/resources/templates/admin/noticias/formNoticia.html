@@ -17,8 +17,8 @@
 
 			<form class="g-pa-30 g-mb-30" th:object="${noticia}" th:action="@{/admin/noticias/save}" method="post">
 				<input type="hidden" th:field="*{id}" />
-				<div th:replace="~{fragments/inputs/textField :: input(#{message.news.form.label.title}, 'titulo', 'text', true)}"></div>
-				<div th:replace="~{fragments/inputs/textareaField :: input (#{message.news.form.label.new}, 'descripcion', #{message.news.form.error.new}, 4, 48, true, false)}"></div>
+			<div th:replace="~{fragments/inputs/textField :: input(#{message.news.form.label.title}, 'titulo', 'text', #{message.error.notempty}, true)}"></div>
+			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.news.form.label.new}, 'descripcion', #{message.error.notempty}, 4, 48, true, false)}"></div>
 				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/noticias}, #{message.news.form.button.back}, #{message.news.form.button.save})}"></div>
 
 				<script>

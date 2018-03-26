@@ -14,15 +14,15 @@
 			</div>
 			<form class="g-pa-30 g-mb-30" th:object="${adjudicacion}" th:action="@{/admin/adjudicaciones/save}" method="post" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
-				<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.description}, 'denominacion', #{message.adjudicaciones.form.error.description}, 4, 50, true, false)}"></div>
-				<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.datesealedbid}, 'fecha', #{message.adjudicaciones.form.error.datesealedbid}, false, false)}"></div>
-				<div th:replace="~{fragments/inputs/timeField :: input (#{message.adjudicaciones.form.label.timesealedbid}, 'hora', #{message.adjudicaciones.form.error.timesealedbid}, false, false)}"></div>
-				<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.sealedbid}, 'plica', #{message.adjudicaciones.form.error.sealedbid}, 4, 50, false, false)}"></div>
-				<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.company}, 'empresaAdjudicacion', #{message.adjudicaciones.form.error.company}, 4, 50, false, false)}"></div>
-				<div th:replace="~{fragments/inputs/numberField :: input (#{message.adjudicaciones.form.label.budget}, 'presupuesto', '0.01', #{message.adjudicaciones.form.error.budget}, false, false)}"></div>
-				<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.formalizationdate}, 'fechaFormalizacion', #{message.adjudicaciones.form.error.formalizationdate}, false, false)}"></div>
-				<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.awarded}, 'fechaAdjudicacion', #{message.adjudicaciones.form.error.awarded}, false, false)}"></div>
-				<div th:replace="~{fragments/inputs/fileField :: input (#{message.adjudicaciones.form.label.file}, #{message.adjudicaciones.form.button.file}, 'fileToUpload', #{message.adjudicaciones.form.error.file}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.description}, 'denominacion', #{message.error.notempty}, 4, 50, true, false)}"></div>
+			<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.datesealedbid}, 'fecha', #{message.error.date}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/timeField :: input (#{message.adjudicaciones.form.label.timesealedbid}, 'hora', #{message.error.hour}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.sealedbid}, 'plica', #{message.error.notempty}, 4, 50, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.company}, 'empresaAdjudicacion', #{message.error.notempty}, 4, 50, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/numberField :: input (#{message.adjudicaciones.form.label.budget}, 'presupuesto', '0.01', #{message.error.notempty}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.formalizationdate}, 'fechaFormalizacion', #{message.error.date}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.awarded}, 'fechaAdjudicacion', #{message.error.data}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/fileField :: input (#{message.adjudicaciones.form.label.file}, #{message.adjudicaciones.form.button.file}, 'fileToUpload', #{message.error.notempty}, false, false)}"></div>
 				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/adjudicaciones}, #{message.adjudicaciones.form.button.back}, #{message.adjudicaciones.form.button.save})}"></div>
 			</form>
 		</section>

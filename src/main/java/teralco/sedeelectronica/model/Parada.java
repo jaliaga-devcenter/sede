@@ -18,12 +18,12 @@ public class Parada extends BaseModel {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty(message = "Debe introducir la descripción de la parada.")
+	@NotEmpty
 	@Column(nullable = false)
 	private String descripcion;
 
 	@Temporal(TemporalType.DATE)
-	@NotNull(message = "Debe introducir la fecha de parada.")
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fecha;
 

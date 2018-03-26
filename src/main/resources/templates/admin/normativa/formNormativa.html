@@ -14,11 +14,11 @@
 			</div>
 			<form class="g-pa-30 g-mb-30" th:object="${normativa}" th:action="@{/admin/normativa/save}" method="post" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
-				<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.rule}, 'norma', 'text', true)}"></div>
-				<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.article}, 'articulo', 'text', true)}"></div>
-				<div th:replace="~{fragments/inputs/textareaField :: input (#{message.normative.form.label.text}, 'texto', #{message.normative.form.error.text}, 4, 50, true, false)}"></div>
-				<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.url}, 'url', 'text', true)}"></div>
-				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/normativas}, #{message.normative.form.button.back}, #{message.normative.form.button.save})}"></div>
+			<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.rule}, 'norma', 'text', #{message.error.notempty}, true)}"></div>
+			<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.article}, 'articulo', 'text', #{message.error.notempty}, true)}"></div>
+			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.normative.form.label.text}, 'texto', #{message.error.notempty}, 4, 50, true, false)}"></div>
+			<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.url}, 'url', 'text',#{message.error.notempty}, true)}"></div>
+				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/normativa}, #{message.normative.form.button.back}, #{message.normative.form.button.save})}"></div>
 			</form>
 		</section>
 	</div>

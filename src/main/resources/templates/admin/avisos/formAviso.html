@@ -15,9 +15,9 @@
 
 			<form class="g-pa-30 g-mb-30" th:object="${aviso}" th:action="@{/admin/avisos/save}" method="post" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
-				<div th:replace="~{fragments/inputs/dateField :: input(#{message.avisos.form.label.date}, 'fecha', #{message.avisos.form.error.date}, true, false)}"></div>
-				<div th:replace="~{fragments/inputs/textareaField :: input(#{message.avisos.form.label.description}, 'descripcion', #{message.avisos.form.error.description}, 4, 50, false, false)}"></div>
-				<div th:replace="~{fragments/inputs/fileField :: input(#{message.avisos.form.label.file}, #{message.avisos.form.button.file}, 'fileToUpload', #{message.avisos.form.error.file}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/dateField :: input(#{message.avisos.form.label.date}, 'fecha', #{message.error.date}, true, false)}"></div>
+			<div th:replace="~{fragments/inputs/textareaField :: input(#{message.avisos.form.label.description}, 'descripcion', #{message.error.notempty}, 4, 50, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/fileField :: input(#{message.avisos.form.label.file}, #{message.avisos.form.button.file}, 'fileToUpload', #{message.error.notempty}, false, false)}"></div>	
 				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/avisos}, #{message.avisos.form.button.back}, #{message.avisos.form.button.save})}"></div>
 			</form>
 		</section>

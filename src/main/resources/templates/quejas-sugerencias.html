@@ -26,12 +26,12 @@
                     <span th:text="#{message.quejas.sugerencias.p.two.span.one}">
                         La tramitación de su queja o sugerencia dará lugar a un procedimiento administrativo que será tramitado por el 
                     </span>
-                    <strong th:text="#{message.quejas.sugerencias.p.two.strong}">Ayuntamiento de Murcia</strong>
+                    <strong th:text="#{message.quejas.sugerencias.p.two.strong}">Ayuntamiento de Ibi</strong>
                     <span th:text="#{message.quejas.sugerencias.p.two.span.two}">siguiendo los cauces establecidos para todos los procedimientos que se tramitan desde esta Sede Electrónica.</span>
                 </p>
                 <p th:text="#{message.quejas.sugerencias.p.three}">Pulse el siguiente botón para acceder a la tramitación del procedimiento de Quejas y Sugerencias.</p>
                 <p class="text-center">
-                    <a th:href="@{/ficha-procedimiento}+@{${@environment.getProperty('sede.procedimiento.quejas.sugerencias')}}"
+                    <a th:href="@{/ficha-procedimiento}+'/'+@{${@environment.getProperty('sede.procedimiento.quejas.sugerencias')}}"
                     class="btn btn-md u-btn-primary rounded-0 g-color-black" th:text="#{message.quejas.sugerencias.button}">Quejas y sugerencias</a>
                 </p>
             </div>
