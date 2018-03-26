@@ -5,30 +5,26 @@
 <head>
 	<title th:text="*{apertura.id!=null}?  #{message.licitaciones.form.edit} : #{message.licitaciones.form.new}"></title>
 </head>
+
 <body>
-		
+
 	<div layout:fragment="content" class=".col-md">
-		<section class="g-py-15">
+		<section class="g-py-15 g-pt-130">
 			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
 				<h2 class="h3 u-heading-v1__title" th:text="*{apertura.id!=null}?  #{message.licitaciones.form.edit} : #{message.licitaciones.form.new}"></h2>
 			</div>
 
-		<form class="g-pa-30 g-mb-30" th:object="${apertura}" th:action="@{/admin/aperturas/save}" method="post" enctype="multipart/form-data">
-			<input type="hidden" th:field="*{id}" />
+			<form class="g-pa-30 g-mb-30" th:object="${apertura}" th:action="@{/admin/aperturas/save}" method="post" enctype="multipart/form-data">
+				<input type="hidden" th:field="*{id}" />
 			<div th:replace="~{fragments/inputs/textareaField ::input(#{message.aperturas.form.label.description}, 'denominacion', #{message.error.notempty}, 4, 50, true, false)}"></div>
 			<div th:replace="~{fragments/inputs/dateField :: input(#{message.aperturas.form.label.datesealedbid}, 'fecha', #{message.error.date}, true, false)}"></div>
 			<div th:replace="~{fragments/inputs/timeField :: input(#{message.aperturas.form.label.timesealedbid}, 'hora', #{message.error.hour}, true, false)}"></div>
 			<div th:replace="~{fragments/inputs/textareaField :: input(#{message.aperturas.form.label.sealedbid}, 'plica', #{message.error.notempty}, 4, 50, false, false)}"></div>
 			<div th:replace="~{fragments/inputs/fileField :: input(#{message.aperturas.form.label.file}, #{message.aperturas.form.button.file}, 'fileToUpload', #{message.error.notempty}, false, false)}"></div>
-			<div class="d-flex justify-content-between g-mt-30">
-					<div>
-						<a href="aperturas.html" th:href="@{/admin/aperturas}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.aperturas.form.button.back}">Atras</a>
-					</div>
-					<div>
-						<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.aperturas.form.button.save}">Guardar Apertura</button>
-					</div>
-				</div>
-	</form>
+				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/aperturas}, #{message.aperturas.form.button.back}, #{message.aperturas.form.button.save})}"></div>
+			</form>
+		</section>
 	</div>
 </body>
+
 </html>

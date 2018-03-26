@@ -2,50 +2,28 @@
 <html lang="es">
 
 <body>
-    <th:block th:fragment="navbar">
-        <section class="g-py-15 navbar navbar-expand-lg hs-menu-initialized hs-menu-horizontal">
-			<div class="row g-ma-0">
-				<ul class="navbar-nav text-uppercase g-pos-rel g-font-weight-600 ml-auto">
-
-					<!-- Intro -->
-					<li class="nav-item  g-mx-10--lg g-mx-15--xl">
-						<a class="nav-link g-py-7 g-px-0" href="licitaciones.html" th:href="@{/licitaciones}" th:text="#{message.subheader.menu.link.three}">Licitaciones</a>
-					</li>
-					<!-- End Intro -->
-
-					<!-- Intro -->
-					<li class="nav-item  g-mx-10--lg g-mx-15--xl">
-						<a class="nav-link g-py-7 g-px-0" href="aperturas.html" th:href="@{/aperturas}" th:text="#{message.subheader.menu.link.four}">Aperturas</a>
-					</li>
-					<!-- End Intro -->
-
-					<!-- Intro -->
-					<li class="nav-item  g-mx-10--lg g-mx-15--xl">
-						<a class="nav-link g-py-7 g-px-0" href="adjudicaciones.html" th:href="@{/adjudicaciones}" th:text="#{message.subheader.menu.link.five}">Adjudicaciones</a>
-					</li>
-					<!-- End Intro -->
-
-					<!-- Intro -->
-					<li class="nav-item  g-mx-10--lg g-mx-15--xl">
-						<a class="nav-link g-py-7 g-px-0" href="documentos.html" th:href="@{/documentos}" th:text="#{message.subheader.menu.link.six}">Documentos</a>
-					</li>
-					<!-- End Intro -->
-
-					<!-- Intro -->
-					<li class="nav-item  g-mx-10--lg g-mx-15--xl">
-						<a class="nav-link g-py-7 g-px-0" href="modelos.html" th:href="@{/modelos}" th:text="#{message.subheader.menu.link.seven}">Modelos</a>
-					</li>
-					<!-- End Intro -->
-
-					<!-- Intro -->
-					<li class="nav-item  g-mx-10--lg g-mx-15--xl">
-						<a class="nav-link g-py-7 g-px-0" href="avisos.html" th:href="@{/avisos}" th:text="#{message.subheader.menu.link.eight}">Avisos</a>
-					</li>
-
-				</ul>
+	<th:block th:fragment="navbar">
+		<section class="g-pa-15 g-pt-0">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12">
+					<div class="input-group-btn pull-right">
+						<button type="button" class="btn btn-md u-btn-primary g-color-black dropdown-toggle rounded-0" data-toggle="dropdown" aria-haspopup="true"
+						 aria-expanded="false">
+							Ver datos
+						</button>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" th:classappend="@{/} + 'licitaciones' == ${#httpServletRequest.requestURI.toString()}? 'active'" href="licitaciones.html" th:href="@{/licitaciones}" th:text="#{message.subheader.menu.link.three}">Licitaciones</a>
+							<a class="dropdown-item" th:classappend="@{/} + 'aperturas' == ${#httpServletRequest.requestURI.toString()}? 'active'" href="aperturas.html" th:href="@{/aperturas}" th:text="#{message.subheader.menu.link.four}">Aperturas</a>
+							<a class="dropdown-item" th:classappend="@{/} + 'adjudicaciones' == ${#httpServletRequest.requestURI.toString()}? 'active'" href="adjudicaciones.html" th:href="@{/adjudicaciones}" th:text="#{message.subheader.menu.link.five}">Adjudicaciones</a>
+							<a class="dropdown-item" th:classappend="@{/} + 'documentos' == ${#httpServletRequest.requestURI.toString()}? 'active'" href="documentos.html" th:href="@{/documentos}" th:text="#{message.subheader.menu.link.six}">Documentos</a>
+							<a class="dropdown-item" th:classappend="@{/} + 'modelos' == ${#httpServletRequest.requestURI.toString()}? 'active'" href="modelos.html" th:href="@{/modelos}" th:text="#{message.subheader.menu.link.seven}">Modelos</a>
+							<a class="dropdown-item" th:classappend="@{/} + 'avisos' == ${#httpServletRequest.requestURI.toString()}? 'active'" href="avisos.html" th:href="@{/avisos}" th:text="#{message.subheader.menu.link.eight}">Avisos</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
-    </th:block>
+	</th:block>
 </body>
 
 </html>

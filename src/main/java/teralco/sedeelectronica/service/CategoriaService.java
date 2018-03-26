@@ -93,9 +93,4 @@ public class CategoriaService {
 		return returnList;
 	}
 
-	public void getServiciosPorTexto(Integer entidad, String language, String searchText) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

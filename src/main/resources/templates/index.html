@@ -32,7 +32,7 @@
 										<div class="input-group">
 											<input type="text" name="searchText" class="form-control g-font-size-16 border-0" placeholder="Busca procedimientos..." th:placeholder="#{message.landing.search.placeholder}" aria-label="Busca procedimientos..."></input>
 											<span class="input-group-btn">
-												<button class="btn btn-primary g-font-size-18 g-py-12 g-px-25" type="submit">
+												<button class="btn btn-primary g-color-black g-font-size-18 g-py-12 g-px-25" type="submit">
 													<i class="fa fa-search"></i>
 												</button>
 											</span>
@@ -119,7 +119,7 @@
 						<!-- Icon Blocks -->
 						<div class="text-center">
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mt-2">
-								<a th:text="#{message.landing.button.menu.one}" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								<a th:text="#{message.landing.button.menu.one}" class="btn u-shadow-v21 g-bg-primary g-color-black g-color-black--hover g-brd-primary g-brd-black--hover g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-10 w-75 g-py-20 g-px-30"
 								 th:href="'./categorias'">PROCEDIMIENTOS</a>
 							</h3>
 						</div>
@@ -132,7 +132,7 @@
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mt-2">
 								<a 
                 th:text="#{message.landing.button.menu.two}"
-                class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+                class="btn u-shadow-v21 g-bg-primary g-color-black g-color-black--hover g-brd-black--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-10 w-75 g-py-20 g-px-30"
 								th:href="@{'/acceso'}"  href="login.html" >ACCESO</a>
 							</h3>
 						</div>
@@ -143,7 +143,7 @@
 						<!-- Icon Blocks -->
 						<div class="text-center">
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase mt-2">
-								<a th:text="#{message.landing.button.menu.three}" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								<a th:text="#{message.landing.button.menu.three}" class="btn u-shadow-v21 g-bg-primary g-color-black g-color-black--hover g-brd-black--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-10 w-75 g-py-20 g-px-30"
 								 href="#ayuda">AYUDA</a>
 							</h3>
 						</div>
@@ -167,7 +167,7 @@
 					<div class="col-lg-3 g-px-40 g-mb-50" th:each="categoria: ${categorias}">
 						<!-- Icon Blocks -->
 						<div class="text-center d-flex align-items-center flex-column" style="height: 235px; justify-content: space-between; ">
-							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-white rounded-circle">
+							<span class="d-inline-block u-icon-v3 u-icon-size--xl g-bg-primary g-color-black rounded-circle">
 								<i th:switch="${iconos.get(categoria.idCategoria).extension}">
 										<img th:case="jpg" alt="img" th:src="@{'data:image/jpeg;base64,'+${iconos.get(categoria.idCategoria).base64encoded}}"/>
 										<img th:case="png" alt="img" th:src="@{'data:image/png;base64,'+${iconos.get(categoria.idCategoria).base64encoded}}"/>
@@ -176,7 +176,7 @@
 								</i>								
 							</span>
 							<h3 class="h5 g-color-gray-dark-v2 g-font-weight-600 text-uppercase" th:utext="${categoria.nombre}">Categoria</h3>
-							<a th:href="@{/categorias/}+${categoria.idCategoria}" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
+							<a th:href="@{/categorias/}+${categoria.idCategoria}" class="btn u-shadow-v21 g-bg-primary g-color-black g-color-black--hover g-brd-black--hover g-brd-primary g-bg-white-opacity-0_9--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
 								<span th:text="#{message.landing.middle.button.section}">Ver m&aacute;s</span>
 							</a>
 						</div>
@@ -185,7 +185,7 @@
 				</div>
 				<div class="row">
 					<div class="col-12 text-center">
-						<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-white g-color-primary--hover g-brd-primary g-bg-white-opacity-0_9--hover text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
+						<a href="#!" class="btn u-shadow-v21 g-bg-primary g-color-black g-color-black--hover g-brd-black--hover g-brd-primary g-bg-white-opacity-0_9--hover text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20">
 							<span th:text="#{message.landing.middle.button.global}">VER TODOS</span>
 						</a>
 					</div>
@@ -195,7 +195,7 @@
 		<!-- End Our Services -->
 
 		<!-- Icon Blocks -->
-		<section class="text-center" id="ayuda">
+		<section class="text-center g-pt-75" id="ayuda">
 			<div class="row no-gutters">
 				<!-- Icon Blocks -->
 				<div class="col-lg-12 u-bg-overlay g-bg-img-hero g-color-white text-center g-pa-60" style="background-image: url(https://sede.murcia.es/murcia-theme/images/murcia/section3-bg.jpg);">
@@ -249,11 +249,11 @@
 						</nav>
 						<div class="row text-center">
 							<div class="col-xs-12 col-sm-6 g-mb-10 g-mb-0--sm">
-								<a th:text="#{message.landing.help.button.one}" class="btn u-shadow-v21 g-bg-white g-color-primary g-color-white--hover g-bg-primary-opacity-0_8--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								<a th:text="#{message.landing.help.button.one}" class="btn u-shadow-v21 g-bg-white g-color-black--hover g-brd-black--hover g-color-black g-bg-primary-opacity-0_8--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
 								 th:href="@{${@environment.getProperty('sede.conoce.tu.ayuntamiento')}}"></a>
 							</div>
 							<div class="col-xs-12 col-sm-6">
-								<a th:text="#{message.landing.help.button.two}" class="btn u-shadow-v21 g-bg-white g-color-primary g-color-white--hover g-bg-primary-opacity-0_8--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
+								<a th:text="#{message.landing.help.button.two}" class="btn u-shadow-v21 g-bg-white g-color-black--hover g-brd-black--hover g-color-black g-bg-primary-opacity-0_8--hover g-font-size-12 text-uppercase g-font-weight-600 g-rounded-50 g-py-12 g-px-20"
 								 th:href="@{${@environment.getProperty('sede.portal.transparencia')}}">PORTAL DE TRASNPARENCIA</a>
 							</div>
 						</div>
