@@ -102,10 +102,10 @@
                     </div>
              
                     <div id="accordion-05" class="u-accordion" role="tablist" aria-multiselectable="true" >
-                        <div class="card rounded-0 g-brd-none" th:each="subCategoria,iterStat: ${currentCat.subcategorias}">
+                        <div class="card rounded-0 g-brd-none" th:each="subCategoria,iterStat: ${currentCat.subcategorias}" th:if="${servicios.get(subCategoria.idSubcategoria)!=null}">
                         <!-- Card -->
                             <div th:replace="~{fragments/accordionCard :: header(${#strings.toUpperCase(subCategoria.nombre)}, ${subCategoria.idSubcategoria}, true, ${iterStat.odd})}"></div>
-                            <div th:id="'accordion-05-body-' + ${subCategoria.idSubcategoria}" class="collapse" role="tabpanel" th:aria-labelledby="'accordion-05-heading-'+${subCategoria.idSubcategoria}">
+                            <div th:id="'accordion-05-body-' + ${subCategoria.idSubcategoria}"  class="collapse" role="tabpanel" th:aria-labelledby="'accordion-05-heading-'+${subCategoria.idSubcategoria}">
                                 <div class="u-accordion__body g-pa-0">
                                     <!-- Basic Table -->
                                     <div class="table-responsive">

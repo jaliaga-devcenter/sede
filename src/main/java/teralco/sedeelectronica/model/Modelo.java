@@ -15,7 +15,7 @@ public class Modelo extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty(message = "Debe introducir una descripción.")
+	@NotEmpty
 	@Column(nullable = false)
 	private String descripcion;
 

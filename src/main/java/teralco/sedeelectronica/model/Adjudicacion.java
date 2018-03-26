@@ -26,7 +26,7 @@ public class Adjudicacion extends BaseModel {
 	private static final long serialVersionUID = 1L;
 
 	@Column(nullable = false)
-	@NotEmpty(message = "Debe introducir una denominación.")
+	@NotEmpty
 	private String denominacion;
 
 	/* PARTE DE PLICA */

@@ -17,11 +17,11 @@
 
 		<form class="g-pa-30 g-mb-30" th:object="${anuncio}" th:action="@{/admin/anuncios/save}" method="post" enctype="multipart/form-data">
 			<input type="hidden" th:field="*{id}" />
-			<div th:replace="~{fragments/inputs/textField :: input(#{message.annuncement.form.label.title}, 'titulo', 'text', true)}"></div>
-			<div th:replace="~{fragments/inputs/dateField :: input (#{message.annuncement.form.label.dateFrom}, 'fechaDe', #{message.annuncement.form.error.dateFrom}, false, false)}"></div>
-			<div th:replace="~{fragments/inputs/dateField :: input (#{message.annuncement.form.label.dateTo}, 'fechaHasta', #{message.annuncement.form.error.dateTo}, false, false)}"></div>
-			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.annuncement.form.label.new}, 'descripcion', #{message.annuncement.form.error.new}, 4, 48, true, false)}"></div> 	
-			<div th:replace="~{fragments/inputs/fileField :: input (#{message.annuncement.form.label.file}, #{message.annuncement.form.button.file}, 'fileToUpload', #{message.annuncement.form.error.file}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/textField :: input(#{message.annuncement.form.label.title}, 'titulo', 'text', #{message.error.date}, true)}"></div>
+			<div th:replace="~{fragments/inputs/dateField :: input (#{message.annuncement.form.label.dateFrom}, 'fechaDe', #{message.error.date}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/dateField :: input (#{message.annuncement.form.label.dateTo}, 'fechaHasta', #{message.error.date}, false, false)}"></div>
+			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.annuncement.form.label.new}, 'descripcion', #{message.error.notempty}, 4, 48, true, false)}"></div> 	
+			<div th:replace="~{fragments/inputs/fileField :: input (#{message.annuncement.form.label.file}, #{message.annuncement.form.button.file}, 'fileToUpload', #{message.error.notempty}, false, false)}"></div>
 			<div class="d-flex justify-content-between g-mt-30">
 				<div>
 					<a href="anuncios.html" th:href="@{/admin/anuncios}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.annuncement.form.button.back}">Atras</a>

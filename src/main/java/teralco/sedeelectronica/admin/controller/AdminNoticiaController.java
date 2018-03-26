@@ -71,7 +71,7 @@ public class AdminNoticiaController {
 	}
 
 	@PostMapping(value = "/admin/noticias/save")
-	public String save(@Valid @ModelAttribute("notica") Noticia noticia, BindingResult bindingResult) {
+	public String save(@Valid @ModelAttribute("noticia") Noticia noticia, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			return form;
 		}
