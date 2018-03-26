@@ -1,3 +1,5 @@
+CREATE SCHEMA IF NOT EXISTS "public";
+
 create table FICHERO (
    ID                   SERIAL 		 not null,
    UUID			        VARCHAR(255)     null,
@@ -14,7 +16,7 @@ create table LICITACION (
    DESCRIPCION			TEXT 			null,
    PRESUPUESTO			DECIMAL 		null,
    FIN_PLAZO			DATE 			null, 
-   MEDIO				SMALLINT 		null,
+   MEDIO				TEXT 		null,
    constraint PK_LICITACION primary key (ID)
  );
  

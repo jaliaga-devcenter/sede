@@ -80,9 +80,7 @@ public class EncryptUtils {
 		Cipher cipher = null;
 		try {
 			cipher = Cipher.getInstance("AES");
-		} catch (NoSuchAlgorithmException e) {
-			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
-		} catch (NoSuchPaddingException e) {
+		} catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
 			throw new SedeElectronicaException(ExceptionType.UNEXPECTED, e);
 		}
 		try {

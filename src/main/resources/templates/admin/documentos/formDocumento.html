@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main}">
 
 <head>
-	<title th:text="*{documentacion!=null}?  #{message.documentos.form.edit} : #{message.documentos.form.new}"></title>
+	<title th:text="*{documentacion.id!=null}?  #{message.documentos.form.edit} : #{message.documentos.form.new}"></title>
 </head>
 
 <body>
@@ -10,7 +10,7 @@
 	<div layout:fragment="content" class=".col-md">
 		<section class="g-py-15 g-pt-130">
 			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
-				<h2 class="h3 u-heading-v1__title" th:text="*{documentacion!=null}?  #{message.documentos.form.edit} : #{message.documentos.form.new}"></h2>
+				<h2 class="h3 u-heading-v1__title" th:text="*{documentacion.id!=null}?  #{message.documentos.form.edit} : #{message.documentos.form.new}"></h2>
 			</div>
 
 			<form class="g-pa-30 g-mb-30" th:object="${documentacion}" th:action="@{/admin/documentos/save}" method="post" enctype="multipart/form-data">

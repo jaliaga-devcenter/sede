@@ -1,7 +1,6 @@
 package teralco.sedeelectronica.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -16,7 +15,6 @@ public class LicitacionTest {
 		Licitacion lici = new Licitacion();
 
 		lici.setDescripcion("cualquier descripción");
-		lici.setMedio(Medio.BOE);
 		Fichero file = new Fichero();
 		file.setTamanyo(512.24);
 		lici.setFichero(file);
@@ -37,7 +35,6 @@ public class LicitacionTest {
 		assertEquals("cualquier descripción", lici.getDescripcion());
 		assertEquals(file, lici.getFichero());
 		assertEquals(bd, lici.getPresupuesto());
-		assertNotEquals(Medio.BORM, lici.getMedio());
 		assertEquals(date, lici.getFechaPub());
 		assertEquals(date, lici.getFinPlazo());
 	}

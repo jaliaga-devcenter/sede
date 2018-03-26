@@ -1,7 +1,6 @@
 package teralco.sedeelectronica.controller;
 
 import java.security.Principal;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +20,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
 import teralco.sedeelectronica.gexflow.dto.ServicioDTO;
-import teralco.sedeelectronica.security.CertAuthenticationToken;
-import teralco.sedeelectronica.security.UsuarioSede;
+import teralco.sedeelectronica.security.principal.UsuarioSede;
+import teralco.sedeelectronica.security.provider.CertAuthenticationToken;
 import teralco.sedeelectronica.service.CategoriaService;
 import teralco.sedeelectronica.utils.LanguageUtils;
 
@@ -35,7 +34,7 @@ public class HomeController {
 	private static final String SERVICIO_MODEL = "servicio";
 
 	@Value("${sede.entidad}")
-	private Integer ENTIDAD;
+	private Integer entidad;
 
 	@Value("${sede.iniciar.tramite}")
 	private String iniciarTramiteUrlPattern;
@@ -51,8 +50,8 @@ public class HomeController {
 	@RequestMapping("/")
 	public String greeting(Model model) {
 
-		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.ENTIDAD, LanguageUtils.getLanguage());
-		Map<Integer, IconoDTO> iconos = this.categoriaService.getIconosPorCategoria(this.ENTIDAD,
+		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.entidad, LanguageUtils.getLanguage());
+		Map<Integer, IconoDTO> iconos = this.categoriaService.getIconosPorCategoria(this.entidad,
 				LanguageUtils.getLanguage(), categorias);
 
 		model.addAttribute(CAT_MODEL, categorias);
@@ -64,12 +63,12 @@ public class HomeController {
 	@RequestMapping(value = { "/categorias", "/categorias/{id_cat}" }, method = RequestMethod.GET)
 	public String getServiciosPorCategoria(@PathVariable("id_cat") Optional<Integer> idCat, Model model) {
 
-		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.ENTIDAD, LanguageUtils.getLanguage());
-		Map<Integer, IconoDTO> iconos = this.categoriaService.getIconosPorCategoria(this.ENTIDAD,
+		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.entidad, LanguageUtils.getLanguage());
+		Map<Integer, IconoDTO> iconos = this.categoriaService.getIconosPorCategoria(this.entidad,
 				LanguageUtils.getLanguage(), categorias);
 
 		CategoriaDTO categoriaActual = getCategoriaActual(categorias, idCat);
-		Map<Integer, List<ServicioDTO>> servicios = this.categoriaService.getServiciosPorSubCategorias(this.ENTIDAD,
+		Map<Integer, List<ServicioDTO>> servicios = this.categoriaService.getServiciosPorSubCategorias(this.entidad,
 				LanguageUtils.getLanguage(), categoriaActual);
 
 		model.addAttribute(CAT_MODEL, categorias);
@@ -90,25 +89,36 @@ public class HomeController {
 		return categoriaActual.isPresent() ? categoriaActual.get() : categorias.get(0);
 	}
 
-	public Boolean isEmpty(Collection<?> collection) {
-		return collection == null || collection.size() == 0;
+	@RequestMapping(value = "/buscador-procedimientos")
+	public String getTodosServicios(Model model) {
+
+		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.entidad, LanguageUtils.getLanguage());
+		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
+
+		categorias.forEach(cat -> servicios.putAll(
+				this.categoriaService.getServiciosPorSubCategorias(this.entidad, LanguageUtils.getLanguage(), cat)));
+
+		model.addAttribute(CAT_MODEL, categorias);
+		model.addAttribute(SERVICIOS_MODEL, servicios);
+
+		return "servicios/procedimientos";
 	}
 
 	@RequestMapping(value = "/buscar-procedimientos", method = { RequestMethod.POST, RequestMethod.GET })
 	public String getBusquedaServicios(@RequestParam(value = "searchText", required = false) String searchText,
 			Model model) {
 
-		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.ENTIDAD, LanguageUtils.getLanguage());
+		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.entidad, LanguageUtils.getLanguage());
 		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
 
 		Predicate<ServicioDTO> filtro = searchText == null ? null
 				: servicio -> servicio.getDescripcion() != null && servicio.getDescripcion().contains(searchText);
 
-		categorias.forEach(cat -> servicios.putAll(this.categoriaService.getServiciosPorSubCategorias(this.ENTIDAD,
+		categorias.forEach(cat -> servicios.putAll(this.categoriaService.getServiciosPorSubCategorias(this.entidad,
 				LanguageUtils.getLanguage(), cat, Optional.ofNullable(filtro))));
 
 		Predicate<CategoriaDTO> noContieneServicios = cat -> cat.getSubcategorias().stream()
-				.filter(sub -> !isEmpty(servicios.get(sub.getIdSubcategoria()))).count() == 0;
+				.filter(sub -> !(servicios.get(sub.getIdSubcategoria()).isEmpty())).count() == 0;
 
 		categorias.removeIf(noContieneServicios);
 
@@ -121,7 +131,7 @@ public class HomeController {
 
 	@RequestMapping("/ficha-procedimiento/{id}")
 	public String fichaProcedimiento(@PathVariable(value = "id") Integer idServicio, Model model) {
-		ServicioDTO servicio = this.categoriaService.getServicio(this.ENTIDAD, LanguageUtils.getLanguage(), idServicio);
+		ServicioDTO servicio = this.categoriaService.getServicio(this.entidad, LanguageUtils.getLanguage(), idServicio);
 		model.addAttribute(SERVICIO_MODEL, servicio);
 		return "servicios/ficha-procedimiento";
 	}

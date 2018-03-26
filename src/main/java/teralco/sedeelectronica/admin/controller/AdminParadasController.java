@@ -61,6 +61,11 @@ public class AdminParadasController {
 		return redirList;
 	}
 
+	@RequestMapping({ "/admin/paradas/edit/", "/admin/paradas/delete/" })
+	public String noAction() {
+		return "redirect:../";
+	}
+
 	@PostMapping(value = "/admin/paradas/save")
 	public String save(@Valid @ModelAttribute("parada") Parada parada, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {

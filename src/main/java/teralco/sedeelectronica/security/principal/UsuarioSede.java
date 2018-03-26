@@ -1,4 +1,4 @@
-package teralco.sedeelectronica.security;
+package teralco.sedeelectronica.security.principal;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

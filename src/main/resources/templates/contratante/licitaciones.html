@@ -38,7 +38,7 @@
 				</td>
 				<td th:text="${#numbers.formatDecimal(licitacion.presupuesto,3,'POINT',2,'COMMA')}+' &euro;'"></td>
 				<td th:text="${#dates.format(licitacion.finPlazo, 'dd-MM-yyyy')}"></td>
-				<td th:text="${licitacion.medio!=null}? ${licitacion.medio.text} : ''"></td>
+				<td th:text="${licitacion.medio!=null}? ${#strings.arraySplit(#messages.msg('sede.medio'), ',')[licitacion.medio]} : ''"></td>
 				<td th:text="${licitacion.fichero!=null} ? 
 					${#numbers.formatDecimal((licitacion.fichero.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
 					+' MB': ''"></td>
