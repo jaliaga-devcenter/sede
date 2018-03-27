@@ -1,5 +1,7 @@
 package teralco.sedeelectronica.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,5 +40,10 @@ public class NoticiaService {
 	// Pagination
 	public Page<Noticia> listAllByPage(Pageable pageable) {
 		return this.noticiaRepository.findAll(pageable);
+	}
+
+	// Pagination order by
+	public List<Noticia> listAll() {
+		return this.noticiaRepository.findAllByOrderByFechaDesc();
 	}
 }
