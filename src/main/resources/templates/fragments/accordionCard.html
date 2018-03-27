@@ -5,9 +5,9 @@
     <th:block th:fragment="header (text, id, isCollapsed, isOdd)">
         <div th:id="${'accordion-05-heading-' + id}" class="u-accordion__header g-pa-0" th:classappend="${isOdd} ? g-bg-primary : g-bg-primary-dark-v2" role="tab">
             <h5 class="mb-0 text-uppercase g-font-size-default g-font-weight-700 g-pa-20a">
-                <a class="d-block g-color-white g-text-underline--none--hover" th:classappend="${isCollapsed} ? collapsed : ''" th:href="${'#accordion-05-body-' + id}" data-toggle="collapse" data-parent="#accordion-05"
+                <a class="d-block g-color-black g-text-underline--none--hover" th:classappend="${isCollapsed} ? collapsed : ''" th:href="${'#accordion-05-body-' + id}" data-toggle="collapse" data-parent="#accordion-05"
                     aria-expanded="true" th:aria-controls="${'accordion-05-body-' + id}">
-                    <span class="u-accordion__control-icon d-inline-block g-brd-right g-brd-gray-light-v4 g-color-white text-center g-pa-20">
+                    <span class="u-accordion__control-icon d-inline-block g-brd-right g-brd-gray-light-v4 g-color-black text-center g-pa-20">
                         <i class="fa fa-plus"></i>
                         <i class="fa fa-minus"></i>
                     </span>
