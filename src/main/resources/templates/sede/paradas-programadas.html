@@ -21,7 +21,7 @@
 
                     <div th:each="parada: ${paradas}" th:if="${paradas.size()}">
                             <p th:text="${parada.descripcion}"></p>
-                            <p th:text="${parada.fecha}">
+                            <p th:text="${#dates.format(parada.fecha, 'dd/MM/yyyy')}">
                                     
                             </p>
                     </div>
