@@ -1,4 +1,4 @@
-package teralco.sedeelectronica.security;
+package teralco.sedeelectronica.security.provider;
 
 import java.util.Collection;
 

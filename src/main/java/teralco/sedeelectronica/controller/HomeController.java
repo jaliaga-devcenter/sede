@@ -20,8 +20,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
 import teralco.sedeelectronica.gexflow.dto.ServicioDTO;
-import teralco.sedeelectronica.security.CertAuthenticationToken;
-import teralco.sedeelectronica.security.UsuarioSede;
+import teralco.sedeelectronica.security.principal.UsuarioSede;
+import teralco.sedeelectronica.security.provider.CertAuthenticationToken;
 import teralco.sedeelectronica.service.CategoriaService;
 import teralco.sedeelectronica.utils.LanguageUtils;
 
@@ -104,8 +104,9 @@ public class HomeController {
 		return "servicios/procedimientos";
 	}
 
-	@RequestMapping(value = "/buscar-procedimientos", method = RequestMethod.POST)
-	public String getBusquedaServicios(@RequestParam("searchText") String searchText, Model model) {
+	@RequestMapping(value = "/buscar-procedimientos", method = { RequestMethod.POST, RequestMethod.GET })
+	public String getBusquedaServicios(@RequestParam(value = "searchText", required = false) String searchText,
+			Model model) {
 
 		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.entidad, LanguageUtils.getLanguage());
 		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
@@ -123,6 +124,7 @@ public class HomeController {
 
 		model.addAttribute(CAT_MODEL, categorias);
 		model.addAttribute(SERVICIOS_MODEL, servicios);
+		model.addAttribute("searchText", searchText);
 
 		return "servicios/procedimientos";
 	}

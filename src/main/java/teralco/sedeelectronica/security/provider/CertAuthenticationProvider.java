@@ -1,4 +1,4 @@
-package teralco.sedeelectronica.security;
+package teralco.sedeelectronica.security.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CertAuthenticationProvider implements AuthenticationProvider {
 
-	protected static final String ROLE_USER_SEDE = "ROLE_USUARIO_SEDE";
+	public static final String ROLE_USER_SEDE = "ROLE_USUARIO_SEDE";
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {

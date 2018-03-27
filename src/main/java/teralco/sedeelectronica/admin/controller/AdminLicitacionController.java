@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +26,6 @@ import teralco.sedeelectronica.utils.FicheroUtils;
 import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
-@PropertySource(value = "classpath:messages/messages.properties")
 public class AdminLicitacionController {
 
 	private static final String MEDIO_MODEL = "medios";
@@ -81,6 +79,11 @@ public class AdminLicitacionController {
 		this.licitacionService.delete(id);
 		redirectAttrs.addFlashAttribute("message", "La licitacion " + id + " ha sido borrada.");
 		return redirList;
+	}
+
+	@RequestMapping({ "/admin/licitaciones/edit/", "/admin/licitaciones/delete/" })
+	public String noAction() {
+		return "redirect:../";
 	}
 
 	@PostMapping(value = "/admin/licitaciones/save")
