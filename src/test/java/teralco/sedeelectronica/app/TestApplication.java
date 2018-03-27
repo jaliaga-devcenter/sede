@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+import teralco.sedeelectronica.security.ProcedimientoHandlerInterceptorAdapter;
+
 @Configuration
 @ComponentScan(basePackages = "teralco.sedeelectronica")
 @EntityScan("teralco.sedeelectronica.model")
@@ -17,7 +19,11 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 public class TestApplication {
 
 	public static void main(String[] args) {
+	}
 
+	@Bean
+	public ProcedimientoHandlerInterceptorAdapter procedimientoInterceptor() {
+		return new ProcedimientoHandlerInterceptorAdapter();
 	}
 
 	@Bean
