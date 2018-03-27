@@ -19,12 +19,6 @@ import teralco.sedeelectronica.security.interceptor.ProcedimientoHandlerIntercep
 public class TestApplication {
 
 	public static void main(String[] args) {
-
-	}
-
-	@Bean
-	public ProcedimientoHandlerInterceptorAdapter procedimientoInterceptor() {
-		return new ProcedimientoHandlerInterceptorAdapter();
 	}
 
 	@Bean

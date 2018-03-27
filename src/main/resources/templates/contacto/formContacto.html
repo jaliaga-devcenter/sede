@@ -21,7 +21,7 @@
 			<form class="g-pa-30 g-mb-30" th:object="${contacto}" th:action="@{/contacto/send}" method="post">
 				<div th:replace="~{fragments/inputs/textField :: input (#{message.contacto.form.label.name}, 'nombre', 'text', #{message.error.notempty}, true)}"></div>
 				<div th:replace="~{fragments/inputs/textField :: input (#{message.contacto.form.label.email}, 'email', 'email', #{message.error.email}, true)}"></div>
-				<div th:replace="~{fragments/inputs/textareaField :: input (#{message.contacto.form.label.comment}, 'comentario', #{message.error.date}, 4, 50, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/textareaField :: input (#{message.contacto.form.label.comment}, 'comentario', #{message.error.notempty}, 4, 50, true, false)}"></div>
 				<div th:if="${messageWarning}" class="alert alert-warning" role="alert">
 					<p th:text="${messageWarning}">success message</p>
 				</div>

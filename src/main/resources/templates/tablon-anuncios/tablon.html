@@ -2,7 +2,7 @@
 <html lang="es" layout:decorator="layouts/main">
 
 <head>
-    <title>Actualidad/Actividades</title>
+    <title th:text="#{message.anuncios.actividades.page.header}">Actualidad/Actividades</title>
 </head>
 
 <body>
@@ -27,9 +27,9 @@
                     <div class="row">
                         <div class="col-sm-10">
                             <p class="g-mb-0" th:if="${#strings.indexOf(anuncio.descripcion,'<!--more-->')>0}"
-                            th:utext="${#strings.substring(anuncio.descripcion,0,#strings.indexOf(anuncio.descripcion,'<!--more-->')) }"/>Cuerpo anuncio</p>
+                            th:utext="${#strings.substring(anuncio.descripcion,0,#strings.indexOf(anuncio.descripcion,'<!--more-->')) }"></p>
                             <p class="g-mb-0" th:unless="${#strings.indexOf(anuncio.descripcion,'<!--more-->')>0}"
-                                    th:utext="${anuncio.descripcion}"/>Cuerpo anuncio</p>
+                                    th:utext="${anuncio.descripcion}"></p>
                             <p>
                                 <a th:href="'./tablon-anuncios/'+ ${anuncio.id}">Leer Más
                                     <i class="fa fa-angle-double-right"></i>
