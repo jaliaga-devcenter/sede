@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main}">
 
 <head>
@@ -23,15 +23,7 @@
 				<div th:replace="~{fragments/inputs/dateField :: input(#{message.licitaciones.form.label.enddate}, 'finPlazo', #{message.error.date}, true, false)}"></div>
 				<div th:replace="~{fragments/inputs/selectField :: input(#{message.licitaciones.form.label.means}, 'medio', ${#strings.arraySplit(#messages.msg('sede.medio'), ',')}, #{message.licitaciones.form.voidselection.means}, #{message.error.notempty}, true, false)}"></div>
 				<div th:replace="~{fragments/inputs/fileField :: input(#{message.licitaciones.form.label.file}, #{message.licitaciones.form.button.file}, 'fileToUpload', #{message.error.notempty}, false, false)}"></div>
-
-				<div class="d-flex justify-content-between g-mt-30">
-					<div>
-						<a href="licitaciones.html" th:href="@{/admin/licitaciones}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.licitaciones.form.button.back}">Atras</a>
-					</div>
-					<div>
-						<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.licitaciones.form.button.save}">Guardar Licitaci&oacute;n</button>
-					</div>
-				</div>
+				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/licitaciones}, #{message.licitaciones.form.button.back}, #{message.licitaciones.form.button.save})}"></div>
 			</form>
 		</section>
 	</div>

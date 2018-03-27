@@ -117,8 +117,10 @@ public class HomeController {
 		categorias.forEach(cat -> servicios.putAll(this.categoriaService.getServiciosPorSubCategorias(this.entidad,
 				LanguageUtils.getLanguage(), cat, Optional.ofNullable(filtro))));
 
-		Predicate<CategoriaDTO> noContieneServicios = cat -> cat.getSubcategorias().stream()
-				.filter(sub -> !(servicios.get(sub.getIdSubcategoria()).isEmpty())).count() == 0;
+		Predicate<CategoriaDTO> noContieneServicios = cat -> cat.getSubcategorias().stream().filter(sub -> {
+			List<ServicioDTO> serviciosPorSubcategoria = servicios.get(sub.getIdSubcategoria());
+			return serviciosPorSubcategoria != null && !serviciosPorSubcategoria.isEmpty();
+		}).count() == 0;
 
 		categorias.removeIf(noContieneServicios);
 
