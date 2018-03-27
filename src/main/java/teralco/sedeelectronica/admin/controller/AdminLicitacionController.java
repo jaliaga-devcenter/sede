@@ -35,13 +35,13 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class AdminLicitacionController {
 
-	private static final String MEDIO_MODEL = "medios";
+	private static final String medioModel = "medios";
 
 	private static String list = "admin/licitaciones/licitaciones";
 	private static String redirList = "redirect:/admin/licitaciones";
 	private static String form = "admin/licitaciones/formLicitacion";
 
-	private static String lang_model = "langs";
+	private static String langModel = "langs";
 
 	private LicitacionService licitacionService;
 	private LenguajeService lenguajeService;
@@ -80,7 +80,7 @@ public class AdminLicitacionController {
 		Licitacion lici = new Licitacion();
 		lang.forEach(e -> lici.getTraducciones().add(new LicitacionLenguaje(e.getCodigo())));
 		model.addAttribute("licitacion", lici);
-		model.addAttribute(lang_model, lang);
+		model.addAttribute(langModel, lang);
 		return form;
 	}
 
@@ -105,6 +105,7 @@ public class AdminLicitacionController {
 			atomicInteger.getAndIncrement();
 
 		});
+
 		atomicInteger.set(0);
 		// anyadir
 		target.forEach(s -> {
@@ -117,7 +118,7 @@ public class AdminLicitacionController {
 		});
 
 		model.addAttribute("licitacion", lici);
-		model.addAttribute(lang_model, langs);
+		model.addAttribute(langModel, langs);
 		return form;
 
 	}
@@ -137,7 +138,7 @@ public class AdminLicitacionController {
 	@PostMapping(value = "/admin/licitaciones/save")
 	public String save(@Valid @ModelAttribute("licitacion") Licitacion lici, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute(lang_model, this.lenguajeService.list());
+			model.addAttribute(langModel, this.lenguajeService.list());
 			return form;
 		}
 

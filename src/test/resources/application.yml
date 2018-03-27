@@ -1,14 +1,21 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:test;MODE=MySQL
+    url: jdbc:h2:mem:test;MODE=POSTGRESQL
+    platform: test
     username: sa
     password:
     driver-class-name: org.h2.Driver
+    continue-on-error: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      
+
 flyway:
-  url: "jdbc:h2:mem:test;MODE=MySQL;INIT=RUNSCRIPT FROM 'classpath:flyway_init.sql'"
-  user: sa
-  password:
+  enabled: true
   baseline-on-migrate: true
+    
+
 
 #spring.datasource.driver-class-name: org.h2.Driver
 #spring.datasource.url: jdbc:h2:mem:sede;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
@@ -22,7 +29,6 @@ spring.h2.console.path: /h2
 # hibernate.X
 hibernate.dialect: org.hibernate.dialect.H2Dialect
 hibernate.show_sql: true
-hibernate.hbm2ddl.auto: create-drop
 hibernate.cache.use_second_level_cache: true
 hibernate.cache.use_query_cache: true
 hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionFactory

@@ -11,7 +11,7 @@
 $(document).ready(function() {    
     $('#search').multiselect({
         search: {
-            left: '<div class="input-group"><input type="text" name="q" class="form-control multi"/><span class="input-group-addon bg-white border-left-0"><i class="fa fa-search"></i></span></div>',
+            left: '<input type="text" name="q" class="form-control multi"/>',
         },
         fireSearch: function(value) {
             return value.length > 1;
@@ -145,7 +145,7 @@ if (typeof jQuery === 'undefined') {
                 ignoreDisabled:     settings.ignoreDisabled !== undefined ? settings.ignoreDisabled : false,
                 matchOptgroupBy:    settings.matchOptgroupBy !== undefined ? settings.matchOptgroupBy : 'label'
             };
-            
+
             delete settings.keepRenderingSort, settings.submitAllLeft, settings.submitAllRight, settings.search, settings.ignoreDisabled, settings.matchOptgroupBy;
 
             this.callbacks = settings;
@@ -206,8 +206,10 @@ if (typeof jQuery === 'undefined') {
                 var self = this;
 
                 // Attach event to left filter
+             
                 if (self.options.search && self.options.search.$left) {
                     self.options.search.$left.on('keyup', function(e) {
+
                         if (self.callbacks.fireSearch(this.value)) {
                             var $toShow = self.$left.find('option:search("' + this.value + '")').mShow();
                             var $toHide = self.$left.find('option:not(:search("' + this.value + '"))').mHide();
@@ -222,6 +224,7 @@ if (typeof jQuery === 'undefined') {
                 // Attach event to right filter
                 if (self.options.search && self.options.search.$right) {
                     self.options.search.$right.on('keyup', function(e) {
+                        alert(this.e);
                         if (self.callbacks.fireSearch(this.value)) {
                             var $toShow = self.$right.find('option:search("' + this.value + '")').mShow();
                             var $toHide = self.$right.find('option:not(:search("' + this.value + '"))').mHide();

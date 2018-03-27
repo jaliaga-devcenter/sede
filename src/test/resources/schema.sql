@@ -6,7 +6,12 @@ create table FICHERO (
    NOMBRE_ORIGINAL		VARCHAR(255)	 null,
    TAMANYO				FLOAT			 null,
    TIPO					SMALLINT		 null,
-   constraint PK_FICHERO primary key (ID)
+);
+
+create table LENGUAJE (
+   ID                   SERIAL 		 not null,
+   CODIGO		VARCHAR(255) null UNIQUE,
+   IDIOMA				TEXT			 null,
 );
 
 create table LICITACION (
@@ -16,15 +21,24 @@ create table LICITACION (
    DESCRIPCION			TEXT 			null,
    PRESUPUESTO			DECIMAL 		null,
    FIN_PLAZO			DATE 			null, 
-   MEDIO				TEXT 		null,
-   constraint PK_LICITACION primary key (ID)
+   MEDIO				SMALLINT 		null,
  );
  
  alter table LICITACION
    add constraint FK_LICITACION_FICHERO foreign key (ID_FICHERO)
       references FICHERO (ID)
       on delete restrict on update restrict;
-      
+
+create table LICITACION_LENGUAJE (
+  licitacion_id SERIAL not null, 
+  DESCRIPCION TEXT, 
+  idioma varchar(255)
+  );
+
+alter table LICITACION_LENGUAJE
+ add constraint FK_LICITACION_LICITACION_LENGUAJE foreign key (licitacion_id) 
+ references LICITACION(ID)
+ on delete restrict on update restrict;
 
 create table APERTURA (
    ID                   SERIAL 		not null,
@@ -33,7 +47,6 @@ create table APERTURA (
    DENOMINACION			TEXT 			null,
    HORA			TIME 		null,
    PLICA			TEXT 			null, 
-   constraint PK_APERTURA primary key (ID)
  );
  
  alter table APERTURA
@@ -42,7 +55,7 @@ create table APERTURA (
       on delete restrict on update restrict;
       
 create table ADJUDICACION (
-   ID                   SERIAL 		not null,
+   ID2                   SERIAL 		not null,
    ID_FICHERO           INT8            null,
    FECHA				DATE 			null,
    DENOMINACION			TEXT 			null,
@@ -52,7 +65,6 @@ create table ADJUDICACION (
    EMPRESA_ADJUDICACION	TEXT 			null,
    PRESUPUESTO			DECIMAL 		null,
    FECHA_ADJUDICACION	DATE 			null,   
-   constraint PK_ADJUDICACION primary key (ID)
  );
  
  alter table ADJUDICACION
@@ -65,7 +77,6 @@ create table DOCUMENTACION (
    ID_FICHERO           INT8            null,
    DESCRIPCION			TEXT 			null,
    ESTADO				SMALLINT 		null,
-   constraint PK_DOCUMENTACION primary key (ID)
  );
  
  alter table DOCUMENTACION
@@ -77,7 +88,6 @@ create table MODELO (
    ID                   SERIAL 		not null,
    ID_FICHERO           INT8            null,
    DESCRIPCION			TEXT 			null,
-   constraint PK_MODELO primary key (ID)
  );
  
  alter table MODELO
@@ -91,7 +101,6 @@ create table AVISO (
    ID_FICHERO           INT8            null,
    DESCRIPCION			TEXT 			null,
    FECHA				DATE 			null,   
-   constraint PK_AVISO primary key (ID)
  );
  
  alter table AVISO
@@ -106,7 +115,6 @@ create table ANUNCIO (
    FECHA_HASTA            DATE  null,   
    TITULO			TEXT 			null,
    DESCRIPCION			TEXT 			null,
-   constraint PK_ANUNCIO primary key (ID)
  );
  
  alter table ANUNCIO
@@ -120,14 +128,12 @@ create table NORMATIVA (
    NORMA            TEXT  null,   
    ARTICULO			TEXT 			null,
    TEXTO			TEXT 			null,
-   constraint PK_NORMATIVA primary key (ID)
  );
 
 create table PARADA (
    ID                   SERIAL 		not null,
    FECHA            DATE  null,
    DESCRIPCION			TEXT 			null,
-   constraint PK_PARADA primary key (ID)
  );
 
  create table NOTICIA (
@@ -135,7 +141,6 @@ create table PARADA (
    FECHA            TIMESTAMP  null,
    TITULO			TEXT 			null,
    DESCRIPCION			TEXT 			null,
-   constraint PK_NOTICIA primary key (ID)
  );
  
 

@@ -2,7 +2,6 @@ package teralco.sedeelectronica.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,6 @@ public class AdjudicacionRepositoryTest {
 	private AdjudicacionRepository adjudicacionRepository;
 
 	@Test
-	@Ignore
 	public void saveTest() {
 		// ARRANGE
 		Adjudicacion adju = new Adjudicacion();

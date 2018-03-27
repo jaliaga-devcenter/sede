@@ -1,6 +1,7 @@
 package teralco.sedeelectronica.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -25,6 +26,8 @@ import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
 public class PerfilContratanteController {
+
+	private static String encrypt = "encrypt";
 
 	@Autowired
 	private EncryptUtils encryptUtils;
@@ -56,11 +59,13 @@ public class PerfilContratanteController {
 	public String licitaciones(Model model, @PageableDefault(value = 10) Pageable pageable) {
 
 		Page<Licitacion> pages = this.licitacionService.listAllByPage(pageable);
+		pages.forEach(s -> s.getTraducciones()
+				.removeIf(i -> !i.getIdioma().equals(LocaleContextHolder.getLocale().toString())));
 		model.addAttribute("licitaciones", pages);
 		PageWrapper<Licitacion> page = new PageWrapper<>(pages, "/licitaciones");
 		model.addAttribute("page", page);
 
-		model.addAttribute("encrypt", this.encryptUtils);
+		model.addAttribute(encrypt, this.encryptUtils);
 		return "contratante/licitaciones";
 	}
 
@@ -84,7 +89,7 @@ public class PerfilContratanteController {
 		PageWrapper<Adjudicacion> page = new PageWrapper<>(pages, "/adjudicaciones");
 
 		model.addAttribute("page", page);
-		model.addAttribute("encrypt", this.encryptUtils);
+		model.addAttribute(encrypt, this.encryptUtils);
 
 		return "contratante/adjudicaciones";
 	}
@@ -97,7 +102,7 @@ public class PerfilContratanteController {
 		PageWrapper<Documentacion> page = new PageWrapper<>(pages, "/documentos");
 
 		model.addAttribute("page", page);
-		model.addAttribute("encrypt", this.encryptUtils);
+		model.addAttribute(encrypt, this.encryptUtils);
 
 		return "contratante/documentos";
 	}
@@ -110,7 +115,7 @@ public class PerfilContratanteController {
 		PageWrapper<Modelo> page = new PageWrapper<>(pages, "/modelos");
 
 		model.addAttribute("page", page);
-		model.addAttribute("encrypt", this.encryptUtils);
+		model.addAttribute(encrypt, this.encryptUtils);
 
 		return "contratante/modelos";
 	}
@@ -123,7 +128,7 @@ public class PerfilContratanteController {
 		PageWrapper<Aviso> page = new PageWrapper<>(pages, "/avisos");
 
 		model.addAttribute("page", page);
-		model.addAttribute("encrypt", this.encryptUtils);
+		model.addAttribute(encrypt, this.encryptUtils);
 		return "contratante/avisos";
 	}
 

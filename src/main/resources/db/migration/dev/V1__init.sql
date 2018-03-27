@@ -153,7 +153,7 @@ create table PARADA (
    constraint PK_NOTICIA primary key (ID)
  );
 
-INSERT INTO lenguaje(CODIGO, IDIOMA) VALUES ("es","Castellano");
+--INSERT INTO lenguaje(CODIGO, IDIOMA) VALUES ("es","Castellano");
  
 
  
