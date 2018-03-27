@@ -10,8 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-import teralco.sedeelectronica.security.interceptor.ProcedimientoHandlerInterceptorAdapter;
-
 @Configuration
 @ComponentScan(basePackages = "teralco.sedeelectronica")
 @EntityScan("teralco.sedeelectronica.model")
