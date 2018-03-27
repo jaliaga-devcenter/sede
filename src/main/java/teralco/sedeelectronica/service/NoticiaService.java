@@ -42,7 +42,7 @@ public class NoticiaService {
 		return this.noticiaRepository.findAll(pageable);
 	}
 
-	// Pagination order by
+	// List order by
 	public List<Noticia> listAll() {
 		return this.noticiaRepository.findAllByOrderByFechaDesc();
 	}
