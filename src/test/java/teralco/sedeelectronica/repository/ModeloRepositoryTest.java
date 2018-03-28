@@ -3,8 +3,6 @@ package teralco.sedeelectronica.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNull;
 
-import java.util.List;
-
 import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -39,7 +37,6 @@ public class ModeloRepositoryTest {
 		model.setFichero(file);
 
 		model = this.modeloRepository.save(model);
-		List<Modelo> list = this.modeloRepository.findAll();
 		// ACT
 		Modelo found = this.modeloRepository.findById(model.getId());
 

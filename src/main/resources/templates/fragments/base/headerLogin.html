@@ -1,7 +1,7 @@
 <html 		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <body>
-    <th:block th:fragment="header">
+    <th:block th:fragment="headerLogin">
         <!-- Header -->
         <header id="js-header" class="u-header u-header--static u-header--floating">
             <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3">
@@ -49,8 +49,8 @@
                                 </li>
                                 <!-- End Intro -->
                                 <!-- Intro -->
-                                <li class="nav-item  g-mx-10--lg g-mx-15--xl" sec:authorize="!isAuthenticated()">
-                                    <a  class="nav-link g-py-7 g-px-0" href="perfil-del-contratante.html" th:href="@{/perfil-del-contratante}" th:text="#{message.header.menu.link.five}">Perfil del contratante</a>                                
+                                <li class="nav-item  g-mx-10--lg g-mx-15--xl">
+                                    <a  class="nav-link g-py-7 g-px-0" href="perfil-del-contratante.html" th:href="@{/admin}" th:text="#{message.header.menu.link.six}">Perfil del contratante</a>                                    
                                 </li>
                                 <!-- End Intro -->
                                 <div class="nav-item g-mx-10--lg g-mx-15--xl">
