@@ -37,7 +37,6 @@ public class ModeloRepositoryTest {
 		model.setFichero(file);
 
 		model = this.modeloRepository.save(model);
-
 		// ACT
 		Modelo found = this.modeloRepository.findById(model.getId());
 
@@ -79,7 +78,6 @@ public class ModeloRepositoryTest {
 		model.setFichero(file);
 
 		model = this.modeloRepository.save(model);
-
 		// ACT
 		Modelo found = this.modeloRepository.findById(model.getId());
 		this.modeloRepository.delete(found);

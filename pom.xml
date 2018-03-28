@@ -18,9 +18,8 @@
 		<thymeleaf-layout-dialect.version>2.2.1</thymeleaf-layout-dialect.version>
 		<java.version>1.8</java.version>
 		<!-- guava -->
-		<guava.version>24.0-jre</guava.version>
+		<guava.version>24.0-jre</guava.version>		
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -56,6 +55,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.ws</groupId>

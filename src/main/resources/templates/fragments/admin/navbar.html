@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es"
+
 
 <body>
 	<th:block th:fragment="navbar">
@@ -11,6 +12,11 @@
 						 aria-expanded="false">
 							Gestionar datos
 						</button>
+						<div class="col-9 text-right">
+							<form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post" class="form-inline">
+								<a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;" class="btn btn-md u-btn-primary g-color-black"><span class="icon-logout"></span> Logout</a>
+							</form>
+						</div>
 						<div class="dropdown-menu dropdown-menu-right">
 							<a class="dropdown-item" th:classappend="@{/} + 'admin/licitaciones' == ${#httpServletRequest.requestURI.toString()}? 'active'" href="licitaciones.html" th:href="@{/admin/licitaciones}" th:text="#{message.subheader.menu.link.three}">Licitaciones</a>
 							<a class="dropdown-item" th:classappend="@{/} + 'admin/aperturas' == ${#httpServletRequest.requestURI.toString()}? 'active'" href="aperturas.html" th:href="@{/admin/aperturas}" th:text="#{message.subheader.menu.link.four}">Aperturas</a>
@@ -22,9 +28,11 @@
 							 <a class="dropdown-item" th:classappend="@{/} + 'admin/paradas' == ${#httpServletRequest.requestURI.toString()}? 'active'" href="paradas.html" th:href="@{/admin/paradas}" th:text="#{message.subheader.menu.link.ten}">Paradas</a>
 							 <a class="dropdown-item" th:classappend="@{/} + 'admin/anuncios' == ${#httpServletRequest.requestURI.toString()}? 'active'" href="anuncios.html" th:href="@{/admin/anuncios}" th:text="#{message.subheader.menu.link.eleven}">Tablon anuncios</a>
 							 <a class="dropdown-item" th:classappend="@{/} + 'admin/normativa' == ${#httpServletRequest.requestURI.toString()}? 'active'" href="normativa.html" th:href="@{/admin/normativa}" th:text="#{message.subheader.menu.link.twelve}">Tablon anuncios</a>
+							 
 						</div>
 					</div>
 				</div>
+				
 			</div>
 		</section>
 	</th:block>
