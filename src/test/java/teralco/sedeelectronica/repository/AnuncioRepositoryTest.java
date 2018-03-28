@@ -17,6 +17,7 @@ import teralco.sedeelectronica.model.Fichero;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { Application.class })
 public class AnuncioRepositoryTest {
+
 	@Autowired
 	private AnuncioRepository anuncioRepository;
 

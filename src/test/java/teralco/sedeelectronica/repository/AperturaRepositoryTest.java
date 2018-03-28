@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNull;
 import java.util.Date;
 
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import teralco.sedeelectronica.model.Fichero;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { Application.class })
 @SuppressWarnings("deprecation")
+@Ignore
 public class AperturaRepositoryTest {
 	@Autowired
 	private AperturaRepository aperturaRepository;

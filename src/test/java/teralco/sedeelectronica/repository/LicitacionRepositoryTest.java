@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import teralco.sedeelectronica.model.Licitacion;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
 @SuppressWarnings("deprecation")
+@Ignore
 public class LicitacionRepositoryTest {
 
 	@Autowired
