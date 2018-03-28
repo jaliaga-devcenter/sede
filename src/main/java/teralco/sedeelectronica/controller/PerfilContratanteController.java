@@ -26,7 +26,7 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class PerfilContratanteController {
 
-	private static String encrypt = "redirect:/admin/licitaciones";
+	private static String encrypt = "encrypt";
 
 	@Autowired
 	private EncryptUtils encryptUtils;

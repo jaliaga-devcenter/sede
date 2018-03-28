@@ -1203,3 +1203,11 @@ input[type="checkbox"]:checked+.g-overlay-primary-0_9--checked::after, input[typ
 .g-line-height-1 {
   line-height: 1 !important;
 }
+
+.align-v-center {
+  top: 50%;
+  -ms-transform: translateY(50%);
+  -webkit-transform: translateY(50%);
+  transform: translateY(50%);
+
+}
