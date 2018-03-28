@@ -36,6 +36,11 @@ public class AyudaController {
 		return "aviso-legal";
 	}
 
+	@RequestMapping("/politica-cookies")
+	public String politica() {
+		return "politica-cookies";
+	}
+
 	@RequestMapping("/mapa-web")
 	public String mapaWeb() {
 		return "mapa-web";

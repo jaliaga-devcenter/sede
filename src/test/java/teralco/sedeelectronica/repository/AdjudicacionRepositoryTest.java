@@ -1,42 +1,105 @@
 package teralco.sedeelectronica.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNull;
 
+import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import teralco.sedeelectronica.app.TestApplication;
+import teralco.sedeelectronica.app.Application;
 import teralco.sedeelectronica.model.Adjudicacion;
+import teralco.sedeelectronica.model.Fichero;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { TestApplication.class })
-@DataJpaTest
+@SpringBootTest(classes = { Application.class })
+@Ignore
 public class AdjudicacionRepositoryTest {
-	@Autowired
-	private TestEntityManager entityManager;
 
 	@Autowired
 	private AdjudicacionRepository adjudicacionRepository;
 
+	@Autowired
+	private FicheroRepository ficheroRepository;
+
 	@Test
-	@Ignore
 	public void saveTest() {
 		// ARRANGE
+		Fichero file = new Fichero();
+		this.ficheroRepository.save(file);
+
 		Adjudicacion adju = new Adjudicacion();
 		adju.setDenominacion("una denominacion");
-		this.entityManager.persist(adju);
+		adju.setEmpresaAdjudicacion(null);
+		adju.setFecha(null);
+		adju.setFechaAdjudicacion(null);
+		adju.setHora(null);
+		adju.setPlica(null);
+		adju.setPresupuesto(null);
+		adju.setResultado(file);
+
+		adju = this.adjudicacionRepository.save(adju);
 
 		// ACT
-		Adjudicacion found = this.adjudicacionRepository.findById((long) 1);
+		Adjudicacion found = this.adjudicacionRepository.findById(adju.getId());
 
 		// ASSERT
 		assertThat(found.getDenominacion()).isEqualTo(adju.getDenominacion());
+	}
+
+	@Test
+	public void editTest() {
+		// ARRANGE
+		Fichero file = new Fichero();
+		this.ficheroRepository.save(file);
+
+		Adjudicacion adju = new Adjudicacion();
+		adju.setDenominacion("una denominacion");
+		adju.setResultado(file);
+
+		adju = this.adjudicacionRepository.save(adju);
+
+		// ACT
+		Adjudicacion found = this.adjudicacionRepository.findById(adju.getId());
+		found.setDenominacion("esto es otra denominacion");
+
+		this.adjudicacionRepository.save(found);
+
+		adju = this.adjudicacionRepository.findById(adju.getId());
+
+		// ASSERT
+		assertThat(found.getDenominacion()).isEqualTo(adju.getDenominacion());
+	}
+
+	@Test
+	public void removeTest() {
+		// ARRANGE
+		Fichero file = new Fichero();
+		this.ficheroRepository.save(file);
+
+		Adjudicacion adju = new Adjudicacion();
+		adju.setDenominacion("una denominacion");
+		adju.setResultado(file);
+		adju = this.adjudicacionRepository.save(adju);
+
+		// ACT
+		Adjudicacion found = this.adjudicacionRepository.findById(adju.getId());
+		this.adjudicacionRepository.delete(found);
+
+		found = this.adjudicacionRepository.findById(adju.getId());
+
+		// ASSERT
+		assertNull(found);
+	}
+
+	@After
+	public void delete() {
+		this.adjudicacionRepository.deleteAll();
+		this.ficheroRepository.deleteAll();
 	}
 
 }

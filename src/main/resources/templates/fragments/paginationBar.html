@@ -6,7 +6,7 @@
 		<nav class="text-center mt-5" aria-label="Page Navigation">
 			<ul class="list-inline">
 				<li class="list-inline-item" th:classappend="${page.firstPage}? 'disabled' : ''">
-					<a class="u-pagination-v1__item u-pagination-v1-2 g-pa-4-13" href="#!" aria-label="Previous" th:if="${not page.firstPage}"
+					<a class="u-pagination-v1__item u-pagination-v1-3 g-pa-4-13" href="#!" aria-label="Previous" th:if="${not page.firstPage}"
 					 th:href="@{${page.url}(page=0,size=${page.size})}">
 						<span aria-hidden="true">
 							<i class="fa fa-angle-left g-mr-5"></i>
@@ -16,13 +16,13 @@
 					</a>
 				</li>
 				<li class="list-inline-item g-hidden-sm-down" th:each="item : ${page.items}">
-					<a class="u-pagination-v1__item u-pagination-v1-2 g-pa-4-11" th:classappend="${item.current}? 'u-pagination-v1-2--active' : ''"
+					<a class="u-pagination-v1__item u-pagination-v1-3 g-pa-4-11" th:classappend="${item.current}? 'u-pagination-v1-3--active' : ''"
 					 href="#!" th:href="@{${page.url}(page=${item.number-1},size=${page.size})}">
 						<span th:text="${item.number}">1</span>
 					</a>
 				</li>
 				<li class="list-inline-item" th:classappend="${page.lastPage}? 'disabled' : ''">
-					<a class="u-pagination-v1__item u-pagination-v1-2 g-pa-4-13" href="#!" aria-label="Next" th:if="${not page.lastPage}" th:href="@{${page.url}(page=${page.totalPages-1},size=${page.size})}">
+					<a class="u-pagination-v1__item u-pagination-v1-3 g-pa-4-13" href="#!" aria-label="Next" th:if="${not page.lastPage}" th:href="@{${page.url}(page=${page.totalPages-1},size=${page.size})}">
 						<span aria-hidden="true">
 							<span th:text="#{message.paginacion.ultimo}">Last</span>
 							<i class="fa fa-angle-right g-ml-5"></i>

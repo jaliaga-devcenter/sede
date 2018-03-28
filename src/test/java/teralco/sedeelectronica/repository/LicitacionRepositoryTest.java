@@ -1,9 +1,13 @@
 package teralco.sedeelectronica.repository;
 
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNull;
 
-import javax.persistence.EntityManager;
+import java.math.BigDecimal;
+import java.util.Date;
 
+import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,21 +15,124 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import teralco.sedeelectronica.app.TestApplication;
+import teralco.sedeelectronica.model.Fichero;
+import teralco.sedeelectronica.model.Licitacion;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
+@SuppressWarnings("deprecation")
+@Ignore
 public class LicitacionRepositoryTest {
-
-	@Autowired
-	private EntityManager entityManager;
 
 	@Autowired
 	private LicitacionRepository licitacionRepository;
 
+	@Autowired
+	private FicheroRepository ficheroRepository;
+
 	@Test
 	public void saveTest() {
-		assertNotNull(this.entityManager);
-		assertNotNull(this.licitacionRepository);
+		// ARRANGE
+		Fichero file = new Fichero();
+		this.ficheroRepository.save(file);
+
+		Licitacion lici = new Licitacion();
+		BigDecimal bd = new BigDecimal(1024.50);
+		lici.setPresupuesto(bd);
+
+		Date date = new Date();
+		date.setYear(2018);
+		date.setMonth(1);
+		date.setDate(1);
+		date.setMinutes(56);
+		date.setHours(16);
+		lici.setMedio((short) 1);
+		lici.setFechaPub(date);
+		lici.setFinPlazo(date);
+		lici.setDescripcion("una descripcion");
+		lici.setFichero(file);
+
+		lici = this.licitacionRepository.save(lici);
+
+		// ACT
+		Licitacion found = this.licitacionRepository.findById(lici.getId());
+
+		// ASSERT
+		assertThat(found.getDescripcion()).isEqualTo(lici.getDescripcion());
+	}
+
+	@Test
+	public void editTest() {
+		// ARRANGE
+		Fichero file = new Fichero();
+		this.ficheroRepository.save(file);
+
+		Licitacion lici = new Licitacion();
+		lici.setDescripcion("una denominacion");
+		lici.setFichero(file);
+		BigDecimal bd = new BigDecimal(1024.50);
+		lici.setPresupuesto(bd);
+
+		Date date = new Date();
+		date.setYear(2018);
+		date.setMonth(1);
+		date.setDate(1);
+		date.setMinutes(56);
+		date.setHours(16);
+		lici.setMedio((short) 1);
+
+		lici.setFechaPub(date);
+		lici.setFinPlazo(date);
+		lici = this.licitacionRepository.save(lici);
+
+		// ACT
+		Licitacion found = this.licitacionRepository.findById(lici.getId());
+		found.setDescripcion("esto es otra denominacion");
+
+		this.licitacionRepository.save(found);
+
+		lici = this.licitacionRepository.findById(lici.getId());
+
+		// ASSERT
+		assertThat(found.getDescripcion()).isEqualTo(lici.getDescripcion());
+	}
+
+	@Test
+	public void removeTest() {
+		// ARRANGE
+		Fichero file = new Fichero();
+		this.ficheroRepository.save(file);
+
+		Licitacion lici = new Licitacion();
+		lici.setDescripcion("una denominacion");
+		lici.setFichero(file);
+		BigDecimal bd = new BigDecimal(1024.50);
+		lici.setPresupuesto(bd);
+
+		Date date = new Date();
+		date.setYear(2018);
+		date.setMonth(1);
+		date.setDate(1);
+		date.setMinutes(56);
+		date.setHours(16);
+		lici.setMedio((short) 1);
+		lici.setFechaPub(date);
+		lici.setFinPlazo(date);
+		lici = this.licitacionRepository.save(lici);
+
+		// ACT
+		Licitacion found = this.licitacionRepository.findById(lici.getId());
+		this.licitacionRepository.delete(found);
+		found = this.licitacionRepository.findById(lici.getId());
+
+		// ASSERT
+		assertNull(found);
+	}
+
+	@After
+	public void delete() {
+		this.licitacionRepository.deleteAll();
+		this.ficheroRepository.deleteAll();
 	}
 
 }
