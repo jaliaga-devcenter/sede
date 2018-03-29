@@ -24,13 +24,8 @@ public class NoticiaRepositoryTest {
 	@Test
 	public void saveTest() {
 		// DECLARE VARIABLES
-		String titulo = "pedazo de título";
-		String desc = "cualquier descripción";
 		// ARRANGE
 		Noticia news = new Noticia();
-
-		news.setTitulo(titulo);
-		news.setDescripcion(desc);
 
 		news = this.noticiaRepository.save(news);
 
@@ -38,43 +33,34 @@ public class NoticiaRepositoryTest {
 		Noticia found = this.noticiaRepository.findById(news.getId());
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(news.getDescripcion());
+		assertThat(found.getId()).isEqualTo(news.getId());
 	}
 
 	@Test
 	public void editTest() {
 		// DECLARE VARIABLES
-		String titulo = "pedazo de título";
-		String desc = "cualquier descripción";
 		// ARRANGE
 		Noticia news = new Noticia();
 
-		news.setTitulo(titulo);
-		news.setDescripcion(desc);
 		news = this.noticiaRepository.save(news);
 
 		// ACT
 		Noticia found = this.noticiaRepository.findById(news.getId());
-		found.setDescripcion("esto es otra denominacion");
 
 		this.noticiaRepository.save(found);
 
 		news = this.noticiaRepository.findById(news.getId());
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(news.getDescripcion());
+		assertThat(found.getId()).isEqualTo(news.getId());
 	}
 
 	@Test
 	public void removeTest() {
 		// DECLARE VARIABLES
-		String titulo = "pedazo de título";
-		String desc = "cualquier descripción";
 		// ARRANGE
 		Noticia news = new Noticia();
 
-		news.setTitulo(titulo);
-		news.setDescripcion(desc);
 		news = this.noticiaRepository.save(news);
 
 		// ACT

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main-login}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main}">
 
 <head>
 	<title th:text="*{licitacion.id!=null}?  #{message.licitaciones.form.edit} : #{message.licitaciones.form.new}"></title>
@@ -22,13 +22,13 @@
 			<form class="g-pa-30 g-mb-30" th:object="${licitacion}" th:action="@{/admin/licitaciones/save}" method="post" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
 
-				<div th:replace="~{fragments/inputs/dateField :: input(#{message.licitaciones.form.label.publishdate}, 'fechaPub', #{message.licitaciones.form.error.publishdate}, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/dateField :: input(#{message.licitaciones.form.label.publishdate}, 'fechaPub', #{message.error.notempty}, true, false)}"></div>
 				<div class="row">
 					<div class="col-10">
 						<!-- Tab panes -->
 						<div id="nav-5-2-primary-ver" class="tab-content g-pt-20">
 							<div th:each="des,iter: ${licitacion.traducciones}" class="tab-pane fade" th:classappend="${iter.index==0} ? 'show active' : ''"  th:id="'nav-5-2-primary-ver--'+${iter.index}" role="tabpanel">
-								<div th:replace="~{fragments/inputs/textareaField :: input (#{message.licitaciones.form.label.description}, traducciones[__${iter.index}__].descripcion, #{message.licitaciones.form.error.description}, 4, 50, true, false)}"></div>
+								<div th:replace="~{fragments/inputs/textareaField :: input (#{message.licitaciones.form.label.description}, traducciones[__${iter.index}__].descripcion, #{message.error.notempty}, 4, 50, true, false)}"></div>
 								<input type="hidden" th:field="*{traducciones[__${iter.index}__].idioma}" />
 							</div>
 	  					</div>
@@ -45,19 +45,13 @@
 					    </ul>
 					</div>
 				</div>
-				<div th:replace="~{fragments/inputs/numberField :: input(#{message.licitaciones.form.label.budget}, 'presupuesto', 0.01, #{message.licitaciones.form.error.budget}, true, false)}"></div>
-				<div th:replace="~{fragments/inputs/dateField :: input(#{message.licitaciones.form.label.enddate}, 'finPlazo', #{message.licitaciones.form.error.enddate}, true, false)}"></div>
-				<div th:replace="~{fragments/inputs/selectField :: input(#{message.licitaciones.form.label.means}, 'medio', ${#strings.arraySplit(#messages.msg('sede.medio'), ',')}, #{message.licitaciones.form.voidselection.means}, #{message.licitaciones.form.error.means}, true, false)}"></div>
-				<div th:replace="~{fragments/inputs/fileField :: input(#{message.licitaciones.form.label.file}, #{message.licitaciones.form.button.file}, 'fileToUpload', #{message.licitaciones.form.error.file}, false, false)}"></div>
+				<div th:replace="~{fragments/inputs/numberField :: input(#{message.licitaciones.form.label.budget}, 'presupuesto', 0.01, #{message.error.notempty}, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/dateField :: input(#{message.licitaciones.form.label.enddate}, 'finPlazo', #{message.error.notempty}, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/selectField :: input(#{message.licitaciones.form.label.means}, 'medio', ${#strings.arraySplit(#messages.msg('sede.medio'), ',')}, #{message.licitaciones.form.voidselection.means}, #{message.error.notempty}, true, false)}"></div>
+				<div th:replace="~{fragments/inputs/fileField :: input(#{message.licitaciones.form.label.file}, #{message.licitaciones.form.button.file}, 'fileToUpload', #{message.error.notempty}, false, false)}"></div>
 
-				<div class="d-flex justify-content-between g-mt-30">
-					<div>
-						<a href="licitaciones.html" th:href="@{/admin/licitaciones}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.licitaciones.form.button.back}">Atras</a>
-					</div>
-					<div>
-						<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.licitaciones.form.button.save}">Guardar Licitaci&oacute;n</button>
-					</div>
-				</div>
+				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/licitaciones}, #{message.licitaciones.form.button.back}, #{message.licitaciones.form.button.save})}"></div>
+
 			</form>
 		</section>
 	</div>

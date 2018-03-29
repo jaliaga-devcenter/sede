@@ -3,6 +3,8 @@ package teralco.sedeelectronica.model;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Embeddable
 public class AdjudicacionLenguaje extends BaseLanguage {
 
@@ -11,7 +13,14 @@ public class AdjudicacionLenguaje extends BaseLanguage {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Column
-	private String descripcion;
+	@NotEmpty
+	private String denominacion;
+
+	@Column(nullable = true)
+	private String plica;
+
+	@Column(name = "empresa_adjudicacion")
+	private String empresaAdjudicacion;
 
 	public AdjudicacionLenguaje() {
 	}
@@ -20,17 +29,27 @@ public class AdjudicacionLenguaje extends BaseLanguage {
 		this.setIdioma(codigo);
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDenominacion() {
+		return this.denominacion;
 	}
 
-	public void setDescripcion(String pDescripcion) {
-		this.descripcion = pDescripcion;
+	public void setDenominacion(String pDenominacion) {
+		this.denominacion = pDenominacion;
 	}
 
-	@Override
-	public String toString() {
-		return "LicitacionLenguaje [descripcion=" + this.descripcion + ", getIdioma()=" + getIdioma() + "]";
+	public String getPlica() {
+		return this.plica;
 	}
 
+	public void setPlica(String pPlica) {
+		this.plica = pPlica;
+	}
+
+	public String getEmpresaAdjudicacion() {
+		return this.empresaAdjudicacion;
+	}
+
+	public void setEmpresaAdjudicacion(String adjudicacion) {
+		this.empresaAdjudicacion = adjudicacion;
+	}
 }

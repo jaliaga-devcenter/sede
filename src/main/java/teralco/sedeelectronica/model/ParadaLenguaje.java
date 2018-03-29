@@ -6,34 +6,21 @@ import javax.persistence.Embeddable;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Embeddable
-public class AnuncioLenguaje extends BaseLanguage {
+public class ParadaLenguaje extends BaseLanguage {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	@NotEmpty
-	@Column(nullable = false)
-	private String titulo;
-
-	@NotEmpty
-	@Column(nullable = false)
+	@Column
 	private String descripcion;
 
-	public AnuncioLenguaje() {
+	public ParadaLenguaje() {
 	}
 
-	public AnuncioLenguaje(String codigo) {
+	public ParadaLenguaje(String codigo) {
 		this.setIdioma(codigo);
-	}
-
-	public String getTitulo() {
-		return this.titulo;
-	}
-
-	public void setTitulo(String pTitulo) {
-		this.titulo = pTitulo;
 	}
 
 	public String getDescripcion() {
@@ -43,4 +30,5 @@ public class AnuncioLenguaje extends BaseLanguage {
 	public void setDescripcion(String pDescripcion) {
 		this.descripcion = pDescripcion;
 	}
+
 }

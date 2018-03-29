@@ -1,8 +1,12 @@
 package teralco.sedeelectronica.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -11,7 +15,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,10 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class Anuncio extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
-
-	@NotEmpty
-	@Column(nullable = false)
-	private String titulo;
 
 	@Column(name = "fecha_de")
 	@Temporal(TemporalType.DATE)
@@ -34,10 +33,6 @@ public class Anuncio extends BaseModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaHasta;
 
-	@NotEmpty
-	@Column(nullable = false)
-	private String descripcion;
-
 	/* For upload file in form */
 	@Transient
 	private transient MultipartFile fileToUpload;
@@ -46,28 +41,24 @@ public class Anuncio extends BaseModel {
 	@JoinColumn(name = "id_fichero", nullable = true)
 	private Fichero fichero;
 
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "anuncio_lenguaje", joinColumns = @JoinColumn(name = "anuncio_id"))
+	private List<AnuncioLenguaje> traducciones = new ArrayList<>();
+
+	public List<AnuncioLenguaje> getTraducciones() {
+		return this.traducciones;
+	}
+
+	public void setTraducciones(List<AnuncioLenguaje> pTraducciones) {
+		this.traducciones = pTraducciones;
+	}
+
 	public Fichero getFichero() {
 		return this.fichero;
 	}
 
 	public void setFichero(Fichero pFichero) {
 		this.fichero = pFichero;
-	}
-
-	public String getTitulo() {
-		return this.titulo;
-	}
-
-	public void setTitulo(String pTitulo) {
-		this.titulo = pTitulo;
-	}
-
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-
-	public void setDescripcion(String pDescripcion) {
-		this.descripcion = pDescripcion;
 	}
 
 	public Date getFechaDe() {

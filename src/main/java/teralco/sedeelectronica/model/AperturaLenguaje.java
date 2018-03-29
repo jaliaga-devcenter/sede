@@ -3,6 +3,8 @@ package teralco.sedeelectronica.model;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Embeddable
 public class AperturaLenguaje extends BaseLanguage {
 
@@ -10,8 +12,12 @@ public class AperturaLenguaje extends BaseLanguage {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Column
-	private String descripcion;
+	@NotEmpty
+	@Column(nullable = false)
+	private String denominacion;
+
+	@Column(nullable = true)
+	private String plica;
 
 	public AperturaLenguaje() {
 	}
@@ -20,17 +26,19 @@ public class AperturaLenguaje extends BaseLanguage {
 		this.setIdioma(codigo);
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDenominacion() {
+		return this.denominacion;
 	}
 
-	public void setDescripcion(String pDescripcion) {
-		this.descripcion = pDescripcion;
+	public void setDenominacion(String pDenominacion) {
+		this.denominacion = pDenominacion;
 	}
 
-	@Override
-	public String toString() {
-		return "LicitacionLenguaje [descripcion=" + this.descripcion + ", getIdioma()=" + getIdioma() + "]";
+	public String getPlica() {
+		return this.plica;
 	}
 
+	public void setPlica(String pPlica) {
+		this.plica = pPlica;
+	}
 }

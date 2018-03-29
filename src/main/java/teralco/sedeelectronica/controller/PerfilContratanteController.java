@@ -8,6 +8,8 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,7 +68,14 @@ public class PerfilContratanteController {
 
 	@RequestMapping("/perfil-del-contratante")
 	public String perfilContratante() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		if (auth != null && auth.isAuthenticated()) {
+			return "redirect:/admin";
+		}
+
 		return "redirect:/licitaciones";
+
 	}
 
 	@RequestMapping("/licitaciones")
@@ -92,6 +101,12 @@ public class PerfilContratanteController {
 	@RequestMapping("/aperturas")
 	public String aperturas(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		Page<Apertura> pages = this.aperturaService.listAllByPage(pageable);
+		final String[] lang = { LocaleContextHolder.getLocale().toString() };
+		if (!this.target.contains(lang[0])) {
+			lang[0] = LanguageUtils.SPANISH;
+		}
+
+		pages.forEach(s -> s.getTraducciones().removeIf(i -> !i.getIdioma().equals(lang[0])));
 		model.addAttribute("aperturas", pages);
 		PageWrapper<Apertura> page = new PageWrapper<>(pages, "/aperturas");
 
@@ -104,6 +119,12 @@ public class PerfilContratanteController {
 	@RequestMapping("/adjudicaciones")
 	public String adjudicaciones(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		Page<Adjudicacion> pages = this.adjudicacionService.listAllByPage(pageable);
+		final String[] lang = { LocaleContextHolder.getLocale().toString() };
+		if (!this.target.contains(lang[0])) {
+			lang[0] = LanguageUtils.SPANISH;
+		}
+
+		pages.forEach(s -> s.getTraducciones().removeIf(i -> !i.getIdioma().equals(lang[0])));
 		model.addAttribute("adjudicaciones", pages);
 
 		PageWrapper<Adjudicacion> page = new PageWrapper<>(pages, "/adjudicaciones");
@@ -117,6 +138,12 @@ public class PerfilContratanteController {
 	@RequestMapping("/documentos")
 	public String documentos(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		Page<Documentacion> pages = this.documentacionService.listAllByPage(pageable);
+		final String[] lang = { LocaleContextHolder.getLocale().toString() };
+		if (!this.target.contains(lang[0])) {
+			lang[0] = LanguageUtils.SPANISH;
+		}
+
+		pages.forEach(s -> s.getTraducciones().removeIf(i -> !i.getIdioma().equals(lang[0])));
 		model.addAttribute("documentos", pages);
 
 		PageWrapper<Documentacion> page = new PageWrapper<>(pages, "/documentos");
@@ -130,6 +157,12 @@ public class PerfilContratanteController {
 	@RequestMapping("/modelos")
 	public String modelos(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		Page<Modelo> pages = this.modeloService.listAllByPage(pageable);
+		final String[] lang = { LocaleContextHolder.getLocale().toString() };
+		if (!this.target.contains(lang[0])) {
+			lang[0] = LanguageUtils.SPANISH;
+		}
+
+		pages.forEach(s -> s.getTraducciones().removeIf(i -> !i.getIdioma().equals(lang[0])));
 		model.addAttribute("modelos", pages);
 
 		PageWrapper<Modelo> page = new PageWrapper<>(pages, "/modelos");
@@ -143,6 +176,12 @@ public class PerfilContratanteController {
 	@RequestMapping("/avisos")
 	public String avisos(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		Page<Aviso> pages = this.avisoService.listAllByPage(pageable);
+		final String[] lang = { LocaleContextHolder.getLocale().toString() };
+		if (!this.target.contains(lang[0])) {
+			lang[0] = LanguageUtils.SPANISH;
+		}
+
+		pages.forEach(s -> s.getTraducciones().removeIf(i -> !i.getIdioma().equals(lang[0])));
 		model.addAttribute("avisos", pages);
 
 		PageWrapper<Aviso> page = new PageWrapper<>(pages, "/avisos");

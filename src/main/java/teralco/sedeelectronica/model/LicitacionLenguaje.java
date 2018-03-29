@@ -27,10 +27,4 @@ public class LicitacionLenguaje extends BaseLanguage {
 	public void setDescripcion(String pDescripcion) {
 		this.descripcion = pDescripcion;
 	}
-
-	@Override
-	public String toString() {
-		return "LicitacionLenguaje [descripcion=" + this.descripcion + ", getIdioma()=" + getIdioma() + "]";
-	}
-
 }

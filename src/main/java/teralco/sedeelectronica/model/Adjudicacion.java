@@ -1,9 +1,13 @@
 package teralco.sedeelectronica.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -13,7 +17,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,10 +27,6 @@ public class Adjudicacion extends BaseModel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@Column(nullable = false)
-	@NotEmpty
-	private String denominacion;
 
 	/* PARTE DE PLICA */
 	@Column(name = "fecha")
@@ -40,18 +39,10 @@ public class Adjudicacion extends BaseModel {
 	@DateTimeFormat(pattern = "hh:mm")
 	private Date hora;
 
-	@Column(nullable = true)
-	private String plica;
-
-	/* fin plica */
-
 	@Column(name = "fecha_formalizacion")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaFormalizacion;
-
-	@Column(name = "empresa_adjudicacion")
-	private String empresaAdjudicacion;
 
 	@Min(1)
 	@Column
@@ -70,13 +61,9 @@ public class Adjudicacion extends BaseModel {
 	@JoinColumn(name = "id_fichero", nullable = true)
 	private Fichero resultado;
 
-	public String getDenominacion() {
-		return this.denominacion;
-	}
-
-	public void setDenominacion(String pDenominacion) {
-		this.denominacion = pDenominacion;
-	}
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "adjudicacion_lenguaje", joinColumns = @JoinColumn(name = "adjudicacion_id"))
+	private List<AdjudicacionLenguaje> traducciones = new ArrayList<>();
 
 	public Date getFecha() {
 		return this.fecha;
@@ -94,28 +81,12 @@ public class Adjudicacion extends BaseModel {
 		this.hora = pHora;
 	}
 
-	public String getPlica() {
-		return this.plica;
-	}
-
-	public void setPlica(String pPlica) {
-		this.plica = pPlica;
-	}
-
 	public Date getFechaFormalizacion() {
 		return this.fechaFormalizacion;
 	}
 
 	public void setFechaFormalizacion(Date pFechaFormalizacion) {
 		this.fechaFormalizacion = pFechaFormalizacion;
-	}
-
-	public String getEmpresaAdjudicacion() {
-		return this.empresaAdjudicacion;
-	}
-
-	public void setEmpresaAdjudicacion(String adjudicacion) {
-		this.empresaAdjudicacion = adjudicacion;
 	}
 
 	public BigDecimal getPresupuesto() {
@@ -148,5 +119,13 @@ public class Adjudicacion extends BaseModel {
 
 	public void setFechaAdjudicacion(Date pFechaAdjudicacion) {
 		this.fechaAdjudicacion = pFechaAdjudicacion;
+	}
+
+	public List<AdjudicacionLenguaje> getTraducciones() {
+		return this.traducciones;
+	}
+
+	public void setTraducciones(List<AdjudicacionLenguaje> pTraducciones) {
+		this.traducciones = pTraducciones;
 	}
 }

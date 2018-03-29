@@ -30,8 +30,6 @@ public class AnuncioRepositoryTest {
 		Fichero file = new Fichero();
 		this.ficheroRepository.save(file);
 		Anuncio anuncio = new Anuncio();
-		anuncio.setDescripcion("una denominacion");
-		anuncio.setTitulo("titulo");
 		anuncio.setFichero(file);
 		anuncio = this.anuncioRepository.save(anuncio);
 
@@ -39,7 +37,7 @@ public class AnuncioRepositoryTest {
 		Anuncio found = this.anuncioRepository.findById(anuncio.getId());
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(anuncio.getDescripcion());
+		assertThat(found.getId()).isEqualTo(anuncio.getId());
 	}
 
 	@Test
@@ -48,21 +46,18 @@ public class AnuncioRepositoryTest {
 		Fichero file = new Fichero();
 		this.ficheroRepository.save(file);
 		Anuncio anuncio = new Anuncio();
-		anuncio.setDescripcion("una denominacion");
-		anuncio.setTitulo("titulo");
 		anuncio.setFichero(file);
 		anuncio = this.anuncioRepository.save(anuncio);
 
 		// ACT
 		Anuncio found = this.anuncioRepository.findById(anuncio.getId());
-		found.setDescripcion("esto es otra denominacion");
 
 		this.anuncioRepository.save(found);
 
 		anuncio = this.anuncioRepository.findById(anuncio.getId());
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(anuncio.getDescripcion());
+		assertThat(found.getId()).isEqualTo(anuncio.getId());
 	}
 
 	@Test
@@ -71,8 +66,7 @@ public class AnuncioRepositoryTest {
 		Fichero file = new Fichero();
 		this.ficheroRepository.save(file);
 		Anuncio anuncio = new Anuncio();
-		anuncio.setDescripcion("una denominacion");
-		anuncio.setTitulo("titulo");
+
 		anuncio.setFichero(file);
 		anuncio = this.anuncioRepository.save(anuncio);
 

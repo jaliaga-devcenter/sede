@@ -1,5 +1,9 @@
 package teralco.sedeelectronica.admin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Documentacion;
+import teralco.sedeelectronica.model.DocumentacionLenguaje;
 import teralco.sedeelectronica.model.Estado;
 import teralco.sedeelectronica.model.Fichero;
+import teralco.sedeelectronica.model.Lenguaje;
 import teralco.sedeelectronica.service.DocumentacionService;
 import teralco.sedeelectronica.service.FicheroService;
+import teralco.sedeelectronica.service.LenguajeService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
 import teralco.sedeelectronica.utils.PageWrapper;
@@ -31,16 +38,20 @@ public class AdminDocumentacionController {
 	private static String redirList = "redirect:/admin/documentos";
 	private static String form = "admin/documentos/formDocumento";
 	private static String STATE_STRING = "estados";
+	private static String langModel = "langs";
 
 	private DocumentacionService documentacionService;
+	private LenguajeService lenguajeService;
 	private FicheroService ficheroService;
 
 	@Autowired
 	private EncryptUtils encryptUtils;
 
 	@Autowired
-	public AdminDocumentacionController(DocumentacionService pDocumentacionService, FicheroService pFicheroService) {
+	public AdminDocumentacionController(DocumentacionService pDocumentacionService, LenguajeService pLenguajeService,
+			FicheroService pFicheroService) {
 		this.documentacionService = pDocumentacionService;
+		this.lenguajeService = pLenguajeService;
 		this.ficheroService = pFicheroService;
 	}
 
@@ -59,14 +70,50 @@ public class AdminDocumentacionController {
 
 	@RequestMapping("/admin/documentos/create")
 	public String create(Model model) {
-		model.addAttribute("documentacion", new Documentacion());
+		Iterable<Lenguaje> lang = this.lenguajeService.list();
+		Documentacion docu = new Documentacion();
+		lang.forEach(e -> docu.getTraducciones().add(new DocumentacionLenguaje(e.getCodigo())));
+		model.addAttribute(langModel, lang);
+		model.addAttribute("documentacion", docu);
 		model.addAttribute(STATE_STRING, Estado.values());
 		return form;
 	}
 
 	@RequestMapping("/admin/documentos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("documentacion", this.documentacionService.get(id));
+		Iterable<Lenguaje> langs = this.lenguajeService.list();
+
+		List<String> target = new ArrayList<>();
+		langs.forEach(e -> target.add(e.getCodigo()));
+
+		Documentacion documentacion = this.documentacionService.get(id);
+
+		List<String> source = new ArrayList<>();
+		documentacion.getTraducciones().forEach(e -> source.add(e.getIdioma()));
+		AtomicInteger atomicInteger = new AtomicInteger(0);
+
+		// quitar
+		source.forEach(s -> {
+			if (!target.contains(s)) {
+				documentacion.getTraducciones().remove(atomicInteger.get());
+			}
+			atomicInteger.getAndIncrement();
+
+		});
+
+		atomicInteger.set(0);
+		// anyadir
+		target.forEach(s -> {
+			if (!source.contains(s)) {
+				documentacion.getTraducciones().add(atomicInteger.get(), new DocumentacionLenguaje(s));
+
+			}
+			atomicInteger.getAndIncrement();
+
+		});
+
+		model.addAttribute(langModel, langs);
+		model.addAttribute("documentacion", documentacion);
 		model.addAttribute(STATE_STRING, Estado.values());
 		return form;
 	}
@@ -87,6 +134,7 @@ public class AdminDocumentacionController {
 	public String save(@Valid @ModelAttribute("documentacion") Documentacion documentacion, BindingResult bindingResult,
 			Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute(langModel, this.lenguajeService.list());
 			model.addAttribute(STATE_STRING, Estado.values());
 			return form;
 		}

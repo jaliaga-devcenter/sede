@@ -40,7 +40,6 @@ public class AvisoRepositoryTest {
 		date.setMinutes(56);
 		date.setHours(16);
 		Aviso aviso = new Aviso();
-		aviso.setDescripcion("una denominacion");
 		aviso.setFichero(file);
 		aviso.setFecha(date);
 
@@ -50,7 +49,7 @@ public class AvisoRepositoryTest {
 		Aviso found = this.avisoRepository.findById(aviso.getId());
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(aviso.getDescripcion());
+		assertThat(found.getId()).isEqualTo(aviso.getId());
 	}
 
 	@Test
@@ -65,7 +64,6 @@ public class AvisoRepositoryTest {
 		date.setMinutes(56);
 		date.setHours(16);
 		Aviso aviso = new Aviso();
-		aviso.setDescripcion("una denominacion");
 		aviso.setFichero(file);
 		aviso.setFecha(date);
 
@@ -73,12 +71,11 @@ public class AvisoRepositoryTest {
 
 		// ACT
 		Aviso found = this.avisoRepository.findById(aviso.getId());
-		found.setDescripcion("esto es otra denominacion");
 
 		aviso = this.avisoRepository.save(found);
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(aviso.getDescripcion());
+		assertThat(found.getId()).isEqualTo(aviso.getId());
 	}
 
 	@Test
@@ -93,7 +90,6 @@ public class AvisoRepositoryTest {
 		date.setMinutes(56);
 		date.setHours(16);
 		Aviso aviso = new Aviso();
-		aviso.setDescripcion("una denominacion");
 		aviso.setFichero(file);
 		aviso.setFecha(date);
 		aviso = this.avisoRepository.save(aviso);

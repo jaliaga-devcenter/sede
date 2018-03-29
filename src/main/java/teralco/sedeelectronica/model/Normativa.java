@@ -1,7 +1,14 @@
 package teralco.sedeelectronica.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -10,17 +17,17 @@ public class Normativa extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(nullable = false)
-	@NotEmpty
-	private String norma;
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "normativa_lenguaje", joinColumns = @JoinColumn(name = "normativa_id"))
+	private List<NormativaLenguaje> traducciones = new ArrayList<>();
 
-	@Column(nullable = false)
-	@NotEmpty
-	private String articulo;
+	public List<NormativaLenguaje> getTraducciones() {
+		return this.traducciones;
+	}
 
-	@Column(nullable = true)
-	@NotEmpty
-	private String texto;
+	public void setTraducciones(List<NormativaLenguaje> pTraducciones) {
+		this.traducciones = pTraducciones;
+	}
 
 	@Column(nullable = true, name = "url_norma")
 	@NotEmpty
@@ -32,30 +39,6 @@ public class Normativa extends BaseModel {
 
 	public void setUrl(String pUrl) {
 		this.url = pUrl;
-	}
-
-	public String getNorma() {
-		return this.norma;
-	}
-
-	public void setNorma(String pNorma) {
-		this.norma = pNorma;
-	}
-
-	public String getArticulo() {
-		return this.articulo;
-	}
-
-	public void setArticulo(String pArticulo) {
-		this.articulo = pArticulo;
-	}
-
-	public String getTexto() {
-		return this.texto;
-	}
-
-	public void setTexto(String pTexto) {
-		this.texto = pTexto;
 	}
 
 }

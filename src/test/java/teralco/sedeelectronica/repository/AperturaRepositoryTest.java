@@ -40,7 +40,6 @@ public class AperturaRepositoryTest {
 		date.setMinutes(56);
 		date.setHours(16);
 		Apertura apertura = new Apertura();
-		apertura.setDenominacion("una denominacion");
 		apertura.setResultado(file);
 		apertura.setFecha(date);
 		apertura.setHora(date);
@@ -50,7 +49,7 @@ public class AperturaRepositoryTest {
 		Apertura found = this.aperturaRepository.findById(apertura.getId());
 
 		// ASSERT
-		assertThat(found.getDenominacion()).isEqualTo(apertura.getDenominacion());
+		assertThat(found.getId()).isEqualTo(apertura.getId());
 	}
 
 	@Test
@@ -65,7 +64,6 @@ public class AperturaRepositoryTest {
 		date.setMinutes(56);
 		date.setHours(16);
 		Apertura apertura = new Apertura();
-		apertura.setDenominacion("una denominacion");
 		apertura.setResultado(file);
 		apertura.setFecha(date);
 		apertura.setHora(date);
@@ -73,14 +71,13 @@ public class AperturaRepositoryTest {
 
 		// ACT
 		Apertura found = this.aperturaRepository.findById(apertura.getId());
-		found.setDenominacion("esto es otra denominacion");
 
 		this.aperturaRepository.save(found);
 
 		apertura = this.aperturaRepository.findById(apertura.getId());
 
 		// ASSERT
-		assertThat(found.getDenominacion()).isEqualTo(apertura.getDenominacion());
+		assertThat(found.getId()).isEqualTo(apertura.getId());
 	}
 
 	@Test
@@ -95,7 +92,6 @@ public class AperturaRepositoryTest {
 		date.setMinutes(56);
 		date.setHours(16);
 		Apertura apertura = new Apertura();
-		apertura.setDenominacion("una denominacion");
 		apertura.setResultado(file);
 		apertura.setFecha(date);
 		apertura.setHora(date);

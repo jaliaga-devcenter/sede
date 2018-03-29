@@ -1,5 +1,9 @@
 package teralco.sedeelectronica.admin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import teralco.sedeelectronica.model.Lenguaje;
 import teralco.sedeelectronica.model.Parada;
+import teralco.sedeelectronica.model.ParadaLenguaje;
+import teralco.sedeelectronica.service.LenguajeService;
 import teralco.sedeelectronica.service.ParadaService;
 import teralco.sedeelectronica.utils.PageWrapper;
 
@@ -24,12 +31,15 @@ public class AdminParadasController {
 	private static String list = "admin/paradas/paradas";
 	private static String redirList = "redirect:/admin/paradas";
 	private static String form = "admin/paradas/formParadas";
+	private static String langModel = "langs";
 
 	private ParadaService paradaService;
+	private LenguajeService lenguajeService;
 
 	@Autowired
-	public AdminParadasController(ParadaService pParadaService) {
+	public AdminParadasController(ParadaService pParadaService, LenguajeService pLenguajeService) {
 		this.paradaService = pParadaService;
+		this.lenguajeService = pLenguajeService;
 	}
 
 	@RequestMapping(value = "/admin/paradas", produces = "text/html;charset=UTF-8")
@@ -44,13 +54,46 @@ public class AdminParadasController {
 
 	@RequestMapping("/admin/paradas/create")
 	public String create(Model model) {
-		model.addAttribute("parada", new Parada());
+		Iterable<Lenguaje> lang = this.lenguajeService.list();
+		Parada parada = new Parada();
+		lang.forEach(e -> parada.getTraducciones().add(new ParadaLenguaje(e.getCodigo())));
+		model.addAttribute(langModel, lang);
+		model.addAttribute("parada", parada);
 		return form;
 	}
 
 	@RequestMapping("/admin/paradas/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("parada", this.paradaService.get(id));
+		Iterable<Lenguaje> langs = this.lenguajeService.list();
+
+		List<String> target = new ArrayList<>();
+		langs.forEach(e -> target.add(e.getCodigo()));
+
+		Parada parada = this.paradaService.get(id);
+
+		List<String> source = new ArrayList<>();
+		parada.getTraducciones().forEach(e -> source.add(e.getIdioma()));
+		AtomicInteger atomicInteger = new AtomicInteger(0);
+
+		// quitar
+		source.forEach(s -> {
+			if (!target.contains(s)) {
+				parada.getTraducciones().remove(atomicInteger.get());
+			}
+			atomicInteger.getAndIncrement();
+		});
+
+		atomicInteger.set(0);
+		// anyadir
+		target.forEach(s -> {
+			if (!source.contains(s)) {
+				parada.getTraducciones().add(atomicInteger.get(), new ParadaLenguaje(s));
+			}
+			atomicInteger.getAndIncrement();
+
+		});
+		model.addAttribute(langModel, langs);
+		model.addAttribute("parada", parada);
 		return form;
 	}
 
@@ -67,8 +110,9 @@ public class AdminParadasController {
 	}
 
 	@PostMapping(value = "/admin/paradas/save")
-	public String save(@Valid @ModelAttribute("parada") Parada parada, BindingResult bindingResult) {
+	public String save(@Valid @ModelAttribute("parada") Parada parada, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute(langModel, this.lenguajeService.list());
 			return form;
 		}
 

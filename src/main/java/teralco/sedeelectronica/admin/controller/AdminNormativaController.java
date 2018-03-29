@@ -1,5 +1,9 @@
 package teralco.sedeelectronica.admin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import teralco.sedeelectronica.model.Lenguaje;
 import teralco.sedeelectronica.model.Normativa;
+import teralco.sedeelectronica.model.NormativaLenguaje;
+import teralco.sedeelectronica.service.LenguajeService;
 import teralco.sedeelectronica.service.NormativaService;
 import teralco.sedeelectronica.utils.PageWrapper;
 
@@ -25,12 +32,15 @@ public class AdminNormativaController {
 	private static String list = "admin/normativa/normativas";
 	private static String redirList = "redirect:/admin/normativa";
 	private static String form = "admin/normativa/formNormativa";
+	private static String langModel = "langs";
 
 	private NormativaService normativaService;
+	private LenguajeService lenguajeService;
 
 	@Autowired
-	public AdminNormativaController(NormativaService pNormativaService) {
+	public AdminNormativaController(NormativaService pNormativaService, LenguajeService pLenguajeService) {
 		this.normativaService = pNormativaService;
+		this.lenguajeService = pLenguajeService;
 	}
 
 	@RequestMapping(value = "/admin/normativa", produces = "text/html;charset=UTF-8")
@@ -44,13 +54,49 @@ public class AdminNormativaController {
 
 	@RequestMapping("/admin/normativa/create")
 	public String create(Model model) {
-		model.addAttribute("normativa", new Normativa());
+		Iterable<Lenguaje> lang = this.lenguajeService.list();
+		Normativa norma = new Normativa();
+		lang.forEach(e -> norma.getTraducciones().add(new NormativaLenguaje(e.getCodigo())));
+		model.addAttribute(langModel, lang);
+		model.addAttribute("normativa", norma);
 		return form;
 	}
 
 	@RequestMapping("/admin/normativa/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("normativa", this.normativaService.get(id));
+		Iterable<Lenguaje> langs = this.lenguajeService.list();
+
+		List<String> target = new ArrayList<>();
+		langs.forEach(e -> target.add(e.getCodigo()));
+
+		Normativa norma = this.normativaService.get(id);
+
+		List<String> source = new ArrayList<>();
+		norma.getTraducciones().forEach(e -> source.add(e.getIdioma()));
+		AtomicInteger atomicInteger = new AtomicInteger(0);
+
+		// quitar
+		source.forEach(s -> {
+			if (!target.contains(s)) {
+				norma.getTraducciones().remove(atomicInteger.get());
+			}
+			atomicInteger.getAndIncrement();
+
+		});
+
+		atomicInteger.set(0);
+		// anyadir
+		target.forEach(s -> {
+			if (!source.contains(s)) {
+				norma.getTraducciones().add(atomicInteger.get(), new NormativaLenguaje(s));
+
+			}
+			atomicInteger.getAndIncrement();
+
+		});
+
+		model.addAttribute(langModel, langs);
+		model.addAttribute("normativa", norma);
 		return form;
 	}
 
@@ -67,8 +113,10 @@ public class AdminNormativaController {
 	}
 
 	@PostMapping(value = "/admin/normativa/save")
-	public String save(@Valid @ModelAttribute("normativa") Normativa normativa, BindingResult bindingResult) {
+	public String save(@Valid @ModelAttribute("normativa") Normativa normativa, BindingResult bindingResult,
+			Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute(langModel, this.lenguajeService.list());
 			return form;
 		}
 
