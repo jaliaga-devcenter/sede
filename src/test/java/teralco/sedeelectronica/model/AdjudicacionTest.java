@@ -12,10 +12,6 @@ public class AdjudicacionTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testAdjudicacion() {
-		// DECLARE VARIABLES
-		String empresa = "timofonica";
-		String desc = "cualquier descripción";
-		String plica = "esto es una plica";
 		Date date = new Date();
 		date.setYear(2018);
 		date.setMonth(1);
@@ -29,9 +25,6 @@ public class AdjudicacionTest {
 		// ARRANGE
 		Adjudicacion adju = new Adjudicacion();
 
-		adju.setEmpresaAdjudicacion(empresa);
-		adju.setDenominacion(desc);
-		adju.setPlica(plica);
 		adju.setPresupuesto(bd);
 		adju.setResultado(file);
 		adju.setFecha(date);
@@ -40,9 +33,7 @@ public class AdjudicacionTest {
 		adju.setHora(date);
 
 		// ASSERT
-		assertEquals(empresa, adju.getEmpresaAdjudicacion());
-		assertEquals(desc, adju.getDenominacion());
-		assertEquals(plica, adju.getPlica());
+
 		assertEquals(bd, adju.getPresupuesto());
 		assertEquals(file, adju.getResultado());
 		assertEquals(date, adju.getFecha());
