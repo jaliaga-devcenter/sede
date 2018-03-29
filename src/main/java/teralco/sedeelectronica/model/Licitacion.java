@@ -28,7 +28,7 @@ public class Licitacion extends BaseModel {
 
 	@Column(name = "fecha")
 	@Temporal(TemporalType.DATE)
-	@NotNull(message = "Debe introducir la fecha de publicación.")
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaPub;
 
@@ -37,17 +37,17 @@ public class Licitacion extends BaseModel {
 	private List<LicitacionLenguaje> traducciones = new ArrayList<>();
 
 	@Min(1)
-	@NotNull(message = "Debe introducir el presupuesto.")
+	@NotNull
 	@Column
 	private BigDecimal presupuesto;
 
 	@Column(name = "finPlazo")
 	@Temporal(TemporalType.DATE)
-	@NotNull(message = "Debe introducir la fecha de fin de plazo.")
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date finPlazo;
 
-	@NotNull(message = "Debe introducir un medio.")
+	@NotNull
 	private Short medio;
 
 	/* For upload file in form */

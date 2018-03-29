@@ -22,7 +22,7 @@ public class NoticiaController {
 
 	@RequestMapping("/actualidad")
 	public String actualidad(Model model) {
-		model.addAttribute("noticias", this.noticiaService.list());
+		model.addAttribute("noticias", this.noticiaService.listAll());
 
 		return actualidad;
 	}

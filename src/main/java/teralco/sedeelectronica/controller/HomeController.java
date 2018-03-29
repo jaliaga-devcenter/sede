@@ -7,21 +7,25 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import teralco.sedeelectronica.gexflow.dto.CategoriaDTO;
 import teralco.sedeelectronica.gexflow.dto.IconoDTO;
 import teralco.sedeelectronica.gexflow.dto.ServicioDTO;
-import teralco.sedeelectronica.security.CertAuthenticationToken;
-import teralco.sedeelectronica.security.UsuarioSede;
+import teralco.sedeelectronica.security.principal.UsuarioSede;
+import teralco.sedeelectronica.security.provider.CertAuthenticationToken;
 import teralco.sedeelectronica.service.CategoriaService;
 import teralco.sedeelectronica.utils.LanguageUtils;
 
@@ -117,8 +121,10 @@ public class HomeController {
 		categorias.forEach(cat -> servicios.putAll(this.categoriaService.getServiciosPorSubCategorias(this.entidad,
 				LanguageUtils.getLanguage(), cat, Optional.ofNullable(filtro))));
 
-		Predicate<CategoriaDTO> noContieneServicios = cat -> cat.getSubcategorias().stream()
-				.filter(sub -> !(servicios.get(sub.getIdSubcategoria()).isEmpty())).count() == 0;
+		Predicate<CategoriaDTO> noContieneServicios = cat -> cat.getSubcategorias().stream().filter(sub -> {
+			List<ServicioDTO> serviciosPorSubcategoria = servicios.get(sub.getIdSubcategoria());
+			return serviciosPorSubcategoria != null && !serviciosPorSubcategoria.isEmpty();
+		}).count() == 0;
 
 		categorias.removeIf(noContieneServicios);
 
@@ -147,6 +153,12 @@ public class HomeController {
 				.toString();
 		model.addAttribute("iframeUrl", url);
 		return "servicios/procedimiento";
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void logout(HttpSession session) {
+		session.invalidate();
 	}
 
 }

@@ -3,11 +3,11 @@ package teralco.sedeelectronica.model;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Contacto {
-	@NotEmpty(message = "Debe escribir un nombre.")
+	@NotEmpty
 	private String nombre;
-	@NotEmpty(message = "Debe escribir un email.")
+	@NotEmpty
 	private String email;
-	@NotEmpty(message = "Debe escribir un comentario.")
+	@NotEmpty
 	private String comentario;
 
 	public String getNombre() {

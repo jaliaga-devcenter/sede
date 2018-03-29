@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorate="~{layouts/main}">
+<html lang="es" layout:decorate="~{layouts/main-login}">
 
 <head>
 	<title th:text="#{message.licitaciones.table.header}"></title>
@@ -57,7 +57,7 @@
 		</tbody>
 		<tbody th:unless="${licitaciones.getNumberOfElements()}"> 
 			<tr>
-				<td colspan="8" th:text="#{message.warning.not.exist}"></td>
+				<td colspan="8" class="g-bg-white text-center g-font-size-16"><p th:text="#{message.warning.not.exist}"></p></td>
 			</tr>
 		</tbody>		
 	</table>

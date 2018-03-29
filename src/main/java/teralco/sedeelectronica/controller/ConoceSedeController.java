@@ -33,7 +33,7 @@ public class ConoceSedeController {
 
 	@RequestMapping("/conoce-la-sede-electronica")
 	public String conceLaSede() {
-		return "sede/conoce-la-sede-electronica";
+		return "redirect:./normativa-sobre-la-sede";
 	}
 
 	@RequestMapping("/contenidos-de-la-sede")

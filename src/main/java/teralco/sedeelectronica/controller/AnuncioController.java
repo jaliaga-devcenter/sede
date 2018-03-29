@@ -26,7 +26,7 @@ public class AnuncioController {
 
 	@RequestMapping("/tablon-anuncios")
 	public String actualidad(Model model) {
-		model.addAttribute("anuncios", this.anuncioService.list());
+		model.addAttribute("anuncios", this.anuncioService.listAll());
 
 		return anuncios;
 	}

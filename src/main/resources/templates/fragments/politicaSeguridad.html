@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <th:block th:fragment="politicaSeguridad">
+        <div>
+            <div id="cookie-bar" class="politicaSeguridadOff g-bg-black-opacity-0_7 w-100 g-color-white g-py-15 g-px-0">
+                <p class="g-pa-0 g-color-white pull-left g-mt-4 g-ml-20 g-mb-0 g-mr-0" th:text="#{message.politica.cookie.p}">
+                    Solicitamos su permiso para obtener datos estadísticos de su navegación en esta web, en cumplimiento del Real Decreto-ley
+                    13/2012. Si continúa navegando consideramos que acepta el uso de cookies.
+                </p>
+                <a rel="nofollow" id="cookie-bar-button" href="./politica-cookies" target="_blank" class="g-bg-primary g-color-black pull-left g-ml-20 g-mt-2">Más información</a>
+                <a rel="nofollow" th:text="#{message.politica.cookie.button}" class="g-bg-primary g-color-black pull-right g-mr-20 g-mt-2" id="cookie-bar-button" onclick="setCookie()">Aceptar cookies</a>
+            </div>
+        </div>
+
+        <script type="text/javascript"> 
+            $(document).on('ready', function () {
+                checkCookie();
+            });
+
+            function checkCookie() {
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var cookieArray = decodedCookie.split(';');
+                var securityP = false;
+
+                for (var i = 0; i < cookieArray.length; i++) {
+                    if (cookieArray[i].indexOf('securityP') >= 0) {
+                        securityP = true;
+                    }
+                }
+
+                if (!securityP) $('#cookie-bar').addClass('politicaSeguridadOn');
+            }
+
+            function setCookie() {
+                var securityP = 'securityP = ' + true;
+                document.cookie = securityP;
+
+                $('#cookie-bar').removeClass('politicaSeguridadOn')
+            }
+        </script>
+    </th:block>
+</body>
+
+</html>

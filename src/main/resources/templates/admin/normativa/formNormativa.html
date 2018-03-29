@@ -1,33 +1,27 @@
 <!DOCTYPE html>
-<html lang="en"
-	xmlns:th="http://www.thymeleaf.org"
-	layout:decorate="~{layouts/main}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main-login}">
+
 <head>
 	<title th:text="*{normativa.id!=null}?  #{message.normative.form.edit} : #{message.normative.form.new}"></title>
 </head>
+
 <body>
-		
+
 	<div layout:fragment="content" class=".col-md">
-		<section class="g-py-15">
+		<section class="g-py-15 g-pt-130">
 			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
 				<h2 class="h3 u-heading-v1__title" th:text="*{normativa.id!=null}?  #{message.normative.form.edit} : #{message.normative.form.new}"></h2>
 			</div>
-		<form class="g-pa-30 g-mb-30" th:object="${normativa}" th:action="@{/admin/normativa/save}" method="post" enctype="multipart/form-data">
-			<input type="hidden" th:field="*{id}" />
-			<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.rule}, 'norma', 'text', true)}"></div>
-			<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.article}, 'articulo', 'text', true)}"></div>
-			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.normative.form.label.text}, 'texto', #{message.normative.form.error.text}, 4, 50, true, false)}"></div>
-			<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.url}, 'url', 'text', true)}"></div>
-			<div class="d-flex justify-content-between g-mt-30">
-				<div>
-					<a href="normativa.html" th:href="@{/admin/normativas}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.normative.form.button.back}">Atras</a>
-				</div>
-				<div>
-					<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.normative.form.button.save}">Guardar Normativa</button>
-				</div>
-			</div>
-	</form>
-	<br/><br/>	
+			<form class="g-pa-30 g-mb-30" th:object="${normativa}" th:action="@{/admin/normativa/save}" method="post" enctype="multipart/form-data">
+				<input type="hidden" th:field="*{id}" />
+			<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.rule}, 'norma', 'text', #{message.error.notempty}, true)}"></div>
+			<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.article}, 'articulo', 'text', #{message.error.notempty}, true)}"></div>
+			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.normative.form.label.text}, 'texto', #{message.error.notempty}, 4, 50, true, false)}"></div>
+			<div th:replace="~{fragments/inputs/textField :: input (#{message.normative.form.label.url}, 'url', 'text',#{message.error.notempty}, true)}"></div>
+				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/normativa}, #{message.normative.form.button.back}, #{message.normative.form.button.save})}"></div>
+			</form>
+		</section>
 	</div>
 </body>
+
 </html>

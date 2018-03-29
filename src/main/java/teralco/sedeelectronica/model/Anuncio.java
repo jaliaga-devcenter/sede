@@ -20,7 +20,7 @@ public class Anuncio extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty(message = "Debe introducir un título.")
+	@NotEmpty
 	@Column(nullable = false)
 	private String titulo;
 
@@ -34,7 +34,7 @@ public class Anuncio extends BaseModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaHasta;
 
-	@NotEmpty(message = "Debe introducir una noticia.")
+	@NotEmpty
 	@Column(nullable = false)
 	private String descripcion;
 

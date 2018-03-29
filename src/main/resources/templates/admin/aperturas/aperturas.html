@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorate="~{layouts/main}">
+<html lang="es" layout:decorate="~{layouts/main-login}">
 <head>
 	<title th:text="#{message.aperturas.table.header}">Aperturas</title>
 </head>
@@ -49,7 +49,7 @@
 		</tbody>
 		<tbody th:unless="${aperturas.getNumberOfElements()}"> 
 			<tr>
-				<td colspan="7" th:text="#{message.warning.not.exist}"></td>
+				<td colspan="6" class="g-bg-white text-center g-font-size-16"><p th:text="#{message.warning.not.exist}"></p></td>
 			</tr>
 		</tbody>		
 	</table> 	

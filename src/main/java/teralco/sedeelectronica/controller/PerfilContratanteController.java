@@ -96,7 +96,7 @@ public class PerfilContratanteController {
 		PageWrapper<Apertura> page = new PageWrapper<>(pages, "/aperturas");
 
 		model.addAttribute("page", page);
-		model.addAttribute("encrypt", this.encryptUtils);
+		model.addAttribute(encrypt, this.encryptUtils);
 
 		return "contratante/aperturas";
 	}

@@ -1,8 +1,14 @@
 spring:
   datasource:
+<<<<<<< HEAD
     url: jdbc:h2:mem:test;MODE=POSTGRESQL
     platform: test
+=======
+    platform: h2
+    url: jdbc:h2:~/test;AUTO_SERVER=true;MODE=postgresql;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+>>>>>>> refs/remotes/origin/master
     username: sa
+<<<<<<< HEAD
     password:
     driver-class-name: org.h2.Driver
     continue-on-error: true
@@ -11,23 +17,36 @@ spring:
       ddl-auto: create-drop
       
 
+=======
+    password: 
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop  
+    show-sql: true
+    generate-ddl: true
+    
+>>>>>>> refs/remotes/origin/master
 flyway:
+<<<<<<< HEAD
   enabled: true
+=======
+>>>>>>> refs/remotes/origin/master
   baseline-on-migrate: true
     
+
 
 
 #spring.datasource.driver-class-name: org.h2.Driver
 #spring.datasource.url: jdbc:h2:mem:sede;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
 #spring.datasource.username: sa
 #spring.datasource.password: 
+  
 
-
-spring.h2.console.enabled: true
-spring.h2.console.path: /h2
 
 # hibernate.X
-hibernate.dialect: org.hibernate.dialect.H2Dialect
 hibernate.show_sql: true
 hibernate.cache.use_second_level_cache: true
 hibernate.cache.use_query_cache: true
@@ -37,8 +56,6 @@ hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.EhCacheRegionF
 
 server:
   port: 8081
-
-spring.jpa.show-sql: true
 
 
 server.basePathBack: http://localhost:8081

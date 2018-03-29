@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" layout:decorate="~{layouts/main}">
 <head>
-	<title th:text="#{message.adjudicaciones.table.header}"></title>
+	<title th:text="#{message.adjudicaciones.table.header-login}"></title>
 </head>
 
 <body>
@@ -58,7 +58,7 @@
 			</tbody>
 			<tbody th:unless="${adjudicaciones.getNumberOfElements()}"> 
 				<tr>
-					<td colspan="7" th:text="#{message.warning.not.exist}"></td>
+					<td colspan="8" class="g-bg-white text-center g-font-size-16"><p th:text="#{message.warning.not.exist}"></p></td>
 				</tr>
 			</tbody>			
 		</table> 	

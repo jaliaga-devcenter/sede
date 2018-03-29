@@ -50,7 +50,7 @@
                     <div class="tab-pane fade show active" id="nav-3-1-default-hor-left--1" role="tabpanel">
                         <span th:utext="${servicio.textoOnline}">Texto Online </span>
                         <p class="text-center">
-                            <a th:href="@{/procedimiento}+'/'+${servicio.idServicio}" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.instancia.general.tab.one.button}">Tramitar Online</a>
+                            <a th:href="@{/procedimiento}+'/'+${servicio.idServicio}" class="btn btn-md u-btn-primary g-color-black rounded-0" th:text="#{message.instancia.general.tab.one.button}">Tramitar Online</a>
                         </p>
                     </div>
                     
@@ -66,7 +66,7 @@
 
             <div id="accordion-05" class="u-accordion" role="tablist" aria-multiselectable="true">
                 <!-- Card -->
-                <div class="card rounded-0 g-brd-none">
+                <div class="card rounded-0 g-brd-none" th:if="${servicio.destinatarios!=''}">
                     <div th:replace="~{fragments/accordionCard :: header(#{message.instancia.general.accordion.one.header}, '1', false, true)}"></div>
                     <div id="accordion-05-body-1" class="collapse show" role="tabpanel" aria-labelledby="accordion-05-heading-1">
                         <div class="u-accordion__body">
@@ -77,7 +77,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card rounded-0 g-brd-none">
+                <div class="card rounded-0 g-brd-none" th:if="${servicio.documentacion!=''}">
                     <div th:replace="~{fragments/accordionCard :: header(#{message.instancia.general.accordion.two.header}, '2', true, false)}"></div>
                     <div id="accordion-05-body-2" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-2">
                         <div class="u-accordion__body">
@@ -86,9 +86,8 @@
                     </div>
                 </div>
                 <!-- End Card -->
-
                 <!-- Card -->
-                <div class="card rounded-0 g-brd-none">
+                <div class="card rounded-0 g-brd-none" th:if="${#lists.size(servicio.documentos)>0}">
                     <div th:replace="~{fragments/accordionCard :: header(#{message.instancia.general.accordion.three.header}, '3', true, true)}"></div>
                     <div id="accordion-05-body-3" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-3">
                         <div class="u-accordion__body">
@@ -106,7 +105,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card rounded-0 g-brd-none">
+                <div class="card rounded-0 g-brd-none" th:if="${servicio.formaInicio!=''}">
                     <div th:replace="~{fragments/accordionCard :: header(#{message.instancia.general.accordion.four.header}, '4', true, false)}"></div>
                     <div id="accordion-05-body-4" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-4">
                         <div class="u-accordion__body">
@@ -117,7 +116,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card rounded-0 g-brd-none">
+                <div class="card rounded-0 g-brd-none" th:if="${servicio.costeYFormadePago!=''}">
                     <div th:replace="~{fragments/accordionCard :: header(#{message.instancia.general.accordion.five.header}, '5', true, true)}"></div>
                     <div id="accordion-05-body-5" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-5">
                         <div class="u-accordion__body">
@@ -128,7 +127,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card rounded-0 g-brd-none">
+                <div class="card rounded-0 g-brd-none" th:if="${servicio.plazoResolucion!=''}">
                     <div th:replace="~{fragments/accordionCard :: header(#{message.instancia.general.accordion.six.header}, '6', true, false)}"></div>
                     <div id="accordion-05-body-6" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-6">
                         <div class="u-accordion__body">
@@ -139,7 +138,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card rounded-0 g-brd-none">
+                <div class="card rounded-0 g-brd-none" th:if="${servicio.organosCompetentes!=''}">
                     <div th:replace="~{fragments/accordionCard :: header(#{message.instancia.general.accordion.seven.header}, '7', true, true)}"></div>
                     <div id="accordion-05-body-7" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-7">
                         <div class="u-accordion__body">
@@ -148,9 +147,8 @@
                     </div>
                 </div>
                 <!-- End Card -->
-
                 <!-- Card -->
-                <div class="card rounded-0 g-brd-none">
+                <div class="card rounded-0 g-brd-none" th:if="${servicio.recursos!='' AND servicio.recursos!=null}">
                     <div th:replace="~{fragments/accordionCard :: header(#{message.instancia.general.accordion.eight.header}, '8', true, false)}"></div>
                     <div id="accordion-05-body-8" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-8">
                         <div class="u-accordion__body">
@@ -161,7 +159,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card rounded-0 g-brd-none">
+                <div class="card rounded-0 g-brd-none" th:if="${servicio.fundamentoLegal!=''}">
                     <div th:replace="~{fragments/accordionCard :: header(#{message.instancia.general.accordion.nine.header}, '9', true, true)}"></div>
                     <div id="accordion-05-body-9" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-9">
                         <div class="u-accordion__body">
@@ -172,7 +170,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card rounded-0 g-brd-none">
+                <div class="card rounded-0 g-brd-none" th:if="${servicio.preguntasFrecuentes!=''}">
                     <div th:replace="~{fragments/accordionCard :: header(#{message.instancia.general.accordion.ten.header}, '10', true, false)}"></div>
                     <div id="accordion-05-body-10" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-10">
                         <div class="u-accordion__body">
@@ -183,7 +181,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card rounded-0 g-brd-none">
+                <div class="card rounded-0 g-brd-none" th:if="${servicio.contactar!=''}">
                     <div th:replace="~{fragments/accordionCard :: header(#{message.instancia.general.accordion.eleven.header}, '11', true, true)}"></div>
                     <div id="accordion-05-body-11" class="collapse" role="tabpanel" aria-labelledby="accordion-05-heading-11">
                         <div class="u-accordion__body">

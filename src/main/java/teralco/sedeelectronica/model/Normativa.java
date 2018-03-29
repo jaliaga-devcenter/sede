@@ -11,19 +11,19 @@ public class Normativa extends BaseModel {
 	private static final long serialVersionUID = 1L;
 
 	@Column(nullable = false)
-	@NotEmpty(message = "Debe introducir una norma.")
+	@NotEmpty
 	private String norma;
 
 	@Column(nullable = false)
-	@NotEmpty(message = "Debe introducir una artículo.")
+	@NotEmpty
 	private String articulo;
 
 	@Column(nullable = true)
-	@NotEmpty(message = "Debe introducir un texto.")
+	@NotEmpty
 	private String texto;
 
 	@Column(nullable = true, name = "url_norma")
-	@NotEmpty(message = "Debe introducir una url.")
+	@NotEmpty
 	private String url;
 
 	public String getUrl() {

@@ -12,14 +12,14 @@ public class Noticia extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty(message = "Debe introducir un título.")
+	@NotEmpty
 	@Column(nullable = false)
 	private String titulo;
 
 	@Column(columnDefinition = "TIMESTAMP")
 	private Timestamp fecha;
 
-	@NotEmpty(message = "Debe introducir una noticia.")
+	@NotEmpty
 	@Column(nullable = false)
 	private String descripcion;
 
