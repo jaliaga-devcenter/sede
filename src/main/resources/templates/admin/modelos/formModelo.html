@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main-login}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main}">
 
 <head>
 	<title th:text="*{modelo.id!=null}?  #{message.modelos.form.edit} : #{message.modelos.form.new}"></title>
@@ -15,7 +15,29 @@
 
 			<form class="g-pa-30 g-mb-30" th:object="${modelo}" th:action="@{/admin/modelos/save}" method="post" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
-			<div th:replace="~{fragments/inputs/textareaField :: input(#{message.modelos.form.label.description}, 'descripcion', #{message.error.notempty}, 4, 50, true, false)}"></div>
+				<div class="row">
+						<div class="col-10">
+							<!-- Tab panes -->
+							<div id="nav-5-2-primary-ver" class="tab-content g-pt-20">
+								<div th:each="des,iter: ${modelo.traducciones}" class="tab-pane fade" th:classappend="${iter.index==0} ? 'show active' : ''"  th:id="'nav-5-2-primary-ver--'+${iter.index}" role="tabpanel">
+									<div th:replace="~{fragments/inputs/textareaField :: input(#{message.modelos.form.label.description}, traducciones[__${iter.index}__].descripcion, #{message.error.notempty}, 4, 50, true, false)}"></div>
+									<input type="hidden" th:field="*{traducciones[__${iter.index}__].idioma}" />
+								</div>
+							  </div>
+							  <!-- End Tab panes -->
+	
+						</div>
+						<div class="col-2">
+							<h4 th:text="#{message.languages.header}">Idioma:</h4>
+							<ul class="nav flex-column u-nav-v5-2 u-nav-primary" role="tablist" 
+							data-target="nav-5-2-primary-ver" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary" >
+								<li class="nav-item" th:each="lang,iter: ${langs}">
+									<a class="nav-link" th:classappend="${iter.index==0} ? active : ''" data-toggle="tab" th:href="'#nav-5-2-primary-ver--'+${iter.index}" th:text="${lang.codigo} +' - ' + ${lang.idioma}">Home</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+	
 			<div th:replace="~{fragments/inputs/fileField :: input(#{message.modelos.form.label.file}, #{message.modelos.form.button.file}, 'fileToUpload', #{message.error.notempty}, false, false)}"></div>	
 				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/modelos}, #{message.modelos.form.button.back}, #{message.modelos.form.button.save})}"></div>
 			</form>

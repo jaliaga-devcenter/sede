@@ -33,7 +33,6 @@ public class ModeloRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Modelo model = new Modelo();
-		model.setDescripcion("descripcion");
 		model.setFichero(file);
 
 		model = this.modeloRepository.save(model);
@@ -41,7 +40,7 @@ public class ModeloRepositoryTest {
 		Modelo found = this.modeloRepository.findById(model.getId());
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(model.getDescripcion());
+		assertThat(found.getId()).isEqualTo(model.getId());
 	}
 
 	@Test
@@ -50,7 +49,6 @@ public class ModeloRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Modelo model = new Modelo();
-		model.setDescripcion("descripcion");
 		model.setFichero(file);
 
 		model = this.modeloRepository.save(model);
@@ -58,14 +56,12 @@ public class ModeloRepositoryTest {
 		// ACT
 		Modelo found = this.modeloRepository.findById(model.getId());
 
-		found.setDescripcion("esto es otra denominacion");
-
 		this.modeloRepository.save(found);
 
 		model = this.modeloRepository.findById(model.getId());
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(model.getDescripcion());
+		assertThat(found.getId()).isEqualTo(model.getId());
 	}
 
 	@Test
@@ -74,7 +70,6 @@ public class ModeloRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Modelo model = new Modelo();
-		model.setDescripcion("descripcion");
 		model.setFichero(file);
 
 		model = this.modeloRepository.save(model);

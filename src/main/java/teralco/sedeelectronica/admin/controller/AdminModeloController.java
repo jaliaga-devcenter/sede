@@ -1,5 +1,9 @@
 package teralco.sedeelectronica.admin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Fichero;
+import teralco.sedeelectronica.model.Lenguaje;
 import teralco.sedeelectronica.model.Modelo;
+import teralco.sedeelectronica.model.ModeloLenguaje;
 import teralco.sedeelectronica.service.FicheroService;
+import teralco.sedeelectronica.service.LenguajeService;
 import teralco.sedeelectronica.service.ModeloService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
@@ -30,21 +37,25 @@ public class AdminModeloController {
 	private static String list = "admin/modelos/modelos";
 	private static String redirList = "redirect:/admin/modelos";
 	private static String form = "admin/modelos/formModelo";
+	private static String langModel = "langs";
 
 	private ModeloService modeloService;
+	private LenguajeService lenguajeService;
 	private FicheroService ficheroService;
 
 	@Autowired
 	private EncryptUtils encryptUtils;
 
 	@Autowired
-	public AdminModeloController(ModeloService pModeloService, FicheroService pFicheroService) {
+	public AdminModeloController(ModeloService pModeloService, LenguajeService pLenguajeService,
+			FicheroService pFicheroService) {
 		this.modeloService = pModeloService;
+		this.lenguajeService = pLenguajeService;
 		this.ficheroService = pFicheroService;
 	}
 
 	@RequestMapping(value = "/admin/modelos", method = RequestMethod.GET)
-	public String modeloes(Model model, @PageableDefault(value = 10) Pageable pageable) {
+	public String modelos(Model model, @PageableDefault(value = 10) Pageable pageable) {
 		model.addAttribute("encrypt", this.encryptUtils);
 		Page<Modelo> pages = this.modeloService.listAllByPage(pageable);
 		model.addAttribute("modelos", pages);
@@ -56,14 +67,50 @@ public class AdminModeloController {
 
 	@RequestMapping("/admin/modelos/create")
 	public String create(Model model) {
-		model.addAttribute("modelo", new Modelo());
+		Iterable<Lenguaje> lang = this.lenguajeService.list();
+		Modelo modelo = new Modelo();
+		lang.forEach(e -> modelo.getTraducciones().add(new ModeloLenguaje(e.getCodigo())));
+		model.addAttribute(langModel, lang);
+		model.addAttribute("modelo", modelo);
 		return form;
 	}
 
 	@RequestMapping("/admin/modelos/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
 
-		model.addAttribute("modelo", this.modeloService.get(id));
+		Iterable<Lenguaje> langs = this.lenguajeService.list();
+
+		List<String> target = new ArrayList<>();
+		langs.forEach(e -> target.add(e.getCodigo()));
+
+		Modelo modelo = this.modeloService.get(id);
+
+		List<String> source = new ArrayList<>();
+		modelo.getTraducciones().forEach(e -> source.add(e.getIdioma()));
+		AtomicInteger atomicInteger = new AtomicInteger(0);
+
+		// quitar
+		source.forEach(s -> {
+			if (!target.contains(s)) {
+				modelo.getTraducciones().remove(atomicInteger.get());
+			}
+			atomicInteger.getAndIncrement();
+
+		});
+
+		atomicInteger.set(0);
+		// anyadir
+		target.forEach(s -> {
+			if (!source.contains(s)) {
+				modelo.getTraducciones().add(atomicInteger.get(), new ModeloLenguaje(s));
+
+			}
+			atomicInteger.getAndIncrement();
+
+		});
+
+		model.addAttribute(langModel, langs);
+		model.addAttribute("modelo", modelo);
 		return form;
 	}
 
@@ -81,8 +128,9 @@ public class AdminModeloController {
 	}
 
 	@PostMapping(value = "/admin/modelos/save")
-	public String save(@Valid @ModelAttribute("modelo") Modelo modelo, BindingResult bindingResult) {
+	public String save(@Valid @ModelAttribute("modelo") Modelo modelo, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute(langModel, this.lenguajeService.list());
 			return form;
 		}
 

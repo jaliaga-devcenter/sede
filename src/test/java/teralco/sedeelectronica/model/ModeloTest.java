@@ -10,13 +10,11 @@ public class ModeloTest {
 		// ARRANGE
 		Modelo model = new Modelo();
 
-		model.setDescripcion("cualquier descripción");
 		Fichero file = new Fichero();
 		file.setTamanyo(512.24);
 		model.setFichero(file);
 
 		// ASSERT
-		assertEquals("cualquier descripción", model.getDescripcion());
 		assertEquals(file, model.getFichero());
 
 	}

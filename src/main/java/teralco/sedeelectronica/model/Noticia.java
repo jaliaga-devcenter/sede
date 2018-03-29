@@ -1,43 +1,35 @@
 package teralco.sedeelectronica.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Noticia extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty
-	@Column(nullable = false)
-	private String titulo;
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "noticia_lenguaje", joinColumns = @JoinColumn(name = "noticia_id"))
+	private List<NoticiaLenguaje> traducciones = new ArrayList<>();
+
+	public List<NoticiaLenguaje> getTraducciones() {
+		return this.traducciones;
+	}
+
+	public void setTraducciones(List<NoticiaLenguaje> ptraducciones) {
+		this.traducciones = ptraducciones;
+	}
 
 	@Column(columnDefinition = "TIMESTAMP")
 	private Timestamp fecha;
-
-	@NotEmpty
-	@Column(nullable = false)
-	private String descripcion;
-
-	public String getTitulo() {
-		return this.titulo;
-	}
-
-	public void setTitulo(String pTitulo) {
-		this.titulo = pTitulo;
-	}
-
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-
-	public void setDescripcion(String pDescripcion) {
-		this.descripcion = pDescripcion;
-	}
 
 	public Timestamp getFecha() {
 		return this.fecha;

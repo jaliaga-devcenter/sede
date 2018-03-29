@@ -54,5 +54,4 @@ public class Application extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(procedimientoInterceptor()).addPathPatterns("/procedimiento", "/procedimiento/**",
 				"/carpeta-ciudadana");
 	}
-
 }

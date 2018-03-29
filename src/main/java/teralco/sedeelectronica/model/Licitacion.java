@@ -1,9 +1,13 @@
 package teralco.sedeelectronica.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -14,7 +18,6 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,9 +32,9 @@ public class Licitacion extends BaseModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaPub;
 
-	@NotEmpty
-	@Column(nullable = false)
-	private String descripcion;
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "licitacion_lenguaje", joinColumns = @JoinColumn(name = "licitacion_id"))
+	private List<LicitacionLenguaje> traducciones = new ArrayList<>();
 
 	@Min(1)
 	@NotNull
@@ -71,14 +74,6 @@ public class Licitacion extends BaseModel {
 		this.fechaPub = pFechaPub;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-
-	public void setDescripcion(String pDescripcion) {
-		this.descripcion = pDescripcion;
-	}
-
 	public BigDecimal getPresupuesto() {
 		return this.presupuesto;
 	}
@@ -109,5 +104,13 @@ public class Licitacion extends BaseModel {
 
 	public void setFileToUpload(MultipartFile file) {
 		this.fileToUpload = file;
+	}
+
+	public List<LicitacionLenguaje> getTraducciones() {
+		return this.traducciones;
+	}
+
+	public void setTraducciones(List<LicitacionLenguaje> pLanguage) {
+		this.traducciones = pLanguage;
 	}
 }

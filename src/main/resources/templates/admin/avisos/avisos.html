@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorate="~{layouts/main-login}">
+<html lang="es" layout:decorate="~{layouts/main}">
 <head>
 	<head>
 		<title th:text="#{message.avisos.table.header}">Avisos</title>
@@ -34,8 +34,8 @@
 					</th>	
 					<td th:text="${#dates.format(aviso.fecha, 'dd/MM/yyyy')}"></td>
 					<td th:switch="${aviso.fichero}">
-							<span th:case="null" th:text="${aviso.descripcion}"></span>
-							<span th:case="*"><a th:text="${aviso.descripcion}" th:href="@{/download/}+${encrypt.encrypt(aviso.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
+							<span th:case="null" th:text="${aviso.traducciones[0].descripcion}"></span>
+							<span th:case="*"><a th:text="${aviso.traducciones[0].descripcion}" th:href="@{/download/}+${encrypt.encrypt(aviso.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>									
 
 				</tr>

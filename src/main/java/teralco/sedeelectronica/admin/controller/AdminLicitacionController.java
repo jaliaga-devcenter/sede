@@ -1,5 +1,9 @@
 package teralco.sedeelectronica.admin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Fichero;
+import teralco.sedeelectronica.model.Lenguaje;
 import teralco.sedeelectronica.model.Licitacion;
+import teralco.sedeelectronica.model.LicitacionLenguaje;
 import teralco.sedeelectronica.service.FicheroService;
+import teralco.sedeelectronica.service.LenguajeService;
 import teralco.sedeelectronica.service.LicitacionService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
@@ -28,11 +35,16 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class AdminLicitacionController {
 
+	private static final String MEDIOMODEL = "medios";
+
 	private static String list = "admin/licitaciones/licitaciones";
 	private static String redirList = "redirect:/admin/licitaciones";
 	private static String form = "admin/licitaciones/formLicitacion";
 
+	private static String langModel = "langs";
+
 	private LicitacionService licitacionService;
+	private LenguajeService lenguajeService;
 	private FicheroService ficheroService;
 
 	@Autowired
@@ -44,8 +56,10 @@ public class AdminLicitacionController {
 	}
 
 	@Autowired
-	public AdminLicitacionController(LicitacionService pLicitacionService, FicheroService pFicheroService) {
+	public AdminLicitacionController(LicitacionService pLicitacionService, LenguajeService pLenguajeService,
+			FicheroService pFicheroService) {
 		this.licitacionService = pLicitacionService;
+		this.lenguajeService = pLenguajeService;
 		this.ficheroService = pFicheroService;
 	}
 
@@ -62,14 +76,51 @@ public class AdminLicitacionController {
 
 	@RequestMapping("/admin/licitaciones/create")
 	public String create(Model model) {
-		model.addAttribute("licitacion", new Licitacion());
+		Iterable<Lenguaje> lang = this.lenguajeService.list();
+		Licitacion lici = new Licitacion();
+		lang.forEach(e -> lici.getTraducciones().add(new LicitacionLenguaje(e.getCodigo())));
+		model.addAttribute("licitacion", lici);
+		model.addAttribute(langModel, lang);
 		return form;
 	}
 
 	@RequestMapping("/admin/licitaciones/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("licitacion", this.licitacionService.get(id));
+		Iterable<Lenguaje> langs = this.lenguajeService.list();
+
+		List<String> target = new ArrayList<>();
+		langs.forEach(e -> target.add(e.getCodigo()));
+
+		Licitacion lici = this.licitacionService.get(id);
+
+		List<String> source = new ArrayList<>();
+		lici.getTraducciones().forEach(e -> source.add(e.getIdioma()));
+		AtomicInteger atomicInteger = new AtomicInteger(0);
+
+		// quitar
+		source.forEach(s -> {
+			if (!target.contains(s)) {
+				lici.getTraducciones().remove(atomicInteger.get());
+			}
+			atomicInteger.getAndIncrement();
+
+		});
+
+		atomicInteger.set(0);
+		// anyadir
+		target.forEach(s -> {
+			if (!source.contains(s)) {
+				lici.getTraducciones().add(atomicInteger.get(), new LicitacionLenguaje(s));
+
+			}
+			atomicInteger.getAndIncrement();
+
+		});
+
+		model.addAttribute("licitacion", lici);
+		model.addAttribute(langModel, langs);
 		return form;
+
 	}
 
 	@RequestMapping("/admin/licitaciones/delete/{id}")
@@ -85,8 +136,9 @@ public class AdminLicitacionController {
 	}
 
 	@PostMapping(value = "/admin/licitaciones/save")
-	public String save(@Valid @ModelAttribute("licitacion") Licitacion lici, BindingResult bindingResult) {
+	public String save(@Valid @ModelAttribute("licitacion") Licitacion lici, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute(langModel, this.lenguajeService.list());
 			return form;
 		}
 

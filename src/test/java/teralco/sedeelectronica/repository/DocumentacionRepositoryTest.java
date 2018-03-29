@@ -32,7 +32,6 @@ public class DocumentacionRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Documentacion docu = new Documentacion();
-		docu.setDescripcion("una denominacion");
 		docu.setFichero(file);
 		docu = this.documentacionRepository.save(docu);
 
@@ -40,7 +39,7 @@ public class DocumentacionRepositoryTest {
 		Documentacion found = this.documentacionRepository.findById(docu.getId());
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(docu.getDescripcion());
+		assertThat(found.getId()).isEqualTo(docu.getId());
 	}
 
 	@Test
@@ -50,20 +49,18 @@ public class DocumentacionRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Documentacion docu = new Documentacion();
-		docu.setDescripcion("una denominacion");
 		docu.setFichero(file);
 		docu = this.documentacionRepository.save(docu);
 
 		// ACT
 		Documentacion found = this.documentacionRepository.findById(docu.getId());
-		found.setDescripcion("esto es otra denominacion");
 
 		this.documentacionRepository.save(found);
 
 		docu = this.documentacionRepository.findById(docu.getId());
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(docu.getDescripcion());
+		assertThat(found.getId()).isEqualTo(docu.getId());
 	}
 
 	@Test
@@ -73,7 +70,6 @@ public class DocumentacionRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Documentacion docu = new Documentacion();
-		docu.setDescripcion("una denominacion");
 		docu.setFichero(file);
 		docu = this.documentacionRepository.save(docu);
 

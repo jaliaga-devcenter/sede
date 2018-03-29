@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorate="~{layouts/main-login}">
+<html lang="es" layout:decorate="~{layouts/main}">
 <head>
 	<title th:text="#{message.aperturas.table.header}">Aperturas</title>
 </head>
@@ -35,9 +35,9 @@
 					</fieldset>
 				</th>		
 				<td th:text="${apertura.resultado!=null} ? ${apertura.resultado.tipo}: ''"></td>
-				<td th:text="${apertura.denominacion}"> </td>					
+				<td th:text="${apertura.traducciones[0].denominacion}"> </td>					
 				<td th:utext="${#dates.format(apertura.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
-				${#dates.format(apertura.hora,'hh:mm')} + '&lt;br/&gt;' +${apertura.plica}"></td>
+				${#dates.format(apertura.hora,'hh:mm')} + '&lt;br/&gt;' +${apertura.traducciones[0].plica}"></td>
 				<td th:switch="${apertura.resultado}">
 					<span th:case="null" ></span>
 					<span th:case="*"><a class="downa" th:href="@{/download/}+${encrypt.encrypt(apertura.resultado.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>

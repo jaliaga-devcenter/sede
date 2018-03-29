@@ -11,11 +11,8 @@ public class AnuncioTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testAnuncio() {
-		String desc = "cualquier descripción";
-		String titulo = "un titulo";
 		// ARRANGE
 		Anuncio anuncio = new Anuncio();
-		anuncio.setDescripcion(desc);
 
 		Date date = new Date();
 		date.setYear(2018);
@@ -25,10 +22,8 @@ public class AnuncioTest {
 		date.setHours(16);
 		anuncio.setFechaDe(date);
 		anuncio.setFechaHasta(date);
-		anuncio.setTitulo(titulo);
 		// ASSERT
-		assertEquals(desc, anuncio.getDescripcion());
-		assertEquals(titulo, anuncio.getTitulo());
+
 		assertEquals(date, anuncio.getFechaDe());
 		assertEquals(date, anuncio.getFechaHasta());
 

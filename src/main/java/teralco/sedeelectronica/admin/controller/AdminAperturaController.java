@@ -1,5 +1,9 @@
 package teralco.sedeelectronica.admin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teralco.sedeelectronica.model.Apertura;
+import teralco.sedeelectronica.model.AperturaLenguaje;
 import teralco.sedeelectronica.model.Fichero;
+import teralco.sedeelectronica.model.Lenguaje;
 import teralco.sedeelectronica.service.AperturaService;
 import teralco.sedeelectronica.service.FicheroService;
+import teralco.sedeelectronica.service.LenguajeService;
 import teralco.sedeelectronica.utils.EncryptUtils;
 import teralco.sedeelectronica.utils.FicheroUtils;
 import teralco.sedeelectronica.utils.PageWrapper;
@@ -29,16 +36,20 @@ public class AdminAperturaController {
 	private static String list = "admin/aperturas/aperturas";
 	private static String redirList = "redirect:/admin/aperturas";
 	private static String form = "admin/aperturas/formApertura";
+	private static String langModel = "langs";
 
 	private AperturaService aperturaService;
+	private LenguajeService lenguajeService;
 	private FicheroService ficheroService;
 
 	@Autowired
 	private EncryptUtils encryptUtils;
 
 	@Autowired
-	public AdminAperturaController(AperturaService pAperturaService, FicheroService pFicheroService) {
+	public AdminAperturaController(AperturaService pAperturaService, LenguajeService pLenguajeService,
+			FicheroService pFicheroService) {
 		this.aperturaService = pAperturaService;
+		this.lenguajeService = pLenguajeService;
 		this.ficheroService = pFicheroService;
 	}
 
@@ -56,13 +67,48 @@ public class AdminAperturaController {
 
 	@RequestMapping("/admin/aperturas/create")
 	public String create(Model model) {
-		model.addAttribute("apertura", new Apertura());
+		Iterable<Lenguaje> lang = this.lenguajeService.list();
+		Apertura aper = new Apertura();
+		lang.forEach(e -> aper.getTraducciones().add(new AperturaLenguaje(e.getCodigo())));
+		model.addAttribute(langModel, lang);
+		model.addAttribute("apertura", aper);
 		return form;
 	}
 
 	@RequestMapping("/admin/aperturas/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("apertura", this.aperturaService.get(id));
+		Iterable<Lenguaje> langs = this.lenguajeService.list();
+
+		List<String> target = new ArrayList<>();
+		langs.forEach(e -> target.add(e.getCodigo()));
+
+		Apertura aper = this.aperturaService.get(id);
+
+		List<String> source = new ArrayList<>();
+		aper.getTraducciones().forEach(e -> source.add(e.getIdioma()));
+		AtomicInteger atomicInteger = new AtomicInteger(0);
+
+		// quitar
+		source.forEach(s -> {
+			if (!target.contains(s)) {
+				aper.getTraducciones().remove(atomicInteger.get());
+			}
+			atomicInteger.getAndIncrement();
+
+		});
+
+		atomicInteger.set(0);
+		// anyadir
+		target.forEach(s -> {
+			if (!source.contains(s)) {
+				aper.getTraducciones().add(atomicInteger.get(), new AperturaLenguaje(s));
+			}
+			atomicInteger.getAndIncrement();
+
+		});
+
+		model.addAttribute(langModel, langs);
+		model.addAttribute("apertura", aper);
 		return form;
 	}
 
@@ -79,8 +125,9 @@ public class AdminAperturaController {
 	}
 
 	@PostMapping(value = "/admin/aperturas/save")
-	public String save(@Valid @ModelAttribute("apertura") Apertura apertura, BindingResult bindingResult) {
+	public String save(@Valid @ModelAttribute("apertura") Apertura apertura, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute(langModel, this.lenguajeService.list());
 			return form;
 		}
 

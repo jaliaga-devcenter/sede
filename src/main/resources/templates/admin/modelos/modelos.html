@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorate="~{layouts/main-login}">
+<html lang="es" layout:decorate="~{layouts/main}">
 <head>
 	<head>
 		<title th:text="#{message.modelos.table.header}">Modelos</title>
@@ -34,8 +34,8 @@
 					</th>	
 					<td th:text="${modelo.fichero!=null} ? ${modelo.fichero.tipo}: ''"></td>
 					<td th:switch="${modelo.fichero}">
-							<span th:case="null" th:text="${modelo.descripcion}"></span>
-							<span th:case="*"><a th:text="${modelo.descripcion}" th:href="@{/download/}+${encrypt.encrypt(modelo.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
+							<span th:case="null" th:text="${modelo.traducciones[0].descripcion}"></span>
+							<span th:case="*"><a th:text="${modelo.traducciones[0].descripcion}" th:href="@{/download/}+${encrypt.encrypt(modelo.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>					
 				</tr>
 			</tbody>

@@ -14,7 +14,6 @@ public class LicitacionTest {
 		// ARRANGE
 		Licitacion lici = new Licitacion();
 
-		lici.setDescripcion("cualquier descripción");
 		Fichero file = new Fichero();
 		file.setTamanyo(512.24);
 		lici.setFichero(file);
@@ -32,7 +31,6 @@ public class LicitacionTest {
 		lici.setFinPlazo(date);
 
 		// ASSERT
-		assertEquals("cualquier descripción", lici.getDescripcion());
 		assertEquals(file, lici.getFichero());
 		assertEquals(bd, lici.getPresupuesto());
 		assertEquals(date, lici.getFechaPub());

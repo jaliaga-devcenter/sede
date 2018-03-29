@@ -1,13 +1,17 @@
 package teralco.sedeelectronica.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
@@ -17,10 +21,6 @@ public class Documentacion extends BaseModel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	@NotEmpty
-	@Column(nullable = false)
-	private String descripcion;
 
 	@Column(columnDefinition = "INT2")
 	private Estado estado;
@@ -33,12 +33,16 @@ public class Documentacion extends BaseModel {
 	@JoinColumn(name = "id_fichero", nullable = true)
 	private Fichero fichero;
 
-	public String getDescripcion() {
-		return this.descripcion;
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "documentacion_lenguaje", joinColumns = @JoinColumn(name = "documentacion_id"))
+	private List<DocumentacionLenguaje> traducciones = new ArrayList<>();
+
+	public List<DocumentacionLenguaje> getTraducciones() {
+		return this.traducciones;
 	}
 
-	public void setDescripcion(String pDescripcion) {
-		this.descripcion = pDescripcion;
+	public void setTraducciones(List<DocumentacionLenguaje> pTraducciones) {
+		this.traducciones = pTraducciones;
 	}
 
 	public Estado getEstado() {

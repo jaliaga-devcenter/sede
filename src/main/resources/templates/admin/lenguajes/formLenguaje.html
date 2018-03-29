@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{layouts/main}">
+<head>
+		
+	<title th:text="#{message.lenguajes.form.title}"></title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div th:replace="~{fragments/admin/navbar :: navbar}"></div>
+		<section class="g-py-15">
+			<div class="u-heading-v1-1 g-bg-main g-brd-transparent g-pa-30">
+				<h2 class="h3 u-heading-v1__title" th:text="#{message.lenguajes.form.title}"></h2>
+			</div>
+			<div id="feedback"></div>
+			<form class="g-pa-30 g-mb-30" id="lenguajes-form">			
+	
+				<script src="../static/js/multiselect.js" th:src="@{/js/multiselect.js}"></script>
+			   
+				<div class="row">
+				  <div class="col col-lg-5">
+					<h3 th:text="#{messages.lenguajes.available}"></h3>
+					<select name="from[]" id="search" class="multiselect form-control multi" size="10" data-right="#multiselect_to_1" data-right-all="#right_All_1" data-right-selected="#right_Selected_1" data-left-all="#left_All_1" data-left-selected="#left_Selected_1">
+					</select>
+				  </div>
+					
+				  <div class="col buttons col-md-auto" style="margin-top: 75px;">
+					  <button type="button" id="search_rightSelected" class="btn btn-block"><i class="fa fa-angle-right"></i></button>
+					  <button type="button" id="search_leftSelected" class="btn btn-block"><i class="fa fa-angle-left"></i></button>
+				  </div>
+					
+					<div class="col col-lg-5" >
+						<h3 th:text="#{messages.lenguajes.selected}"></h3>
+						<select name="to[]" id="search_to" class="multiselect form-control multi" size="10" style="margin-top: 41px;">
+							<option th:each="lang : ${langs}" th:value="${lang.codigo}" th:text="${lang.idioma + ' - ' + lang.codigo}">idiomas</option>
+						</select>
+					</div>
+				</div>
+					
+				<div class="d-flex justify-content-between g-mt-30">
+					<div>
+						<a href="/admin/index.html" th:href="@{/admin/}" class="btn btn-md u-btn-outline-primary g-mr-10 g-mb-15" th:text="#{message.lenguajes.form.button.back}">Atras</a>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-md u-btn-primary rounded-0" th:text="#{message.lenguajes.form.button.save}">Guardar Lenguaje</button>
+					</div>
+				</div>
+			</form>	
+			
+	</div>
+</body>
+</html>

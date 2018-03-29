@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" layout:decorate="~{layouts/main}">
 <head>
-	<title th:text="#{message.adjudicaciones.table.header-login}"></title>
+	<title th:text="#{message.adjudicaciones.table.header}"></title>
 </head>
 
 <body>
@@ -38,9 +38,9 @@
 						</fieldset>
 					</th>
 					<td th:text="${adjudicacion.resultado!=null} ? ${adjudicacion.resultado.tipo}: ''"></td>
-					<td th:text="${adjudicacion.denominacion}"> </td>					
+					<td th:text="${adjudicacion.traducciones[0].denominacion}"> </td>					
 					<td th:utext="${adjudicacion.fecha!=null} ? ${#dates.format(adjudicacion.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
-					(${adjudicacion.hora!=null} ? ${#dates.format(adjudicacion.hora,'hh:mm')}:'') + '&lt;br/&gt;' +${adjudicacion.plica} : ''"></td>
+					(${adjudicacion.hora!=null} ? ${#dates.format(adjudicacion.hora,'hh:mm')}:'') + '&lt;br/&gt;' +${adjudicacion.traducciones[0].plica} : ''"></td>
 					<td th:switch="${adjudicacion.resultado}">
 							<span th:case="null" ></span>
 							<span th:case="*"><a class="downa" th:href="@{/download/}+${encrypt.encrypt(adjudicacion.resultado.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
@@ -53,7 +53,7 @@
 					${adjudicacion.presupuesto}+' &euro; &lt;br/&gt;': '' ) +
 					(${adjudicacion.fechaAdjudicacion!=null} ? 
 					${#dates.format(adjudicacion.fechaAdjudicacion, 'dd/MM/yyyy')} : '' )
-					+ '&lt;br/&gt;' +${adjudicacion.empresaAdjudicacion})"></td>
+					+ '&lt;br/&gt;' +${adjudicacion.traducciones[0].empresaAdjudicacion})"></td>
 				</tr>
 			</tbody>
 			<tbody th:unless="${adjudicaciones.getNumberOfElements()}"> 

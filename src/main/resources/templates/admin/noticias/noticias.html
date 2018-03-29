@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorate="~{layouts/main-login}">
+<html lang="es" layout:decorate="~{layouts/main}">
 <head>
 	<head>
 		<title th:text="#{message.news.table.header}">Noticias</title>
@@ -33,7 +33,7 @@
 						</fieldset>
 					</th>
 					<td th:text="${#dates.format(noticia.fecha, 'dd/MM/yyyy HH:mm')}"></td>
-					<td th:text="${noticia.titulo}"></td>				
+					<td th:text="${noticia.traducciones[0].titulo}"></td>				
 				</tr>
 			</tbody>
 			<tbody th:unless="${noticias.getNumberOfElements()}"> 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorate="~{layouts/main-login}">
+<html lang="es" layout:decorate="~{layouts/main}">
 <head>
 	<title th:text="#{message.normative.table.header}"></title>
 </head>
@@ -34,11 +34,11 @@
 						</fieldset>
 					</th>
 					<td th:switch="${normativa.url}">
-							<span th:case="null" th:text="${normativa.norma}" ></span>
-							<span th:case="*"><a th:text="${normativa.norma}" th:href="${normativa.url}" target="_blank"><div class="download">&nbsp;</div></a></span>
+							<span th:case="null" th:text="${normativa.traducciones[0].norma}" ></span>
+							<span th:case="*"><a th:text="${normativa.traducciones[0].norma}" th:href="${normativa.url}" target="_blank"><div class="download">&nbsp;</div></a></span>
 						</td>	
-					<td th:text="${normativa.articulo}"></td>
-					<td th:text="${normativa.texto}"> </td>							
+					<td th:text="${normativa.traducciones[0].articulo}"></td>
+					<td th:text="${normativa.traducciones[0].texto}"> </td>							
 				</tr>
 			</tbody>
 			<tbody th:unless="${normativas.getNumberOfElements()}"> 

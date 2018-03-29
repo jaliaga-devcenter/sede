@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main-login}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main}">
 
 <head>
 	<title th:text="*{adjudicacion.id!=null}?  #{message.adjudicaciones.form.edit} : #{message.adjudicaciones.form.new}"></title>
@@ -14,11 +14,32 @@
 			</div>
 			<form class="g-pa-30 g-mb-30" th:object="${adjudicacion}" th:action="@{/admin/adjudicaciones/save}" method="post" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
-			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.description}, 'denominacion', #{message.error.notempty}, 4, 50, true, false)}"></div>
 			<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.datesealedbid}, 'fecha', #{message.error.date}, false, false)}"></div>
 			<div th:replace="~{fragments/inputs/timeField :: input (#{message.adjudicaciones.form.label.timesealedbid}, 'hora', #{message.error.hour}, false, false)}"></div>
-			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.sealedbid}, 'plica', #{message.error.notempty}, 4, 50, false, false)}"></div>
-			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.company}, 'empresaAdjudicacion', #{message.error.notempty}, 4, 50, false, false)}"></div>
+			<div class="row">
+				<div class="col-10">
+					<!-- Tab panes -->
+					<div id="nav-5-2-primary-ver" class="tab-content g-pt-20">
+						<div th:each="des,iter: ${adjudicacion.traducciones}" class="tab-pane fade" th:classappend="${iter.index==0} ? 'show active' : ''"  th:id="'nav-5-2-primary-ver--'+${iter.index}" role="tabpanel">
+							<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.description}, traducciones[__${iter.index}__].denominacion, #{message.error.notempty}, 4, 50, true, false)}"></div>
+							<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.sealedbid}, traducciones[__${iter.index}__].plica, #{message.error.notempty}, 4, 50, false, false)}"></div>
+							<div th:replace="~{fragments/inputs/textareaField :: input (#{message.adjudicaciones.form.label.company}, traducciones[__${iter.index}__].empresaAdjudicacion, #{message.error.notempty}, 4, 50, false, false)}"></div>							
+							<input type="hidden" th:field="*{traducciones[__${iter.index}__].idioma}" />
+						</div>
+					  </div>
+					  <!-- End Tab panes -->
+
+				</div>
+				<div class="col-2">
+					<h4 th:text="#{message.languages.header}">Idioma:</h4>
+					<ul class="nav flex-column u-nav-v5-2 u-nav-primary" role="tablist" 
+					data-target="nav-5-2-primary-ver" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary" >
+						<li class="nav-item" th:each="lang,iter: ${langs}">
+							<a class="nav-link" th:classappend="${iter.index==0} ? active : ''" data-toggle="tab" th:href="'#nav-5-2-primary-ver--'+${iter.index}" th:text="${lang.codigo} +' - ' + ${lang.idioma}">Home</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 			<div th:replace="~{fragments/inputs/numberField :: input (#{message.adjudicaciones.form.label.budget}, 'presupuesto', '0.01', #{message.error.notempty}, false, false)}"></div>
 			<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.formalizationdate}, 'fechaFormalizacion', #{message.error.date}, false, false)}"></div>
 			<div th:replace="~{fragments/inputs/dateField :: input (#{message.adjudicaciones.form.label.awarded}, 'fechaAdjudicacion', #{message.error.data}, false, false)}"></div>

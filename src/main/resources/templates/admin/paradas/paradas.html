@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorate="~{layouts/main-login}">
+<html lang="es" layout:decorate="~{layouts/main}">
 <head>
 	<head>
 		<title th:text="#{message.stop.table.header}">Paradas</title>
@@ -33,7 +33,7 @@
 						</fieldset>
 					</th>
 					<td th:text="${#dates.format(parada.fecha, 'dd/MM/yyyy')}"></td>
-					<td th:text="${parada.descripcion}" ></td>					
+					<td th:text="${parada.traducciones[0].descripcion}" ></td>					
 				</tr>
 			</tbody>
 			<tbody th:unless="${paradas.getNumberOfElements()}"> 

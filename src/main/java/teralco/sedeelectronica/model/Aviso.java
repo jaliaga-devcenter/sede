@@ -1,8 +1,12 @@
 package teralco.sedeelectronica.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -12,7 +16,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,10 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class Aviso extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
-
-	@NotEmpty
-	@Column(nullable = false)
-	private String descripcion;
 
 	@Column(name = "fecha")
 	@Temporal(TemporalType.DATE)
@@ -39,13 +38,9 @@ public class Aviso extends BaseModel {
 	@JoinColumn(name = "id_fichero", nullable = true)
 	private Fichero fichero;
 
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-
-	public void setDescripcion(String pDescripcion) {
-		this.descripcion = pDescripcion;
-	}
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "aviso_lenguaje", joinColumns = @JoinColumn(name = "aviso_id"))
+	private List<AvisoLenguaje> traducciones = new ArrayList<>();
 
 	public MultipartFile getFileToUpload() {
 		return this.fileToUpload;
@@ -69,6 +64,14 @@ public class Aviso extends BaseModel {
 
 	public void setFecha(Date pFecha) {
 		this.fecha = pFecha;
+	}
+
+	public List<AvisoLenguaje> getTraducciones() {
+		return this.traducciones;
+	}
+
+	public void setTraducciones(List<AvisoLenguaje> pTraducciones) {
+		this.traducciones = pTraducciones;
 	}
 
 }

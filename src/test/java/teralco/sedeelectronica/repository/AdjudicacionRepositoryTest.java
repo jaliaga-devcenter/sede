@@ -33,12 +33,9 @@ public class AdjudicacionRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Adjudicacion adju = new Adjudicacion();
-		adju.setDenominacion("una denominacion");
-		adju.setEmpresaAdjudicacion(null);
 		adju.setFecha(null);
 		adju.setFechaAdjudicacion(null);
 		adju.setHora(null);
-		adju.setPlica(null);
 		adju.setPresupuesto(null);
 		adju.setResultado(file);
 
@@ -48,7 +45,7 @@ public class AdjudicacionRepositoryTest {
 		Adjudicacion found = this.adjudicacionRepository.findById(adju.getId());
 
 		// ASSERT
-		assertThat(found.getDenominacion()).isEqualTo(adju.getDenominacion());
+		assertThat(found.getId()).isEqualTo(adju.getId());
 	}
 
 	@Test
@@ -58,21 +55,19 @@ public class AdjudicacionRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Adjudicacion adju = new Adjudicacion();
-		adju.setDenominacion("una denominacion");
 		adju.setResultado(file);
 
 		adju = this.adjudicacionRepository.save(adju);
 
 		// ACT
 		Adjudicacion found = this.adjudicacionRepository.findById(adju.getId());
-		found.setDenominacion("esto es otra denominacion");
 
 		this.adjudicacionRepository.save(found);
 
 		adju = this.adjudicacionRepository.findById(adju.getId());
 
 		// ASSERT
-		assertThat(found.getDenominacion()).isEqualTo(adju.getDenominacion());
+		assertThat(found.getId()).isEqualTo(adju.getId());
 	}
 
 	@Test
@@ -82,7 +77,6 @@ public class AdjudicacionRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Adjudicacion adju = new Adjudicacion();
-		adju.setDenominacion("una denominacion");
 		adju.setResultado(file);
 		adju = this.adjudicacionRepository.save(adju);
 

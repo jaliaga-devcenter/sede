@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main-login}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/main}">
 
 <head>
 	<title th:text="*{anuncio.id!=null}?  #{message.annuncement.form.edit} : #{message.annuncement.form.new}"></title>
@@ -17,15 +17,38 @@
 
 			<form class="g-pa-30 g-mb-30" th:object="${anuncio}" th:action="@{/admin/anuncios/save}" method="post" enctype="multipart/form-data">
 				<input type="hidden" th:field="*{id}" />
-			<div th:replace="~{fragments/inputs/textField :: input(#{message.annuncement.form.label.title}, 'titulo', 'text', #{message.error.date}, true)}"></div>
 			<div th:replace="~{fragments/inputs/dateField :: input (#{message.annuncement.form.label.dateFrom}, 'fechaDe', #{message.error.date}, false, false)}"></div>
 			<div th:replace="~{fragments/inputs/dateField :: input (#{message.annuncement.form.label.dateTo}, 'fechaHasta', #{message.error.date}, false, false)}"></div>
-			<div th:replace="~{fragments/inputs/textareaField :: input (#{message.annuncement.form.label.new}, 'descripcion', #{message.error.notempty}, 4, 48, true, false)}"></div> 	
+			<div class="row">
+					<div class="col-10">
+						<!-- Tab panes -->
+						<div id="nav-5-2-primary-ver" class="tab-content g-pt-20">
+							<div th:each="des,iter: ${anuncio.traducciones}" class="tab-pane fade" th:classappend="${iter.index==0} ? 'show active' : ''"  th:id="'nav-5-2-primary-ver--'+${iter.index}" role="tabpanel">
+								<div th:replace="~{fragments/inputs/textField :: input(#{message.annuncement.form.label.title}, traducciones[__${iter.index}__].titulo, 'text', #{message.error.date}, true)}"></div>
+								<div th:replace="~{fragments/inputs/textareaField :: input (#{message.annuncement.form.label.new}, traducciones[__${iter.index}__].descripcion, #{message.error.notempty}, 4, 48, true, false)}"></div> 	
+								<input type="hidden" th:field="*{traducciones[__${iter.index}__].idioma}" />
+							</div>
+	  					</div>
+	  					<!-- End Tab panes -->
+					</div>
+					<div class="col-2">
+						<h4 th:text="#{message.languages.header}">Idioma:</h4>
+						<ul class="nav flex-column u-nav-v5-2 u-nav-primary" role="tablist" 
+						data-target="nav-5-2-primary-ver" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary" >
+							<li class="nav-item" th:each="lang,iter: ${langs}">
+								<a class="nav-link" th:classappend="${iter.index==0} ? active : ''" data-toggle="tab" th:href="'#nav-5-2-primary-ver--'+${iter.index}" th:text="${lang.codigo} +' - ' + ${lang.idioma}">Home</a>
+							</li>
+					    </ul>
+					</div>
+				</div>
+
 			<div th:replace="~{fragments/inputs/fileField :: input (#{message.annuncement.form.label.file}, #{message.annuncement.form.button.file}, 'fileToUpload', #{message.error.notempty}, false, false)}"></div>
 				<div th:replace="~{fragments/formButtons :: formButtons(@{/admin/anuncios}, #{message.annuncement.form.button.back}, #{message.annuncement.form.button.save})}"></div>
 
 				<script>
-					CKEDITOR.replace('descripcion');
+					$('textarea').each(function(i) {
+						CKEDITOR.replace($(this).attr('id'));
+    				});
 				</script>
 			</form>
 		</section>

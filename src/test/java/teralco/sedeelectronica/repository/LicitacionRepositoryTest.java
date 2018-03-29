@@ -49,7 +49,6 @@ public class LicitacionRepositoryTest {
 		lici.setMedio((short) 1);
 		lici.setFechaPub(date);
 		lici.setFinPlazo(date);
-		lici.setDescripcion("una descripcion");
 		lici.setFichero(file);
 
 		lici = this.licitacionRepository.save(lici);
@@ -58,7 +57,7 @@ public class LicitacionRepositoryTest {
 		Licitacion found = this.licitacionRepository.findById(lici.getId());
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(lici.getDescripcion());
+		assertThat(found.getFechaPub()).isEqualTo(lici.getFechaPub());
 	}
 
 	@Test
@@ -68,7 +67,6 @@ public class LicitacionRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Licitacion lici = new Licitacion();
-		lici.setDescripcion("una denominacion");
 		lici.setFichero(file);
 		BigDecimal bd = new BigDecimal(1024.50);
 		lici.setPresupuesto(bd);
@@ -87,14 +85,14 @@ public class LicitacionRepositoryTest {
 
 		// ACT
 		Licitacion found = this.licitacionRepository.findById(lici.getId());
-		found.setDescripcion("esto es otra denominacion");
-
+		bd = new BigDecimal(812.50);
+		lici.setPresupuesto(bd);
 		this.licitacionRepository.save(found);
 
 		lici = this.licitacionRepository.findById(lici.getId());
 
 		// ASSERT
-		assertThat(found.getDescripcion()).isEqualTo(lici.getDescripcion());
+		assertThat(found.getPresupuesto()).isEqualTo(lici.getPresupuesto());
 	}
 
 	@Test
@@ -104,7 +102,6 @@ public class LicitacionRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Licitacion lici = new Licitacion();
-		lici.setDescripcion("una denominacion");
 		lici.setFichero(file);
 		BigDecimal bd = new BigDecimal(1024.50);
 		lici.setPresupuesto(bd);

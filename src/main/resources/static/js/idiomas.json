@@ -1,0 +1,34 @@
+[
+  {
+    "codigo": "es",
+    "idioma": "Castellano"
+  },
+  {
+    "codigo": "val",
+    "idioma": "Valencià"
+  },
+  {
+    "codigo": "cat",
+    "idioma": "Català"
+  },
+  {
+    "codigo": "eu",
+    "idioma": "Euskal"
+  },
+  {
+    "codigo": "gl",
+    "idioma": "Galego"
+  },
+  {
+    "codigo": "en",
+    "idioma": "English"
+  },
+  {
+    "codigo": "fr",
+    "idioma": "Français"
+  },
+  {
+    "codigo": "pt",
+    "idioma": "Portugues"
+  }
+]
