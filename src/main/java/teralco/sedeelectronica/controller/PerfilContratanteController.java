@@ -1,5 +1,8 @@
 package teralco.sedeelectronica.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
@@ -13,15 +16,18 @@ import teralco.sedeelectronica.model.Adjudicacion;
 import teralco.sedeelectronica.model.Apertura;
 import teralco.sedeelectronica.model.Aviso;
 import teralco.sedeelectronica.model.Documentacion;
+import teralco.sedeelectronica.model.Lenguaje;
 import teralco.sedeelectronica.model.Licitacion;
 import teralco.sedeelectronica.model.Modelo;
 import teralco.sedeelectronica.service.AdjudicacionService;
 import teralco.sedeelectronica.service.AperturaService;
 import teralco.sedeelectronica.service.AvisoService;
 import teralco.sedeelectronica.service.DocumentacionService;
+import teralco.sedeelectronica.service.LenguajeService;
 import teralco.sedeelectronica.service.LicitacionService;
 import teralco.sedeelectronica.service.ModeloService;
 import teralco.sedeelectronica.utils.EncryptUtils;
+import teralco.sedeelectronica.utils.LanguageUtils;
 import teralco.sedeelectronica.utils.PageWrapper;
 
 @Controller
@@ -50,17 +56,31 @@ public class PerfilContratanteController {
 	@Autowired
 	private AvisoService avisoService;
 
+	private List<String> target = new ArrayList<>();
+
+	@Autowired
+	public PerfilContratanteController(LenguajeService lenguajeService) {
+		Iterable<Lenguaje> langs = lenguajeService.list();
+		langs.forEach(e -> this.target.add(e.getCodigo()));
+	}
+
 	@RequestMapping("/perfil-del-contratante")
 	public String perfilContratante() {
-		return "contratante/perfil-del-contratante";
+		return "redirect:/licitaciones";
 	}
 
 	@RequestMapping("/licitaciones")
 	public String licitaciones(Model model, @PageableDefault(value = 10) Pageable pageable) {
 
 		Page<Licitacion> pages = this.licitacionService.listAllByPage(pageable);
-		pages.forEach(s -> s.getTraducciones()
-				.removeIf(i -> !i.getIdioma().equals(LocaleContextHolder.getLocale().toString())));
+
+		final String[] lang = { LocaleContextHolder.getLocale().toString() };
+		if (!this.target.contains(lang[0])) {
+			lang[0] = LanguageUtils.SPANISH;
+		}
+
+		pages.forEach(s -> s.getTraducciones().removeIf(i -> !i.getIdioma().equals(lang[0])));
+
 		model.addAttribute("licitaciones", pages);
 		PageWrapper<Licitacion> page = new PageWrapper<>(pages, "/licitaciones");
 		model.addAttribute("page", page);
