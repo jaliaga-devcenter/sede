@@ -10,15 +10,18 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import teralco.sedeelectronica.app.Application;
+import teralco.sedeelectronica.app.TestApplication;
 import teralco.sedeelectronica.model.Aviso;
 import teralco.sedeelectronica.model.Fichero;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { Application.class })
+@SpringBootTest(classes = { TestApplication.class })
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
+
 public class AvisoRepositoryTest {
 	@Autowired
 	private AvisoRepository avisoRepository;

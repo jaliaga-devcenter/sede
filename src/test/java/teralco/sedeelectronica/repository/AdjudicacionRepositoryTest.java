@@ -21,6 +21,7 @@ import teralco.sedeelectronica.model.Fichero;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
 @Configuration
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class AdjudicacionRepositoryTest {
 
 	@Autowired
