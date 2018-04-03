@@ -5,23 +5,28 @@ import static org.junit.Assert.assertNull;
 
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import teralco.sedeelectronica.app.Application;
+import teralco.sedeelectronica.app.TestApplication;
 import teralco.sedeelectronica.model.Apertura;
 import teralco.sedeelectronica.model.Fichero;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { Application.class })
+@SpringBootTest(classes = { TestApplication.class })
 @SuppressWarnings("deprecation")
-@Ignore
+@Configuration
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class AperturaRepositoryTest {
+
 	@Autowired
 	private AperturaRepository aperturaRepository;
 
@@ -29,6 +34,8 @@ public class AperturaRepositoryTest {
 	private FicheroRepository ficheroRepository;
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
@@ -43,8 +50,7 @@ public class AperturaRepositoryTest {
 		apertura.setResultado(file);
 		apertura.setFecha(date);
 		apertura.setHora(date);
-		apertura = this.aperturaRepository.save(apertura);
-
+		apertura = this.aperturaRepository.saveAndFlush(apertura);
 		// ACT
 		Apertura found = this.aperturaRepository.findById(apertura.getId());
 
@@ -53,6 +59,8 @@ public class AperturaRepositoryTest {
 	}
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void editTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
@@ -71,9 +79,7 @@ public class AperturaRepositoryTest {
 
 		// ACT
 		Apertura found = this.aperturaRepository.findById(apertura.getId());
-
 		this.aperturaRepository.save(found);
-
 		apertura = this.aperturaRepository.findById(apertura.getId());
 
 		// ASSERT
@@ -81,6 +87,7 @@ public class AperturaRepositoryTest {
 	}
 
 	@Test
+	@Transactional
 	public void removeTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
@@ -100,7 +107,6 @@ public class AperturaRepositoryTest {
 		// ACT
 		Apertura found = this.aperturaRepository.findById(apertura.getId());
 		this.aperturaRepository.delete(found);
-
 		found = this.aperturaRepository.findById(apertura.getId());
 
 		// ASSERT

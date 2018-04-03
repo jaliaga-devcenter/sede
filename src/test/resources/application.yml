@@ -1,50 +1,20 @@
 spring:
   datasource:
-<<<<<<< HEAD
-    url: jdbc:h2:mem:test;MODE=POSTGRESQL
+    url: jdbc:h2:mem:test;MODE=POSTGRESQL;DB_CLOSE_ON_EXIT=FALSE
     platform: test
-=======
-    platform: h2
-    url: jdbc:h2:~/test;AUTO_SERVER=true;MODE=postgresql;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
->>>>>>> refs/remotes/origin/master
     username: sa
-<<<<<<< HEAD
     password:
     driver-class-name: org.h2.Driver
     continue-on-error: true
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
       
 
-=======
-    password: 
-  h2:
-    console:
-      enabled: true
-  jpa:
-    hibernate:
-      ddl-auto: create-drop  
-    show-sql: true
-    generate-ddl: true
-    
->>>>>>> refs/remotes/origin/master
 flyway:
-<<<<<<< HEAD
   enabled: true
-=======
->>>>>>> refs/remotes/origin/master
   baseline-on-migrate: true
     
-
-
-
-#spring.datasource.driver-class-name: org.h2.Driver
-#spring.datasource.url: jdbc:h2:mem:sede;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-#spring.datasource.username: sa
-#spring.datasource.password: 
-  
-
 
 # hibernate.X
 hibernate.show_sql: true

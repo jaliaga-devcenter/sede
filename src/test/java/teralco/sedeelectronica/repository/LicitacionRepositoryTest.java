@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import teralco.sedeelectronica.model.Licitacion;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
 @SuppressWarnings("deprecation")
-@Ignore
 public class LicitacionRepositoryTest {
 
 	@Autowired
@@ -37,7 +35,7 @@ public class LicitacionRepositoryTest {
 		this.ficheroRepository.save(file);
 
 		Licitacion lici = new Licitacion();
-		BigDecimal bd = new BigDecimal(1024.50);
+		BigDecimal bd = new BigDecimal(1024.5);
 		lici.setPresupuesto(bd);
 
 		Date date = new Date();
@@ -57,7 +55,7 @@ public class LicitacionRepositoryTest {
 		Licitacion found = this.licitacionRepository.findById(lici.getId());
 
 		// ASSERT
-		assertThat(found.getFechaPub()).isEqualTo(lici.getFechaPub());
+		assertThat(found.getId()).isEqualTo(lici.getId());
 	}
 
 	@Test

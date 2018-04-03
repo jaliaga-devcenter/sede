@@ -4,20 +4,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNull;
 
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import teralco.sedeelectronica.app.Application;
+import teralco.sedeelectronica.app.TestApplication;
 import teralco.sedeelectronica.model.Anuncio;
 import teralco.sedeelectronica.model.Fichero;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { Application.class })
-@Ignore
+@SpringBootTest(classes = { TestApplication.class })
+
 public class AnuncioRepositoryTest {
 
 	@Autowired
@@ -27,6 +27,7 @@ public class AnuncioRepositoryTest {
 	private FicheroRepository ficheroRepository;
 
 	@Test
+	@DirtiesContext
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
@@ -43,6 +44,7 @@ public class AnuncioRepositoryTest {
 	}
 
 	@Test
+	@DirtiesContext
 	public void editTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
@@ -63,6 +65,7 @@ public class AnuncioRepositoryTest {
 	}
 
 	@Test
+	@DirtiesContext
 	public void removeTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
