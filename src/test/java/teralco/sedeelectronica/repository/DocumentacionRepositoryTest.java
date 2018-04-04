@@ -35,6 +35,7 @@ public class DocumentacionRepositoryTest {
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(69.0);
 		this.ficheroRepository.save(file);
 
 		Documentacion docu = new Documentacion();
@@ -45,7 +46,7 @@ public class DocumentacionRepositoryTest {
 		Documentacion found = this.documentacionRepository.findById(docu.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(docu.getId());
+		assertThat(found.getFichero().getTamanyo()).isEqualTo(docu.getFichero().getTamanyo());
 	}
 
 	@Test
@@ -54,6 +55,7 @@ public class DocumentacionRepositoryTest {
 	public void editTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(4.0);
 		this.ficheroRepository.save(file);
 
 		Documentacion docu = new Documentacion();
@@ -62,13 +64,13 @@ public class DocumentacionRepositoryTest {
 
 		// ACT
 		Documentacion found = this.documentacionRepository.findById(docu.getId());
-
+		found.getFichero().setTamanyo(45.0);
 		this.documentacionRepository.save(found);
 
 		docu = this.documentacionRepository.findById(docu.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(docu.getId());
+		assertThat(found.getFichero().getTamanyo()).isEqualTo(docu.getFichero().getTamanyo());
 	}
 
 	@Test

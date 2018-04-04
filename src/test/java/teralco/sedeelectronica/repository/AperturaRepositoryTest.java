@@ -39,6 +39,7 @@ public class AperturaRepositoryTest {
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(4.0);
 		this.ficheroRepository.save(file);
 		Date date = new Date();
 		date.setYear(2018);
@@ -50,12 +51,13 @@ public class AperturaRepositoryTest {
 		apertura.setResultado(file);
 		apertura.setFecha(date);
 		apertura.setHora(date);
+
 		apertura = this.aperturaRepository.saveAndFlush(apertura);
 		// ACT
 		Apertura found = this.aperturaRepository.findById(apertura.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(apertura.getId());
+		assertThat(found.getResultado().getTamanyo()).isEqualTo(apertura.getResultado().getTamanyo());
 	}
 
 	@Test
@@ -64,6 +66,7 @@ public class AperturaRepositoryTest {
 	public void editTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(4.0);
 		this.ficheroRepository.save(file);
 		Date date = new Date();
 		date.setYear(2018);
@@ -79,11 +82,13 @@ public class AperturaRepositoryTest {
 
 		// ACT
 		Apertura found = this.aperturaRepository.findById(apertura.getId());
+		found.getResultado().setTamanyo(64.0);
+
 		this.aperturaRepository.save(found);
 		apertura = this.aperturaRepository.findById(apertura.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(apertura.getId());
+		assertThat(found.getResultado().getTamanyo()).isEqualTo(64.0);
 	}
 
 	@Test

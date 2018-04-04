@@ -36,6 +36,7 @@ public class ModeloRepositoryTest {
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(78.9);
 		this.ficheroRepository.save(file);
 
 		Modelo model = new Modelo();
@@ -45,7 +46,7 @@ public class ModeloRepositoryTest {
 		Modelo found = this.modeloRepository.findById(model.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(model.getId());
+		assertThat(found.getFichero().getTamanyo()).isEqualTo(model.getFichero().getTamanyo());
 	}
 
 	@Test
@@ -53,6 +54,7 @@ public class ModeloRepositoryTest {
 	@DirtiesContext
 	public void editTest() {
 		Fichero file = new Fichero();
+		file.setTamanyo(1.0);
 		this.ficheroRepository.save(file);
 
 		Modelo model = new Modelo();
@@ -62,13 +64,13 @@ public class ModeloRepositoryTest {
 
 		// ACT
 		Modelo found = this.modeloRepository.findById(model.getId());
-
+		found.getFichero().setTamanyo(12.0);
 		this.modeloRepository.save(found);
 
 		model = this.modeloRepository.findById(model.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(model.getId());
+		assertThat(found.getFichero().getTamanyo()).isEqualTo(model.getFichero().getTamanyo());
 	}
 
 	@Test

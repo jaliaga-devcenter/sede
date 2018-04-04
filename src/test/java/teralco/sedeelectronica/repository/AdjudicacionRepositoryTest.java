@@ -3,6 +3,8 @@ package teralco.sedeelectronica.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNull;
 
+import java.math.BigDecimal;
+
 import javax.transaction.Transactional;
 
 import org.junit.After;
@@ -64,18 +66,18 @@ public class AdjudicacionRepositoryTest {
 
 		Adjudicacion adju = new Adjudicacion();
 		adju.setResultado(file);
-
+		adju.setPresupuesto(new BigDecimal(1024.5));
 		adju = this.adjudicacionRepository.saveAndFlush(adju);
 
 		// ACT
 		Adjudicacion found = this.adjudicacionRepository.findById(adju.getId());
-
+		found.setPresupuesto(new BigDecimal(512));
 		this.adjudicacionRepository.save(found);
 
 		adju = this.adjudicacionRepository.findById(adju.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(adju.getId());
+		assertThat(found.getPresupuesto()).isEqualTo(adju.getPresupuesto());
 	}
 
 	@Test

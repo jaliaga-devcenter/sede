@@ -9,6 +9,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+    properties:
+      hibernate:
+        enable_lazy_load_no_tans: true
       
 
 flyway:

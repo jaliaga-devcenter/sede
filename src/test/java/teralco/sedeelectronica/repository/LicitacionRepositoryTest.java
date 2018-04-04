@@ -55,7 +55,7 @@ public class LicitacionRepositoryTest {
 		Licitacion found = this.licitacionRepository.findById(lici.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(lici.getId());
+		assertThat(found.getFechaPub().getDay()).isEqualTo(lici.getFechaPub().getDay());
 	}
 
 	@Test

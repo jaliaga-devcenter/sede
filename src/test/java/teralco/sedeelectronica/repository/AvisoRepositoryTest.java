@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNull;
 
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,9 +32,12 @@ public class AvisoRepositoryTest {
 	private FicheroRepository ficheroRepository;
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(4.0);
 		this.ficheroRepository.save(file);
 		Date date = new Date();
 		date.setYear(2018);
@@ -50,13 +55,16 @@ public class AvisoRepositoryTest {
 		Aviso found = this.avisoRepository.findById(aviso.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(aviso.getId());
+		assertThat(found.getFichero().getTamanyo()).isEqualTo(aviso.getFichero().getTamanyo());
 	}
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void editTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(4.0);
 		this.ficheroRepository.save(file);
 		Date date = new Date();
 		date.setYear(2018);
@@ -72,11 +80,11 @@ public class AvisoRepositoryTest {
 
 		// ACT
 		Aviso found = this.avisoRepository.findById(aviso.getId());
-
+		found.getFichero().setTamanyo(64.0);
 		aviso = this.avisoRepository.save(found);
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(aviso.getId());
+		assertThat(found.getFichero().getTamanyo()).isEqualTo(aviso.getFichero().getTamanyo());
 	}
 
 	@Test
