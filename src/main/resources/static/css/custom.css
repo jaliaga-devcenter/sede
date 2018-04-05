@@ -404,7 +404,7 @@ a:focus, a:hover {
 
 /*------------------------------------ Highlight Color ------------------------------------*/
 
-::-moz-selection {
+/*::-moz-selection {
   background-color: #f2e376;
 }
 
@@ -1209,5 +1209,16 @@ input[type="checkbox"]:checked+.g-overlay-primary-0_9--checked::after, input[typ
   -ms-transform: translateY(50%);
   -webkit-transform: translateY(50%);
   transform: translateY(50%);
+}
 
+.u-header__section--light .navbar-nav:not([class*="u-main-nav-v"]) .nav-link, .u-header__section--light--shift.js-header-change-moment .navbar-nav:not([class*="u-main-nav-v"]) .nav-link {
+  color: #42A5F5;
+}
+
+.u-btn-white {
+  color: #42A5F5 !important;
+}
+
+.u-btn-white:hover, .u-btn-white:focus, .u-btn-white.active {
+  color: #42A5F5;
 }

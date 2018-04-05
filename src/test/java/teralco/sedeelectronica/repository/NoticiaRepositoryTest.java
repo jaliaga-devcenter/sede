@@ -35,9 +35,7 @@ public class NoticiaRepositoryTest {
 		// DECLARE VARIABLES
 		// ARRANGE
 		Noticia news = new Noticia();
-
 		news = this.noticiaRepository.save(news);
-
 		// ACT
 		Noticia found = this.noticiaRepository.findById(news.getId());
 

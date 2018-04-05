@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
 /*------------------------------------
   Highlight Color
 ------------------------------------*/
-::-moz-selection {
+/*::-moz-selection {
   color: #fff;
   background-color: #72c02c; }
 
@@ -69,4 +69,4 @@ h1, h2, h3, h4, h5, h6 {
 
 .g-bg-primary ::selection {
   color: #72c02c;
-  background-color: #fff; }
+  background-color: #fff; }*/

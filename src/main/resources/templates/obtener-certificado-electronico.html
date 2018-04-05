@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" layout:decorator="layouts/main">
+<html lang="es" layout:decorate="~{layouts/main}">
 
 <head>
     <title>Certificado Electrónico</title>
@@ -13,6 +13,9 @@
 
             <div class="g-mb-20">
                 <div>
+
+                    <p th:text="#{message.obtener.certificado.electronico.section.one.intro}">En los siguientes apartados podrá encontrar toda la información sobre el proceso que debe realizar para obtener el certificado electrónico correspondiente, en función de cada Autoridad certificadora.
+                    </p>
                     <h4 th:text="#{message.obtener.certificado.electronico.section.one.header}">DNI Electr&oacute;nico</h4>
                     <p>
                         <span th:text="#{message.obtener.certificado.electronico.section.one.p.one.part.one}">El nuevo Documento Nacional de Identidad electr&oacute;nico (</span>
@@ -43,9 +46,8 @@
                         <span th:text="#{message.obtener.certificado.electronico.section.one.p.three}">
                             Si usted dispone del nuevo DNI Electr&oacute;nico, debe asegurarse de que tiene activados los certificados electr&oacute;nicos
                             anteriormente mencionados, para lo que deber&aacute; acreditar su identidad mediante la huella
-                            digital en cualquier sede f&iacute;sica de la Oficina del DNI en Territorio Español:
+                            digital en cualquier sede f&iacute;sica de la Oficina del DNI en Territorio Español.
                         </span>
-                        <a href="http://www.policia.es/documentacion/docu_esp/oficinas.html" th:text="#{message.obtener.certificado.electronico.section.one.p.three.link}">http://www.policia.es/documentacion/docu_esp/oficinas.html</a>
                     </p>
                     <p th:text="#{message.obtener.certificado.electronico.section.one.p.four}">
                         Si no dispone del nuevo DNI Electr&oacute;nico, tiene la opci&oacute;n de expedir uno nuevo en cualquier oficina del DNI
@@ -53,7 +55,7 @@
                         adelante en esta p&aacute;gina.</p>
                 </div>
                 <div>
-                    <h4 th:text="#{message.obtener.certificado.electronico.section.two.header}"> Certificado ACCV </h4>
+                    <h4 th:text="#{message.obtener.certificado.electronico.section.two.header}"> ACCV </h4>
                     <p>
                         <span th:text="#{message.obtener.certificado.electronico.section.two.p.one.part.one}">La</span>
                         <strong th:text="#{message.obtener.certificado.electronico.section.two.p.one.strong}">Agencia de Tecnolog&iacute;a y Certificaci&oacute;n Electr&oacute;nica</strong>
@@ -64,22 +66,6 @@
                             y las tecnolog&iacute;as asociadas.
                         </span>
                     </p>
-                    <p th:text="#{message.obtener.certificado.electronico.section.two.p.three}">Los certificados que se pueden obtener son:</p>
-                    <ul>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.one}">De Ciudadano en Soporte Software</li>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.two}">De Ciudadano en Tarjeta Criptogr&aacute;fica</li>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.three}">De Entidad</li>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.four}">De Pertenencia a Empresa</li>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.five}">De Empleado P&uacute;blico</li>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.six}">De Sede Electr&oacute;nica</li>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.seven}">De Sello de &oacute;rgano</li>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.eight}">De Servidor con soporte SSL</li>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.nine}">De Servidor con soporte VPN</li>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.ten}">De Firma de C&oacute;digo</li>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.eleven}">De Aplicaci&oacute;n</li>
-                        <li th:text="#{message.obtener.certificado.electronico.section.two.list.twelve}">De Inicio de Sesi&oacute;n</li>
-                    </ul>
-                    <p>
                         <span th:text="#{message.obtener.certificado.electronico.section.two.p.three}">
                             Obtenga en este enlace la informaci&oacute;n completa de c&oacute;mo obtener el certificado que le interesa:
                         </span>
@@ -87,28 +73,47 @@
                     </p>
                 </div>
                 <div>
-                    <h4 th:text="#{message.obtener.certificado.electronico.section.three.header}"> @firma </h4>
-                    <p th:text="#{message.obtener.certificado.electronico.section.three.p.one}">
-                        @firma es una plataforma de validaci&oacute;n y firma electr&oacute;nica multi-PKI, que se pone a disposici&oacute;n de las
-                        Administraciones P&uacute;blicas, proporcionando servicios para implementar la autenticaci&oacute;n
-                        y firma electr&oacute;nica avanzada de una forma r&aacute;pida y efectiva.</p>
-                    <p th:text="#{message.obtener.certificado.electronico.section.three.p.two}">
-                        @firma es un sistema que determina la validez y vigencia de los certificados digitales de m&uacute;ltiples infraestructuras
-                        de clave p&uacute;blica (PKI), entre ellas la del DNI electr&oacute;nico, empleados en operaciones
-                        de autenticaci&oacute;n y firma electr&oacute;nica de cualquier aplicaci&oacute;n del &aacute;mbito
-                        de las Administraciones P&uacute;blicas que se conecte a sus servicios.</p>
-                    <p th:text="#{message.obtener.certificado.electronico.section.three.p.three}">
-                        Cuando el ciudadano interacciona con la Administraci&oacute;n, para realizar un tr&aacute;mite personal, es necesario conocer
-                        su identidad, que telem&aacute;ticamente se realiza a trav&eacute;s del DNI electr&oacute;nico o
-                        un certificado electr&oacute;nico. La Administraci&oacute;n comprueba el estado del certificado o
-                        el DNIe con el que el ciudadano se est&aacute; identificando o firmando la solicitud. Para esta comprobaci&oacute;n
-                        se utiliza la plataforma de validaci&oacute;n @firma, delegando en ella la verificaci&oacute;n de
-                        las credenciales del certificado o DNIe utilizado.</p>
+                    <h4 th:text="#{message.obtener.certificado.electronico.section.four.header}"> FNMT </h4>
                     <p>
-                        <span th:text="#{message.obtener.certificado.electronico.section.three.p.four}">Obtenga en este enlace la informaci&oacute;n completa:</span>
-                        <a href="http://administracionelectronica.gob.es/ctt/afirma" th:text="#{message.obtener.certificado.electronico.section.three.p.four.link}">http://administracionelectronica.gob.es/ctt/afirma</a>
+                        <span th:text="#{message.obtener.certificado.electronico.section.four.p.one.part.one}">La</span>
+                        <strong th:text="#{message.obtener.certificado.electronico.section.four.p.one.strong}">F&acute;brica Nacional de Moneda y Timbre - Real Casa de la Moneda</strong>
+                        <span th:text="#{message.obtener.certificado.electronico.section.four.p.one.part.two}">, a trav&eacute;s de su departamento CERES (CERtificación ESpañola), 
+                            ofrece los certificados electr&oacute;nicos de usuario reconocidos por la amplia mayoría de las Administraciones P&uacute;blicas. Adem&aacute;s ofrece a Administraciones 
+                            P&uacute;blicas y Empresas sus Servicios de Certificaci&oacute;n que garantizan los principios de Autenticaci&oacute;n, Integridad, Confidencialidad y No repudio en las 
+                            comunicaciones a trav&eacute;s de redes abiertas.
+
+                    </p>
+                    <p>
+                        <span th:text="#{message.obtener.certificado.electronico.section.four.p.three}">Obtenga en este enlace la informaci&acute;n completa sobre los distintos tipos de certificados que ofrecen y cómo obtener el que le interesa:</span>
+                        <a href="http://www.camerfirma.com" th:text="#{message.obtener.certificado.electronico.section.four.p.three.link}">http://www.camerfirma.com</a>
                     </p>
                 </div>
+                <div>
+                        <h4 th:text="#{message.obtener.certificado.electronico.section.five.header}"> ACA </h4>
+                        <p>
+                            <span th:text="#{message.obtener.certificado.electronico.section.five.p.one.part.one}">La</span>
+                            <strong th:text="#{message.obtener.certificado.electronico.section.five.p.one.strong}">Autoridad Certificadora Camerfirma</strong>
+                            <span th:text="#{message.obtener.certificado.electronico.section.five.p.one.part.two}">se estableci&oacute; como Prestador de Servicios de Certificaci&oacute;n 
+                                al amparo de la LEY 59/2003, de 19 de diciembre, de Firma Electr&oacute;nica, distribuyendo certificados de identidad que permiten a las empresas y a sus empleados 
+                                identificarse en la red y firmar electr&oacute;nicamente documentos con total seguridad t&eactue;cnica y jur&iacute;­dica.
+                        </p>
+                        <p>
+                            <span th:text="#{message.obtener.certificado.electronico.section.five.p.three}">Obtenga en este enlace la informaci&acute;n completa sobre los distintos tipos de certificados que ofrecen y cómo obtener el que le interesa:</span>
+                            <a href="http://www.camerfirma.com" th:text="#{message.obtener.certificado.electronico.section.five.p.three.link}">http://www.camerfirma.com</a>
+                        </p>
+                    </div>
+                    <div>
+                            <h4 th:text="#{message.obtener.certificado.electronico.section.six.header}"> Firmaprofesional </h4>
+                            <p>
+                                <span th:text="#{message.obtener.certificado.electronico.section.six.p.one.part.one}">La</span>
+                                <strong th:text="#{message.obtener.certificado.electronico.section.six.p.one.strong}">Autoridad Certificadora Firmaprofesional</strong>
+                                <span th:text="#{message.obtener.certificado.electronico.section.six.p.one.part.two}">emite certificados reconocidos y aceptados por la administraci&acute;n y por entidades privadas como Mozilla, Microsoft, Apple y Adobe.
+                            </p>
+                            <p>
+                                <span th:text="#{message.obtener.certificado.electronico.section.six.p.three}">Obtenga en este enlace la informaci&acute;n completa sobre los distintos tipos de certificados que ofrecen y c&acute;mo obtener el que le interesa:</span>
+                                <a href="http://www.camerfirma.com" th:text="#{message.obtener.certificado.electronico.section.six.p.three.link}">https://www.firmaprofesional.com/esp/ </a>
+                            </p>
+                        </div>
             </div>
         </section>
     </div>
