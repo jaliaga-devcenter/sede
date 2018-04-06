@@ -6,11 +6,14 @@ import static org.junit.Assert.assertNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import teralco.sedeelectronica.app.TestApplication;
@@ -29,6 +32,8 @@ public class LicitacionRepositoryTest {
 	private FicheroRepository ficheroRepository;
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
@@ -59,6 +64,8 @@ public class LicitacionRepositoryTest {
 	}
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void editTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
@@ -94,6 +101,8 @@ public class LicitacionRepositoryTest {
 	}
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void removeTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
