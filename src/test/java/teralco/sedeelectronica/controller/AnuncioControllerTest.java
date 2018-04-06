@@ -3,6 +3,7 @@ package teralco.sedeelectronica.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class AnuncioControllerTest {
 	}
 
 	@Test
+	@Ignore
 	public void getAnuncio() throws Exception {
 		this.mvc.perform(get("/tablon-anuncios/2")).andExpect(status().isOk());
 	}
