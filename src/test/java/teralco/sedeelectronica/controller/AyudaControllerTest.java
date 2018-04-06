@@ -56,4 +56,9 @@ public class AyudaControllerTest {
 		this.mvc.perform(get("/politica-cookies")).andExpect(status().isOk());
 	}
 
+	@Test
+	public void getMapa() throws Exception {
+		this.mvc.perform(get("/mapa-web")).andExpect(status().isOk());
+	}
+
 }
