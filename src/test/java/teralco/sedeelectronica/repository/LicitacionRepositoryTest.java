@@ -23,6 +23,7 @@ import teralco.sedeelectronica.model.Licitacion;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
 @SuppressWarnings("deprecation")
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class LicitacionRepositoryTest {
 
 	@Autowired
