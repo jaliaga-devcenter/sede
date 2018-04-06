@@ -13,9 +13,6 @@ public class ModeloLenguaje extends BaseLanguage {
 	@Column
 	private String descripcion;
 
-	public ModeloLenguaje() {
-	}
-
 	public ModeloLenguaje(String codigo) {
 		this.setIdioma(codigo);
 	}
@@ -27,10 +24,4 @@ public class ModeloLenguaje extends BaseLanguage {
 	public void setDescripcion(String pDescripcion) {
 		this.descripcion = pDescripcion;
 	}
-
-	@Override
-	public String toString() {
-		return "LicitacionLenguaje [descripcion=" + this.descripcion + ", getIdioma()=" + getIdioma() + "]";
-	}
-
 }

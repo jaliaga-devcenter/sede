@@ -19,9 +19,6 @@ public class AperturaLenguaje extends BaseLanguage {
 	@Column(nullable = true)
 	private String plica;
 
-	public AperturaLenguaje() {
-	}
-
 	public AperturaLenguaje(String codigo) {
 		this.setIdioma(codigo);
 	}

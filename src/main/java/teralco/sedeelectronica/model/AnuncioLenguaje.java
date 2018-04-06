@@ -21,9 +21,6 @@ public class AnuncioLenguaje extends BaseLanguage {
 	@Column(nullable = false)
 	private String descripcion;
 
-	public AnuncioLenguaje() {
-	}
-
 	public AnuncioLenguaje(String codigo) {
 		this.setIdioma(codigo);
 	}

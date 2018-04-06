@@ -16,9 +16,6 @@ public class AvisoLenguaje extends BaseLanguage {
 	@Column(nullable = false)
 	private String descripcion;
 
-	public AvisoLenguaje() {
-	}
-
 	public AvisoLenguaje(String codigo) {
 		this.setIdioma(codigo);
 	}

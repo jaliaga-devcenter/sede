@@ -24,9 +24,6 @@ public class NormativaLenguaje extends BaseLanguage {
 	@NotEmpty
 	private String texto;
 
-	public NormativaLenguaje() {
-	}
-
 	public NormativaLenguaje(String codigo) {
 		this.setIdioma(codigo);
 	}

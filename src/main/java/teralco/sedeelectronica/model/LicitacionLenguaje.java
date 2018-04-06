@@ -13,9 +13,6 @@ public class LicitacionLenguaje extends BaseLanguage {
 	@Column
 	private String descripcion;
 
-	public LicitacionLenguaje() {
-	}
-
 	public LicitacionLenguaje(String codigo) {
 		this.setIdioma(codigo);
 	}
