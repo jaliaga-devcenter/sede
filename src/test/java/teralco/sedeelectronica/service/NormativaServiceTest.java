@@ -75,12 +75,16 @@ public class NormativaServiceTest {
 		Normativa found_2 = this.normativaService.get(3L);
 		Normativa found_3 = this.normativaService.get(2L);
 		Normativa found_4 = this.normativaService.get(1L);
-		List<Normativa> list = (List<Normativa>) this.normativaService.list();
 
 		assertThat(found_4.getUrl()).isEqualTo(url1);
 		assertThat(found_3.getUrl()).isEqualTo(url2);
 		assertThat(found_2.getUrl()).isEqualTo(url3);
 		assertThat(found_1.getUrl()).isEqualTo(url4);
+	}
+
+	@Test
+	public void whenList() {
+		List<Normativa> list = (List<Normativa>) this.normativaService.list();
 		assertThat(list.size()).isEqualTo(3);
 	}
 }

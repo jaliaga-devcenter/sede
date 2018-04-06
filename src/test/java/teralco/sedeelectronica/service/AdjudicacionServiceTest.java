@@ -81,8 +81,11 @@ public class AdjudicacionServiceTest {
 		assertThat(found_3.getPresupuesto()).isEqualTo(bd2);
 		assertThat(found_2.getPresupuesto()).isEqualTo(bd3);
 		assertThat(found_1.getPresupuesto()).isEqualTo(bd4);
-		List<Adjudicacion> list = (List<Adjudicacion>) this.adjudicacionService.list();
+	}
 
+	@Test
+	public void whenList() {
+		List<Adjudicacion> list = (List<Adjudicacion>) this.adjudicacionService.list();
 		assertThat(list.size()).isEqualTo(4);
 	}
 }

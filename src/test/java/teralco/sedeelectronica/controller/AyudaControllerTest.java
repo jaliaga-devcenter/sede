@@ -16,44 +16,44 @@ import teralco.sedeelectronica.app.TestApplication;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
 @AutoConfigureMockMvc
-public class HomeControllerTest {
+public class AyudaControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
 
 	@Test
-	public void getTest() throws Exception {
-		this.mvc.perform(get("/test")).andExpect(status().isOk());
+	public void getAccesibilidad() throws Exception {
+		this.mvc.perform(get("/accesibilidad")).andExpect(status().isOk());
 	}
 
 	@Test
-	public void getHome() throws Exception {
-		this.mvc.perform(get("/")).andExpect(status().isOk());
+	public void getObtener() throws Exception {
+		this.mvc.perform(get("/obtener-certificado")).andExpect(status().isOk());
 	}
 
 	@Test
-	public void getCat() throws Exception {
-		this.mvc.perform(get("/categorias")).andExpect(status().isOk());
+	public void getQuejas() throws Exception {
+		this.mvc.perform(get("/quejas-sugerencias")).andExpect(status().isOk());
 	}
 
 	@Test
-	public void getBuscador() throws Exception {
-		this.mvc.perform(get("/buscador-procedimientos")).andExpect(status().isOk());
+	public void getInstrucciones() throws Exception {
+		this.mvc.perform(get("/instrucciones")).andExpect(status().isOk());
 	}
 
 	@Test
-	public void getBuscador2() throws Exception {
-		this.mvc.perform(get("/buscar-procedimientos")).andExpect(status().isOk());
+	public void getRequisitos() throws Exception {
+		this.mvc.perform(get("/requisitos-tecnicos")).andExpect(status().isOk());
 	}
 
 	@Test
-	public void getFicha() throws Exception {
-		this.mvc.perform(get("/ficha-procedimiento/")).andExpect(status().isNotFound());
+	public void getAviso() throws Exception {
+		this.mvc.perform(get("/aviso-legal")).andExpect(status().isOk());
 	}
 
 	@Test
-	public void getProce() throws Exception {
-		this.mvc.perform(get("/procedimiento")).andExpect(status().isNotFound());
+	public void getPoliticas() throws Exception {
+		this.mvc.perform(get("/politica-cookies")).andExpect(status().isOk());
 	}
 
 }

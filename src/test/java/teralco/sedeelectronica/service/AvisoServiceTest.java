@@ -86,10 +86,11 @@ public class AvisoServiceTest {
 		assertThat(found_3.getFecha().getDate()).isEqualTo(date.getDate());
 		assertThat(found_2.getFecha().getDate()).isEqualTo(date.getDate());
 		assertThat(found_1.getFecha().getDate()).isEqualTo(date.getDate());
+	}
 
+	@Test
+	public void whenListAviso() {
 		List<Aviso> list = (List<Aviso>) this.avisoService.list();
-
 		assertThat(list.size()).isEqualTo(2);
-
 	}
 }

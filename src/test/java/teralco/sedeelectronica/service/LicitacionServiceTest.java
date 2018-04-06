@@ -77,13 +77,17 @@ public class LicitacionServiceTest {
 		Licitacion found_2 = this.licitacionService.get(3L);
 		Licitacion found_3 = this.licitacionService.get(2L);
 		Licitacion found_4 = this.licitacionService.get(1L);
-		List<Licitacion> list = (List<Licitacion>) this.licitacionService.list();
 
 		assertThat(found_4.getPresupuesto()).isEqualTo(bd);
 		assertThat(found_3.getPresupuesto()).isEqualTo(bd2);
 		assertThat(found_2.getPresupuesto()).isEqualTo(bd3);
 		assertThat(found_1.getPresupuesto()).isEqualTo(bd4);
 
+	}
+
+	@Test
+	public void whenList() {
+		List<Licitacion> list = (List<Licitacion>) this.licitacionService.list();
 		assertThat(list.size()).isEqualTo(4);
 	}
 }

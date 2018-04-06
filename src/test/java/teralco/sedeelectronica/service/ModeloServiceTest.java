@@ -72,13 +72,15 @@ public class ModeloServiceTest {
 		Modelo found_3 = this.modeloService.get(2L);
 		Modelo found_4 = this.modeloService.get(1L);
 
-		List<Modelo> listM = (List<Modelo>) this.modeloService.list();
-
 		assertThat(found_4.getFichero().getTamanyo()).isEqualTo(78.9);
 		assertThat(found_3.getFichero().getTamanyo()).isEqualTo(78.9);
 		assertThat(found_2.getFichero().getTamanyo()).isEqualTo(78.9);
 		assertThat(found_1.getFichero().getTamanyo()).isEqualTo(78.9);
+	}
 
+	@Test
+	public void whenList() {
+		List<Modelo> listM = (List<Modelo>) this.modeloService.list();
 		assertThat(listM.size()).isEqualTo(4);
 	}
 }

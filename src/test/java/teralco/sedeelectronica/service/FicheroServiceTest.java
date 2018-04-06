@@ -47,12 +47,14 @@ public class FicheroServiceTest {
 
 	@Test
 	public void whenFindFile() {
-
 		Fichero found_1 = this.ficheroService.get(1L);
-		List<Fichero> found_2 = (List<Fichero>) this.ficheroService.list();
 		assertThat(found_1.getTipo()).isNotEqualTo(Tipo.URL);
-		assertThat(found_2.size()).isEqualTo(0);
+	}
 
+	@Test
+	public void whenList() {
+		List<Fichero> found_2 = (List<Fichero>) this.ficheroService.list();
+		assertThat(found_2.size()).isEqualTo(0);
 	}
 
 }

@@ -63,7 +63,6 @@ public class DocumentacionServiceTest {
 
 	@Test
 	public void whenFindDocu() {
-
 		Documentacion found_1 = this.documentacionService.get(4L);
 		Documentacion found_2 = this.documentacionService.get(3L);
 		Documentacion found_3 = this.documentacionService.get(2L);
@@ -73,9 +72,11 @@ public class DocumentacionServiceTest {
 		assertThat(found_3.getEstado()).isEqualTo(Estado.APERTURA);
 		assertThat(found_2.getEstado()).isEqualTo(Estado.CONTRATADO);
 		assertThat(found_1.getEstado()).isEqualTo(Estado.ADJUDICACION);
+	}
 
+	@Test
+	public void whenList() {
 		List<Documentacion> list = (List<Documentacion>) this.documentacionService.list();
-
 		assertThat(list.size()).isEqualTo(3);
 	}
 }

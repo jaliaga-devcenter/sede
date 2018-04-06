@@ -89,9 +89,11 @@ public class AperturaServiceTest {
 		assertThat(found_3.getFecha().getDate()).isEqualTo(date.getDate());
 		assertThat(found_2.getFecha().getDate()).isEqualTo(date.getDate());
 		assertThat(found_1.getFecha().getDate()).isEqualTo(date.getDate());
+	}
 
+	@Test
+	public void whenList() {
 		List<Apertura> list = (List<Apertura>) this.aperturaService.list();
-
 		assertThat(list.size()).isEqualTo(4);
 	}
 }
