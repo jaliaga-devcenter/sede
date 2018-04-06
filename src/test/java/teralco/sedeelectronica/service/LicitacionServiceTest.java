@@ -3,6 +3,8 @@ package teralco.sedeelectronica.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -50,10 +52,17 @@ public class LicitacionServiceTest {
 		BigDecimal bd4 = new BigDecimal(128);
 		lici4.setPresupuesto(bd4);
 
+		List<Licitacion> listN = new ArrayList<>();
+		listN.add(lici);
+		listN.add(lici2);
+		listN.add(lici3);
+		listN.add(lici4);
+
 		Mockito.when(this.licitacionRepository.findOne(lici.getId())).thenReturn(lici);
 		Mockito.when(this.licitacionRepository.findOne(lici2.getId())).thenReturn(lici2);
 		Mockito.when(this.licitacionRepository.findOne(lici3.getId())).thenReturn(lici3);
 		Mockito.when(this.licitacionRepository.findOne(lici4.getId())).thenReturn(lici4);
+		Mockito.when(this.licitacionRepository.findAll()).thenReturn(listN);
 
 	}
 
@@ -68,10 +77,13 @@ public class LicitacionServiceTest {
 		Licitacion found_2 = this.licitacionService.get(3L);
 		Licitacion found_3 = this.licitacionService.get(2L);
 		Licitacion found_4 = this.licitacionService.get(1L);
+		List<Licitacion> list = (List<Licitacion>) this.licitacionService.list();
 
 		assertThat(found_4.getPresupuesto()).isEqualTo(bd);
 		assertThat(found_3.getPresupuesto()).isEqualTo(bd2);
 		assertThat(found_2.getPresupuesto()).isEqualTo(bd3);
 		assertThat(found_1.getPresupuesto()).isEqualTo(bd4);
+
+		assertThat(list.size()).isEqualTo(4);
 	}
 }

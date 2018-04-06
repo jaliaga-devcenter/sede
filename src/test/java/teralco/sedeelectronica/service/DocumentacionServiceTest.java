@@ -2,6 +2,9 @@ package teralco.sedeelectronica.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,10 +48,16 @@ public class DocumentacionServiceTest {
 		docu4.setId(4L);
 		docu4.setEstado(Estado.ADJUDICACION);
 
+		List<Documentacion> listN = new ArrayList<>();
+		listN.add(docu);
+		listN.add(docu3);
+		listN.add(docu4);
+
 		Mockito.when(this.documentacionRepository.findOne(docu.getId())).thenReturn(docu);
 		Mockito.when(this.documentacionRepository.findOne(docu2.getId())).thenReturn(docu2);
 		Mockito.when(this.documentacionRepository.findOne(docu3.getId())).thenReturn(docu3);
 		Mockito.when(this.documentacionRepository.findOne(docu4.getId())).thenReturn(docu4);
+		Mockito.when(this.documentacionRepository.findAll()).thenReturn(listN);
 
 	}
 
@@ -64,5 +73,9 @@ public class DocumentacionServiceTest {
 		assertThat(found_3.getEstado()).isEqualTo(Estado.APERTURA);
 		assertThat(found_2.getEstado()).isEqualTo(Estado.CONTRATADO);
 		assertThat(found_1.getEstado()).isEqualTo(Estado.ADJUDICACION);
+
+		List<Documentacion> list = (List<Documentacion>) this.documentacionService.list();
+
+		assertThat(list.size()).isEqualTo(3);
 	}
 }

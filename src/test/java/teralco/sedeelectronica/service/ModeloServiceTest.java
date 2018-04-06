@@ -2,6 +2,9 @@ package teralco.sedeelectronica.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,10 +50,18 @@ public class ModeloServiceTest {
 		Modelo mode4 = new Modelo();
 		mode4.setId(4L);
 		mode4.setFichero(file);
+
+		List<Modelo> listN = new ArrayList<>();
+		listN.add(mode);
+		listN.add(mode2);
+		listN.add(mode3);
+		listN.add(mode4);
+
 		Mockito.when(this.modeloRepository.findOne(mode.getId())).thenReturn(mode);
 		Mockito.when(this.modeloRepository.findOne(mode2.getId())).thenReturn(mode2);
 		Mockito.when(this.modeloRepository.findOne(mode3.getId())).thenReturn(mode3);
 		Mockito.when(this.modeloRepository.findOne(mode4.getId())).thenReturn(mode4);
+		Mockito.when(this.modeloRepository.findAll()).thenReturn(listN);
 
 	}
 
@@ -61,9 +72,13 @@ public class ModeloServiceTest {
 		Modelo found_3 = this.modeloService.get(2L);
 		Modelo found_4 = this.modeloService.get(1L);
 
+		List<Modelo> listM = (List<Modelo>) this.modeloService.list();
+
 		assertThat(found_4.getFichero().getTamanyo()).isEqualTo(78.9);
 		assertThat(found_3.getFichero().getTamanyo()).isEqualTo(78.9);
 		assertThat(found_2.getFichero().getTamanyo()).isEqualTo(78.9);
 		assertThat(found_1.getFichero().getTamanyo()).isEqualTo(78.9);
+
+		assertThat(listM.size()).isEqualTo(4);
 	}
 }

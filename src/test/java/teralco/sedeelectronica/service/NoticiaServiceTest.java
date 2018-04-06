@@ -67,7 +67,7 @@ public class NoticiaServiceTest {
 		Mockito.when(this.noticiaRepository.findOne(noti2.getId())).thenReturn(noti2);
 		Mockito.when(this.noticiaRepository.findOne(noti3.getId())).thenReturn(noti3);
 		Mockito.when(this.noticiaRepository.findOne(noti4.getId())).thenReturn(noti4);
-
+		Mockito.when(this.noticiaRepository.findAll()).thenReturn(list);
 		Mockito.when(this.noticiaRepository.findAllByOrderByFechaDesc()).thenReturn(list);
 
 	}
@@ -94,6 +94,8 @@ public class NoticiaServiceTest {
 
 		assertNotSame(listFound.get(0), found_2);
 		assertNotSame(listFound.get(1), found_3);
+		listFound = (List<Noticia>) this.noticiaService.list();
+		assertThat(listFound.size()).isEqualTo(2);
 
 	}
 }

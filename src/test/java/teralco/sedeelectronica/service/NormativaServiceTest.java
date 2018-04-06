@@ -2,6 +2,9 @@ package teralco.sedeelectronica.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,11 +52,16 @@ public class NormativaServiceTest {
 		norma4.setId(4L);
 		norma4.setUrl(url4);
 
+		List<Normativa> listN = new ArrayList<>();
+		listN.add(norma);
+		listN.add(norma2);
+		listN.add(norma3);
+
 		Mockito.when(this.normativaRepository.findOne(norma.getId())).thenReturn(norma);
 		Mockito.when(this.normativaRepository.findOne(norma2.getId())).thenReturn(norma2);
 		Mockito.when(this.normativaRepository.findOne(norma3.getId())).thenReturn(norma3);
 		Mockito.when(this.normativaRepository.findOne(norma4.getId())).thenReturn(norma4);
-
+		Mockito.when(this.normativaRepository.findAll()).thenReturn(listN);
 	}
 
 	@Test
@@ -67,10 +75,12 @@ public class NormativaServiceTest {
 		Normativa found_2 = this.normativaService.get(3L);
 		Normativa found_3 = this.normativaService.get(2L);
 		Normativa found_4 = this.normativaService.get(1L);
+		List<Normativa> list = (List<Normativa>) this.normativaService.list();
 
 		assertThat(found_4.getUrl()).isEqualTo(url1);
 		assertThat(found_3.getUrl()).isEqualTo(url2);
 		assertThat(found_2.getUrl()).isEqualTo(url3);
 		assertThat(found_1.getUrl()).isEqualTo(url4);
+		assertThat(list.size()).isEqualTo(3);
 	}
 }

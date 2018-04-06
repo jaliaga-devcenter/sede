@@ -2,7 +2,9 @@ package teralco.sedeelectronica.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -53,11 +55,16 @@ public class AvisoServiceTest {
 		Aviso aviso4 = new Aviso();
 		aviso4.setId(4L);
 		aviso4.setFecha(date);
+
+		List<Aviso> listN = new ArrayList<>();
+		listN.add(aviso);
+		listN.add(aviso4);
+
 		Mockito.when(this.avisoRepository.findOne(aviso.getId())).thenReturn(aviso);
 		Mockito.when(this.avisoRepository.findOne(aviso2.getId())).thenReturn(aviso2);
 		Mockito.when(this.avisoRepository.findOne(aviso3.getId())).thenReturn(aviso3);
 		Mockito.when(this.avisoRepository.findOne(aviso4.getId())).thenReturn(aviso4);
-
+		Mockito.when(this.avisoRepository.findAll()).thenReturn(listN);
 	}
 
 	@Test
@@ -79,5 +86,10 @@ public class AvisoServiceTest {
 		assertThat(found_3.getFecha().getDate()).isEqualTo(date.getDate());
 		assertThat(found_2.getFecha().getDate()).isEqualTo(date.getDate());
 		assertThat(found_1.getFecha().getDate()).isEqualTo(date.getDate());
+
+		List<Aviso> list = (List<Aviso>) this.avisoService.list();
+
+		assertThat(list.size()).isEqualTo(2);
+
 	}
 }

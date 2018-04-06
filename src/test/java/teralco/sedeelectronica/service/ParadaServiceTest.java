@@ -76,6 +76,8 @@ public class ParadaServiceTest {
 		Mockito.when(this.paradaRepository.findOne(parada5.getId())).thenReturn(parada5);
 		date.setMonth(2);
 		Mockito.when(this.paradaRepository.findAllByFechaGreaterThanEqualOrderByFecha(date)).thenReturn(list);
+		Mockito.when(this.paradaRepository.findAll()).thenReturn(list);
+
 	}
 
 	@Test
@@ -116,6 +118,9 @@ public class ParadaServiceTest {
 		if (listFound.size() > 0) {
 			assertSame(listFound.get(0), found_2);
 		}
+
+		listFound = (List<Parada>) this.paradaService.list();
+		assertThat(listFound.size()).isEqualTo(2);
 
 	}
 }

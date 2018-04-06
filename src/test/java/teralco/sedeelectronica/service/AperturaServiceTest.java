@@ -2,7 +2,9 @@ package teralco.sedeelectronica.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -53,10 +55,18 @@ public class AperturaServiceTest {
 		Apertura aper4 = new Apertura();
 		aper4.setId(4L);
 		aper4.setFecha(date);
+
+		List<Apertura> listN = new ArrayList<>();
+		listN.add(aper);
+		listN.add(aper2);
+		listN.add(aper3);
+		listN.add(aper4);
+
 		Mockito.when(this.aperturaRepository.findOne(aper.getId())).thenReturn(aper);
 		Mockito.when(this.aperturaRepository.findOne(aper2.getId())).thenReturn(aper2);
 		Mockito.when(this.aperturaRepository.findOne(aper3.getId())).thenReturn(aper3);
 		Mockito.when(this.aperturaRepository.findOne(aper4.getId())).thenReturn(aper4);
+		Mockito.when(this.aperturaRepository.findAll()).thenReturn(listN);
 
 	}
 
@@ -79,5 +89,9 @@ public class AperturaServiceTest {
 		assertThat(found_3.getFecha().getDate()).isEqualTo(date.getDate());
 		assertThat(found_2.getFecha().getDate()).isEqualTo(date.getDate());
 		assertThat(found_1.getFecha().getDate()).isEqualTo(date.getDate());
+
+		List<Apertura> list = (List<Apertura>) this.aperturaService.list();
+
+		assertThat(list.size()).isEqualTo(4);
 	}
 }

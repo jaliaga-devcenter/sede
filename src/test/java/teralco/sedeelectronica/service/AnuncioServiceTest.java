@@ -77,6 +77,8 @@ public class AnuncioServiceTest {
 		Mockito.when(this.anuncioRepository.findOne(anun6.getId())).thenReturn(anun6);
 
 		Mockito.when(this.anuncioRepository.findAllByOrderByFechaDeDesc()).thenReturn(list);
+
+		Mockito.when(this.anuncioRepository.findAll()).thenReturn(list);
 	}
 
 	@Test
@@ -109,6 +111,10 @@ public class AnuncioServiceTest {
 		assertNotSame(listFound.get(0), found_2);
 		assertNotSame(listFound.get(1), found_4);
 		assertNotSame(listFound.get(2), found_3);
+
+		listFound = (List<Anuncio>) this.anuncioService.list();
+
+		assertThat(listFound.size()).isEqualTo(3);
 
 	}
 

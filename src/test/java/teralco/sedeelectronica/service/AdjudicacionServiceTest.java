@@ -3,6 +3,8 @@ package teralco.sedeelectronica.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -50,11 +52,17 @@ public class AdjudicacionServiceTest {
 		BigDecimal bd4 = new BigDecimal(128);
 		adju4.setPresupuesto(bd4);
 
+		List<Adjudicacion> listN = new ArrayList<>();
+		listN.add(adju);
+		listN.add(adju2);
+		listN.add(adju3);
+		listN.add(adju4);
+
 		Mockito.when(this.adjudicacionRepository.findOne(adju.getId())).thenReturn(adju);
 		Mockito.when(this.adjudicacionRepository.findOne(adju2.getId())).thenReturn(adju2);
 		Mockito.when(this.adjudicacionRepository.findOne(adju3.getId())).thenReturn(adju3);
 		Mockito.when(this.adjudicacionRepository.findOne(adju4.getId())).thenReturn(adju4);
-
+		Mockito.when(this.adjudicacionRepository.findAll()).thenReturn(listN);
 	}
 
 	@Test
@@ -73,5 +81,8 @@ public class AdjudicacionServiceTest {
 		assertThat(found_3.getPresupuesto()).isEqualTo(bd2);
 		assertThat(found_2.getPresupuesto()).isEqualTo(bd3);
 		assertThat(found_1.getPresupuesto()).isEqualTo(bd4);
+		List<Adjudicacion> list = (List<Adjudicacion>) this.adjudicacionService.list();
+
+		assertThat(list.size()).isEqualTo(4);
 	}
 }
