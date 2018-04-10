@@ -65,7 +65,7 @@ public class AdminNormativaControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/normativa/save")).andExpect(status().isMethodNotAllowed());
+			this.mvc.perform(post("/admin/normativa/save")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}

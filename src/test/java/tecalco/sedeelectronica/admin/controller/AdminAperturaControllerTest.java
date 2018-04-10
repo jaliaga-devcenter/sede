@@ -64,7 +64,7 @@ public class AdminAperturaControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/aperturas/save")).andExpect(status().isMethodNotAllowed());
+			this.mvc.perform(post("/admin/aperturas/save")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
