@@ -21,6 +21,9 @@ public class Lenguaje extends BaseModel {
 	@Column(unique = true, nullable = false)
 	private String idioma;
 
+	public Lenguaje() {
+	}
+
 	public Lenguaje(String pCodigo, String pIdioma) {
 		this.codigo = pCodigo;
 		this.idioma = pIdioma;

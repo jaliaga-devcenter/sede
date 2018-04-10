@@ -42,6 +42,11 @@ public class PerfilContratanteControllerTest {
 	}
 
 	@Test
+	public void getDocumentos() throws Exception {
+		this.mvc.perform(get("/documentos")).andExpect(status().isOk());
+	}
+
+	@Test
 	public void getModelos() throws Exception {
 		this.mvc.perform(get("/modelos")).andExpect(status().isOk());
 	}
