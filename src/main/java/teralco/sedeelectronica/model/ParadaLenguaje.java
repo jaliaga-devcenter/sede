@@ -16,6 +16,9 @@ public class ParadaLenguaje extends BaseLanguage {
 	@Column
 	private String descripcion;
 
+	public ParadaLenguaje() {
+	}
+
 	public ParadaLenguaje(String codigo) {
 		this.setIdioma(codigo);
 	}

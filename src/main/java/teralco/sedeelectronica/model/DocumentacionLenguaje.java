@@ -16,6 +16,9 @@ public class DocumentacionLenguaje extends BaseLanguage {
 	@Column(nullable = false)
 	private String descripcion;
 
+	public DocumentacionLenguaje() {
+	}
+
 	public DocumentacionLenguaje(String codigo) {
 		this.setIdioma(codigo);
 	}

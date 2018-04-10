@@ -13,6 +13,9 @@ public class ModeloLenguaje extends BaseLanguage {
 	@Column
 	private String descripcion;
 
+	public ModeloLenguaje() {
+	}
+
 	public ModeloLenguaje(String codigo) {
 		this.setIdioma(codigo);
 	}

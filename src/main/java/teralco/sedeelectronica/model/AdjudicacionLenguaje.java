@@ -22,6 +22,9 @@ public class AdjudicacionLenguaje extends BaseLanguage {
 	@Column(name = "empresa_adjudicacion")
 	private String empresaAdjudicacion;
 
+	public AdjudicacionLenguaje() {
+	}
+
 	public AdjudicacionLenguaje(String codigo) {
 		this.setIdioma(codigo);
 	}
