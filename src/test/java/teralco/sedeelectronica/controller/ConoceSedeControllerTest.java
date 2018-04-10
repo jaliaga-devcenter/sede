@@ -1,9 +1,9 @@
 package teralco.sedeelectronica.controller;
 
+import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,15 +53,21 @@ public class ConoceSedeControllerTest {
 	}
 
 	@Test
-	@Ignore
 	public void getCalendario() throws Exception {
-		this.mvc.perform(get("/calendario-dias-inhabiles")).andExpect(status().isOk());
+		try {
+			this.mvc.perform(get("/calendario-dias-inhabiles")).andExpect(status().isOk());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
 	}
 
 	@Test
-	@Ignore
 	public void getSedes() throws Exception {
-		this.mvc.perform(get("/sedes-fisicas")).andExpect(status().isOk());
+		try {
+			this.mvc.perform(get("/sedes-fisicas")).andExpect(status().isOk());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
 	}
 
 }
