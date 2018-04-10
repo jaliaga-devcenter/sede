@@ -38,7 +38,7 @@ public class AdminNoticiaControllerTest {
 	@Test
 	public void getEdit() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/noticias/edit/2")).andExpect(status().isOk());
+			this.mvc.perform(get("/admin/noticias/edit/2")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
@@ -47,7 +47,7 @@ public class AdminNoticiaControllerTest {
 	@Test
 	public void getDelete() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/noticias/delete/3")).andExpect(status().isInternalServerError());
+			this.mvc.perform(get("/admin/noticias/delete/3")).andExpect(status().isInternalServerError());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
@@ -55,7 +55,11 @@ public class AdminNoticiaControllerTest {
 
 	@Test
 	public void getSave() throws Exception {
-		this.mvc.perform(get("/admin/noticias/save")).andExpect(status().isMethodNotAllowed());
+		try {
+			this.mvc.perform(post("/admin/noticias/save")).andExpect(status().isMethodNotAllowed());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
 	}
 
 	@Test

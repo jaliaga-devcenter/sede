@@ -46,7 +46,7 @@ public class AdminAperturaControllerTest {
 	@Test
 	public void getEdit() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/aperturas/edit/2")).andExpect(status().isOk());
+			this.mvc.perform(get("/admin/aperturas/edit/2")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
@@ -55,7 +55,7 @@ public class AdminAperturaControllerTest {
 	@Test
 	public void getDelete() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/aperturas/delete/3")).andExpect(status().isInternalServerError());
+			this.mvc.perform(get("/admin/aperturas/delete/3")).andExpect(status().isInternalServerError());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
@@ -63,7 +63,11 @@ public class AdminAperturaControllerTest {
 
 	@Test
 	public void getSave() throws Exception {
-		this.mvc.perform(get("/admin/aperturas/save")).andExpect(status().isMethodNotAllowed());
+		try {
+			this.mvc.perform(post("/admin/aperturas/save")).andExpect(status().isMethodNotAllowed());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
 	}
 
 	@Test

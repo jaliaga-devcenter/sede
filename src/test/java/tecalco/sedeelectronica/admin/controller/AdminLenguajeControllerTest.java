@@ -31,7 +31,6 @@ public class AdminLenguajeControllerTest {
 		} catch (Exception ex) {
 			assertNotNull(ex.getMessage());
 		}
-
 	}
 
 	@Test

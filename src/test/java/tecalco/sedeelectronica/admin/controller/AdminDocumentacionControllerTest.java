@@ -1,6 +1,7 @@
 package tecalco.sedeelectronica.admin.controller;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -39,7 +40,7 @@ public class AdminDocumentacionControllerTest {
 	@Test
 	public void getEdit() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/documentos/edit/2")).andExpect(status().isOk());
+			this.mvc.perform(get("/admin/documentos/edit/2")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertThat(e.getMessage(),
 					is("Request processing failed; nested exception is java.lang.NullPointerException"));
@@ -49,7 +50,7 @@ public class AdminDocumentacionControllerTest {
 	@Test
 	public void getDelete() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/documentos/delete/3")).andExpect(status().isInternalServerError());
+			this.mvc.perform(get("/admin/documentos/delete/3")).andExpect(status().isInternalServerError());
 		} catch (Exception e) {
 			assertThat(e.getMessage(), is(
 					"Request processing failed; nested exception is org.springframework.dao.EmptyResultDataAccessException: No class teralco.sedeelectronica.model.Documentacion entity with id 3 exists!"));
@@ -58,7 +59,11 @@ public class AdminDocumentacionControllerTest {
 
 	@Test
 	public void getSave() throws Exception {
-		this.mvc.perform(get("/admin/documentos/save")).andExpect(status().isMethodNotAllowed());
+		try {
+			this.mvc.perform(post("/admin/documentos/save")).andExpect(status().isMethodNotAllowed());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
 	}
 
 	@Test

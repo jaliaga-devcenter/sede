@@ -1,6 +1,7 @@
 package teralco.sedeelectronica.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Test;
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import teralco.sedeelectronica.app.TestApplication;
+import teralco.sedeelectronica.model.CSVValidation;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
@@ -28,6 +30,8 @@ public class VerifirmaControllerTest {
 
 	@Test
 	public void getVerifirmaSend() throws Exception {
-		this.mvc.perform(get("/verifirma/sed")).andExpect(status().isNotFound());
+		CSVValidation csv = new CSVValidation();
+		csv.setCsv("asdfasfwqwerasdf");
+		this.mvc.perform(post("/verifirma/sed").param(csv.getCsv(), "csv")).andExpect(status().isNotFound());
 	}
 }
