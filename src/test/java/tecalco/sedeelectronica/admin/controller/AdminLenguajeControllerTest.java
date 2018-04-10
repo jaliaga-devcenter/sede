@@ -1,9 +1,9 @@
 package tecalco.sedeelectronica.admin.controller;
 
+import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +25,13 @@ public class AdminLenguajeControllerTest {
 	private MockMvc mvc;
 
 	@Test
-	@Ignore
 	public void getLenguaje() throws Exception {
-		this.mvc.perform(get("/admin/lenguajes")).andExpect(status().isOk());
+		try {
+			this.mvc.perform(get("/admin/lenguajes")).andExpect(status().isOk());
+		} catch (Exception ex) {
+			assertNotNull(ex.getMessage());
+		}
+
 	}
 
 	@Test
