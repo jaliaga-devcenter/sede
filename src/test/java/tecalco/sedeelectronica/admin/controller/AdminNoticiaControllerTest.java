@@ -56,7 +56,7 @@ public class AdminNoticiaControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/noticias/save")).andExpect(status().isMethodNotAllowed());
+			this.mvc.perform(post("/admin/noticias/save")).andExpect(status().isFound());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}

@@ -27,7 +27,7 @@ public class AdminAvisoControllerTest {
 	private MockMvc mvc;
 
 	@Test
-	public void getAperturas() throws Exception {
+	public void getNoticias() throws Exception {
 		this.mvc.perform(get("/admin/avisos")).andExpect(status().isOk());
 	}
 
@@ -59,10 +59,8 @@ public class AdminAvisoControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/avisos/save")).andExpect(status().isMethodNotAllowed());
-		} catch (
-
-		Exception e) {
+			this.mvc.perform(post("/admin/avisos/save")).andExpect(status().isOk());
+		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
 	}
