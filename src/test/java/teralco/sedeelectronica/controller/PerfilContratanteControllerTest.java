@@ -16,18 +16,39 @@ import teralco.sedeelectronica.app.TestApplication;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
 @AutoConfigureMockMvc
-public class AnuncioControllerTest {
+public class PerfilContratanteControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
 
 	@Test
-	public void getAnuncios() throws Exception {
-		this.mvc.perform(get("/tablon-anuncios")).andExpect(status().isOk());
+	public void getPerfilDelContratante() throws Exception {
+		this.mvc.perform(get("/perfil-del-contratante")).andExpect(status().isFound());
 	}
 
 	@Test
-	public void getAnuncio() throws Exception {
-		this.mvc.perform(get("/tablon-anuncios/2")).andExpect(status().isOk());
+	public void getLicitaciones() throws Exception {
+		this.mvc.perform(get("/licitaciones")).andExpect(status().isOk());
 	}
+
+	@Test
+	public void getAperturas() throws Exception {
+		this.mvc.perform(get("/aperturas")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void getAdjudicaciones() throws Exception {
+		this.mvc.perform(get("/adjudicaciones")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void getModelos() throws Exception {
+		this.mvc.perform(get("/modelos")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void getAvisos() throws Exception {
+		this.mvc.perform(get("/avisos")).andExpect(status().isOk());
+	}
+
 }

@@ -16,18 +16,19 @@ import teralco.sedeelectronica.app.TestApplication;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
 @AutoConfigureMockMvc
-public class AnuncioControllerTest {
+public class NoticiaControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
 
 	@Test
-	public void getAnuncios() throws Exception {
-		this.mvc.perform(get("/tablon-anuncios")).andExpect(status().isOk());
+	public void getNoticia() throws Exception {
+		this.mvc.perform(get("/actualidad")).andExpect(status().isOk());
 	}
 
 	@Test
-	public void getAnuncio() throws Exception {
-		this.mvc.perform(get("/tablon-anuncios/2")).andExpect(status().isOk());
+	public void getNoticiaID() throws Exception {
+		this.mvc.perform(get("/actualidad/2")).andExpect(status().isOk());
 	}
+
 }
