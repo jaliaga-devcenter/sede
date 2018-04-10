@@ -151,5 +151,6 @@ CREATE TABLE IF NOT EXISTS PARADA (
    DESCRIPCION			TEXT 			null,
  );
  
+INSERT INTO lenguaje(CODIGO, IDIOMA) VALUES ('es','Castellano');
 
  

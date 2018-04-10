@@ -13,7 +13,7 @@ public class AperturaLenguaje extends BaseLanguage {
 	 */
 	private static final long serialVersionUID = 1L;
 	@NotEmpty
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String denominacion;
 
 	@Column(nullable = true)

@@ -27,20 +27,12 @@ public class AdminAperturaControllerTest {
 
 	@Test
 	public void getAperturas() throws Exception {
-		try {
-			this.mvc.perform(get("/admin/aperturas")).andExpect(status().isOk());
-		} catch (Exception e) {
-			assertNotNull(e.getMessage());
-		}
+		this.mvc.perform(get("/admin/aperturas")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void getCreate() throws Exception {
-		try {
-			this.mvc.perform(get("/admin/aperturas/create")).andExpect(status().isOk());
-		} catch (Exception e) {
-			assertNotNull(e.getMessage());
-		}
+		this.mvc.perform(get("/admin/aperturas/create")).andExpect(status().isOk());
 	}
 
 	@Test
