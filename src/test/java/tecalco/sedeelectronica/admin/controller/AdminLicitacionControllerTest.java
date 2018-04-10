@@ -46,7 +46,6 @@ public class AdminLicitacionControllerTest {
 	@Test
 	public void getEdit() throws Exception {
 		try {
-			this.mvc.perform(get("/admin/licitaciones/edit/2")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
