@@ -20,7 +20,7 @@ public class IconoDTOTest {
 		// ASSERT
 
 		assertEquals(pNombre, icon.getNombre());
-		assertEquals(pNombre, icon.getExtension());
+		assertEquals(pExt, icon.getExtension());
 		assertNull(icon.getFichero());
 
 	}
