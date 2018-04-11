@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import teralco.sedeelectronica.app.TestApplication;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
+@SpringBootTest(classes = TestApplication.class)
 @AutoConfigureMockMvc
 @WithMockUser(roles = { "ADMIN_SEDE" })
 public class AdminNormativaControllerTest {
@@ -27,13 +26,11 @@ public class AdminNormativaControllerTest {
 	private MockMvc mvc;
 
 	@Test
-	@Ignore
 	public void getAperturas() throws Exception {
 		this.mvc.perform(get("/admin/normativa")).andExpect(status().isOk());
 	}
 
 	@Test
-	@Ignore
 	public void getCreate() throws Exception {
 		this.mvc.perform(get("/admin/normativa/create")).andExpect(status().isOk());
 	}
