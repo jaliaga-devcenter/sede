@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNull;
 
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import teralco.sedeelectronica.model.Normativa;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
-@Ignore
 public class NormativaRepositoryTest {
 
 	@Autowired
@@ -37,7 +35,7 @@ public class NormativaRepositoryTest {
 		Normativa found = this.normativaRepository.findById(norma.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(norma.getId());
+		assertThat(found.getUrl()).isEqualTo(norma.getUrl());
 	}
 
 	@Test
@@ -45,6 +43,7 @@ public class NormativaRepositoryTest {
 		// DECLARE VARIABLES
 
 		String pUrl = "www.google.es";
+		String pUrl2 = "www.teralco.es";
 
 		// ARRANGE
 		Normativa norma = new Normativa();
@@ -53,13 +52,13 @@ public class NormativaRepositoryTest {
 		norma = this.normativaRepository.save(norma);
 		// ACT
 		Normativa found = this.normativaRepository.findById(norma.getId());
-
+		found.setUrl(pUrl2);
 		this.normativaRepository.save(found);
 
 		norma = this.normativaRepository.findById(norma.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(norma.getId());
+		assertThat(found.getUrl()).isEqualTo(norma.getUrl());
 	}
 
 	@Test

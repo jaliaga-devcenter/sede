@@ -37,8 +37,8 @@
 							<span th:case="null" th:text="${normativa.traducciones[0].norma}" ></span>
 							<span th:case="*"><a th:text="${normativa.traducciones[0].norma}" th:href="${normativa.url}" target="_blank"><div class="download">&nbsp;</div></a></span>
 						</td>	
-					<td th:text="${normativa.traducciones[0].articulo}"></td>
-					<td th:text="${normativa.traducciones[0].texto}"> </td>							
+					<td th:if="${#lists.size(normativa.traducciones)>0}" th:text="${normativa.traducciones[0].articulo}"></td>
+					<td th:if="${#lists.size(normativa.traducciones)>0}" th:text="${normativa.traducciones[0].texto}"> </td>							
 				</tr>
 			</tbody>
 			<tbody th:unless="${normativas.getNumberOfElements()}"> 

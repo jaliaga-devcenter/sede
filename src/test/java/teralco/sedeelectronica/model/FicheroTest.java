@@ -1,6 +1,7 @@
 package teralco.sedeelectronica.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class FicheroTest {
 
 		// ASSERT
 		assertEquals(archivo, file.getNombreOriginal());
-		assertEquals(Tipo.PDF, file.getTipo());
+		assertNotEquals(Tipo.URL, file.getTipo());
 		assertEquals(uuid, file.getUuid());
 		assertEquals((Double) 512.24, file.getTamanyo());
 	}

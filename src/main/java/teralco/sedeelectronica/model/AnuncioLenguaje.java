@@ -14,11 +14,11 @@ public class AnuncioLenguaje extends BaseLanguage {
 	private static final long serialVersionUID = 1L;
 
 	@NotEmpty
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String titulo;
 
 	@NotEmpty
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String descripcion;
 
 	public AnuncioLenguaje() {

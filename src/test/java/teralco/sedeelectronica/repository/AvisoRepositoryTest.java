@@ -5,22 +5,25 @@ import static org.junit.Assert.assertNull;
 
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import teralco.sedeelectronica.app.Application;
+import teralco.sedeelectronica.app.TestApplication;
 import teralco.sedeelectronica.model.Aviso;
 import teralco.sedeelectronica.model.Fichero;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { Application.class })
-@Ignore
+@SpringBootTest(classes = { TestApplication.class })
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
+
 public class AvisoRepositoryTest {
 	@Autowired
 	private AvisoRepository avisoRepository;
@@ -29,9 +32,12 @@ public class AvisoRepositoryTest {
 	private FicheroRepository ficheroRepository;
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(4.0);
 		this.ficheroRepository.save(file);
 		Date date = new Date();
 		date.setYear(2018);
@@ -49,13 +55,16 @@ public class AvisoRepositoryTest {
 		Aviso found = this.avisoRepository.findById(aviso.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(aviso.getId());
+		assertThat(found.getFichero().getTamanyo()).isEqualTo(aviso.getFichero().getTamanyo());
 	}
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void editTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(4.0);
 		this.ficheroRepository.save(file);
 		Date date = new Date();
 		date.setYear(2018);
@@ -71,11 +80,11 @@ public class AvisoRepositoryTest {
 
 		// ACT
 		Aviso found = this.avisoRepository.findById(aviso.getId());
-
+		found.getFichero().setTamanyo(64.0);
 		aviso = this.avisoRepository.save(found);
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(aviso.getId());
+		assertThat(found.getFichero().getTamanyo()).isEqualTo(aviso.getFichero().getTamanyo());
 	}
 
 	@Test

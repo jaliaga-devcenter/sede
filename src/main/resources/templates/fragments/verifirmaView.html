@@ -4,8 +4,11 @@
 <body>
     <th:block th:fragment="verifirma">
         <div th:replace="~{fragments/pageHeader :: pageHeader(#{message.verifirma.page.header})}"></div>
-
+        <div class="g-mb-20">
+            <p th:text="#{message.verifirma.page.one}"></p>
+        </div>
         <div class="col-xs-12 col-sm-12 offset-md-4 col-md-4 col-lg-4 g-mb-20">
+            
             <form class="g-brd-around g-brd-transparent g-pa-30 g-mb-30" th:object="${CSVValidation}" th:action="@{/verifirma/send}" method="post">
                 <div class="g-mb-10">
                     <div class="input-group">
@@ -65,7 +68,7 @@
                 generados por el Ayuntamiento de Murcia, justo debajo del c&oacute;digo de barras.
             </p>
             <div class="text-center">
-                <img class="g-width-780 g-min-width-150" src="/sede/img/EjemploCSV.gif" alt="" th:alt="#{message.verifirma.explanation.img.alt}"
+                <img class="g-width-780 g-min-width-150" src="/sede/img/EjemploCSV.png" alt="" th:alt="#{message.verifirma.explanation.img.alt}"
                 />
             </div>
         </div>

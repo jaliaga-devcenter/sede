@@ -29,7 +29,7 @@ public class AdminLenguajeController {
 	}
 
 	@RequestMapping(value = "/admin/lenguajes", produces = "text/html;charset=UTF-8")
-	public String licitaciones(Model model) {
+	public String lenguajes(Model model) {
 		model.addAttribute("langs", this.lenguajeService.list());
 		return form;
 	}

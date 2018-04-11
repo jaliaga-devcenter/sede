@@ -22,16 +22,11 @@ public class Lenguaje extends BaseModel {
 	private String idioma;
 
 	public Lenguaje() {
-
 	}
 
 	public Lenguaje(String pCodigo, String pIdioma) {
 		this.codigo = pCodigo;
 		this.idioma = pIdioma;
-	}
-
-	public Lenguaje(String pCodigo) {
-		this.codigo = pCodigo;
 	}
 
 	public String getCodigo() {

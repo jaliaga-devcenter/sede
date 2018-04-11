@@ -3,7 +3,7 @@ spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL94Diale
 
 spring.jpa.generate-ddl: true
 spring.jpa.hibernate.ddl-auto: validate
-spring.jpa.show-sql: true
+spring.jpa.show-sql: false
 debug: false
 spring.messages.basename: messages/messages
 

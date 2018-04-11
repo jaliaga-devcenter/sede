@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import javax.xml.rpc.ServiceException;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import teralco.sedeelectronica.app.Application;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { Application.class })
-@Ignore
 public class VerifirmaClientTest {
 
 	@Autowired
