@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import teralco.sedeelectronica.app.TestApplication;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
+@SpringBootTest(classes = TestApplication.class)
 @AutoConfigureMockMvc
 @WithMockUser(roles = { "ADMIN_SEDE" })
 public class AdminLenguajeControllerTest {
