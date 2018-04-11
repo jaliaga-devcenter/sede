@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class AdminNormativaControllerTest {
 	private MockMvc mvc;
 
 	@Test
+	@Ignore
 	public void getAperturas() throws Exception {
 		this.mvc.perform(get("/admin/normativa")).andExpect(status().isOk());
 	}
