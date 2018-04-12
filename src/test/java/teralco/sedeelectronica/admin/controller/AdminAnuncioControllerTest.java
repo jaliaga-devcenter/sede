@@ -87,6 +87,16 @@ public class AdminAnuncioControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		try {
+			Anuncio anun = new Anuncio();
+			this.mvc.perform(post("/admin/anuncios/save").requestAttr("anuncio", anun)).andExpect(status().isFound());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
+	@Test
+	public void getSave2() throws Exception {
+		try {
 			this.mvc.perform(post("/admin/anuncios/save")).andExpect(status().isFound());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());

@@ -115,6 +115,17 @@ public class AdminLicitacionControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		try {
+			Licitacion lici = new Licitacion();
+			this.mvc.perform(post("/admin/licitaciones/save").requestAttr("licitacion", lici))
+					.andExpect(status().isOk());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
+	@Test
+	public void getSave2() throws Exception {
+		try {
 			this.mvc.perform(post("/admin/licitaciones/save")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());

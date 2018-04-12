@@ -101,6 +101,17 @@ public class AdminAperturaControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		try {
+			Apertura apertura = new Apertura();
+			this.mvc.perform(post("/admin/aperturas/save").requestAttr("apertura", apertura))
+					.andExpect(status().isOk());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
+	@Test
+	public void getSave2() throws Exception {
+		try {
 			this.mvc.perform(post("/admin/aperturas/save")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());

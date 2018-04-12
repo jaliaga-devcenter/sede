@@ -92,6 +92,16 @@ public class AdminModeloControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		try {
+			Modelo modelo = new Modelo();
+			this.mvc.perform(post("/admin/modelos/save").requestAttr("modelo", modelo)).andExpect(status().isFound());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
+	@Test
+	public void getSave2() throws Exception {
+		try {
 			this.mvc.perform(post("/admin/modelos/save")).andExpect(status().isFound());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());

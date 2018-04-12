@@ -88,6 +88,17 @@ public class AdminNoticiaControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		try {
+			Noticia noticia = new Noticia();
+			this.mvc.perform(post("/admin/noticias/save").requestAttr("noticia", noticia))
+					.andExpect(status().isFound());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
+	@Test
+	public void getSave2() throws Exception {
+		try {
 			this.mvc.perform(post("/admin/noticias/save")).andExpect(status().isFound());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());

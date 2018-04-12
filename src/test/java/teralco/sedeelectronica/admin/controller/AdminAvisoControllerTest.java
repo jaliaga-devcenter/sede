@@ -102,6 +102,16 @@ public class AdminAvisoControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		try {
+			Aviso aviso = new Aviso();
+			this.mvc.perform(post("/admin/avisos/save").requestAttr("aviso", aviso)).andExpect(status().isOk());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
+	@Test
+	public void getSave2() throws Exception {
+		try {
 			this.mvc.perform(post("/admin/avisos/save")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());

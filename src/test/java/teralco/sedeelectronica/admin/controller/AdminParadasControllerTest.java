@@ -100,6 +100,16 @@ public class AdminParadasControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		try {
+			Parada parada = new Parada();
+			this.mvc.perform(post("/admin/paradas/save").requestAttr("parada", parada)).andExpect(status().isOk());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
+	@Test
+	public void getSave2() throws Exception {
+		try {
 			this.mvc.perform(post("/admin/paradas/save")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());

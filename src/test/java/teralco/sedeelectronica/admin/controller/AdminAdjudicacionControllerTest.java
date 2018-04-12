@@ -95,6 +95,12 @@ public class AdminAdjudicacionControllerTest {
 	}
 
 	@Test
+	public void getSave2() throws Exception {
+		this.mvc.perform(post("/admin/adjudicaciones/save")).andExpect(status().isFound());
+
+	}
+
+	@Test
 	public void getNoEdit() throws Exception {
 		this.mvc.perform(get("/admin/adjudicaciones/edit/")).andExpect(status().isFound());
 	}
