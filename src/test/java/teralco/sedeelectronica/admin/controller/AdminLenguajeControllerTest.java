@@ -37,11 +37,6 @@ public class AdminLenguajeControllerTest {
 		this.mvc = MockMvcBuilders.webAppContextSetup(this.applicationContext).build();
 	}
 
-	/*
-	 * @Test public void getLenguaje() throws Exception {
-	 * this.mvc.perform(get("/admin/lenguajes")).andExpect(status().isOk()); }
-	 */
-
 	@Test
 	public void getCreate() throws Exception {
 		this.mvc.perform(post("/admin/lenguajes/create")).andExpect(status().isBadRequest());
