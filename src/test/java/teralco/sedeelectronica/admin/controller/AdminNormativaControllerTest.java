@@ -104,6 +104,17 @@ public class AdminNormativaControllerTest {
 	}
 
 	@Test
+	public void getSaveOk() throws Exception {
+		try {
+			Normativa norma = new Normativa();
+			norma.setUrl("www.google.es");
+			this.mvc.perform(post("/admin/normativa/save").requestAttr("normativa", norma)).andExpect(status().isOk());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
+	@Test
 	public void getSave2() throws Exception {
 		try {
 			this.mvc.perform(post("/admin/normativa/save")).andExpect(status().isOk());

@@ -109,6 +109,24 @@ public class AdminAvisoControllerTest {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
+	@Test
+	public void getSaveOk() throws Exception {
+		try {
+			Aviso aviso = new Aviso();
+			Date date = new Date();
+			date.setYear(2018);
+			date.setMonth(1);
+			date.setDate(1);
+			date.setMinutes(56);
+			date.setHours(16);
+			aviso.setFecha(date);
+			this.mvc.perform(post("/admin/avisos/save").requestAttr("aviso", aviso)).andExpect(status().isOk());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
 	@Test
 	public void getSave2() throws Exception {
 		try {

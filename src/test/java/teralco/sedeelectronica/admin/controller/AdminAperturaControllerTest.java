@@ -109,6 +109,25 @@ public class AdminAperturaControllerTest {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
+	@Test
+	public void getSaveOK() throws Exception {
+		try {
+			Apertura apertura = new Apertura();
+			Date date = new Date();
+			date.setYear(2018);
+			date.setMonth(1);
+			date.setDate(1);
+			date.setMinutes(56);
+			date.setHours(16);
+			apertura.setFecha(date);
+			this.mvc.perform(post("/admin/aperturas/save").requestAttr("apertura", apertura))
+					.andExpect(status().isOk());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
 	@Test
 	public void getSave2() throws Exception {
 		try {

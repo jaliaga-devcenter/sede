@@ -123,6 +123,31 @@ public class AdminLicitacionControllerTest {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
+	@Test
+	public void getSaveOk() throws Exception {
+		try {
+			Licitacion lici = new Licitacion();
+
+			BigDecimal bd = new BigDecimal(1024.50);
+			Short medio = -1;
+
+			Date date = new Date();
+			date.setYear(2018);
+			date.setMonth(1);
+			date.setDate(1);
+			date.setMinutes(56);
+			date.setHours(16);
+			lici.setFechaPub(date);
+			lici.setPresupuesto(bd);
+			lici.setMedio(medio);
+			this.mvc.perform(post("/admin/licitaciones/save").requestAttr("licitacion", lici))
+					.andExpect(status().isOk());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
 	@Test
 	public void getSave2() throws Exception {
 		try {
