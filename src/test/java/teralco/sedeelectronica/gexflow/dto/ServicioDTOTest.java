@@ -1,4 +1,4 @@
-package teralco.sedeelectornica.gexflow.dto;
+package teralco.sedeelectronica.gexflow.dto;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

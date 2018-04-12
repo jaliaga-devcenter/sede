@@ -19,4 +19,12 @@ public class AjaxResponseTest {
 		assertNull(response.getData());
 		assertThat(response.getErrorMessageList().size()).isEqualTo(0);
 	}
+
+	@Test
+	public void AjaxResponseBuild() {
+		AjaxResponseBody response = new AjaxResponseBody("sucess", null);
+
+		assertThat(response.getMsg()).isEqualTo("sucess");
+		assertNull(response.getData());
+	}
 }
