@@ -5,6 +5,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.List;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import teralco.sedeelectronica.app.TestApplication;
+import teralco.sedeelectronica.model.Noticia;
+import teralco.sedeelectronica.repository.NoticiaRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
@@ -25,14 +30,41 @@ public class AdminNoticiaControllerTest {
 	@Autowired
 	private MockMvc mvc;
 
+	@Autowired
+	private NoticiaRepository noticiaRepository;
+
+	@Before // not working
+	public void setUp() throws Exception {
+		Noticia not1 = new Noticia();
+		Noticia not2 = new Noticia();
+		Noticia not3 = new Noticia();
+
+		not1 = this.noticiaRepository.save(not1);
+		not2 = this.noticiaRepository.save(not2);
+		not3 = this.noticiaRepository.save(not3);
+
+	}
+
 	@Test
-	public void getAperturas() throws Exception {
+	public void getNoticias() throws Exception {
 		this.mvc.perform(get("/admin/noticias")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void getCreate() throws Exception {
 		this.mvc.perform(get("/admin/noticias/create")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void getEditOk() throws Exception {
+		List<Noticia> l = this.noticiaRepository.findAll();
+		this.mvc.perform(get("/admin/noticias/edit/" + l.get(l.size() - 1).getId())).andExpect(status().isOk());
+	}
+
+	@Test
+	public void getDeleteOk() throws Exception {
+		List<Noticia> l = this.noticiaRepository.findAll();
+		this.mvc.perform(get("/admin/noticias/delete/" + l.get(l.size() - 1).getId())).andExpect(status().isFound());
 	}
 
 	@Test
@@ -47,7 +79,7 @@ public class AdminNoticiaControllerTest {
 	@Test
 	public void getDelete() throws Exception {
 		try {
-			this.mvc.perform(get("/admin/noticias/delete/3")).andExpect(status().isInternalServerError());
+			this.mvc.perform(get("/admin/noticias/delete/3")).andExpect(status().isFound());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}

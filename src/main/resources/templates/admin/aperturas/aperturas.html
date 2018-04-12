@@ -35,9 +35,11 @@
 					</fieldset>
 				</th>		
 				<td th:text="${apertura.resultado!=null} ? ${apertura.resultado.tipo}: ''"></td>
-				<td th:text="${apertura.traducciones[0].denominacion}"> </td>					
-				<td th:utext="${#dates.format(apertura.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
+				<td th:if="${#lists.size(apertura.traducciones)>0}" th:text="${apertura.traducciones[0].denominacion}"> </td>					
+				<td th:if="${#lists.size(apertura.traducciones)>0}" th:utext="${#dates.format(apertura.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
 				${#dates.format(apertura.hora,'hh:mm')} + '&lt;br/&gt;' +${apertura.traducciones[0].plica}"></td>
+				<td th:if="${#lists.size(apertura.traducciones)==0}" th:utext="${#dates.format(apertura.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
+					${#dates.format(apertura.hora,'hh:mm')} + '&lt;br/&gt;'"></td>
 				<td th:switch="${apertura.resultado}">
 					<span th:case="null" ></span>
 					<span th:case="*"><a class="downa" th:href="@{/download/}+${encrypt.encrypt(apertura.resultado.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
