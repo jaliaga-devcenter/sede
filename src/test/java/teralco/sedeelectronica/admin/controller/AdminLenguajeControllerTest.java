@@ -1,4 +1,4 @@
-package tecalco.sedeelectronica.admin.controller;
+package teralco.sedeelectronica.admin.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -15,16 +15,21 @@ import org.springframework.test.web.servlet.MockMvc;
 import teralco.sedeelectronica.app.TestApplication;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
+@SpringBootTest(classes = TestApplication.class)
 @AutoConfigureMockMvc
 @WithMockUser(roles = { "ADMIN_SEDE" })
-public class AdminControllerTest {
+public class AdminLenguajeControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
 
 	@Test
-	public void getAcesso() throws Exception {
-		this.mvc.perform(get("/admin")).andExpect(status().isFound());
+	public void getLenguaje() throws Exception {
+		this.mvc.perform(get("/admin/lenguajes")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void getCreate() throws Exception {
+		this.mvc.perform(get("/admin/lenguajes/create")).andExpect(status().isMethodNotAllowed());
 	}
 }

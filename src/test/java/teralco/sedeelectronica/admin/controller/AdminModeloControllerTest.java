@@ -1,4 +1,4 @@
-package tecalco.sedeelectronica.admin.controller;
+package teralco.sedeelectronica.admin.controller;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
@@ -19,27 +19,28 @@ import org.springframework.test.web.servlet.MockMvc;
 import teralco.sedeelectronica.app.TestApplication;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
+@SpringBootTest(classes = TestApplication.class)
 @AutoConfigureMockMvc
 @WithMockUser(roles = { "ADMIN_SEDE" })
-public class AdminAvisoControllerTest {
+public class AdminModeloControllerTest {
+
 	@Autowired
 	private MockMvc mvc;
 
 	@Test
-	public void getNoticias() throws Exception {
-		this.mvc.perform(get("/admin/avisos")).andExpect(status().isOk());
+	public void getModelos() throws Exception {
+		this.mvc.perform(get("/admin/modelos")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void getCreate() throws Exception {
-		this.mvc.perform(get("/admin/avisos/create")).andExpect(status().isOk());
+		this.mvc.perform(get("/admin/modelos/create")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void getEdit() throws Exception {
 		try {
-			this.mvc.perform(get("/admin/avisos/edit/2")).andExpect(status().isOk());
+			this.mvc.perform(get("/admin/modelos/edit/2")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertThat(e.getMessage(),
 					is("Request processing failed; nested exception is java.lang.NullPointerException"));
@@ -49,17 +50,17 @@ public class AdminAvisoControllerTest {
 	@Test
 	public void getDelete() throws Exception {
 		try {
-			this.mvc.perform(get("/admin/avisos/delete/3")).andExpect(status().isInternalServerError());
+			this.mvc.perform(get("/admin/modelos/delete/3")).andExpect(status().isInternalServerError());
 		} catch (Exception e) {
 			assertThat(e.getMessage(), is(
-					"Request processing failed; nested exception is org.springframework.dao.EmptyResultDataAccessException: No class teralco.sedeelectronica.model.Aviso entity with id 3 exists!"));
+					"Request processing failed; nested exception is org.springframework.dao.EmptyResultDataAccessException: No class teralco.sedeelectronica.model.Modelo entity with id 3 exists!"));
 		}
 	}
 
 	@Test
 	public void getSave() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/avisos/save")).andExpect(status().isOk());
+			this.mvc.perform(post("/admin/modelos/save")).andExpect(status().isFound());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
@@ -67,11 +68,11 @@ public class AdminAvisoControllerTest {
 
 	@Test
 	public void getNoEdit() throws Exception {
-		this.mvc.perform(get("/admin/avisos/edit/")).andExpect(status().isFound());
+		this.mvc.perform(get("/admin/modelos/edit/")).andExpect(status().isFound());
 	}
 
 	@Test
 	public void getNoDelete() throws Exception {
-		this.mvc.perform(get("/admin/avisos/delete/")).andExpect(status().isFound());
+		this.mvc.perform(get("/admin/modelos/delete/")).andExpect(status().isFound());
 	}
 }

@@ -37,7 +37,7 @@
 					</th>
 					<td th:text="${#dates.format(anuncio.fechaDe, 'dd/MM/yyyy')}"></td>
 					<td th:text="${#dates.format(anuncio.fechaHasta, 'dd/MM/yyyy')}"></td>
-					<td th:text="${anuncio.traducciones[0].titulo}"></td>		
+					<td th:if="${#lists.size(anuncio.traducciones)>0}" th:text="${anuncio.traducciones[0].titulo}"></td>		
 					<td th:switch="${anuncio.fichero}">
 						<span th:case="null" >No</span>
 						<span th:case="*" th:text="${anuncio.fichero.nombreOriginal}">Si</span>

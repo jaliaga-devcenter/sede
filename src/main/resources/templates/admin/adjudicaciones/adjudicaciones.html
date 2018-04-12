@@ -38,7 +38,7 @@
 						</fieldset>
 					</th>
 					<td th:text="${adjudicacion.resultado!=null} ? ${adjudicacion.resultado.tipo}: ''"></td>
-					<td th:text="${adjudicacion.traducciones[0].denominacion}"> </td>					
+					<td th:if="${#lists.size(adjudicacion.traducciones)>0}" th:text="${adjudicacion.traducciones[0].denominacion}"> </td>					
 					<td th:utext="${adjudicacion.fecha!=null} ? ${#dates.format(adjudicacion.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
 					(${adjudicacion.hora!=null} ? ${#dates.format(adjudicacion.hora,'hh:mm')}:'') + '&lt;br/&gt;' +${adjudicacion.traducciones[0].plica} : ''"></td>
 					<td th:switch="${adjudicacion.resultado}">
@@ -49,11 +49,15 @@
 					${#numbers.formatDecimal((adjudicacion.resultado.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
 					+' MB': ''"></td>
 					<td th:utext="${adjudicacion.fechaFormalizacion!=null} ? ${#dates.format(adjudicacion.fechaFormalizacion, 'dd/MM/yyyy')} : ''"></td>
-					<td th:utext="((${adjudicacion.presupuesto!=null} ? 
+					<td th:if="${#lists.size(adjudicacion.traducciones)>0}" th:utext="((${adjudicacion.presupuesto!=null} ? 
 					${adjudicacion.presupuesto}+' &euro; &lt;br/&gt;': '' ) +
 					(${adjudicacion.fechaAdjudicacion!=null} ? 
 					${#dates.format(adjudicacion.fechaAdjudicacion, 'dd/MM/yyyy')} : '' )
-					+ '&lt;br/&gt;' +${adjudicacion.traducciones[0].empresaAdjudicacion})"></td>
+					+ '&lt;br/&gt;' + ${adjudicacion.traducciones[0].empresaAdjudicacion}"></td>
+					<td th:if="${#lists.size(adjudicacion.traducciones)==0}" th:utext="((${adjudicacion.presupuesto!=null} ? 
+						${adjudicacion.presupuesto}+' &euro; &lt;br/&gt;': '' ) +
+						(${adjudicacion.fechaAdjudicacion!=null} ? 
+						${#dates.format(adjudicacion.fechaAdjudicacion, 'dd/MM/yyyy')} : '' ) + '&lt;br/&gt;' )"></td>
 				</tr>
 			</tbody>
 			<tbody th:unless="${adjudicaciones.getNumberOfElements()}"> 

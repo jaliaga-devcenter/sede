@@ -9,11 +9,15 @@ spring:
   generate-ddl: true
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
     properties:
       hibernate:
         enable_lazy_load_no_tans: true
-      
+  h2:
+    console:
+      path: /h2
+ 
+spring.h2.console.enabled: true
 
 flyway:
   enabled: true
