@@ -32,6 +32,7 @@ public class VerifirmaControllerTest {
 	public void getVerifirmaSend() throws Exception {
 		CSVValidation csv = new CSVValidation();
 		csv.setCsv("asdfasfwqwerasdf");
-		this.mvc.perform(post("/verifirma/sed").param(csv.getCsv(), "csv")).andExpect(status().isNotFound());
+		this.mvc.perform(post("/verifirma/send").flashAttr("CSVValidation", csv).param("g-recaptcha-response", ""))
+				.andExpect(status().isOk());
 	}
 }
