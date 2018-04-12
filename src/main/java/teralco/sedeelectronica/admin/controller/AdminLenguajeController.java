@@ -35,7 +35,7 @@ public class AdminLenguajeController {
 	}
 
 	@PostMapping(value = "/admin/lenguajes/create")
-	public ResponseEntity<?> create(@RequestBody String[] langList) {
+	public ResponseEntity<AjaxResponseBody> create(@RequestBody String[] langList) {
 		AjaxResponseBody result = new AjaxResponseBody();
 		if (langList.length == 0) {
 			result.setMsg(this.messages.get("message.languages.error"));
