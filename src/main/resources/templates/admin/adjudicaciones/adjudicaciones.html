@@ -38,9 +38,12 @@
 						</fieldset>
 					</th>
 					<td th:text="${adjudicacion.resultado!=null} ? ${adjudicacion.resultado.tipo}: ''"></td>
-					<td th:if="${#lists.size(adjudicacion.traducciones)>0}" th:text="${adjudicacion.traducciones[0].denominacion}"> </td>					
-					<td th:utext="${adjudicacion.fecha!=null} ? ${#dates.format(adjudicacion.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
+					<td th:if="${#lists.size(adjudicacion.traducciones)>0}" th:text="${adjudicacion.traducciones[0].denominacion}"> </td>
+					<td th:if="${#lists.size(adjudicacion.traducciones)==0}" > </td>				
+					<td th:if="${#lists.size(adjudicacion.traducciones)>0}" th:utext="${adjudicacion.fecha!=null} ? ${#dates.format(adjudicacion.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
 					(${adjudicacion.hora!=null} ? ${#dates.format(adjudicacion.hora,'hh:mm')}:'') + '&lt;br/&gt;' +${adjudicacion.traducciones[0].plica} : ''"></td>
+					<td th:if="${#lists.size(adjudicacion.traducciones)==0}" th:utext="${adjudicacion.fecha!=null} ? ${#dates.format(adjudicacion.fecha, 'dd/MM/yyyy')}+ '&lt;br/&gt;' +
+						(${adjudicacion.hora!=null} ? ${#dates.format(adjudicacion.hora,'hh:mm')}:'') + '&lt;br/&gt;' : ''"></td>
 					<td th:switch="${adjudicacion.resultado}">
 							<span th:case="null" ></span>
 							<span th:case="*"><a class="downa" th:href="@{/download/}+${encrypt.encrypt(adjudicacion.resultado.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
