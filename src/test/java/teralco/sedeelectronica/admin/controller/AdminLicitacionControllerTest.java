@@ -1,8 +1,6 @@
-package tecalco.sedeelectronica.admin.controller;
+package teralco.sedeelectronica.admin.controller;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -16,51 +14,49 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import teralco.sedeelectronica.app.TestApplication;
+import teralco.sedeelectronica.app.Application;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = Application.class)
 @AutoConfigureMockMvc
 @WithMockUser(roles = { "ADMIN_SEDE" })
-public class AdminModeloControllerTest {
+public class AdminLicitacionControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
 
 	@Test
-	public void getAperturas() throws Exception {
-		this.mvc.perform(get("/admin/modelos")).andExpect(status().isOk());
+	public void getLicitaciones() throws Exception {
+		this.mvc.perform(get("/admin/licitaciones")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void getCreate() throws Exception {
-		this.mvc.perform(get("/admin/modelos/create")).andExpect(status().isOk());
+		this.mvc.perform(get("/admin/licitaciones/create")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void getEdit() throws Exception {
 		try {
-			this.mvc.perform(get("/admin/modelos/edit/2")).andExpect(status().isOk());
+			this.mvc.perform(get("/admin/licitaciones/edit/2")).andExpect(status().isOk());
 		} catch (Exception e) {
-			assertThat(e.getMessage(),
-					is("Request processing failed; nested exception is java.lang.NullPointerException"));
+			assertNotNull(e.getMessage());
 		}
 	}
 
 	@Test
 	public void getDelete() throws Exception {
 		try {
-			this.mvc.perform(get("/admin/modelos/delete/3")).andExpect(status().isInternalServerError());
+			this.mvc.perform(get("/admin/licitaciones/delete/3")).andExpect(status().isInternalServerError());
 		} catch (Exception e) {
-			assertThat(e.getMessage(), is(
-					"Request processing failed; nested exception is org.springframework.dao.EmptyResultDataAccessException: No class teralco.sedeelectronica.model.Modelo entity with id 3 exists!"));
+			assertNotNull(e.getMessage());
 		}
 	}
 
 	@Test
 	public void getSave() throws Exception {
 		try {
-			this.mvc.perform(post("/admin/modelos/save")).andExpect(status().isMethodNotAllowed());
+			this.mvc.perform(post("/admin/licitaciones/save")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
@@ -68,11 +64,11 @@ public class AdminModeloControllerTest {
 
 	@Test
 	public void getNoEdit() throws Exception {
-		this.mvc.perform(get("/admin/modelos/edit/")).andExpect(status().isFound());
+		this.mvc.perform(get("/admin/licitaciones/edit/")).andExpect(status().isFound());
 	}
 
 	@Test
 	public void getNoDelete() throws Exception {
-		this.mvc.perform(get("/admin/modelos/delete/")).andExpect(status().isFound());
+		this.mvc.perform(get("/admin/licitaciones/delete/")).andExpect(status().isFound());
 	}
 }

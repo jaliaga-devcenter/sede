@@ -1,4 +1,4 @@
-package tecalco.sedeelectronica.admin.controller;
+package teralco.sedeelectronica.admin.controller;
 
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -14,31 +14,32 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import teralco.sedeelectronica.app.TestApplication;
+import teralco.sedeelectronica.app.Application;
+import teralco.sedeelectronica.model.Adjudicacion;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = TestApplication.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = Application.class)
 @AutoConfigureMockMvc
 @WithMockUser(roles = { "ADMIN_SEDE" })
-public class AdminAperturaControllerTest {
+public class AdminAdjudicacionControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
 
 	@Test
-	public void getAperturas() throws Exception {
-		this.mvc.perform(get("/admin/aperturas")).andExpect(status().isOk());
+	public void getAdjudicaciones() throws Exception {
+		this.mvc.perform(get("/admin/adjudicaciones")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void getCreate() throws Exception {
-		this.mvc.perform(get("/admin/aperturas/create")).andExpect(status().isOk());
+		this.mvc.perform(get("/admin/adjudicaciones/create")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void getEdit() throws Exception {
 		try {
-			this.mvc.perform(get("/admin/aperturas/edit/2")).andExpect(status().isOk());
+			this.mvc.perform(get("/admin/adjudicaciones/edit/2")).andExpect(status().isOk());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
@@ -47,7 +48,7 @@ public class AdminAperturaControllerTest {
 	@Test
 	public void getDelete() throws Exception {
 		try {
-			this.mvc.perform(get("/admin/aperturas/delete/3")).andExpect(status().isInternalServerError());
+			this.mvc.perform(get("/admin/adjudicaciones/delete/3")).andExpect(status().isInternalServerError());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
@@ -55,20 +56,19 @@ public class AdminAperturaControllerTest {
 
 	@Test
 	public void getSave() throws Exception {
-		try {
-			this.mvc.perform(post("/admin/aperturas/save")).andExpect(status().isOk());
-		} catch (Exception e) {
-			assertNotNull(e.getMessage());
-		}
+		Adjudicacion adju = new Adjudicacion();
+		this.mvc.perform(post("/admin/adjudicaciones/save").requestAttr("adjudicacion", adju))
+				.andExpect(status().isFound());
+
 	}
 
 	@Test
 	public void getNoEdit() throws Exception {
-		this.mvc.perform(get("/admin/aperturas/edit/")).andExpect(status().isFound());
+		this.mvc.perform(get("/admin/adjudicaciones/edit/")).andExpect(status().isFound());
 	}
 
 	@Test
 	public void getNoDelete() throws Exception {
-		this.mvc.perform(get("/admin/aperturas/delete/")).andExpect(status().isFound());
+		this.mvc.perform(get("/admin/adjudicaciones/delete/")).andExpect(status().isFound());
 	}
 }
