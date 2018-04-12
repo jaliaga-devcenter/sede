@@ -1,7 +1,10 @@
 package teralco.sedeelectronica.admin.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import javax.transaction.Transactional;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import teralco.sedeelectronica.app.TestApplication;
 
 @RunWith(SpringRunner.class)
+@Transactional
 @SpringBootTest(classes = TestApplication.class)
 @AutoConfigureMockMvc
 @WithMockUser(roles = { "ADMIN_SEDE" })
@@ -30,6 +34,6 @@ public class AdminLenguajeControllerTest {
 
 	@Test
 	public void getCreate() throws Exception {
-		this.mvc.perform(get("/admin/lenguajes/create")).andExpect(status().isMethodNotAllowed());
+		this.mvc.perform(post("/admin/lenguajes/create")).andExpect(status().isBadRequest());
 	}
 }
