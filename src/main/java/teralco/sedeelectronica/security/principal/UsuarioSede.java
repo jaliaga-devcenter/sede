@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UsuarioSede {
 
-	public UsuarioSede() {
-	}
-
 	private String documento;
 	private String nombreCompleto;
 	private String ticket;
