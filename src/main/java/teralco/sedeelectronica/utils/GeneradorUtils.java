@@ -9,8 +9,7 @@ public final class GeneradorUtils {
 	}
 
 	public static String generarToken() {
-		String token = UUID.randomUUID().toString();
-		return token;
+		return UUID.randomUUID().toString();
 	}
 
 }
