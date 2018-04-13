@@ -27,6 +27,10 @@ public class EncryptUtils {
 	@Value("${file.strKey}")
 	private String fileStrKey;
 
+	public void setFileStrKey(String pFileStrKey) {
+		this.fileStrKey = pFileStrKey;
+	}
+
 	private Key aesKey;
 
 	@PostConstruct

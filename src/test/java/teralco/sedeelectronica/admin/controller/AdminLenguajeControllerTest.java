@@ -11,11 +11,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import teralco.sedeelectronica.app.Application;
 
@@ -32,19 +35,17 @@ public class AdminLenguajeControllerTest {
 	@Autowired
 	private MockMvc mvc;
 
+	private final ObjectMapper mapper = new ObjectMapper();
+
 	@Before
 	public void init() {
 		this.mvc = MockMvcBuilders.webAppContextSetup(this.applicationContext).build();
 	}
 
 	@Test
-	public void getCreate() throws Exception {
-		this.mvc.perform(post("/admin/lenguajes/create")).andExpect(status().isBadRequest());
-	}
-
-	@Test
 	public void getCreateOk() throws Exception {
 		String[] list = { "es - Castellano" };
-		this.mvc.perform(post("/admin/lenguajes/create").param("langList", list)).andExpect(status().isBadRequest());
+		this.mvc.perform(post("/admin/lenguajes/create").content(this.mapper.writeValueAsString(list))
+				.contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 	}
 }

@@ -33,7 +33,7 @@
 						</fieldset>
 					</th>	
 					<td th:text="${#dates.format(aviso.fecha, 'dd/MM/yyyy')}"></td>
-					<td th:switch="${aviso.fichero}">
+					<td th:switch="${aviso.fichero}" th:if="${#lists.size(aviso.traducciones)>0}">
 							<span th:case="null" th:text="${aviso.traducciones[0].descripcion}"></span>
 							<span th:case="*"><a th:text="${aviso.traducciones[0].descripcion}" th:href="@{/download/}+${encrypt.encrypt(aviso.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>									

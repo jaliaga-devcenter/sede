@@ -7,6 +7,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.List;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import teralco.sedeelectronica.app.TestApplication;
+import teralco.sedeelectronica.model.Modelo;
+import teralco.sedeelectronica.repository.ModeloRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TestApplication.class)
@@ -27,6 +32,21 @@ public class AdminModeloControllerTest {
 	@Autowired
 	private MockMvc mvc;
 
+	@Autowired
+	private ModeloRepository modeloRepository;
+
+	@Before // not working
+	public void setUp() throws Exception {
+		Modelo doc1 = new Modelo();
+		Modelo doc2 = new Modelo();
+		Modelo doc3 = new Modelo();
+
+		doc1 = this.modeloRepository.save(doc1);
+		doc2 = this.modeloRepository.save(doc2);
+		doc3 = this.modeloRepository.save(doc3);
+
+	}
+
 	@Test
 	public void getModelos() throws Exception {
 		this.mvc.perform(get("/admin/modelos")).andExpect(status().isOk());
@@ -35,6 +55,18 @@ public class AdminModeloControllerTest {
 	@Test
 	public void getCreate() throws Exception {
 		this.mvc.perform(get("/admin/modelos/create")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void getEditOk() throws Exception {
+		List<Modelo> l = this.modeloRepository.findAll();
+		this.mvc.perform(get("/admin/modelos/edit/" + l.get(l.size() - 1).getId())).andExpect(status().isOk());
+	}
+
+	@Test
+	public void getDeleteOk() throws Exception {
+		List<Modelo> l = this.modeloRepository.findAll();
+		this.mvc.perform(get("/admin/modelos/delete/" + l.get(l.size() - 1).getId())).andExpect(status().isFound());
 	}
 
 	@Test
@@ -50,7 +82,7 @@ public class AdminModeloControllerTest {
 	@Test
 	public void getDelete() throws Exception {
 		try {
-			this.mvc.perform(get("/admin/modelos/delete/3")).andExpect(status().isInternalServerError());
+			this.mvc.perform(get("/admin/modelos/delete/3")).andExpect(status().isFound());
 		} catch (Exception e) {
 			assertThat(e.getMessage(), is(
 					"Request processing failed; nested exception is org.springframework.dao.EmptyResultDataAccessException: No class teralco.sedeelectronica.model.Modelo entity with id 3 exists!"));
@@ -59,6 +91,16 @@ public class AdminModeloControllerTest {
 
 	@Test
 	public void getSave() throws Exception {
+		try {
+			Modelo modelo = new Modelo();
+			this.mvc.perform(post("/admin/modelos/save").requestAttr("modelo", modelo)).andExpect(status().isFound());
+		} catch (Exception e) {
+			assertNotNull(e.getMessage());
+		}
+	}
+
+	@Test
+	public void getSave2() throws Exception {
 		try {
 			this.mvc.perform(post("/admin/modelos/save")).andExpect(status().isFound());
 		} catch (Exception e) {

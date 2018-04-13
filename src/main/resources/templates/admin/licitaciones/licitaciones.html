@@ -42,14 +42,14 @@
 				<td th:text="${licitacion.fichero!=null} ? ${licitacion.fichero.tipo}: ''"></td>
 				<td th:text="${#dates.format(licitacion.fechaPub, 'dd-MM-yyyy')}"></td>
 				<td th:switch="${licitacion.fichero}">
-					<span th:case="null" th:text="${licitacion.traducciones[0].descripcion}"></span>
+					<span th:case="null" th:if="${#lists.size(licitacion.traducciones)>0}" th:text="${licitacion.traducciones[0].descripcion}"></span>
 					<span th:case="*">
 						<a th:text="${licitacion.traducciones[0].descripcion}" th:href="@{/download/}+${encrypt.encrypt(licitacion.fichero.id)}" target="_blank"></a>
 					</span>
 				</td>
 				<td th:text="${#numbers.formatDecimal(licitacion.presupuesto,3,'POINT',2,'COMMA')}+' &euro;'"></td>
 				<td th:text="${#dates.format(licitacion.finPlazo, 'dd-MM-yyyy')}"></td>
-				<td th:text="${licitacion.medio!=null}? ${#strings.arraySplit(#messages.msg('sede.medio'), ',')[licitacion.medio]} : ''"></td>
+				<td th:text="${licitacion.medio!=null AND licitacion.medio>=0}? ${#strings.arraySplit(#messages.msg('sede.medio'), ',')[licitacion.medio]} : ''"></td>
 				<td th:text="${licitacion.fichero!=null} ? 
 					${#numbers.formatDecimal((licitacion.fichero.tamanyo/1024)/1024, 1, 'DEFAULT', 2, 'DEFAULT')}
 					+' MB': ''"></td>
