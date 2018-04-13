@@ -121,8 +121,9 @@ public class AdminAperturaControllerTest {
 			date.setMinutes(56);
 			date.setHours(16);
 			apertura.setFecha(date);
-			this.mvc.perform(post("/admin/aperturas/save").requestAttr("apertura", apertura))
-					.andExpect(status().isOk());
+			apertura.setHora(date);
+			this.mvc.perform(post("/admin/aperturas/save").flashAttr("apertura", apertura))
+					.andExpect(status().isFound());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}

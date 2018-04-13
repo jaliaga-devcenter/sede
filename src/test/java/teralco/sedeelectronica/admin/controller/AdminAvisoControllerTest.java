@@ -121,7 +121,7 @@ public class AdminAvisoControllerTest {
 			date.setMinutes(56);
 			date.setHours(16);
 			aviso.setFecha(date);
-			this.mvc.perform(post("/admin/avisos/save").requestAttr("aviso", aviso)).andExpect(status().isOk());
+			this.mvc.perform(post("/admin/avisos/save").flashAttr("aviso", aviso)).andExpect(status().isFound());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}

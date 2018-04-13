@@ -139,10 +139,11 @@ public class AdminLicitacionControllerTest {
 			date.setMinutes(56);
 			date.setHours(16);
 			lici.setFechaPub(date);
+			lici.setFinPlazo(date);
 			lici.setPresupuesto(bd);
 			lici.setMedio(medio);
-			this.mvc.perform(post("/admin/licitaciones/save").requestAttr("licitacion", lici))
-					.andExpect(status().isOk());
+			this.mvc.perform(post("/admin/licitaciones/save").flashAttr("licitacion", lici))
+					.andExpect(status().isFound());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
