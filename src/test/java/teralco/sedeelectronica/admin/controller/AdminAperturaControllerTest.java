@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -122,6 +123,8 @@ public class AdminAperturaControllerTest {
 			date.setHours(16);
 			apertura.setFecha(date);
 			apertura.setHora(date);
+			MockMultipartFile file = new MockMultipartFile("file.pdf", "orig.pdf", null, "bar".getBytes());
+			apertura.setFileToUpload(file);
 			this.mvc.perform(post("/admin/aperturas/save").flashAttr("apertura", apertura))
 					.andExpect(status().isFound());
 		} catch (Exception e) {

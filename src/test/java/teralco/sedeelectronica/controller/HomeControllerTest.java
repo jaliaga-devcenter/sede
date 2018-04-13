@@ -63,7 +63,12 @@ public class HomeControllerTest {
 
 	@Test
 	public void getProce2() throws Exception {
-		this.mvc.perform(get("/procedimiento/100")).andExpect(status().isFound());
+		this.mvc.perform(get("/procedimiento/1")).andExpect(status().isFound());
+	}
+
+	@Test
+	public void getLogout() throws Exception {
+		this.mvc.perform(get("/logout")).andExpect(status().isFound());
 	}
 
 }

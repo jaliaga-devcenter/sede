@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -94,6 +95,8 @@ public class AdminDocumentacionControllerTest {
 		try {
 			Documentacion doc = new Documentacion();
 			doc.setEstado(Estado.APERTURA);
+			MockMultipartFile file = new MockMultipartFile("file.pdf", "orig.pdf", null, "bar".getBytes());
+			doc.setFileToUpload(file);
 			this.mvc.perform(post("/admin/documentos/save").requestAttr("documentacion", doc))
 					.andExpect(status().isFound());
 		} catch (Exception e) {

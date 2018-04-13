@@ -50,7 +50,6 @@ public class AdminNormativaControllerTest {
 		norm1 = this.normativaRepository.save(norm1);
 		norm2 = this.normativaRepository.save(norm2);
 		norm3 = this.normativaRepository.save(norm3);
-
 	}
 
 	@Test

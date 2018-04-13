@@ -42,7 +42,6 @@ public class AdminNoticiaControllerTest {
 		not1 = this.noticiaRepository.save(not1);
 		not2 = this.noticiaRepository.save(not2);
 		not3 = this.noticiaRepository.save(not3);
-
 	}
 
 	@Test

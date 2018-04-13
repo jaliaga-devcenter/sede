@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -89,6 +90,8 @@ public class AdminAdjudicacionControllerTest {
 	@Test
 	public void getSave() throws Exception {
 		Adjudicacion adju = new Adjudicacion();
+		MockMultipartFile file = new MockMultipartFile("file.pdf", "orig.pdf", null, "bar".getBytes());
+		adju.setFileToUpload(file);
 		this.mvc.perform(post("/admin/adjudicaciones/save").requestAttr("adjudicacion", adju))
 				.andExpect(status().isFound());
 
