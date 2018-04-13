@@ -23,7 +23,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	public static final String ROLE_ADMIN_SEDE = "ROLE_" + ADMIN_SEDE;
 
 	@Value("${sede.entidad}")
-	private Integer ENTIDAD;
+	private Integer entidad;
 
 	@Autowired
 	private AuthClient authClient;

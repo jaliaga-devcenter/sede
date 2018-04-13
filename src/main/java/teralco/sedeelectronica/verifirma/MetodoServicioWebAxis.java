@@ -20,7 +20,7 @@ public class MetodoServicioWebAxis {
 
 	private Call call;
 	private OperationDesc operationDesc;
-	private List<Object> parametrosEntrada = new ArrayList<Object>();
+	private List<Object> parametrosEntrada = new ArrayList<>();
 	private ServicioWebAxisUtils servicio;
 
 	public static MetodoServicioWebAxis crearMetodoServicioWeb(String url, String nombreServicio, String nombreMetodo)
@@ -36,9 +36,9 @@ public class MetodoServicioWebAxis {
 		return stub.getMetodo(nombreMetodo);
 	}
 
-	protected MetodoServicioWebAxis(ServicioWebAxisUtils _servicio, String direccionServicio, String nombreMetodo)
+	protected MetodoServicioWebAxis(ServicioWebAxisUtils pServicio, String direccionServicio, String nombreMetodo)
 			throws ServiceException {
-		this.servicio = _servicio;
+		this.servicio = pServicio;
 
 		QName operationName = new QName(direccionServicio, nombreMetodo);
 		this.operationDesc = new OperationDesc();

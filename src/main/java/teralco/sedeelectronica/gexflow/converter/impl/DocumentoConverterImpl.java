@@ -11,9 +11,8 @@ public class DocumentoConverterImpl implements DocumentoConverter {
 
 	@Override
 	public DocumentoDTO createFrom(DocumentoWSJB entity) {
-		DocumentoDTO documento = new DocumentoDTO(entity.getIdDocumento(), entity.getNombre(),
-				entity.getTipoDocumento(), entity.getEnlace());
-		return documento;
+		return new DocumentoDTO(entity.getIdDocumento(), entity.getNombre(), entity.getTipoDocumento(),
+				entity.getEnlace());
 	}
 
 }

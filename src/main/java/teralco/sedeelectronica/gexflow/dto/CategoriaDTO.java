@@ -14,10 +14,10 @@ public class CategoriaDTO extends AbstractDTO {
 
 	}
 
-	public CategoriaDTO(Integer _idCategoria, String _nombre, String _descripcion) {
-		this.idCategoria = _idCategoria;
-		this.nombre = _nombre;
-		this.descripcion = _descripcion;
+	public CategoriaDTO(Integer pIdCategoria, String pNombre, String pDescripcion) {
+		this.idCategoria = pIdCategoria;
+		this.nombre = pNombre;
+		this.descripcion = pDescripcion;
 		this.subcategorias = new ArrayList<>();
 	}
 

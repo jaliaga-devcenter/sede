@@ -14,11 +14,11 @@ public class IconoDTO extends AbstractDTO {
 
 	private Integer idCategoria;
 
-	public IconoDTO(String _nombre, String _extension, byte[] _fichero) {
+	public IconoDTO(String pNombre, String pExtension, byte[] pFichero) {
 		super();
-		this.nombre = _nombre;
-		this.extension = _extension;
-		this.fichero = _fichero;
+		this.nombre = pNombre;
+		this.extension = pExtension;
+		this.fichero = pFichero;
 		this.base64encoded = Base64.encodeBase64String(this.fichero);
 	}
 
@@ -38,8 +38,8 @@ public class IconoDTO extends AbstractDTO {
 		return this.idCategoria;
 	}
 
-	public IconoDTO setIdCategoria(Integer _idCategoria) {
-		this.idCategoria = _idCategoria;
+	public IconoDTO setIdCategoria(Integer pIdCategoria) {
+		this.idCategoria = pIdCategoria;
 		return this;
 	}
 
