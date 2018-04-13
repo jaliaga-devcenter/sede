@@ -1,5 +1,6 @@
 package teralco.sedeelectronica.controller;
 
+import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -24,6 +25,15 @@ public class DownloadControllerTest {
 	@Test
 	public void getDownload() throws Exception {
 		this.mvc.perform(get("/download")).andExpect(status().isNotFound());
+	}
+
+	@Test
+	public void getDownloadFile() throws Exception {
+		try {
+			this.mvc.perform(get("/download/YXNkZmFzZGZhZmRhc2RmQUZEc2FkU0FE")).andExpect(status().isNotFound());
+		} catch (Exception ex) {
+			assertNotNull(ex.getMessage());
+		}
 	}
 
 	@Test

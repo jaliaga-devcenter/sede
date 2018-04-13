@@ -108,7 +108,7 @@ public class AdminNormativaControllerTest {
 		try {
 			Normativa norma = new Normativa();
 			norma.setUrl("www.google.es");
-			this.mvc.perform(post("/admin/normativa/save").requestAttr("normativa", norma)).andExpect(status().isOk());
+			this.mvc.perform(post("/admin/normativa/save").flashAttr("normativa", norma)).andExpect(status().isFound());
 		} catch (Exception e) {
 			assertNotNull(e.getMessage());
 		}
