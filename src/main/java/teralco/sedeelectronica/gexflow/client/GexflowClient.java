@@ -101,9 +101,8 @@ public class GexflowClient extends WebServiceGatewaySupport {
 		List<ServicioDTO> servicios = this.servicioConverter
 				.createFromEntities(response.getValue().getResultado().getServicios().getServicio());
 
-		servicios.stream().forEach(servicio -> {
-			servicio.setIdCategoria(categoria.getIdCategoria()).setIdSubCategoria(subcategoria.getIdSubcategoria());
-		});
+		servicios.stream().forEach(servicio -> servicio.setIdCategoria(categoria.getIdCategoria())
+				.setIdSubCategoria(subcategoria.getIdSubcategoria()));
 
 		return servicios;
 
