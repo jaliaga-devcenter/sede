@@ -56,4 +56,14 @@ public class HomeControllerTest {
 		this.mvc.perform(get("/procedimiento")).andExpect(status().isNotFound());
 	}
 
+	@Test
+	public void getFicha2() throws Exception {
+		this.mvc.perform(get("/ficha-procedimiento/103")).andExpect(status().isOk());
+	}
+
+	@Test
+	public void getProce2() throws Exception {
+		this.mvc.perform(get("/procedimiento/100")).andExpect(status().isFound());
+	}
+
 }
