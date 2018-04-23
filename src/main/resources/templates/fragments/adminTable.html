@@ -57,12 +57,21 @@
                 if (isChecked) {
                     var editButtonUrl = $("#editButton").prop('href');
                     var formDeleteTableUrl = $("#formModalDeleteTable").prop('action');
+                    var n = editButtonUrl.lastIndexOf("/");
+                    var nD = formDeleteTableUrl.lastIndexOf("/");
+                    
+                    var baseEditButtonUrl = editButtonUrl.slice(0, n);
+                    var baseFormDeleteTableUrl = editButtonUrl.slice(0, nD);
 
-                    if (editButtonUrl.match(/\/\d+/g)) $("#editButton").prop('href', editButtonUrl.replace(/\/\d+/g, '/' + itemId));
-                    else $("#editButton").prop('href', editButtonUrl + itemId);
+                    if (editButtonUrl.match(/\/\d+/g)) 
+                    	$("#editButton").prop('href', baseEditButtonUrl + '/' + itemId);
+                    else 
+                    	$("#editButton").prop('href', editButtonUrl + itemId);
 
-                    if (formDeleteTableUrl.match(/\/\d+/g)) $("#formModalDeleteTable").prop('action', formDeleteTableUrl.replace(/\/\d+/g, '/' + itemId));
-                    else $("#formModalDeleteTable").prop('action', formDeleteTableUrl + itemId);
+                    if (formDeleteTableUrl.match(/\/\d+/g)) 
+                    	$("#formModalDeleteTable").prop('action', baseFormDeleteTableUrl + '/' + itemId);
+                    else 
+                    	$("#formModalDeleteTable").prop('action', formDeleteTableUrl + itemId);
                 }
             });
 
