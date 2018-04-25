@@ -1,16 +1,20 @@
 package teralco.sedeelectronica.security.interceptor;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,6 +34,9 @@ public class ProcedimientoHandlerInterceptorAdapter extends HandlerInterceptorAd
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
+	
+	@Value("${sede.midu}")
+	private String miduUrlPattern;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -45,9 +52,11 @@ public class ProcedimientoHandlerInterceptorAdapter extends HandlerInterceptorAd
 		if (noHayUsuario || hayUsuarioAdmin) {
 			String returnTo = request.getRequestURL().toString();
 			try {
-				response.sendRedirect(
-						"https://demo.gexflow.com:8443/midu/LoginCertificadoWS?idEntidad=0&urlRetornoCorrecto="
-								+ returnTo + "&urlRetornoError=http://localhost:8081/sede/loginKO");
+				Map<String, Object> uriVariables = new HashMap<>();
+				uriVariables.put("returnTo", returnTo);
+				String url = UriComponentsBuilder.fromHttpUrl(this.miduUrlPattern).buildAndExpand(uriVariables)
+						.toString();
+				response.sendRedirect(url);
 			} catch (IOException e) {
 				throw new SedeElectronicaException(ExceptionType.LOGIN_NO_OK, e);
 			}
