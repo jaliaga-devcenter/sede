@@ -68,10 +68,10 @@ public class DocumentacionServiceTest {
 		Documentacion found_3 = this.documentacionService.get(2L);
 		Documentacion found_4 = this.documentacionService.get(1L);
 
-		assertThat(found_4.getEstado()).isEqualTo(Estado.ADJUDICACION);
-		assertThat(found_3.getEstado()).isEqualTo(Estado.APERTURA);
-		assertThat(found_2.getEstado()).isEqualTo(Estado.CONTRATADO);
-		assertThat(found_1.getEstado()).isEqualTo(Estado.ADJUDICACION);
+		assertThat(found_4.getEstado()).isEqualTo((short) Estado.ADJUDICACION.ordinal());
+		assertThat(found_3.getEstado()).isEqualTo((short) Estado.APERTURA.ordinal());
+		assertThat(found_2.getEstado()).isEqualTo((short) Estado.CONTRATADO.ordinal());
+		assertThat(found_1.getEstado()).isEqualTo((short) Estado.ADJUDICACION.ordinal());
 	}
 
 	@Test
