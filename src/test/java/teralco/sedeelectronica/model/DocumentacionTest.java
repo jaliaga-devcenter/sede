@@ -20,7 +20,7 @@ public class DocumentacionTest {
 
 		// ARRANGE
 		Documentacion doc = new Documentacion();
-		doc.setEstado(Estado.APERTURA);
+		doc.setEstado((short) Estado.APERTURA.ordinal());
 		doc.setFichero(file);
 		doc.setFileToUpload(null);
 

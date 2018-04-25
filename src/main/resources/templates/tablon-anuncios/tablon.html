@@ -14,7 +14,7 @@
             <div class="g-mb-20">
                 <p>
                     <span th:text="#{message.anuncios.actividades.p.span.one}">En esta sección se regogen todas las noticias, eventos y actualidad relacionada con la </span>
-                    <strong th:text="#{message.anuncios.actividades.p.strong}">Sede Electrónica del Ayuntamiento de Murcia</strong>
+                    <strong th:text="#{message.anuncios.actividades.p.strong}">Sede Electrónica del Ayuntamiento de Ibi</strong>
                     <span th:text="#{message.anuncios.actividades.p.span.two}">, tales como novedades, nuevas funcionalidades, avisos de paradas programadas de la Sede, etc.</span>
                 </p>
             </div>
@@ -22,14 +22,14 @@
             <div th:if="${anuncios}" th:each="anuncio: ${anuncios}" >
                 <div class="g-mb-20">
                     <h4 class="g-brd-bottom g-brd-gray-light-v4">
-                        <a th:href="'./tablon-anuncios/'+ ${anuncio.id}" th:text="${anuncio.titulo}">Titulo anuncio</a>
+                        <a th:href="'./tablon-anuncios/'+ ${anuncio.id}" th:text="${anuncio.traducciones[0].titulo}">Titulo anuncio</a>
                     </h4>
                     <div class="row">
                         <div class="col-sm-10">
-                            <p class="g-mb-0" th:if="${#strings.indexOf(anuncio.descripcion,'<!--more-->')>0}"
-                            th:utext="${#strings.substring(anuncio.descripcion,0,#strings.indexOf(anuncio.descripcion,'<!--more-->')) }"></p>
-                            <p class="g-mb-0" th:unless="${#strings.indexOf(anuncio.descripcion,'<!--more-->')>0}"
-                                    th:utext="${anuncio.descripcion}"></p>
+                            <p class="g-mb-0" th:if="${#strings.indexOf(anuncio.traducciones[0].descripcion,'<!--more-->')>0}"
+                            th:utext="${#strings.substring(anuncio.traducciones[0].descripcion,0,#strings.indexOf(anuncio.traducciones[0].descripcion,'<!--more-->')) }"></p>
+                            <p class="g-mb-0" th:unless="${#strings.indexOf(anuncio.traducciones[0].descripcion,'<!--more-->')>0}"
+                                    th:utext="${anuncio.traducciones[0].descripcion}"></p>
                             <p>
                                 <a th:href="'./tablon-anuncios/'+ ${anuncio.id}">Leer Más
                                     <i class="fa fa-angle-double-right"></i>
@@ -54,12 +54,12 @@
                                         </a> 
                                     </span> 
                                     <h3 class="header-title"> 
-                                        <span th:text="${anuncioDetalle.titulo}">Titulo noticia detalle</span> 
+                                        <span th:text="${anuncioDetalle.traducciones[0].titulo}">Titulo noticia detalle</span> 
                                     </h3> 
                                 </div> 
                                 <div class="asset-full-content show-asset-title"> 
                                     <div class="asset-content"> 
-                                        <div class="journal-content-article" th:utext="${anuncioDetalle.descripcion}"> 
+                                        <div class="journal-content-article" th:utext="${anuncioDetalle.traducciones[0].descripcion}"> 
                                         
                                         </div>
 

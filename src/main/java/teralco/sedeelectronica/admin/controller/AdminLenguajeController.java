@@ -16,7 +16,7 @@ import teralco.sedeelectronica.utils.Messages;
 @Controller
 public class AdminLenguajeController {
 
-	private static String form = "admin/lenguajes/formlenguaje";
+	private static String form = "admin/lenguajes/formLenguaje";
 
 	@Autowired
 	private Messages messages;

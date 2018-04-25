@@ -34,19 +34,19 @@ public class DocumentacionServiceTest {
 		/* ADJU 1 */
 		Documentacion docu = new Documentacion();
 		docu.setId(1L);
-		docu.setEstado(Estado.ADJUDICACION);
+		docu.setEstado((short) Estado.ADJUDICACION.ordinal());
 		/* ADJU 2 */
 		Documentacion docu2 = new Documentacion();
 		docu2.setId(2L);
-		docu2.setEstado(Estado.APERTURA);
+		docu2.setEstado((short) Estado.APERTURA.ordinal());
 		/* ADJU 3 */
 		Documentacion docu3 = new Documentacion();
 		docu3.setId(3L);
-		docu3.setEstado(Estado.CONTRATADO);
+		docu3.setEstado((short) Estado.CONTRATADO.ordinal());
 		/* ADJU 4 */
 		Documentacion docu4 = new Documentacion();
 		docu4.setId(4L);
-		docu4.setEstado(Estado.ADJUDICACION);
+		docu4.setEstado((short) Estado.ADJUDICACION.ordinal());
 
 		List<Documentacion> listN = new ArrayList<>();
 		listN.add(docu);
@@ -68,10 +68,10 @@ public class DocumentacionServiceTest {
 		Documentacion found_3 = this.documentacionService.get(2L);
 		Documentacion found_4 = this.documentacionService.get(1L);
 
-		assertThat(found_4.getEstado()).isEqualTo(Estado.ADJUDICACION);
-		assertThat(found_3.getEstado()).isEqualTo(Estado.APERTURA);
-		assertThat(found_2.getEstado()).isEqualTo(Estado.CONTRATADO);
-		assertThat(found_1.getEstado()).isEqualTo(Estado.ADJUDICACION);
+		assertThat(found_4.getEstado()).isEqualTo((short) Estado.ADJUDICACION.ordinal());
+		assertThat(found_3.getEstado()).isEqualTo((short) Estado.APERTURA.ordinal());
+		assertThat(found_2.getEstado()).isEqualTo((short) Estado.CONTRATADO.ordinal());
+		assertThat(found_1.getEstado()).isEqualTo((short) Estado.ADJUDICACION.ordinal());
 	}
 
 	@Test
