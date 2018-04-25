@@ -19,10 +19,11 @@ sede:
   ws.pasarela: 
     url: https://demo.gexflow.com:8443/pasarelaintegracion/ws/Autenticacion
     usuario: teralco
-    password: 481a5fe58d2ace784783158c4b8be6dd
+    password: 5f0723d1249796176906dde1fe1d765e
   carpeta.ciudadana: https://demo.gexflow.com:8443/CarpetaCiudadana/${sede.entidad}/VerMisTramites
   iniciar.tramite: https://demo.gexflow.com:8443/CarpetaCiudadana/IniciarTramiteConTicket?idEntidad=${sede.entidad}&id={idServicio}&idTicket={ticket}
   requisitos.tecnicos: https://demo.gexflow.com:8443/CarpetaCiudadana/requisitos.html
+  midu: https://demo.gexflow.com:8443/midu/LoginCertificadoWS?idEntidad=${sede.entidad}&urlRetornoCorrecto={returnTo}&urlRetornoError=http://sede.ibi.com/sede/loginKO
   conoce.tu.ayuntamiento: http://www.ibi.es/seccion.asp?idseccion=11454
   portal.transparencia: https://ibi.transparencialocal.gob.es/
   url.descarga: http://demo.gexflow.com:8080/gexflowzk
