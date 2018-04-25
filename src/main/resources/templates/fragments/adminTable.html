@@ -61,7 +61,7 @@
                     var nD = formDeleteTableUrl.lastIndexOf("/");
                     
                     var baseEditButtonUrl = editButtonUrl.slice(0, n);
-                    var baseFormDeleteTableUrl = editButtonUrl.slice(0, nD);
+                    var baseFormDeleteTableUrl = formDeleteTableUrl.slice(0, nD);
 
                     if (editButtonUrl.match(/\/\d+/g)) 
                     	$("#editButton").prop('href', baseEditButtonUrl + '/' + itemId);
