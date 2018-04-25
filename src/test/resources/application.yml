@@ -80,6 +80,7 @@ sede:
   carpeta.ciudadana: https://test.com:8443/CarpetaCiudadana/${sede.entidad}/VerMisTramites
   iniciar.tramite: https://test.com:8443/CarpetaCiudadana/IniciarTramiteConTicket?idEntidad=${sede.entidad}&id={idServicio}&idTicket={ticket}
   requisitos.tecnicos: https://test.com:8443/CarpetaCiudadana/requisitos.html
+  midu: https://test.com:8443/midu/LoginCertificadoWS?idEntidad=${sede.entidad}&urlRetornoCorrecto={returnTo}&urlRetornoError=http://sede.ibi.com/sede/loginKO
   conoce.tu.ayuntamiento: http://www.murcia.es/web/portal/institucional
   portal.transparencia: http://www.murcia.es/web/portal/transparencia-municipal
   url.descarga: http://test.com:8080/gexflowzk
