@@ -94,7 +94,7 @@ public class AdminDocumentacionControllerTest {
 	public void getSaveOk() throws Exception {
 		try {
 			Documentacion doc = new Documentacion();
-			doc.setEstado(Estado.APERTURA);
+			doc.setEstado((short) Estado.APERTURA.ordinal());
 			MockMultipartFile file = new MockMultipartFile("file.pdf", "orig.pdf", null, "bar".getBytes());
 			doc.setFileToUpload(file);
 			this.mvc.perform(post("/admin/documentos/save").requestAttr("documentacion", doc))

@@ -22,14 +22,14 @@
             <div th:if="${noticias}" th:each="noticia: ${noticias}" >
                 <div class="g-mb-20">
                     <h4 class="g-brd-bottom g-brd-gray-light-v4">
-                        <a th:href="'./actualidad/'+ ${noticia.id}" th:text="${noticia.titulo}">Titulo noticia</a>
+                        <a th:href="'./actualidad/'+ ${noticia.id}" th:text="${noticia.traducciones[0].titulo}">Titulo noticia</a>
                     </h4>
                     <div class="row">
                         <div class="col-sm-10">
-                            <p class="g-mb-0" th:if="${#strings.indexOf(noticia.descripcion,'<!--more-->')>0}"
-                            th:utext="${#strings.substring(noticia.descripcion,0,#strings.indexOf(noticia.descripcion,'<!--more-->')) }"/></p>
-                            <p class="g-mb-0" th:unless="${#strings.indexOf(noticia.descripcion,'<!--more-->')>0}"
-                                    th:utext="${noticia.descripcion}"/></p>
+                            <p class="g-mb-0" th:if="${#strings.indexOf(noticia.traducciones[0].descripcion,'<!--more-->')>0}"
+                            th:utext="${#strings.substring(noticia.traducciones[0].descripcion,0,#strings.indexOf(noticia.traducciones[0].descripcion,'<!--more-->')) }"/></p>
+                            <p class="g-mb-0" th:unless="${#strings.indexOf(noticia.traducciones[0].descripcion,'<!--more-->')>0}"
+                                    th:utext="${noticia.traducciones[0].descripcion}"/></p>
                             <p>
                                 <a th:href="'./actualidad/'+ ${noticia.id}">Leer Más
                                     <i class="fa fa-angle-double-right"></i>
@@ -54,12 +54,12 @@
                                         </a> 
                                     </span> 
                                     <h3 class="header-title"> 
-                                        <span th:text="${noticiaDetalle.titulo}">Titulo noticia detalle</span> 
+                                        <span th:text="${noticiaDetalle.traducciones[0].titulo}">Titulo noticia detalle</span> 
                                     </h3> 
                                 </div> 
                                 <div class="asset-full-content show-asset-title"> 
                                     <div class="asset-content"> 
-                                        <div class="journal-content-article" th:utext="${noticiaDetalle.descripcion}"> 
+                                        <div class="journal-content-article" th:utext="${noticiaDetalle.traducciones[0].descripcion}"> 
                                         
                                         </div>
                                         </div> 
