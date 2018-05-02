@@ -33,7 +33,7 @@
 						</fieldset>
 					</th>
 					<td th:text="${#dates.format(noticia.fecha, 'dd/MM/yyyy HH:mm')}"></td>
-					<td th:text="${noticia.traducciones[0].titulo}"></td>				
+					<td th:if="${#lists.size(noticia.traducciones)>0}" th:text="${noticia.traducciones[0].titulo}"></td>				
 				</tr>
 			</tbody>
 			<tbody th:unless="${noticias.getNumberOfElements()}"> 

@@ -7,8 +7,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -47,11 +45,6 @@ public class AdminLicitacionController {
 
 	@Autowired
 	private EncryptUtils encryptUtils;
-
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
 
 	@Autowired
 	public AdminLicitacionController(LicitacionService pLicitacionService, LenguajeService pLenguajeService,

@@ -5,23 +5,28 @@ import static org.junit.Assert.assertNull;
 
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import teralco.sedeelectronica.app.Application;
+import teralco.sedeelectronica.app.TestApplication;
 import teralco.sedeelectronica.model.Apertura;
 import teralco.sedeelectronica.model.Fichero;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { Application.class })
+@SpringBootTest(classes = { TestApplication.class })
 @SuppressWarnings("deprecation")
-@Ignore
+@Configuration
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class AperturaRepositoryTest {
+
 	@Autowired
 	private AperturaRepository aperturaRepository;
 
@@ -29,9 +34,12 @@ public class AperturaRepositoryTest {
 	private FicheroRepository ficheroRepository;
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(4.0);
 		this.ficheroRepository.save(file);
 		Date date = new Date();
 		date.setYear(2018);
@@ -43,19 +51,22 @@ public class AperturaRepositoryTest {
 		apertura.setResultado(file);
 		apertura.setFecha(date);
 		apertura.setHora(date);
-		apertura = this.aperturaRepository.save(apertura);
 
+		apertura = this.aperturaRepository.saveAndFlush(apertura);
 		// ACT
 		Apertura found = this.aperturaRepository.findById(apertura.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(apertura.getId());
+		assertThat(found.getResultado().getTamanyo()).isEqualTo(apertura.getResultado().getTamanyo());
 	}
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void editTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(4.0);
 		this.ficheroRepository.save(file);
 		Date date = new Date();
 		date.setYear(2018);
@@ -71,16 +82,17 @@ public class AperturaRepositoryTest {
 
 		// ACT
 		Apertura found = this.aperturaRepository.findById(apertura.getId());
+		found.getResultado().setTamanyo(64.0);
 
 		this.aperturaRepository.save(found);
-
 		apertura = this.aperturaRepository.findById(apertura.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(apertura.getId());
+		assertThat(found.getResultado().getTamanyo()).isEqualTo(64.0);
 	}
 
 	@Test
+	@Transactional
 	public void removeTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
@@ -100,7 +112,6 @@ public class AperturaRepositoryTest {
 		// ACT
 		Apertura found = this.aperturaRepository.findById(apertura.getId());
 		this.aperturaRepository.delete(found);
-
 		found = this.aperturaRepository.findById(apertura.getId());
 
 		// ASSERT

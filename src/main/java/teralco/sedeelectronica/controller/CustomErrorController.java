@@ -19,9 +19,6 @@ import teralco.sedeelectronica.exception.SedeElectronicaException;
 @Controller
 public class CustomErrorController implements ErrorController {
 
-	// private static Logger LOGGER =
-	// LoggerFactory.getLogger(CustomErrorController.class);
-
 	private static final String ERROR = "error";
 	private static final String ERROR_PATH = "/error";
 	private static final String ERROR_TEMPLATE = "error";

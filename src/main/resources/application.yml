@@ -3,6 +3,35 @@ spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL94Diale
 
 spring.jpa.generate-ddl: true
 spring.jpa.hibernate.ddl-auto: validate
-spring.jpa.show-sql: true
+spring.jpa.show-sql: false
 debug: false
 spring.messages.basename: messages/messages
+
+server.uploadPath: C:\proyectos\sede\
+verifirma.url: http://demo.gexflow.com:8080
+verifirma.user: servicio.consulta.expedientes
+verifirma.password: servicio.consulta.expedientes
+
+sede:
+  entidad: 0
+  ws.tramites: http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites
+  ws.admin: http://demo.gexflow.com:8080/gexflowzk/ws/WSAdminGexflowZK
+  ws.pasarela: 
+    url: https://demo.gexflow.com:8443/pasarelaintegracion/ws/Autenticacion
+    usuario: teralco
+    password: 5f0723d1249796176906dde1fe1d765e
+  carpeta.ciudadana: https://demo.gexflow.com:8443/CarpetaCiudadana/${sede.entidad}/VerMisTramites
+  iniciar.tramite: https://demo.gexflow.com:8443/CarpetaCiudadana/IniciarTramiteConTicket?idEntidad=${sede.entidad}&id={idServicio}&idTicket={ticket}
+  requisitos.tecnicos: https://demo.gexflow.com:8443/CarpetaCiudadana/requisitos.html
+  midu: https://demo.gexflow.com:8443/midu/LoginCertificadoWS?idEntidad=${sede.entidad}&urlRetornoCorrecto={returnTo}&urlRetornoError=http://sede.ibi.com/sede/loginKO
+  conoce.tu.ayuntamiento: http://www.ibi.es/seccion.asp?idseccion=11454
+  portal.transparencia: https://ibi.transparencialocal.gob.es/
+  url.descarga: http://demo.gexflow.com:8080/gexflowzk
+  procedimiento:
+    destacado.uno: 101
+    destacado.dos: 109
+    destacado.tres: 106
+    destacado.cuatro: 100
+    instancia.general: 100
+    quejas.sugerencias: 102
+    

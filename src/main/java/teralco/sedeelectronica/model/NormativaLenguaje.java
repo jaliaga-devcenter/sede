@@ -3,8 +3,6 @@ package teralco.sedeelectronica.model;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 @Embeddable
 public class NormativaLenguaje extends BaseLanguage {
 
@@ -12,16 +10,13 @@ public class NormativaLenguaje extends BaseLanguage {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Column(nullable = false)
-	@NotEmpty
+	@Column(nullable = true)
 	private String norma;
 
-	@Column(nullable = false)
-	@NotEmpty
+	@Column(nullable = true)
 	private String articulo;
 
 	@Column(nullable = true)
-	@NotEmpty
 	private String texto;
 
 	public NormativaLenguaje() {

@@ -115,8 +115,11 @@ public class HomeController {
 		List<CategoriaDTO> categorias = this.categoriaService.getCategorias(this.entidad, LanguageUtils.getLanguage());
 		Map<Integer, List<ServicioDTO>> servicios = new HashMap<>();
 
-		Predicate<ServicioDTO> filtro = searchText == null ? null
-				: servicio -> servicio.getDescripcion() != null && servicio.getDescripcion().contains(searchText);
+		Predicate<ServicioDTO> filtro = searchText == null ? null : (servicio -> {
+			Boolean containsDescripcion = servicio.getDescripcion() != null	&& servicio.getDescripcion().contains(searchText);
+			Boolean containsDenominacion = servicio.getDenominacion() != null && servicio.getDenominacion().contains(searchText);
+			return containsDescripcion || containsDenominacion;
+		});
 
 		categorias.forEach(cat -> servicios.putAll(this.categoriaService.getServiciosPorSubCategorias(this.entidad,
 				LanguageUtils.getLanguage(), cat, Optional.ofNullable(filtro))));

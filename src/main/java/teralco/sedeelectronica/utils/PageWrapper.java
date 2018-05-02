@@ -3,12 +3,10 @@ package teralco.sedeelectronica.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 
 public class PageWrapper<T> {
-	@Value("{max.Page.Item.Display}")
-	public final int MAX_PAGE_ITEM_DISPLAY = 5;
+	public static final int MAXPAGEITEMDISPLAY = 5;
 	private Page<T> page;
 	private List<PageItem> items;
 	private int currentNumber;
@@ -25,24 +23,25 @@ public class PageWrapper<T> {
 	public PageWrapper(Page<T> pPage, String pUrl) {
 		this.page = pPage;
 		this.url = pUrl;
-		this.items = new ArrayList<PageItem>();
+		this.items = new ArrayList<>();
 
 		this.currentNumber = this.page.getNumber() + 1; // start from 1 to match page.page
 
-		int start, size;
-		if (this.page.getTotalPages() <= this.MAX_PAGE_ITEM_DISPLAY) {
+		int start;
+		int size;
+		if (this.page.getTotalPages() <= PageWrapper.MAXPAGEITEMDISPLAY) {
 			start = 1;
 			size = this.page.getTotalPages();
 		} else {
-			if (this.currentNumber <= this.MAX_PAGE_ITEM_DISPLAY - this.MAX_PAGE_ITEM_DISPLAY / 2) {
+			if (this.currentNumber <= PageWrapper.MAXPAGEITEMDISPLAY - PageWrapper.MAXPAGEITEMDISPLAY / 2) {
 				start = 1;
-				size = this.MAX_PAGE_ITEM_DISPLAY;
-			} else if (this.currentNumber >= this.page.getTotalPages() - this.MAX_PAGE_ITEM_DISPLAY / 2) {
-				start = this.page.getTotalPages() - this.MAX_PAGE_ITEM_DISPLAY + 1;
-				size = this.MAX_PAGE_ITEM_DISPLAY;
+				size = PageWrapper.MAXPAGEITEMDISPLAY;
+			} else if (this.currentNumber >= this.page.getTotalPages() - PageWrapper.MAXPAGEITEMDISPLAY / 2) {
+				start = this.page.getTotalPages() - PageWrapper.MAXPAGEITEMDISPLAY + 1;
+				size = PageWrapper.MAXPAGEITEMDISPLAY;
 			} else {
-				start = this.currentNumber - this.MAX_PAGE_ITEM_DISPLAY / 2;
-				size = this.MAX_PAGE_ITEM_DISPLAY;
+				start = this.currentNumber - PageWrapper.MAXPAGEITEMDISPLAY / 2;
+				size = PageWrapper.MAXPAGEITEMDISPLAY;
 			}
 		}
 

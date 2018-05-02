@@ -23,7 +23,7 @@ public class Parada extends BaseModel {
 	private static final long serialVersionUID = 1L;
 
 	@ElementCollection(fetch = FetchType.LAZY)
-	@CollectionTable(name = "noticia_lenguaje", joinColumns = @JoinColumn(name = "noticia_id"))
+	@CollectionTable(name = "parada_lenguaje", joinColumns = @JoinColumn(name = "parada_id"))
 	private List<ParadaLenguaje> traducciones = new ArrayList<>();
 
 	@Temporal(TemporalType.DATE)

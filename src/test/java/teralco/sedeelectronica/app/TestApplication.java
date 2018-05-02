@@ -1,19 +1,15 @@
 package teralco.sedeelectronica.app;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-@Configuration
+@EnableAutoConfiguration
 @ComponentScan(basePackages = "teralco.sedeelectronica")
-@EntityScan("teralco.sedeelectronica.model")
-@EnableJpaRepositories("teralco.sedeelectronica.repository")
 public class TestApplication {
 
 	public static void main(String[] args) {

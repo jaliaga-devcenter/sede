@@ -33,8 +33,8 @@ logging.level.org.hibernate.type.descriptor.sql.BasicExtractor: ERROR
 logging.level.org.hibernate.type.EnumType: ERROR
 
 # Uncomment the keys to enable captcha
-google.recaptcha.key.site: 6LcXrUcUAAAAAL1kUs8PM_007ClcXBHkt5L_YgqZ
-google.recaptcha.key.secret: 6LcXrUcUAAAAAGeDgCq_H1k7JQE0j2Ett4km0xwz
+google.recaptcha.key.site: 6LehJVUUAAAAAIevMsuuJKkuJB2VbaEligPesdIV
+google.recaptcha.key.secret: 6LehJVUUAAAAAJ-194VWe3lnUWEY4-wzZ0h6XOIC
 
 spring.data.rest.default-page-size: 10
 spring.data.rest.max-page-size: 10

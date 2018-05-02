@@ -37,7 +37,7 @@ public class AdminDocumentacionController {
 	private static String list = "admin/documentos/documentos";
 	private static String redirList = "redirect:/admin/documentos";
 	private static String form = "admin/documentos/formDocumento";
-	private static String STATE_STRING = "estados";
+	private static String stateString = "estados";
 	private static String langModel = "langs";
 
 	private DocumentacionService documentacionService;
@@ -75,7 +75,7 @@ public class AdminDocumentacionController {
 		lang.forEach(e -> docu.getTraducciones().add(new DocumentacionLenguaje(e.getCodigo())));
 		model.addAttribute(langModel, lang);
 		model.addAttribute("documentacion", docu);
-		model.addAttribute(STATE_STRING, Estado.values());
+		model.addAttribute(stateString, Estado.values());
 		return form;
 	}
 
@@ -114,7 +114,7 @@ public class AdminDocumentacionController {
 
 		model.addAttribute(langModel, langs);
 		model.addAttribute("documentacion", documentacion);
-		model.addAttribute(STATE_STRING, Estado.values());
+		model.addAttribute(stateString, Estado.values());
 		return form;
 	}
 
@@ -135,7 +135,7 @@ public class AdminDocumentacionController {
 			Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute(langModel, this.lenguajeService.list());
-			model.addAttribute(STATE_STRING, Estado.values());
+			model.addAttribute(stateString, Estado.values());
 			return form;
 		}
 

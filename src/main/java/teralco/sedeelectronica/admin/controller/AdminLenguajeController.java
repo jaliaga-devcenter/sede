@@ -16,7 +16,7 @@ import teralco.sedeelectronica.utils.Messages;
 @Controller
 public class AdminLenguajeController {
 
-	private static String form = "admin/lenguajes/formlenguaje";
+	private static String form = "admin/lenguajes/formLenguaje";
 
 	@Autowired
 	private Messages messages;
@@ -29,13 +29,13 @@ public class AdminLenguajeController {
 	}
 
 	@RequestMapping(value = "/admin/lenguajes", produces = "text/html;charset=UTF-8")
-	public String licitaciones(Model model) {
+	public String lenguajes(Model model) {
 		model.addAttribute("langs", this.lenguajeService.list());
 		return form;
 	}
 
 	@PostMapping(value = "/admin/lenguajes/create")
-	public ResponseEntity<?> create(@RequestBody String[] langList) {
+	public ResponseEntity<AjaxResponseBody> create(@RequestBody String[] langList) {
 		AjaxResponseBody result = new AjaxResponseBody();
 		if (langList.length == 0) {
 			result.setMsg(this.messages.get("message.languages.error"));

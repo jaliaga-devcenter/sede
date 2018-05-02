@@ -3,21 +3,27 @@ package teralco.sedeelectronica.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNull;
 
+import java.math.BigDecimal;
+
+import javax.transaction.Transactional;
+
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import teralco.sedeelectronica.app.Application;
+import teralco.sedeelectronica.app.TestApplication;
 import teralco.sedeelectronica.model.Adjudicacion;
 import teralco.sedeelectronica.model.Fichero;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { Application.class })
-@Ignore
+@SpringBootTest(classes = { TestApplication.class })
+@Configuration
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class AdjudicacionRepositoryTest {
 
 	@Autowired
@@ -27,6 +33,8 @@ public class AdjudicacionRepositoryTest {
 	private FicheroRepository ficheroRepository;
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
@@ -39,7 +47,7 @@ public class AdjudicacionRepositoryTest {
 		adju.setPresupuesto(null);
 		adju.setResultado(file);
 
-		adju = this.adjudicacionRepository.save(adju);
+		adju = this.adjudicacionRepository.saveAndFlush(adju);
 
 		// ACT
 		Adjudicacion found = this.adjudicacionRepository.findById(adju.getId());
@@ -49,6 +57,8 @@ public class AdjudicacionRepositoryTest {
 	}
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void editTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
@@ -56,21 +66,22 @@ public class AdjudicacionRepositoryTest {
 
 		Adjudicacion adju = new Adjudicacion();
 		adju.setResultado(file);
-
-		adju = this.adjudicacionRepository.save(adju);
+		adju.setPresupuesto(new BigDecimal(1024.5));
+		adju = this.adjudicacionRepository.saveAndFlush(adju);
 
 		// ACT
 		Adjudicacion found = this.adjudicacionRepository.findById(adju.getId());
-
+		found.setPresupuesto(new BigDecimal(512));
 		this.adjudicacionRepository.save(found);
 
 		adju = this.adjudicacionRepository.findById(adju.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(adju.getId());
+		assertThat(found.getPresupuesto()).isEqualTo(adju.getPresupuesto());
 	}
 
 	@Test
+	@Transactional
 	public void removeTest() {
 		// ARRANGE
 		Fichero file = new Fichero();

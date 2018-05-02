@@ -34,7 +34,7 @@
 						</fieldset>
 					</th>	
 					<td th:text="${documento.fichero!=null} ? ${documento.fichero.tipo}: ''"></td>
-					<td th:switch="${documento.fichero}">
+					<td th:switch="${documento.fichero}" th:if="${#lists.size(documento.traducciones)>0}">
 							<span th:case="null" th:text="${documento.traducciones[0].descripcion}" ></span>
 							<span th:case="*"><a th:text="${documento.traducciones[0].descripcion}" th:href="@{/download/}+${encrypt.encrypt(documento.fichero.id)}" target="_blank"><div class="download">&nbsp;</div></a></span>
 					</td>					

@@ -44,7 +44,7 @@ public final class FicheroUtils {
 
 	public static Fichero convertirFichero(MultipartFile fichero) {
 		Fichero file = null;
-		if (fichero.getSize() > 0) {
+		if (fichero != null && fichero.getSize() > 0) {
 			String uuid = "";
 			try {
 				uuid = FicheroUtils.guardarFichero(fichero);

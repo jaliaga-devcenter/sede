@@ -54,7 +54,7 @@ public class VerifirmaController {
 	}
 
 	@PostMapping("/verifirma/send")
-	public Object signup(@Valid @ModelAttribute("CSVValidation") CSVValidation CSV, BindingResult bindingResult,
+	public Object signup(@Valid @ModelAttribute("CSVValidation") CSVValidation csv, BindingResult bindingResult,
 			Model model, @RequestParam(name = "g-recaptcha-response") String recaptchaResponse,
 			HttpServletRequest request, HttpServletResponse response) {
 
@@ -72,7 +72,7 @@ public class VerifirmaController {
 		}
 		File fileDownload;
 		try {
-			fileDownload = this.verifirmaClient.obtenerDocumentoPorCvd(ENTIDAD, CSV.csv);
+			fileDownload = this.verifirmaClient.obtenerDocumentoPorCvd(ENTIDAD, csv.csv);
 		} catch (ServiceException e) {
 
 			LOGGER.error("ERROR CONTROLADO", e);

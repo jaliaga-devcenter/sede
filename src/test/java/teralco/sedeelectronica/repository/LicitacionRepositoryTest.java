@@ -6,12 +6,14 @@ import static org.junit.Assert.assertNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import teralco.sedeelectronica.app.TestApplication;
@@ -21,7 +23,7 @@ import teralco.sedeelectronica.model.Licitacion;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
 @SuppressWarnings("deprecation")
-@Ignore
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class LicitacionRepositoryTest {
 
 	@Autowired
@@ -31,13 +33,15 @@ public class LicitacionRepositoryTest {
 	private FicheroRepository ficheroRepository;
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
 		this.ficheroRepository.save(file);
 
 		Licitacion lici = new Licitacion();
-		BigDecimal bd = new BigDecimal(1024.50);
+		BigDecimal bd = new BigDecimal(1024.5);
 		lici.setPresupuesto(bd);
 
 		Date date = new Date();
@@ -57,10 +61,12 @@ public class LicitacionRepositoryTest {
 		Licitacion found = this.licitacionRepository.findById(lici.getId());
 
 		// ASSERT
-		assertThat(found.getFechaPub()).isEqualTo(lici.getFechaPub());
+		assertThat(found.getFechaPub().getDay()).isEqualTo(lici.getFechaPub().getDay());
 	}
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void editTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
@@ -96,6 +102,8 @@ public class LicitacionRepositoryTest {
 	}
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void removeTest() {
 		// ARRANGE
 		Fichero file = new Fichero();

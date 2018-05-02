@@ -1,7 +1,6 @@
 package teralco.sedeelectronica.gexflow.converter;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import teralco.sedeelectronica.gexflow.dto.SubcategoriaDTO;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { Application.class })
-@Ignore
 public class CategoriaConverterTest {
 
 	private static final String DESCRIPCION_1 = "DESCRIPCION 1";

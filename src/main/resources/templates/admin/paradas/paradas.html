@@ -33,7 +33,7 @@
 						</fieldset>
 					</th>
 					<td th:text="${#dates.format(parada.fecha, 'dd/MM/yyyy')}"></td>
-					<td th:text="${parada.traducciones[0].descripcion}" ></td>					
+					<td th:if="${#lists.size(parada.traducciones)>0}" th:text="${parada.traducciones[0].descripcion}" ></td>					
 				</tr>
 			</tbody>
 			<tbody th:unless="${paradas.getNumberOfElements()}"> 

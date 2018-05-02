@@ -3,12 +3,15 @@ package teralco.sedeelectronica.repository;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNull;
 
+import javax.transaction.Transactional;
+
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import teralco.sedeelectronica.app.TestApplication;
@@ -17,7 +20,8 @@ import teralco.sedeelectronica.model.Modelo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = { TestApplication.class })
-@Ignore
+@Configuration
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_CLASS)
 public class ModeloRepositoryTest {
 
 	@Autowired
@@ -27,25 +31,30 @@ public class ModeloRepositoryTest {
 	private FicheroRepository ficheroRepository;
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void saveTest() {
 		// ARRANGE
 		Fichero file = new Fichero();
+		file.setTamanyo(78.9);
 		this.ficheroRepository.save(file);
 
 		Modelo model = new Modelo();
 		model.setFichero(file);
-
-		model = this.modeloRepository.save(model);
+		model = this.modeloRepository.saveAndFlush(model);
 		// ACT
 		Modelo found = this.modeloRepository.findById(model.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(model.getId());
+		assertThat(found.getFichero().getTamanyo()).isEqualTo(model.getFichero().getTamanyo());
 	}
 
 	@Test
+	@Transactional
+	@DirtiesContext
 	public void editTest() {
 		Fichero file = new Fichero();
+		file.setTamanyo(1.0);
 		this.ficheroRepository.save(file);
 
 		Modelo model = new Modelo();
@@ -55,16 +64,17 @@ public class ModeloRepositoryTest {
 
 		// ACT
 		Modelo found = this.modeloRepository.findById(model.getId());
-
+		found.getFichero().setTamanyo(12.0);
 		this.modeloRepository.save(found);
 
 		model = this.modeloRepository.findById(model.getId());
 
 		// ASSERT
-		assertThat(found.getId()).isEqualTo(model.getId());
+		assertThat(found.getFichero().getTamanyo()).isEqualTo(model.getFichero().getTamanyo());
 	}
 
 	@Test
+	@Transactional
 	public void removeTest() {
 		Fichero file = new Fichero();
 		this.ficheroRepository.save(file);

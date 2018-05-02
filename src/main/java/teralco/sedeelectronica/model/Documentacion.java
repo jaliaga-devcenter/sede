@@ -23,7 +23,7 @@ public class Documentacion extends BaseModel {
 	private static final long serialVersionUID = 1L;
 
 	@Column(columnDefinition = "INT2")
-	private Estado estado;
+	private Short estado;
 
 	/* For upload file in form */
 	@Transient
@@ -45,11 +45,11 @@ public class Documentacion extends BaseModel {
 		this.traducciones = pTraducciones;
 	}
 
-	public Estado getEstado() {
+	public Short getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(Estado pEstado) {
+	public void setEstado(Short pEstado) {
 		this.estado = pEstado;
 	}
 
