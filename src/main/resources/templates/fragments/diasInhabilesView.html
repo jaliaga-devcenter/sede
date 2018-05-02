@@ -9,7 +9,8 @@
         <div>
             <h4>D&iacute;as festivos</h4>
             <ul>
-                <li>DIA, DESCRIPCION</li>
+            
+                <li th:each="diafestivo : ${calendario} ">${diafestivo.dia}, ${diafestivo.descripcion} - ${diafestivo.tipo}</li>
             </ul>
         </div>
 

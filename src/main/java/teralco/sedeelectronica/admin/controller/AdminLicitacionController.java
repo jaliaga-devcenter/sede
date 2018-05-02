@@ -35,8 +35,6 @@ import teralco.sedeelectronica.utils.PageWrapper;
 @Controller
 public class AdminLicitacionController {
 
-	private static final String MEDIOMODEL = "medios";
-
 	private static String list = "admin/licitaciones/licitaciones";
 	private static String redirList = "redirect:/admin/licitaciones";
 	private static String form = "admin/licitaciones/formLicitacion";

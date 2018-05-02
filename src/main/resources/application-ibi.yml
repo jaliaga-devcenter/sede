@@ -13,7 +13,7 @@ server.contextPath: /sede
 server.uploadPath: C:\proyectos\sede\
 file.strKey: Bar12345Bar12345
 
-verifirma.url: http://demo.gexflow.com:8080
+verifirma.url: http://localhost:9080
 verifirma.user: servicio.consulta.expedientes
 verifirma.password: servicio.consulta.expedientes
 
@@ -46,25 +46,24 @@ spring.mail.port: 587
 spring.mail.properties.mail.smtp.starttls.enable: true
 
 server.uploadPath: C:\proyectos\sede\
-verifirma.url: http://demo.gexflow.com:8080
+verifirma.url: http://localhost:9080
 verifirma.user: servicio.consulta.expedientes
 verifirma.password: servicio.consulta.expedientes
 
-
 sede:
   entidad: 0
-  ws.tramites: http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites
-  ws.admin: http://demo.gexflow.com:8080/gexflowzk/ws/WSAdminGexflowZK
+  ws.tramites: http://localhost:9080/gexflowzk/ws/CatalogoTramites
+  ws.admin: http://localhost:9080/gexflowzk/ws/WSAdminGexflowZK
   ws.pasarela: 
-    url: https://demo.gexflow.com:8443/pasarelaintegracion/ws/Autenticacion
+    url: https://localhost:9443/pasarelaintegracion/ws/Autenticacion
     usuario: teralco
     password: 481a5fe58d2ace784783158c4b8be6dd
-  carpeta.ciudadana: https://demo.gexflow.com:8443/CarpetaCiudadana/${sede.entidad}/VerMisTramites
-  iniciar.tramite: https://demo.gexflow.com:8443/CarpetaCiudadana/IniciarTramiteConTicket?idEntidad=${sede.entidad}&id={idServicio}&idTicket={ticket}
-  requisitos.tecnicos: https://demo.gexflow.com:8443/CarpetaCiudadana/requisitos.html
+  carpeta.ciudadana: https://localhost:9443/CarpetaCiudadana/${sede.entidad}/VerMisTramites
+  iniciar.tramite: https://localhost:9443/CarpetaCiudadana/IniciarTramiteConTicket?idEntidad=${sede.entidad}&id={idServicio}&idTicket={ticket}
+  requisitos.tecnicos: https://localhost:9443/CarpetaCiudadana/requisitos.html
   conoce.tu.ayuntamiento: http://www.ibi.es/seccion.asp?idseccion=11454
   portal.transparencia: https://ibi.transparencialocal.gob.es/
-  url.descarga: http://demo.gexflow.com:8080/gexflowzk
+  url.descarga: http://localhost:9080/gexflowzk
   procedimiento:
     destacado.uno: 101
     destacado.dos: 109
