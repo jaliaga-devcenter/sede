@@ -9,6 +9,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.validation.Valid;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,6 +18,7 @@ public class Normativa extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
+	@Valid
 	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "normativa_lenguaje", joinColumns = @JoinColumn(name = "normativa_id"))
 	private List<NormativaLenguaje> traducciones = new ArrayList<>();

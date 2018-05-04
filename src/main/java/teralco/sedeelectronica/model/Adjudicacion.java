@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -61,6 +62,7 @@ public class Adjudicacion extends BaseModel {
 	@JoinColumn(name = "id_fichero", nullable = true)
 	private Fichero resultado;
 
+	@Valid
 	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "adjudicacion_lenguaje", joinColumns = @JoinColumn(name = "adjudicacion_id"))
 	private List<AdjudicacionLenguaje> traducciones = new ArrayList<>();

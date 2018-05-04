@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,6 +34,7 @@ public class Documentacion extends BaseModel {
 	@JoinColumn(name = "id_fichero", nullable = true)
 	private Fichero fichero;
 
+	@Valid
 	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "documentacion_lenguaje", joinColumns = @JoinColumn(name = "documentacion_id"))
 	private List<DocumentacionLenguaje> traducciones = new ArrayList<>();

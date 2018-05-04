@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,6 +23,7 @@ public class Parada extends BaseModel {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Valid
 	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "parada_lenguaje", joinColumns = @JoinColumn(name = "parada_id"))
 	private List<ParadaLenguaje> traducciones = new ArrayList<>();
