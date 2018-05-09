@@ -3,6 +3,8 @@ package teralco.sedeelectronica.security.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -22,6 +24,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	public static final String ADMIN_SEDE = "ADMIN_SEDE";
 	public static final String ROLE_ADMIN_SEDE = "ROLE_" + ADMIN_SEDE;
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
+
 	@Value("${sede.entidad}")
 	private Integer entidad;
 
@@ -32,11 +36,15 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String username = (String) authentication.getPrincipal();
 		String password = (String) authentication.getCredentials();
+		LOGGER.info("Autenticando....");
 		try {
 			if (!this.authClient.tienePermiso(0, username, password, "ADMCONTSEDE")) {
+				LOGGER.error("DEVUELVE ERROR EL LOGIN");
 				throw new BadCredentialsException("External system authentication failed");
 			}
 		} catch (Exception e) {
+			LOGGER.error("DEVUELVE EXCEPCION EL LOGIN", e);
+
 			throw new BadCredentialsException("External system authentication failed", e);
 		}
 
