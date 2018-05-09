@@ -50,9 +50,11 @@ public class AuthClient extends WebServiceGatewaySupport {
 		JAXBElement<ConsultaDiasFestivosResponse> response = (JAXBElement<ConsultaDiasFestivosResponse>) invokeWS(
 				this.factory.createConsultaDiasFestivos(request));
 
-		response.getValue().getSalida();
-
-		return new ArrayList<>();
+		ArrayList<DiaFestivoDTO> calendario = new ArrayList<>();
+		response.getValue().getSalida().stream().forEach(diaFestivo -> calendario.add(new DiaFestivoDTO("", "", "")));
+		DiaFestivoDTO d = new DiaFestivoDTO("12", "Santa Eugenia", "FESTIVO");
+		calendario.add(d);
+		return calendario;
 	}
 
 	private JAXBElement<?> invokeWS(JAXBElement<?> requestWS) {
