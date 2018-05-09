@@ -24,7 +24,7 @@ public class GexflowWSConfiguration {
 
 	@Bean
 	public GexflowClient quoteClient(@Qualifier("gexflowMarshaller") Jaxb2Marshaller marshaller) {
-		GexflowClient client = new GexflowClient();
+		GexflowClient client = new GexflowClient(this.wsTramites);
 		client.setDefaultUri(this.wsTramites);
 		client.setMarshaller(marshaller);
 		client.setUnmarshaller(marshaller);

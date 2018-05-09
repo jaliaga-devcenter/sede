@@ -33,6 +33,7 @@ import teralco.sedeelectronica.gexflow.exception.GexflowWSException;
 public class GexflowClient extends WebServiceGatewaySupport {
 
 	private ObjectFactory factory = new ObjectFactory();
+	private String endpoint;
 
 	@Autowired
 	private CategoriaConverter categoriaConverter;
@@ -42,6 +43,12 @@ public class GexflowClient extends WebServiceGatewaySupport {
 
 	@Autowired
 	private ServicioConverter servicioConverter;
+
+	public GexflowClient(String pEndpoint) {
+		super();
+		this.endpoint = pEndpoint;
+
+	}
 
 	public List<CategoriaDTO> getCategorias(Integer entidad, String idioma) throws GexflowWSException {
 
@@ -127,8 +134,7 @@ public class GexflowClient extends WebServiceGatewaySupport {
 	}
 
 	private JAXBElement<?> invokeWS(JAXBElement<?> requestWS) {
-		return (JAXBElement<?>) getWebServiceTemplate()
-				.marshalSendAndReceive("http://demo.gexflow.com:8080/gexflowzk/ws/CatalogoTramites", requestWS, null);
+		return (JAXBElement<?>) getWebServiceTemplate().marshalSendAndReceive(this.endpoint, requestWS, null);
 
 	}
 
