@@ -33,7 +33,7 @@
 						<ul class="nav flex-column u-nav-v5-2 u-nav-primary" role="tablist" 
 						data-target="nav-5-2-primary-ver" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-primary" >
 							<li class="nav-item" th:each="lang,iter: ${langs}">
-								<a class="nav-link" th:classappend="${iter.index==0} ? active : ''" data-toggle="tab" th:href="'#nav-5-2-primary-ver--'+${iter.index}" th:text="${lang.codigo} +' - ' + ${lang.idioma}">Home</a>
+								<a class="nav-link" th:classappend="${#fields.hasErrors('traducciones[__${iter.index}__].descripcion')}? 'has-error has-danger'" data-toggle="tab" th:href="'#nav-5-2-primary-ver--'+${iter.index}" th:text="${lang.codigo} +' - ' + ${lang.idioma}">Home</a>
 							</li>
 					    </ul>
 					</div>

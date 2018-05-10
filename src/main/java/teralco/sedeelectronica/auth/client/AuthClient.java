@@ -51,9 +51,9 @@ public class AuthClient extends WebServiceGatewaySupport {
 				this.factory.createConsultaDiasFestivos(request));
 
 		ArrayList<DiaFestivoDTO> calendario = new ArrayList<>();
-		response.getValue().getSalida().stream().forEach(diaFestivo -> calendario.add(new DiaFestivoDTO("", "", "")));
-		DiaFestivoDTO d = new DiaFestivoDTO("12", "Santa Eugenia", "FESTIVO");
-		calendario.add(d);
+		response.getValue().getSalida().stream().forEach(diaFestivo -> calendario.add(
+				new DiaFestivoDTO(diaFestivo.getFecha(), diaFestivo.getDescripcion(), diaFestivo.getTipoDiaFestivo())));
+
 		return calendario;
 	}
 

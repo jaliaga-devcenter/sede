@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,6 +42,7 @@ public class Anuncio extends BaseModel {
 	@JoinColumn(name = "id_fichero", nullable = true)
 	private Fichero fichero;
 
+	@Valid
 	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "anuncio_lenguaje", joinColumns = @JoinColumn(name = "anuncio_id"))
 	private List<AnuncioLenguaje> traducciones = new ArrayList<>();

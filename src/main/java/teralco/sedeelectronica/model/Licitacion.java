@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -32,6 +33,7 @@ public class Licitacion extends BaseModel {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaPub;
 
+	@Valid
 	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "licitacion_lenguaje", joinColumns = @JoinColumn(name = "licitacion_id"))
 	private List<LicitacionLenguaje> traducciones = new ArrayList<>();

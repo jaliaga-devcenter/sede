@@ -21,3 +21,6 @@ a.downa:hover {
 .header-left {
     background-color: rgba(255, 255, 255, 0.9);
 }
+
+a.nav-link.has-error.has-danger {
+  color: #d9534f;  }

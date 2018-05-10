@@ -10,12 +10,14 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.validation.Valid;
 
 @Entity
 public class Noticia extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
+	@Valid
 	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "noticia_lenguaje", joinColumns = @JoinColumn(name = "noticia_id"))
 	private List<NoticiaLenguaje> traducciones = new ArrayList<>();

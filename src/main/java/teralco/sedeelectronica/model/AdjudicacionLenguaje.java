@@ -12,6 +12,7 @@ public class AdjudicacionLenguaje extends BaseLanguage {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	@Column
 	@NotEmpty
 	private String denominacion;
